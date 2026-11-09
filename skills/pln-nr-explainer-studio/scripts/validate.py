@@ -134,9 +134,9 @@ def run(proj):
 
     for x, y in zip(scenes, scenes[1:]):
         if x.get("style") in S and y.get("style") in S:
-            la = .07 if x.get("tone") == "dark" else S[x["style"]].get("bg_luma", .1)
-            lb = .07 if y.get("tone") == "dark" else S[y["style"]].get("bg_luma", .1)
-            if abs(la - lb) > .45 and y.get("transition_in") in ("Cut", "Cross-fade 220 ms", None):
+            el = lambda z: .45 if z.get("footage") else (.07 if z.get("tone") == "dark" else S[z["style"]].get("bg_luma", .1))
+            la, lb = el(x), el(y)
+            if abs(la - lb) > .45 and y.get("transition_in") in ("Cut", "Cross-fade 220 ms", None) and not y.get("transition_ms"):
                 add("PERINGATAN", y.get("id", "?"), f"lompatan kecerahan latar {la:.2f} → {lb:.2f} dengan {y.get('transition_in') or 'Cut'}; jalankan plan.py tone (varian gelap) atau pakai Dip Navy")
     ids = [sc.get("style") for sc in scenes]
     if ids.count("energy-sweep") > 2:

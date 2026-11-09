@@ -31,6 +31,8 @@ def scene_tx(s):
 
 
 def eff_luma(sc):
+    if sc.get("footage"):
+        return .45      # foto/video lapangan siang hari dengan scrim navy
     return .07 if sc.get("tone") == "dark" else S[sc["style"]].get("bg_luma", .1)
 
 
@@ -43,8 +45,13 @@ def soften_luma(scenes):
             if nb and all(v < .3 for v in nb):
                 sc["tone"] = "dark"
     for a, b in zip(scenes, scenes[1:]):
-        if abs(eff_luma(a) - eff_luma(b)) > .45 and b["transition_in"] in ("Cut", "Cross-fade 220 ms"):
-            b["transition_in"] = "Dip Navy"
+        jump = abs(eff_luma(a) - eff_luma(b))
+        if b["transition_in"] in ("Cut", "Cross-fade 220 ms"):
+            if a.get("footage") or b.get("footage"):
+                if jump > .3:   # footage tidak bisa digelapkan: cross-fade dipanjangkan agar bertahap
+                    b["transition_in"], b["transition_ms"] = "Cross-fade 220 ms", 800
+            elif jump > .45:
+                b["transition_in"] = "Dip Navy"
 
 
 def scene(i, sid, dur, role="", note="", tx=None):

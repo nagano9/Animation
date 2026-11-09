@@ -68,7 +68,8 @@
     /* Footage nyata (foto atau video) di belakang art; ikut gerak kamera (Ken Burns untuk foto). */
     const footage = sc => { const f = sc.footage; if (!f) return '';
       const pos = `object-position:${esc(f.focus || '50% 50%')}`;
-      return f.kind === 'video' ? `<video class="foot" muted playsinline preload="auto" src="${esc(f.src)}" style="${pos}"></video>` : `<img class="foot" alt="" src="${f.src}" style="${pos}">`; };
+      // scrim navy di bawah: diizinkan merek untuk teks di atas foto; menjaga lower third dan caption terbaca
+      return (f.kind === 'video' ? `<video class="foot" muted playsinline preload="auto" src="${esc(f.src)}" style="${pos}"></video>` : `<img class="foot" alt="" src="${f.src}" style="${pos}">`) + '<div class="scrim"></div>'; };
     const layers = P.scenes.map((sc, i) => {
       const s = byId[sc.style];
       const L = document.createElement('div'); L.className = 'sc-layer art'; L.style.display = 'none';
@@ -166,7 +167,8 @@
       t = clamp(t, 0, P.total - 1e-3);
       const i = idxAt(t), cur = layers[i], local = t - cur.sc.start;
       const name = cur.sc.tx && cur.sc.tx !== 'Cut' && i > 0 ? (SCENE_TX.has(cur.sc.tx) ? cur.sc.tx : 'Cross-fade 220 ms') : null;
-      const tx = name ? (TX[name] || { ms: 220, ease: EASE.standard }) : null;
+      const tx0 = name ? (TX[name] || { ms: 220, ease: EASE.standard }) : null;
+      const tx = tx0 && cur.sc.txMs ? { ...tx0, ms: cur.sc.txMs } : tx0;   // durasi transisi per adegan (mis. cross-fade panjang ke footage)
       const dur = tx ? tx.ms / 1000 : 0, inT = dur && local < dur;
       layers.forEach((ly, k) => { if (k !== i && !(inT && k === i - 1)) ly.el.style.display = 'none'; });
       Object.assign(cur.el.style, { display: 'block', opacity: 1, clipPath: 'none', zIndex: 2 });
@@ -212,6 +214,7 @@
 .plnnr-stage .ls-art{position:absolute;inset:0;transform-origin:50% 50%}
 .plnnr-stage .ls-art svg{position:absolute;inset:0;width:100%;height:100%;display:block}
 .plnnr-stage .foot{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.plnnr-stage .scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,80,124,.18) 0%,rgba(0,80,124,.12) 40%,rgba(0,67,103,.7) 100%)}
 .plnnr-stage .osd{position:absolute;left:96px;top:72px;max-width:1150px;display:grid;gap:12px;justify-items:start}
 .plnnr-stage .osd span{background:rgba(255,255,255,.96);color:#00507C;font-weight:700;font-size:66px;line-height:1.08;padding:10px 22px}
 .plnnr-stage .lockup{position:absolute;left:50%;top:47.2%;transform:translate(-50%,-50%);width:30%;background:#00507C;padding:1.2% 1.6%}

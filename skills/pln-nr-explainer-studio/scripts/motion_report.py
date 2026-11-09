@@ -7,7 +7,8 @@ Mengukur dari piksel (ffmpeg, tanpa dependensi lain):
 - detik nyaris diam (beda rata-rata antara frame t dan t+1 dtk < ambang; menangkap gerak kamera lambat)
   dan jeda diam terpanjang
   → token beat-max: tidak boleh ada jeda diam > 6 dtk
-- lompatan kecerahan antar-detik (kilatan) → peringatan bila Δ luminans > 90 dari 255
+- kilatan: kecerahan berubah > 90 (dari 255) di seluruh layar serentak dalam 0,3 dtk;
+  wipe bergerak tidak dihitung
 Keluar dengan kode 1 bila ada jeda diam > 6 dtk atau kilatan.
 """
 import argparse
@@ -59,15 +60,24 @@ def main():
             gaps.append((start, run))
             run = 0
     longest = max(gaps, key=lambda g: g[1], default=(0, 0))
-    flashes = []
-    for i in range(1, secs):
-        d = luma[i * step] - luma[(i - 1) * step]
-        if abs(d) > FLASH:
-            # kilatan hanya bila perubahan terjadi dalam < 0,3 dtk (bukan transisi bertahap)
-            j0 = (i - 1) * step
-            fast = max(abs(luma[k + max(1, int(.3 * fps))] - luma[k]) for k in range(j0, min(len(luma) - int(.3 * fps) - 1, i * step)))
-            if fast > FLASH:
-                flashes.append((i, round(luma[(i - 1) * step]), round(luma[i * step])))
+    # kilatan: perubahan kecerahan besar di SELURUH layar serentak dalam 0,3 dtk (≥ 6 dari 8 lajur vertikal).
+    # Wipe yang bergerak (Energy Sweep, Wave Wipe) mengubah lajur bergantian, jadi tidak dihitung kilatan.
+    strips = 8
+    def strip_luma(f):
+        out = []
+        for k in range(strips):
+            x0, x1 = k * W // strips, (k + 1) * W // strips
+            vals = [f[y * W + x] for y in range(H) for x in range(x0, x1)]
+            out.append(sum(vals) / len(vals))
+        return out
+    sl = [strip_luma(f) for f in fr]
+    win = max(1, int(.3 * fps))
+    flashes, last = [], -10
+    for k in range(len(fr) - win):
+        hit = sum(abs(a2 - a1) > FLASH for a1, a2 in zip(sl[k], sl[k + win]))
+        if hit >= 6 and k / fps - last > 1:
+            last = k / fps
+            flashes.append((round(k / fps, 1), round(luma[k]), round(luma[k + win])))
     scenes = []
     if a.project:
         proj = json.load(open(a.project, encoding="utf-8"))
