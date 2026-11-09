@@ -80,7 +80,7 @@
           "tools": [
             "After Effects (MOGRT)",
             "Lottie",
-            "Remotion"
+            "PLN NR render engine"
           ]
         },
         "dont": [
@@ -194,7 +194,7 @@
           "bpm": "80–90",
           "vo": "Jelas, faktual, tempo sedang",
           "tools": [
-            "Remotion",
+            "PLN NR render engine",
             "After Effects",
             "D3/SVG"
           ]
@@ -265,7 +265,7 @@
           "bpm": "80–90",
           "vo": "Jelas, faktual, tempo sedang",
           "tools": [
-            "Remotion",
+            "PLN NR render engine",
             "After Effects",
             "D3/SVG"
           ]
@@ -325,7 +325,7 @@
           "tools": [
             "After Effects (MOGRT)",
             "Lottie",
-            "Remotion"
+            "PLN NR render engine"
           ]
         },
         "dont": [
@@ -384,7 +384,7 @@
           "tools": [
             "After Effects",
             "Lottie",
-            "Remotion"
+            "PLN NR render engine"
           ]
         },
         "dont": [

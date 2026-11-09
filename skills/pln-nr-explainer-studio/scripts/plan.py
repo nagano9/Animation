@@ -8,6 +8,8 @@
   python3 scripts/plan.py show work/project.json
 """
 import argparse
+import math
+import os
 from _common import (load_catalog, load_project, save_project, words, osd_text, mmss, timeline,
                      default_scene_s, die, ceil, VO_WPS, OSD_WPS_MAX, PAD_S)
 
@@ -61,10 +63,28 @@ def cmd_new(a):
     show(proj)
 
 
+def audio_len(path):
+    import subprocess
+    r = subprocess.run(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "default=nw=1:nk=1", path], capture_output=True, text=True)
+    return float(r.stdout.strip()) if r.returncode == 0 and r.stdout.strip() else None
+
+
 def cmd_retime(a):
     proj = load_project(a.path)
+    base = os.path.dirname(os.path.abspath(a.path))
     for sc in proj["scenes"]:
         cur = float(sc.get("duration_s") or 0)
+        if a.audio and sc.get("audio"):
+            ap = sc["audio"] if os.path.isabs(sc["audio"]) else os.path.join(base, sc["audio"])
+            ln = audio_len(ap)
+            if ln is None:
+                print(f"  {sc['id']}: audio tidak terbaca ({ap})")
+            else:
+                # durasi mengikuti audio nyata: offset 0,15 dtk + VO + napas 0,6 dtk, dibulatkan ke 0,5 dtk
+                new = math.ceil((ln + .75) * 2) / 2
+                print(f"  {sc['id']}: {cur:g} → {new:g} dtk (audio {ln:.2f} dtk)")
+                sc["duration_s"] = new
+                continue
         need_vo = words(sc.get("vo")) / VO_WPS + PAD_S if sc.get("vo") else 0
         need_osd = words(osd_text(sc)) / OSD_WPS_MAX if sc.get("onscreen") else 0
         need = max(need_vo, need_osd)
@@ -96,6 +116,7 @@ n.add_argument("--target", type=int)
 n.add_argument("--out", required=True)
 r = sub.add_parser("retime")
 r.add_argument("path")
+r.add_argument("--audio", action="store_true", help="pakai durasi file audio VO (field audio) via ffprobe")
 s = sub.add_parser("show")
 s.add_argument("path")
 a = ap.parse_args()

@@ -46,7 +46,10 @@
       "data": [],
       "lower_third": null,
       "visual": "Wide shot senja → Push-in pelan 5–8% → Lower third: lokasi dan kapasitas → Lockup di frame terakhir",
-      "notes": "Footage drone senja, lower third lokasi"
+      "notes": "Footage drone senja, lower third lokasi",
+      "location": "PLTS Terapung · Waduk Contoh",
+      "sublabel": "Lokasi ilustratif, ganti dengan lokasi proyek",
+      "subject": "surya"
     },
     {
       "id": "s03",
@@ -89,7 +92,8 @@
       ],
       "lower_third": null,
       "visual": "Cakram navy muncul → Busur gradient tergambar searah jarum jam → Angka menghitung naik → Label UPPERCASE di bawah",
-      "notes": "Kapasitas, TKDN, progres; satu angka disorot"
+      "notes": "Kapasitas, TKDN, progres; satu angka disorot",
+      "title": "Kapasitas dan kandungan lokal"
     },
     {
       "id": "s05",

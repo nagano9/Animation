@@ -22,6 +22,10 @@ BROADCAST = {"logo-sting", "lower-third", "caption-pack", "countdown"}
 
 cat = load_catalog()
 S = cat["by_id"]
+TX_MODES = {v["$extensions"]["id.ptplnnr"]["name"]: v["$extensions"]["id.ptplnnr"]["modes"]
+            for k, v in cat["tokens"]["transition"].items() if not k.startswith("$")}
+SLOT_CAP = {"arc-kpi": ("values", 3), "answer-first": ("values", 6), "waterfall": ("values", 7), "kinetic-type": ("lines", 3),
+            "navy-statement": ("lines", 3), "energy-sweep": ("lines", 2), "hex-rail": ("steps", 5), "sop-checklist": ("steps", 5)}
 
 
 def run(proj):
@@ -48,8 +52,10 @@ def run(proj):
         if d <= 0:
             add("ERROR", w, "duration_s harus > 0")
             continue
-        if aspect not in s["formats"] and not (aspect == "16:9" and "ultra-wide" in s["formats"]):
-            add("PERINGATAN", w, f"{s['name']} dirancang untuk {', '.join(s['formats'])}, proyek {aspect}; komposisi perlu disusun ulang")
+        if aspect == "16:9" and "16:9" not in s["formats"]:
+            add("PERINGATAN", w, f"{s['name']} dirancang untuk {', '.join(s['formats'])}; komposisi 16:9 perlu disusun ulang")
+        elif aspect in ("9:16", "1:1") and aspect not in s["formats"]:
+            add("INFO", w, f"{s['name']} dirancang 16:9; render memakai tata letak bertumpuk (art di atas, teks di bawah)")
         if sc.get("transition_in") not in (None, "Cut") and sc["transition_in"] not in cat["tx_by"]:
             add("ERROR", w, f"transisi '{sc['transition_in']}' bukan transisi resmi")
         vo, osd = sc.get("vo") or "", osd_text(sc)
@@ -58,6 +64,26 @@ def run(proj):
         if osd and words(osd) / d > OSD_WPS_MAX:
             add("ERROR", w, f"teks layar {words(osd)} kata dalam {d:g} dtk melebihi 3 kata/dtk")
         lines = sc.get("onscreen") or []
+        # legibilitas: panjang baris maksimal agar ukuran minimal (66 px di 16:9, 72 px di 9:16) muat di title-safe
+        maxc = cat["legibility"]["1080x1920" if aspect == "9:16" else "1920x1080"]["max_chars_per_line"]["$value"]
+        for ln in (lines if isinstance(lines, list) else [lines]):
+            if len(ln) > maxc:
+                add("ERROR", w, f"baris teks layar '{ln[:24]}…' {len(ln)} karakter; maksimal {maxc} agar terbaca di ukuran minimal ({aspect})")
+        # mode gerak: transisi harus diizinkan untuk mode gaya (token motion.transition.*.modes)
+        mode = s.get("mode")
+        txname = sc.get("transition_in")
+        tmodes = TX_MODES.get(txname)
+        if txname not in (None, "Cut") and tmodes and mode not in tmodes:
+            add("PERINGATAN", w, f"transisi '{txname}' adalah gerak expressive; {s['name']} bermode {mode}. Pakai Cross-fade 220 ms atau Wave Wipe")
+        # kapasitas slot data
+        cap_ = SLOT_CAP.get(sid)
+        if cap_:
+            k, n = cap_
+            items = sc.get("data") if k == "values" else (sc.get("steps") or sc.get("onscreen"))
+            if items and len(items) > n:
+                add("ERROR", w, f"{s['name']} menampung maksimal {n} {'angka' if k == 'values' else 'langkah/baris'}; ada {len(items)}")
+        if sid in ("arc-kpi", "answer-first", "waterfall", "isotype") and not sc.get("data"):
+            add("PERINGATAN", w, f"{s['name']} membaca angka dari 'data'; tanpa data, visual memakai angka contoh galeri")
         if isinstance(lines, list) and len(lines) > 2 and sid not in ("sop-checklist", "wave-edge"):
             add("PERINGATAN", w, f"teks layar {len(lines)} baris; maksimal 2 baris per bingkai")
         for txt, label in ((vo, "VO"), (osd, "teks layar")):
@@ -102,13 +128,14 @@ def run(proj):
     fams = {S[i]["cat"] for i in content if i in S}
     if len(set(content)) > 4:
         add("PERINGATAN", "proyek", f"{len(set(content))} gaya isi berbeda; disarankan maksimal 3 agar terasa satu cerita")
+    social = aspect == "9:16" or proj.get("need") in ("S", "Y")
     if proj.get("need") != "X" and total > 20:
-        if ids[0] != "logo-sting":
+        if ids[0] != "logo-sting" and not social:
             add("PERINGATAN", "proyek", "video resmi sebaiknya dibuka dengan logo-sting")
         if ids[-1] not in ("logo-sting", "energy-sweep", "navy-statement"):
             add("PERINGATAN", "proyek", "penutup sebaiknya logo-sting, energy-sweep, atau navy-statement dengan lockup")
-    if aspect == "9:16" and "caption-pack" not in ids:
-        add("PERINGATAN", "proyek", "video 9:16 wajib caption; build.py akan membuat SRT, pastikan caption juga dibakar ke video")
+    if aspect in ("9:16", "1:1") and not any((sc.get("vo") or "").strip() for sc in scenes):
+        add("PERINGATAN", "proyek", "video sosial tanpa VO: tidak ada caption yang bisa dibakar; pastikan pesan terbaca dari teks layar saja")
     tgt = proj.get("target_s")
     if tgt and abs(total - tgt) > max(5, tgt * .15):
         add("PERINGATAN", "proyek", f"durasi total {mmss(total)} menyimpang dari target {mmss(tgt)}")
@@ -125,10 +152,11 @@ ap.add_argument("--json", action="store_true")
 a = ap.parse_args()
 res = run(load_project(a.path))
 errs = [r for r in res if r["level"] == "ERROR"]
+warns = [r for r in res if r["level"] == "PERINGATAN"]
 if a.json:
-    print(json.dumps({"errors": len(errs), "warnings": len(res) - len(errs), "items": res}, ensure_ascii=False, indent=2))
+    print(json.dumps({"errors": len(errs), "warnings": len(warns), "items": res}, ensure_ascii=False, indent=2))
 else:
     for r in res:
         print(f"{r['level']:<10} {r['where']:<16} {r['msg']}")
-    print(f"\n{len(errs)} error, {len(res) - len(errs)} peringatan. " + ("LULUS" if not errs else "BELUM LULUS"))
+    print(f"\n{len(errs)} error, {len(warns)} peringatan, {len(res) - len(errs) - len(warns)} info. " + ("LULUS" if not errs else "BELUM LULUS"))
 sys.exit(1 if errs else 0)

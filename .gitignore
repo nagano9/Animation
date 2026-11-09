@@ -1,0 +1,6 @@
+# Hasil render video tidak di-commit (besar dan dapat dibuat ulang)
+*.mp4
+*.render.json
+node_modules/
+__pycache__/
+*.pyc

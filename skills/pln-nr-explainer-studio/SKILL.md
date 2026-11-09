@@ -10,7 +10,7 @@ Sumber kebenarannya adalah katalog `assets/catalog.json` (skema `plnnr.motion-ca
 build dari PLN NR Motion Gallery: 56 gaya dalam 10 rumpun, 26 kebutuhan A–Z, 8 resep video,
 8 transisi resmi, token easing, arah produksi per gaya, dan 20 butir QA.
 
-Semua skrip memakai Python 3 standar (tanpa dependensi). Jalankan dari folder skill ini.
+Skrip perencanaan memakai Python 3 standar (tanpa dependensi); render memakai Node + Playwright + ffmpeg. Jalankan dari folder skill ini.
 
 ## Alur kerja
 
@@ -82,9 +82,11 @@ python3 scripts/validate.py work/project.json
 ```
 
 Perbaiki semua **ERROR** dan tinjau setiap **PERINGATAN** sampai validasi lulus. Pemeriksaan
-otomatis mencakup: gaya ada di katalog, rasio cocok, kecepatan VO dan teks layar, emoji dan tanda
-seru, sumber angka, format desimal, warna merah, pemakaian Energy Sweep, ident pembuka/penutup,
-caption untuk 9:16, durasi total terhadap target, dan kata ganti orang pertama di teks layar.
+otomatis mencakup: gaya ada di katalog, rasio, kecepatan VO dan teks layar, panjang baris teks
+layar (maks 32 karakter di 16:9, 24 di 9:16, agar terbaca di ukuran minimal 66/72 px), emoji dan
+tanda seru, sumber angka, format desimal, warna merah, transisi terhadap mode gerak gaya,
+kapasitas slot data, pemakaian Energy Sweep, ident pembuka/penutup, durasi total terhadap target,
+dan kata ganti orang pertama di teks layar.
 
 ### 6. Hasilkan paket produksi
 
@@ -93,21 +95,61 @@ python3 scripts/build.py work/project.json --out work/out
 ```
 
 Menghasilkan:
-- `animatic.html` — animatic mandiri yang bisa diputar: pratinjau gaya bergerak per adegan,
-  teks layar, caption VO, timeline, timecode, kecepatan 1×/2×. Lockup resmi tampil di adegan
-  `logo-sting`. Bisa dibuka langsung di browser atau dipublikasikan sebagai Artifact.
-- `storyboard.md` — tabel adegan: timecode, gaya, peran, transisi, VO, teks layar, data dan sumber, arahan visual dari beat gaya.
+- `animatic.html` — pemutar interaktif. Setiap frame dihitung oleh runtime render yang sama
+  dengan MP4, jadi yang terlihat di animatic adalah frame final. Lockup resmi, teks layar,
+  caption, timeline, kecepatan 1×/2×.
+- `storyboard.md` — tabel adegan: timecode, gaya, peran, transisi, VO, teks layar, data dan sumber, arahan visual.
 - `captions.srt` — caption Bahasa Indonesia dari VO, maks 2 baris × 42 karakter.
-- `production.json` — paket untuk animator: spesifikasi gaya per adegan (palet, tipografi,
-  easing, transisi, musik, BPM, nada VO, tools, larangan) plus checklist QA manual.
+- `production.json` — paket untuk animator: spesifikasi gaya per adegan plus checklist QA manual.
 
-### 7. Serahkan
+### 7. Render video
+
+```bash
+node engine/render.mjs work/out/animatic.html --stills work/out/stills    # still per adegan + contact-sheet.png
+node engine/render.mjs work/out/animatic.html --out work/out/video.mp4 --audio work/project.json [--music bed.mp3]
+```
+
+Selalu periksa contact sheet sebelum render penuh; lihat still dengan tool baca gambar dan
+perbaiki adegan yang teksnya bertabrakan atau datanya salah. Render menghasilkan H.264
+1920×1080 (16:9), 1080×1920 (9:16), atau 1080×1080 (1:1) pada 25 fps; 9:16 dan 1:1 memakai
+tata letak bertumpuk (art di atas, teks besar di bawah, di luar zona UI platform). Caption
+dibakar ke video kecuali `--no-captions`. Bila ada audio, VO dicampur dan loudness dinormalkan
+ke −14 LUFS. Kecepatan render sekitar 10–12 frame/detik (video 90 detik ≈ 3–4 menit).
+
+Kebutuhan: Node 18+, Playwright dengan Chromium, ffmpeg. Bila tidak tersedia, serahkan
+animatic dan production.json; animator dapat merender ulang di mesin yang lengkap.
+
+**Timing dari audio.** Bila rekaman VO per adegan tersedia (field `audio`), jalankan
+`python3 scripts/plan.py retime work/project.json --audio`: durasi adegan mengikuti panjang
+audio nyata (ffprobe), bukan perkiraan kata per menit.
+
+### 8. Serahkan
 
 Sampaikan ke pengguna: ringkasan alur (judul, durasi, gaya terpilih dan alasannya), hasil
-validasi, daftar asumsi dan angka ilustratif yang masih harus diganti, lalu tautan/berkas
-animatic, storyboard, SRT, dan paket produksi. Bila tool Artifact tersedia, publikasikan
-`animatic.html` agar bisa ditonton tim. Tutup dengan butir QA manual yang tidak bisa dicek
-otomatis (lisensi musik, loudness, ejaan nama, kesesuaian footage).
+validasi, daftar asumsi dan angka ilustratif yang masih harus diganti, lalu berkas video,
+contact sheet, animatic, storyboard, SRT, dan paket produksi. Bila tool Artifact tersedia,
+publikasikan `animatic.html` agar bisa ditonton tim. Tutup dengan butir QA manual yang tidak bisa
+dicek otomatis (lisensi musik, ejaan nama, kesesuaian footage, persetujuan pemilik konten).
+
+## Gaya dengan slot data
+
+Gaya berikut membaca data proyek langsung ke visual; gaya lain menampilkan konten ilustratif
+dan teks layar ditempel sebagai overlay. Pilih gaya berslot untuk adegan yang membawa angka.
+
+| Gaya | Field adegan yang dibaca |
+| --- | --- |
+| energy-sweep, navy-statement, kinetic-type | `onscreen` (baris), `kicker`; kinetic-type juga `data[0]` |
+| arc-kpi | `data` (maks 3; unit `%` menggambar busur sesuai nilai) |
+| answer-first | `title`, `data` (maks 6, terakhir disorot), `callout`, `unit_line`, sumber |
+| waterfall | `title`, `data` (awal, perubahan bertanda, akhir; maks 7) |
+| isotype | `title`, `data[0]`, `icons_on` (0–70) |
+| hex-rail, sop-checklist | `title`, `steps` atau `onscreen` (maks 5) |
+| lower-third | `lower_third.name`, `lower_third.title` |
+| golden-hour, travel-poster | `location`, `sublabel` |
+
+Angka di slot dihitung naik (Count-Up) dengan format Indonesia. Mode gerak tiap gaya
+(productive/expressive) dan transisi yang diizinkan ada di `assets/motion.tokens.json`;
+`validate.py` memberi peringatan bila transisi expressive dipakai di gaya productive.
 
 ## Aturan merek yang tidak boleh dilanggar
 

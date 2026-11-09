@@ -78,7 +78,7 @@
       "tools": [
         "After Effects",
         "Lottie",
-        "Remotion"
+        "PLN NR render engine"
       ]
     },
     "Data & Eksekutif": {
@@ -86,7 +86,7 @@
       "bpm": "80–90",
       "vo": "Jelas, faktual, tempo sedang",
       "tools": [
-        "Remotion",
+        "PLN NR render engine",
         "After Effects",
         "D3/SVG"
       ]
@@ -98,7 +98,7 @@
       "tools": [
         "Blender",
         "After Effects",
-        "Remotion"
+        "PLN NR render engine"
       ]
     },
     "Edukasi & Explainer": {
@@ -107,7 +107,7 @@
       "vo": "Ramah dan bercerita",
       "tools": [
         "After Effects",
-        "Remotion",
+        "PLN NR render engine",
         "Lottie"
       ]
     },
@@ -127,7 +127,7 @@
       "tools": [
         "After Effects",
         "CapCut/Premiere",
-        "Remotion"
+        "PLN NR render engine"
       ]
     },
     "K3 & Operasional": {
@@ -136,7 +136,7 @@
       "vo": "Tegas dan jelas",
       "tools": [
         "After Effects",
-        "Remotion"
+        "PLN NR render engine"
       ]
     },
     "Dokumenter & Sinematik": {
@@ -153,7 +153,7 @@
       "bpm": "80–90",
       "vo": "Formal dan terukur",
       "tools": [
-        "Remotion",
+        "PLN NR render engine",
         "After Effects"
       ]
     },
@@ -164,8 +164,312 @@
       "tools": [
         "After Effects (MOGRT)",
         "Lottie",
-        "Remotion"
+        "PLN NR render engine"
       ]
+    }
+  },
+  "family_mode": {
+    "Signature PLN NR": "expressive",
+    "Data & Eksekutif": "productive",
+    "Teknik & Engineering": "productive",
+    "Edukasi & Explainer": "productive",
+    "Nusantara & Budaya": "expressive",
+    "Kampanye & Sosial": "expressive",
+    "K3 & Operasional": "productive",
+    "Dokumenter & Sinematik": "expressive",
+    "Tata Kelola & Keuangan": "productive",
+    "Paket Broadcast": "productive"
+  },
+  "tokens": {
+    "duration": {
+      "$type": "duration",
+      "micro": {
+        "$value": "120ms",
+        "$description": "Hover, kedip status, munculnya aksen kecil"
+      },
+      "standard": {
+        "$value": "220ms",
+        "$description": "Cross-fade antaradegan; default merek dari template asli"
+      },
+      "slide": {
+        "$value": "420ms",
+        "$description": "Elemen masuk, panel bergeser, lower third"
+      },
+      "scene-productive": {
+        "$value": "600ms",
+        "$description": "Transisi bermerek pada konten produktif"
+      },
+      "scene-expressive": {
+        "$value": "800ms",
+        "$description": "Transisi bermerek pada momen ekspresif"
+      },
+      "line-draw": {
+        "$value": "1200ms",
+        "$description": "Diagram, line-art, peta jalan tergambar"
+      },
+      "hold-number": {
+        "$value": "1500ms",
+        "$description": "Tahan minimal angka final sebelum berganti"
+      },
+      "beat-min": {
+        "$value": "3000ms",
+        "$description": "Durasi minimal satu beat storyboard"
+      },
+      "beat-max": {
+        "$value": "6000ms",
+        "$description": "Durasi maksimal satu beat sebelum ada perubahan visual"
+      }
+    },
+    "easing": {
+      "$type": "cubicBezier",
+      "standard": {
+        "$value": [
+          0.4,
+          0,
+          0.2,
+          1
+        ],
+        "$description": "Gerak umum; default merek"
+      },
+      "entrance": {
+        "$value": [
+          0,
+          0,
+          0.2,
+          1
+        ],
+        "$description": "Elemen masuk, melambat di akhir"
+      },
+      "exit": {
+        "$value": [
+          0.4,
+          0,
+          1,
+          1
+        ],
+        "$description": "Elemen keluar, cepat di akhir"
+      },
+      "emphasis": {
+        "$value": [
+          0.16,
+          1,
+          0.3,
+          1
+        ],
+        "$description": "Angka, hexagon, sorotan; hanya mode expressive atau Count-Up"
+      },
+      "linear": {
+        "$value": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "$description": "Aliran kontinu: arus, putaran, pindai"
+      }
+    },
+    "transition": {
+      "$type": "transition",
+      "cross-fade": {
+        "$value": {
+          "duration": "{motion.duration.standard}",
+          "timingFunction": "{motion.easing.standard}"
+        },
+        "$extensions": {
+          "id.ptplnnr": {
+            "name": "Cross-fade 220 ms",
+            "modes": [
+              "productive",
+              "expressive"
+            ]
+          }
+        }
+      },
+      "energy-sweep": {
+        "$value": {
+          "duration": "{motion.duration.scene-productive}",
+          "timingFunction": "{motion.easing.standard}"
+        },
+        "$extensions": {
+          "id.ptplnnr": {
+            "name": "Energy Sweep",
+            "modes": [
+              "expressive"
+            ],
+            "max_per_video": 2
+          }
+        }
+      },
+      "hex-bloom": {
+        "$value": {
+          "duration": "{motion.duration.scene-expressive}",
+          "timingFunction": "{motion.easing.emphasis}"
+        },
+        "$extensions": {
+          "id.ptplnnr": {
+            "name": "Hex Bloom",
+            "modes": [
+              "expressive"
+            ]
+          }
+        }
+      },
+      "wave-wipe": {
+        "$value": {
+          "duration": "{motion.duration.scene-productive}",
+          "timingFunction": "{motion.easing.standard}"
+        },
+        "$extensions": {
+          "id.ptplnnr": {
+            "name": "Wave Wipe",
+            "modes": [
+              "productive",
+              "expressive"
+            ]
+          }
+        }
+      },
+      "chevron-push": {
+        "$value": {
+          "duration": "{motion.duration.slide}",
+          "timingFunction": "{motion.easing.entrance}"
+        },
+        "$extensions": {
+          "id.ptplnnr": {
+            "name": "Chevron Push",
+            "modes": [
+              "expressive"
+            ]
+          }
+        }
+      },
+      "lens-iris": {
+        "$value": {
+          "duration": "{motion.duration.scene-expressive}",
+          "timingFunction": "{motion.easing.entrance}"
+        },
+        "$extensions": {
+          "id.ptplnnr": {
+            "name": "Lens Iris",
+            "modes": [
+              "expressive"
+            ]
+          }
+        }
+      },
+      "line-draw": {
+        "$value": {
+          "duration": "{motion.duration.line-draw}",
+          "timingFunction": "{motion.easing.linear}"
+        },
+        "$extensions": {
+          "id.ptplnnr": {
+            "name": "Line Draw",
+            "modes": [
+              "productive",
+              "expressive"
+            ]
+          }
+        }
+      },
+      "count-up": {
+        "$value": {
+          "duration": "{motion.duration.scene-expressive}",
+          "timingFunction": "{motion.easing.emphasis}"
+        },
+        "$extensions": {
+          "id.ptplnnr": {
+            "name": "Count-Up",
+            "modes": [
+              "productive",
+              "expressive"
+            ]
+          }
+        }
+      }
+    },
+    "mode": {
+      "$type": "other",
+      "productive": {
+        "$value": {
+          "easing": [
+            "standard",
+            "entrance",
+            "exit",
+            "linear"
+          ],
+          "scene_duration": "{motion.duration.scene-productive}"
+        },
+        "$description": "Informasi dan keputusan: gerak membantu memahami, tidak mencuri perhatian. Data, tata kelola, K3, teknik, broadcast."
+      },
+      "expressive": {
+        "$value": {
+          "easing": [
+            "standard",
+            "entrance",
+            "exit",
+            "linear",
+            "emphasis"
+          ],
+          "scene_duration": "{motion.duration.scene-expressive}"
+        },
+        "$description": "Momen penting dan emosi: pembuka, peresmian, kampanye, budaya, dokumenter."
+      }
+    }
+  },
+  "legibility": {
+    "$description": "Ukuran minimal teks pada keluaran render. Mengacu praktik 'phone legible' (judul ≥ 44 px, label ≥ 28 px, angka kunci ≥ 64 px pada 1280×720), diskalakan ke 1080p.",
+    "1920x1080": {
+      "headline": {
+        "$type": "dimension",
+        "$value": "66px"
+      },
+      "label": {
+        "$type": "dimension",
+        "$value": "42px"
+      },
+      "number": {
+        "$type": "dimension",
+        "$value": "96px"
+      },
+      "caption": {
+        "$type": "dimension",
+        "$value": "42px"
+      },
+      "max_chars_per_line": {
+        "$type": "number",
+        "$value": 32
+      }
+    },
+    "1080x1920": {
+      "headline": {
+        "$type": "dimension",
+        "$value": "72px"
+      },
+      "label": {
+        "$type": "dimension",
+        "$value": "44px"
+      },
+      "number": {
+        "$type": "dimension",
+        "$value": "120px"
+      },
+      "caption": {
+        "$type": "dimension",
+        "$value": "48px"
+      },
+      "max_chars_per_line": {
+        "$type": "number",
+        "$value": 24
+      }
+    },
+    "min_contrast_text": {
+      "$type": "number",
+      "$value": 4.5
+    },
+    "min_contrast_large_or_graphic": {
+      "$type": "number",
+      "$value": 3
     }
   },
   "styles": [
@@ -205,6 +509,10 @@
         "Jangan menaruh teks di atas gradient",
         "Jangan memutar arah gradient (selalu kuning di kiri)"
       ],
+      "slots": [
+        "lines",
+        "kicker"
+      ],
       "letters": [
         "G"
       ],
@@ -217,9 +525,10 @@
         "tools": [
           "After Effects",
           "Lottie",
-          "Remotion"
+          "PLN NR render engine"
         ]
       },
+      "mode": "expressive",
       "use_cases": [
         {
           "letter": "G",
@@ -261,6 +570,7 @@
         "Jangan isi hexagon dengan ikon buatan sendiri",
         "Maksimal enam hexagon per siklus"
       ],
+      "slots": [],
       "letters": [
         "D",
         "R",
@@ -275,9 +585,10 @@
         "tools": [
           "After Effects",
           "Lottie",
-          "Remotion"
+          "PLN NR render engine"
         ]
       },
+      "mode": "expressive",
       "use_cases": [
         {
           "letter": "D",
@@ -326,6 +637,10 @@
         "Maksimal 12 kata",
         "Hanya satu kata berwarna sinyal"
       ],
+      "slots": [
+        "lines",
+        "kicker"
+      ],
       "letters": [
         "A",
         "V"
@@ -339,9 +654,10 @@
         "tools": [
           "After Effects",
           "Lottie",
-          "Remotion"
+          "PLN NR render engine"
         ]
       },
+      "mode": "expressive",
       "use_cases": [
         {
           "letter": "A",
@@ -386,6 +702,7 @@
         "Garis selalu satu warna dan satu ketebalan",
         "Jangan tambah warna isi (fill)"
       ],
+      "slots": [],
       "letters": [
         "N"
       ],
@@ -398,9 +715,10 @@
         "tools": [
           "After Effects",
           "Lottie",
-          "Remotion"
+          "PLN NR render engine"
         ]
       },
+      "mode": "expressive",
       "use_cases": [
         {
           "letter": "N",
@@ -441,6 +759,7 @@
         "Jangan pakai masker kotak atau rounded-rect",
         "Jangan tint atau blur foto"
       ],
+      "slots": [],
       "letters": [
         "G",
         "W"
@@ -454,9 +773,10 @@
         "tools": [
           "After Effects",
           "Lottie",
-          "Remotion"
+          "PLN NR render engine"
         ]
       },
+      "mode": "expressive",
       "use_cases": [
         {
           "letter": "G",
@@ -501,6 +821,7 @@
         "Jangan dua chevron dalam satu layar",
         "Nomor bab dua digit (01, 02)"
       ],
+      "slots": [],
       "letters": [
         "C"
       ],
@@ -513,9 +834,10 @@
         "tools": [
           "After Effects",
           "Lottie",
-          "Remotion"
+          "PLN NR render engine"
         ]
       },
+      "mode": "expressive",
       "use_cases": [
         {
           "letter": "C",
@@ -556,6 +878,7 @@
         "Konten tidak boleh masuk area gelombang (78 px kanan)",
         "Jangan percepat gelombang"
       ],
+      "slots": [],
       "letters": [
         "O"
       ],
@@ -568,9 +891,10 @@
         "tools": [
           "After Effects",
           "Lottie",
-          "Remotion"
+          "PLN NR render engine"
         ]
       },
+      "mode": "expressive",
       "use_cases": [
         {
           "letter": "O",
@@ -611,6 +935,12 @@
         "Tanpa gridline, tanpa legenda bila label langsung bisa",
         "Wajib baris Sumber di setiap angka"
       ],
+      "slots": [
+        "title",
+        "values",
+        "callout",
+        "source"
+      ],
       "letters": [
         "A",
         "B",
@@ -624,11 +954,12 @@
         "bpm": "80–90",
         "vo": "Jelas, faktual, tempo sedang",
         "tools": [
-          "Remotion",
+          "PLN NR render engine",
           "After Effects",
           "D3/SVG"
         ]
       },
+      "mode": "productive",
       "use_cases": [
         {
           "letter": "A",
@@ -683,6 +1014,9 @@
         "Maksimal tiga busur per layar",
         "Tahan angka final minimal 1,5 dtk"
       ],
+      "slots": [
+        "values"
+      ],
       "letters": [
         "A",
         "F",
@@ -695,11 +1029,12 @@
         "bpm": "80–90",
         "vo": "Jelas, faktual, tempo sedang",
         "tools": [
-          "Remotion",
+          "PLN NR render engine",
           "After Effects",
           "D3/SVG"
         ]
       },
+      "mode": "productive",
       "use_cases": [
         {
           "letter": "A",
@@ -747,6 +1082,11 @@
         "Jangan pakai merah untuk penurunan; pakai ▼ navy",
         "Maksimal 6 langkah"
       ],
+      "slots": [
+        "title",
+        "values",
+        "source"
+      ],
       "letters": [
         "B",
         "F",
@@ -759,11 +1099,12 @@
         "bpm": "80–90",
         "vo": "Jelas, faktual, tempo sedang",
         "tools": [
-          "Remotion",
+          "PLN NR render engine",
           "After Effects",
           "D3/SVG"
         ]
       },
+      "mode": "productive",
       "use_cases": [
         {
           "letter": "B",
@@ -781,6 +1122,7 @@
     },
     {
       "id": "nusantara-map",
+      "mode": "expressive",
       "name": "Nusantara Portfolio Map",
       "cat": "Data & Eksekutif",
       "tier": "Signature",
@@ -813,6 +1155,7 @@
         "Lokasi pin harus diverifikasi sebelum rilis",
         "Jangan pakai peta satelit berwarna"
       ],
+      "slots": [],
       "letters": [
         "F",
         "I",
@@ -825,7 +1168,7 @@
         "bpm": "80–90",
         "vo": "Jelas, faktual, tempo sedang",
         "tools": [
-          "Remotion",
+          "PLN NR render engine",
           "After Effects",
           "D3/SVG"
         ]
@@ -878,6 +1221,7 @@
         "Maksimal 4 jalur",
         "Setiap stasiun maksimal 2 kata"
       ],
+      "slots": [],
       "letters": [
         "D",
         "J",
@@ -890,11 +1234,12 @@
         "bpm": "80–90",
         "vo": "Jelas, faktual, tempo sedang",
         "tools": [
-          "Remotion",
+          "PLN NR render engine",
           "After Effects",
           "D3/SVG"
         ]
       },
+      "mode": "productive",
       "use_cases": [
         {
           "letter": "D",
@@ -944,6 +1289,12 @@
         "Wajib cantumkan faktor konversi dan sumber",
         "Simbol hanya bentuk geometris sederhana, satu warna"
       ],
+      "slots": [
+        "title",
+        "values",
+        "icons_on",
+        "source"
+      ],
       "letters": [
         "E"
       ],
@@ -954,11 +1305,12 @@
         "bpm": "80–90",
         "vo": "Jelas, faktual, tempo sedang",
         "tools": [
-          "Remotion",
+          "PLN NR render engine",
           "After Effects",
           "D3/SVG"
         ]
       },
+      "mode": "productive",
       "use_cases": [
         {
           "letter": "E",
@@ -999,6 +1351,7 @@
         "Status tidak boleh hanya warna; selalu ▲●▼",
         "Jangan tampilkan data operasional rahasia"
       ],
+      "slots": [],
       "letters": [
         "K",
         "U"
@@ -1010,11 +1363,12 @@
         "bpm": "80–90",
         "vo": "Jelas, faktual, tempo sedang",
         "tools": [
-          "Remotion",
+          "PLN NR render engine",
           "After Effects",
           "D3/SVG"
         ]
       },
+      "mode": "productive",
       "use_cases": [
         {
           "letter": "K",
@@ -1058,6 +1412,7 @@
         "Dimensi ilustratif harus diberi tanda",
         "Satu warna aksen (kuning) untuk sorotan"
       ],
+      "slots": [],
       "letters": [
         "P"
       ],
@@ -1070,9 +1425,10 @@
         "tools": [
           "Blender",
           "After Effects",
-          "Remotion"
+          "PLN NR render engine"
         ]
       },
+      "mode": "productive",
       "use_cases": [
         {
           "letter": "P",
@@ -1114,6 +1470,7 @@
         "Sudut isometrik konsisten 30°",
         "Tanpa bayangan blur; kedalaman lewat warna sisi"
       ],
+      "slots": [],
       "letters": [
         "P"
       ],
@@ -1126,9 +1483,10 @@
         "tools": [
           "Blender",
           "After Effects",
-          "Remotion"
+          "PLN NR render engine"
         ]
       },
+      "mode": "productive",
       "use_cases": [
         {
           "letter": "P",
@@ -1150,7 +1508,7 @@
       "dur": "45–90 dtk",
       "pace": "Sedang",
       "ease": "brand-standard",
-      "transition": "Lens Iris",
+      "transition": "Line Draw",
       "palette": [
         "#FFFFFF",
         "#00507C",
@@ -1169,6 +1527,7 @@
         "Proporsi komponen jangan diklaim akurat tanpa gambar teknik",
         "Maksimal 5 label"
       ],
+      "slots": [],
       "letters": [
         "P",
         "U"
@@ -1182,9 +1541,10 @@
         "tools": [
           "Blender",
           "After Effects",
-          "Remotion"
+          "PLN NR render engine"
         ]
       },
+      "mode": "productive",
       "use_cases": [
         {
           "letter": "P",
@@ -1229,6 +1589,7 @@
         "Jangan glow berlebihan",
         "Satu objek utama per adegan"
       ],
+      "slots": [],
       "letters": [
         "T"
       ],
@@ -1243,6 +1604,7 @@
           "Cinema 4D"
         ]
       },
+      "mode": "productive",
       "use_cases": [
         {
           "letter": "T",
@@ -1264,7 +1626,7 @@
       "dur": "20–40 dtk",
       "pace": "Sedang",
       "ease": "brand-standard",
-      "transition": "Energy Sweep",
+      "transition": "Line Draw",
       "palette": [
         "#FFFFFF",
         "#FFF100",
@@ -1284,6 +1646,7 @@
         "Lebar pita harus proporsional",
         "Maksimal 5 sumber"
       ],
+      "slots": [],
       "letters": [
         "D",
         "J"
@@ -1297,9 +1660,10 @@
         "tools": [
           "Blender",
           "After Effects",
-          "Remotion"
+          "PLN NR render engine"
         ]
       },
+      "mode": "productive",
       "use_cases": [
         {
           "letter": "D",
@@ -1343,6 +1707,7 @@
         "Gunakan simbol IEC yang benar",
         "Tag peralatan sesuai dokumen resmi"
       ],
+      "slots": [],
       "letters": [
         "U"
       ],
@@ -1355,9 +1720,10 @@
         "tools": [
           "Blender",
           "After Effects",
-          "Remotion"
+          "PLN NR render engine"
         ]
       },
+      "mode": "productive",
       "use_cases": [
         {
           "letter": "U",
@@ -1399,6 +1765,7 @@
         "Skala warna wajib dengan legenda suhu",
         "Jangan memakai palet pelangi"
       ],
+      "slots": [],
       "letters": [
         "U"
       ],
@@ -1411,9 +1778,10 @@
         "tools": [
           "Blender",
           "After Effects",
-          "Remotion"
+          "PLN NR render engine"
         ]
       },
+      "mode": "productive",
       "use_cases": [
         {
           "letter": "U",
@@ -1453,6 +1821,7 @@
         "Jangan gambar logo dengan spidol",
         "Satu konsep per papan"
       ],
+      "slots": [],
       "letters": [
         "J",
         "O"
@@ -1465,10 +1834,11 @@
         "vo": "Ramah dan bercerita",
         "tools": [
           "After Effects",
-          "Remotion",
+          "PLN NR render engine",
           "Lottie"
         ]
       },
+      "mode": "productive",
       "use_cases": [
         {
           "letter": "J",
@@ -1515,6 +1885,7 @@
         "APD selalu lengkap dan benar",
         "Hindari karikatur berlebihan"
       ],
+      "slots": [],
       "letters": [
         "M",
         "O",
@@ -1528,10 +1899,11 @@
         "vo": "Ramah dan bercerita",
         "tools": [
           "After Effects",
-          "Remotion",
+          "PLN NR render engine",
           "Lottie"
         ]
       },
+      "mode": "productive",
       "use_cases": [
         {
           "letter": "M",
@@ -1583,6 +1955,7 @@
         "Bayangan antarlapis tipis dan tajam, tanpa blur besar",
         "Maksimal 5 lapisan"
       ],
+      "slots": [],
       "letters": [
         "L",
         "M"
@@ -1595,10 +1968,11 @@
         "vo": "Ramah dan bercerita",
         "tools": [
           "After Effects",
-          "Remotion",
+          "PLN NR render engine",
           "Lottie"
         ]
       },
+      "mode": "productive",
       "use_cases": [
         {
           "letter": "L",
@@ -1612,6 +1986,7 @@
     },
     {
       "id": "kinetic-type",
+      "mode": "expressive",
       "name": "Kinetic Typography",
       "cat": "Edukasi & Explainer",
       "tier": "Inti",
@@ -1644,6 +2019,10 @@
         "Kecepatan baca maksimal 3 kata per detik",
         "Tanpa efek getar, glitch, atau elastic"
       ],
+      "slots": [
+        "lines",
+        "values"
+      ],
       "letters": [
         "S",
         "V"
@@ -1656,7 +2035,7 @@
         "vo": "Ramah dan bercerita",
         "tools": [
           "After Effects",
-          "Remotion",
+          "PLN NR render engine",
           "Lottie"
         ]
       },
@@ -1704,6 +2083,7 @@
         "Efek kaca hanya untuk UI, tidak untuk foto",
         "Maksimal 6 kartu"
       ],
+      "slots": [],
       "letters": [
         "T"
       ],
@@ -1715,10 +2095,11 @@
         "vo": "Ramah dan bercerita",
         "tools": [
           "After Effects",
-          "Remotion",
+          "PLN NR render engine",
           "Lottie"
         ]
       },
+      "mode": "productive",
       "use_cases": [
         {
           "letter": "T",
@@ -1760,6 +2141,10 @@
         "Maksimal 6 langkah per layar",
         "Label maksimal 3 kata"
       ],
+      "slots": [
+        "title",
+        "steps"
+      ],
       "letters": [
         "O",
         "Q"
@@ -1772,10 +2157,11 @@
         "vo": "Ramah dan bercerita",
         "tools": [
           "After Effects",
-          "Remotion",
+          "PLN NR render engine",
           "Lottie"
         ]
       },
+      "mode": "productive",
       "use_cases": [
         {
           "letter": "O",
@@ -1822,6 +2208,7 @@
         "Hormati pakem motif; konsultasikan untuk motif sakral",
         "Teks tidak boleh di atas pola padat"
       ],
+      "slots": [],
       "letters": [
         "N",
         "X"
@@ -1837,6 +2224,7 @@
           "After Effects"
         ]
       },
+      "mode": "expressive",
       "use_cases": [
         {
           "letter": "N",
@@ -1880,6 +2268,7 @@
         "Jangan memakai tokoh wayang tertentu tanpa konsultasi",
         "Tidak untuk konteks formal investor"
       ],
+      "slots": [],
       "letters": [
         "M"
       ],
@@ -1894,6 +2283,7 @@
           "Generative (p5/Canvas)"
         ]
       },
+      "mode": "expressive",
       "use_cases": [
         {
           "letter": "M",
@@ -1935,6 +2325,7 @@
         "Jangan tumpuk lebih dari 3 sapuan di satu area",
         "Hindari warna di luar ramp brand"
       ],
+      "slots": [],
       "letters": [
         "L",
         "W"
@@ -1950,6 +2341,7 @@
           "Generative (p5/Canvas)"
         ]
       },
+      "mode": "expressive",
       "use_cases": [
         {
           "letter": "L",
@@ -1996,6 +2388,9 @@
         "Nama lokasi harus sesuai aset resmi",
         "Tanpa tekstur kertas tua berlebihan"
       ],
+      "slots": [
+        "location"
+      ],
       "letters": [
         "N",
         "S"
@@ -2011,6 +2406,7 @@
           "Generative (p5/Canvas)"
         ]
       },
+      "mode": "expressive",
       "use_cases": [
         {
           "letter": "N",
@@ -2056,6 +2452,7 @@
         "Maksimal 5 warna benang dari ramp",
         "Hindari motif tenun daerah tertentu tanpa izin konteks"
       ],
+      "slots": [],
       "letters": [
         "Z"
       ],
@@ -2070,6 +2467,7 @@
           "Generative (p5/Canvas)"
         ]
       },
+      "mode": "expressive",
       "use_cases": [
         {
           "letter": "Z",
@@ -2109,6 +2507,7 @@
         "Jauhkan teks dari zona UI platform (atas 14%, bawah 20%)",
         "Tanpa emoji di grafik"
       ],
+      "slots": [],
       "letters": [
         "S",
         "Y"
@@ -2122,9 +2521,10 @@
         "tools": [
           "After Effects",
           "CapCut/Premiere",
-          "Remotion"
+          "PLN NR render engine"
         ]
       },
+      "mode": "expressive",
       "use_cases": [
         {
           "letter": "S",
@@ -2170,6 +2570,7 @@
         "Spesifikasi harus dari dokumen resmi",
         "Tanpa lens flare berlebihan"
       ],
+      "slots": [],
       "letters": [
         "I",
         "T"
@@ -2186,6 +2587,7 @@
           "After Effects"
         ]
       },
+      "mode": "expressive",
       "use_cases": [
         {
           "letter": "I",
@@ -2232,6 +2634,7 @@
         "Glow lembut, tanpa neon berlebihan",
         "Kuning hanya untuk cahaya"
       ],
+      "slots": [],
       "letters": [
         "X"
       ],
@@ -2244,9 +2647,10 @@
         "tools": [
           "After Effects",
           "CapCut/Premiere",
-          "Remotion"
+          "PLN NR render engine"
         ]
       },
+      "mode": "expressive",
       "use_cases": [
         {
           "letter": "X",
@@ -2288,6 +2692,7 @@
         "Faset maksimal 4 warna per bidang",
         "Tanpa efek glitch"
       ],
+      "slots": [],
       "letters": [
         "Y"
       ],
@@ -2300,9 +2705,10 @@
         "tools": [
           "After Effects",
           "CapCut/Premiere",
-          "Remotion"
+          "PLN NR render engine"
         ]
       },
+      "mode": "expressive",
       "use_cases": [
         {
           "letter": "Y",
@@ -2345,6 +2751,7 @@
         "Tanpa overshoot/bounce besar",
         "Wajah karakter hanya pada objek non-manusia"
       ],
+      "slots": [],
       "letters": [
         "M",
         "Y"
@@ -2360,6 +2767,7 @@
           "Cinema 4D"
         ]
       },
+      "mode": "expressive",
       "use_cases": [
         {
           "letter": "M",
@@ -2405,6 +2813,7 @@
         "Jangan membentuk petir (petir khusus logo)",
         "Kepadatan rendah di area teks"
       ],
+      "slots": [],
       "letters": [
         "X"
       ],
@@ -2419,6 +2828,7 @@
           "Canvas/WebGL"
         ]
       },
+      "mode": "expressive",
       "use_cases": [
         {
           "letter": "X",
@@ -2459,6 +2869,7 @@
         "Gunakan rambu standar resmi, jangan stilasi",
         "Merah larangan hanya untuk rambu larangan resmi"
       ],
+      "slots": [],
       "letters": [
         "H",
         "Z"
@@ -2471,9 +2882,10 @@
         "vo": "Tegas dan jelas",
         "tools": [
           "After Effects",
-          "Remotion"
+          "PLN NR render engine"
         ]
       },
+      "mode": "productive",
       "use_cases": [
         {
           "letter": "H",
@@ -2518,6 +2930,10 @@
         "Isi prosedur harus sama dengan SOP berlaku",
         "Satu prosedur per video"
       ],
+      "slots": [
+        "title",
+        "steps"
+      ],
       "letters": [
         "H",
         "Q"
@@ -2530,9 +2946,10 @@
         "vo": "Tegas dan jelas",
         "tools": [
           "After Effects",
-          "Remotion"
+          "PLN NR render engine"
         ]
       },
+      "mode": "productive",
       "use_cases": [
         {
           "letter": "H",
@@ -2559,7 +2976,7 @@
       "dur": "45–120 dtk",
       "pace": "Sedang",
       "ease": "brand-standard",
-      "transition": "Lens Iris",
+      "transition": "Cross-fade 220 ms",
       "palette": [
         "#F1F6FA",
         "#00507C",
@@ -2578,6 +2995,7 @@
         "Denah harus sesuai layout resmi",
         "Kronologi insiden tanpa menyebut nama individu"
       ],
+      "slots": [],
       "letters": [
         "H",
         "Z"
@@ -2590,9 +3008,10 @@
         "vo": "Tegas dan jelas",
         "tools": [
           "After Effects",
-          "Remotion"
+          "PLN NR render engine"
         ]
       },
+      "mode": "productive",
       "use_cases": [
         {
           "letter": "H",
@@ -2638,6 +3057,11 @@
         "Tanpa grain, duotone, atau hitam-putih",
         "Warna footage hangat-dingin, jangan desaturasi"
       ],
+      "slots": [
+        "location",
+        "sublabel",
+        "subject"
+      ],
       "letters": [
         "A",
         "C",
@@ -2654,6 +3078,7 @@
           "DaVinci Resolve"
         ]
       },
+      "mode": "expressive",
       "use_cases": [
         {
           "letter": "A",
@@ -2701,6 +3126,7 @@
         "Peta harus bersumber resmi saat rilis",
         "Tanpa warna hipsometrik pelangi"
       ],
+      "slots": [],
       "letters": [
         "E",
         "L",
@@ -2717,6 +3143,7 @@
           "After Effects"
         ]
       },
+      "mode": "expressive",
       "use_cases": [
         {
           "letter": "E",
@@ -2766,6 +3193,7 @@
         "Kurva produksi harus berbentuk realistis",
         "Tandai data ilustratif"
       ],
+      "slots": [],
       "letters": [
         "D",
         "Z"
@@ -2781,6 +3209,7 @@
           "After Effects"
         ]
       },
+      "mode": "expressive",
       "use_cases": [
         {
           "letter": "D",
@@ -2825,6 +3254,7 @@
         "Ambang nilai wajib sesuai pedoman kewenangan berlaku",
         "Sebut dasar aturan di layar"
       ],
+      "slots": [],
       "letters": [
         "B"
       ],
@@ -2835,10 +3265,11 @@
         "bpm": "80–90",
         "vo": "Formal dan terukur",
         "tools": [
-          "Remotion",
+          "PLN NR render engine",
           "After Effects"
         ]
       },
+      "mode": "productive",
       "use_cases": [
         {
           "letter": "B",
@@ -2879,6 +3310,7 @@
         "Tanpa pita merah; kepadatan navy membawa makna",
         "Maksimal 6 titik risiko per layar"
       ],
+      "slots": [],
       "letters": [
         "B",
         "Q"
@@ -2890,10 +3322,11 @@
         "bpm": "80–90",
         "vo": "Formal dan terukur",
         "tools": [
-          "Remotion",
+          "PLN NR render engine",
           "After Effects"
         ]
       },
+      "mode": "productive",
       "use_cases": [
         {
           "letter": "B",
@@ -2938,6 +3371,7 @@
         "Angka wajib dari model keuangan resmi",
         "Titik terendah harus disebut, bukan disembunyikan"
       ],
+      "slots": [],
       "letters": [
         "F",
         "I"
@@ -2949,10 +3383,11 @@
         "bpm": "80–90",
         "vo": "Formal dan terukur",
         "tools": [
-          "Remotion",
+          "PLN NR render engine",
           "After Effects"
         ]
       },
+      "mode": "productive",
       "use_cases": [
         {
           "letter": "F",
@@ -2997,6 +3432,7 @@
         "Peran sesuai piagam SPI dan pedoman GRC",
         "Satu lini disorot per beat"
       ],
+      "slots": [],
       "letters": [
         "E",
         "Q"
@@ -3008,10 +3444,11 @@
         "bpm": "80–90",
         "vo": "Formal dan terukur",
         "tools": [
-          "Remotion",
+          "PLN NR render engine",
           "After Effects"
         ]
       },
+      "mode": "productive",
       "use_cases": [
         {
           "letter": "E",
@@ -3025,6 +3462,7 @@
     },
     {
       "id": "logo-sting",
+      "mode": "expressive",
       "name": "Logo Sting & Ident",
       "cat": "Paket Broadcast",
       "tier": "Signature",
@@ -3059,6 +3497,7 @@
         "Lockup selalu dari aset resmi, jangan digambar ulang atau dianimasikan per huruf",
         "Satu versi ident untuk semua video"
       ],
+      "slots": [],
       "letters": [
         "C"
       ],
@@ -3071,7 +3510,7 @@
         "tools": [
           "After Effects (MOGRT)",
           "Lottie",
-          "Remotion"
+          "PLN NR render engine"
         ]
       },
       "use_cases": [
@@ -3114,6 +3553,10 @@
         "Nama dan jabatan diverifikasi ejaannya",
         "Maksimal dua baris, tidak menutupi wajah"
       ],
+      "slots": [
+        "name",
+        "role"
+      ],
       "letters": [
         "C"
       ],
@@ -3126,9 +3569,10 @@
         "tools": [
           "After Effects (MOGRT)",
           "Lottie",
-          "Remotion"
+          "PLN NR render engine"
         ]
       },
+      "mode": "productive",
       "use_cases": [
         {
           "letter": "C",
@@ -3169,6 +3613,7 @@
         "Jangan menutupi lower third atau logo",
         "Tanpa emoji dan efek pop berlebihan"
       ],
+      "slots": [],
       "letters": [
         "S"
       ],
@@ -3181,9 +3626,10 @@
         "tools": [
           "After Effects (MOGRT)",
           "Lottie",
-          "Remotion"
+          "PLN NR render engine"
         ]
       },
+      "mode": "productive",
       "use_cases": [
         {
           "letter": "S",
@@ -3193,6 +3639,7 @@
     },
     {
       "id": "countdown",
+      "mode": "expressive",
       "name": "Event Countdown Loop",
       "cat": "Paket Broadcast",
       "tier": "Inti",
@@ -3225,6 +3672,7 @@
         "Angka harus tabular agar tidak bergoyang",
         "Kontras tinggi untuk LED jarak jauh"
       ],
+      "slots": [],
       "letters": [
         "C",
         "G",
@@ -3239,7 +3687,7 @@
         "tools": [
           "After Effects (MOGRT)",
           "Lottie",
-          "Remotion"
+          "PLN NR render engine"
         ]
       },
       "use_cases": [
@@ -3291,6 +3739,7 @@
         "Sudut kamera dan jam pengambilan harus sama",
         "Tanggal kedua foto wajib"
       ],
+      "slots": [],
       "letters": [
         "E"
       ],
@@ -3303,9 +3752,10 @@
         "tools": [
           "After Effects (MOGRT)",
           "Lottie",
-          "Remotion"
+          "PLN NR render engine"
         ]
       },
+      "mode": "productive",
       "use_cases": [
         {
           "letter": "E",
@@ -3346,6 +3796,7 @@
         "Arah aliran selalu dari tinggi ke rendah",
         "Head dan debit hanya bila datanya resmi"
       ],
+      "slots": [],
       "letters": [
         "P",
         "W"
@@ -3359,9 +3810,10 @@
         "tools": [
           "Blender",
           "After Effects",
-          "Remotion"
+          "PLN NR render engine"
         ]
       },
+      "mode": "productive",
       "use_cases": [
         {
           "letter": "P",
@@ -3387,7 +3839,7 @@
       "dur": "45–90 dtk",
       "pace": "Tenang",
       "ease": "linear (aliran)",
-      "transition": "Lens Iris",
+      "transition": "Line Draw",
       "palette": [
         "#00507C",
         "#005F89",
@@ -3407,6 +3859,7 @@
         "Kedalaman ilustratif harus ditandai",
         "Siklus injeksi wajib ditampilkan (keberlanjutan)"
       ],
+      "slots": [],
       "letters": [
         "P"
       ],
@@ -3419,9 +3872,10 @@
         "tools": [
           "Blender",
           "After Effects",
-          "Remotion"
+          "PLN NR render engine"
         ]
       },
+      "mode": "productive",
       "use_cases": [
         {
           "letter": "P",
@@ -3444,7 +3898,7 @@
       "dur": "30–60 dtk",
       "pace": "Sedang",
       "ease": "brand-standard",
-      "transition": "Energy Sweep",
+      "transition": "Wave Wipe",
       "palette": [
         "#FFFFFF",
         "#FFF100",
@@ -3463,6 +3917,7 @@
         "Jangan menyiratkan proyek sudah beroperasi bila masih kajian",
         "Efisiensi hanya dari sumber teknis"
       ],
+      "slots": [],
       "letters": [
         "T"
       ],
@@ -3475,9 +3930,10 @@
         "tools": [
           "Blender",
           "After Effects",
-          "Remotion"
+          "PLN NR render engine"
         ]
       },
+      "mode": "productive",
       "use_cases": [
         {
           "letter": "T",

@@ -47,40 +47,79 @@ serbaguna yang sudah disesuaikan. **Spesialis** = butuh konteks tertentu dan rev
 ## Integrasi dengan Explainer Studio
 
 Skill **`skills/pln-nr-explainer-studio/`** membaca katalog ini dan mengubah kebutuhan
-komunikasi menjadi paket produksi:
+komunikasi menjadi video:
 
 ```
-find.py  →  plan.py new  →  (tulis naskah)  →  plan.py retime  →  validate.py  →  build.py
-pilih gaya   kerangka        VO, teks layar,     durasi ikut VO     QA merek       animatic.html, storyboard.md,
-atau resep   adegan          data + sumber                          otomatis       captions.srt, production.json
+find.py → plan.py new → (naskah) → plan.py retime [--audio] → validate.py → build.py → engine/render.mjs
+pilih     kerangka                  durasi dari VO / audio    QA merek      animatic,   stills + contact sheet,
+gaya                                                                        storyboard, MP4 H.264 + audio −14 LUFS
+                                                                            SRT, JSON
 ```
 
-- `catalog/pln-nr-motion-styles.json` (skema `plnnr.motion-catalog/1`) berisi gaya, arah
-  produksi, peta A–Z, resep, transisi, easing, dan QA. Build menyalinnya ke
-  `skills/pln-nr-explainer-studio/assets/` bersama pratinjau SVG dan CSS animasi.
+### Kontrak slot data
+
+Sebelas gaya menerima data proyek langsung ke visual (`svg(p, d)` di `src/styles-data.js`):
+energy-sweep, navy-statement, kinetic-type, arc-kpi, answer-first, waterfall, isotype, hex-rail,
+sop-checklist, lower-third, ditambah lokasi pada golden-hour dan travel-poster. Teks slot memenuhi
+ukuran minimal token legibilitas (judul ≥ 22, label ≥ 14, angka ≥ 32 pada kanvas 640×360 =
+66/42/96 px pada 1080p). Angka slot dihitung naik dengan format Indonesia. Gaya lain tetap
+ilustratif; teks layar proyek ditempel sebagai overlay.
+
+### Mesin render
+
+`engine/runtime.js` menghitung setiap frame sebagai fungsi murni dari waktu: semua animasi CSS
+dan SMIL di-seek, bukan diputar, sehingga animatic dan MP4 identik. `engine/render.mjs` membuka
+animatic dalam Chromium headless, menyalurkan frame ke ffmpeg (H.264, 25 fps), mencampur VO per
+adegan dan musik latar, lalu menormalkan loudness ke −14 LUFS. Tata letak 9:16 dan 1:1 bertumpuk
+(art di atas, teks besar di bawah) dan menjauhi zona UI platform. Mesin ini milik sendiri, tanpa
+lisensi pihak ketiga selain font PT Sans (OFL, disertakan).
+
+### Token gerak
+
+`tokens/motion.tokens.json` (format W3C Design Tokens) adalah sumber durasi, easing, transisi,
+mode **productive/expressive** per rumpun, dan ukuran minimal teks. Build galeri gagal bila ada
+gaya yang memakai transisi atau easing di luar modenya, atau teks pratinjau dengan kontras di
+bawah 4,5:1. Status token: **usulan**, menunggu sign-off Komunikasi Korporat.
+
+- `catalog/pln-nr-motion-styles.json` (skema `plnnr.motion-catalog/1`) berisi gaya, slot, mode,
+  token, arah produksi, peta A–Z, resep, dan QA. Build menyalinnya ke `skills/pln-nr-explainer-studio/assets/`.
 - `dist/pln-nr-explainer-studio.zip` adalah paket skill siap unggah (claude.ai → Settings → Skills).
-- `examples/cod-plts-terapung/` berisi contoh keluaran lengkap dari resep `cod-90`.
+- `examples/cod-plts-terapung/` berisi contoh keluaran lengkap dari resep `cod-90`, termasuk
+  stills dan contact sheet. MP4 tidak di-commit; render ulang dengan `node engine/render.mjs`.
 
 ## Struktur
 
 ```
 pln-nr-motion-gallery/
-├── index.html                  halaman mandiri hasil build (buka ini)
+├── index.html                       halaman mandiri hasil build (buka ini)
 ├── dist/pln-nr-motion-gallery.html  versi fragmen untuk publikasi Artifact
-├── catalog/pln-nr-motion-styles.json  katalog untuk Explainer Studio
-├── src/styles-data.js          data 44 gaya + fungsi SVG pratinjau + peta A–Z
-├── src/gallery.html            markup, CSS, dan logika halaman
-├── assets/                     lockup PLN NR (warna dan putih)
-└── tools/build.mjs             node tools/build.mjs
+├── dist/pln-nr-explainer-studio.zip paket skill siap unggah
+├── catalog/pln-nr-motion-styles.json katalog untuk Explainer Studio
+├── tokens/motion.tokens.json        token gerak (DTCG): durasi, easing, transisi, mode, legibilitas
+├── src/styles-data.js               56 gaya, slot data, arah produksi, A–Z, resep, QA
+├── src/gallery.html                 markup, CSS, dan logika halaman
+├── assets/                          lockup PLN NR (warna dan putih)
+├── examples/cod-plts-terapung/      contoh keluaran Explainer Studio (animatic, stills, SRT, JSON)
+└── tools/build.mjs                  build + lint (mode gerak, kontras, rujukan) + aset skill + zip
+
+skills/pln-nr-explainer-studio/
+├── SKILL.md                         alur kerja 8 langkah
+├── scripts/                         find, plan, validate, build (Python standar)
+├── engine/runtime.js                runtime frame deterministik (animatic = render)
+├── engine/render.mjs                Chromium headless → ffmpeg: MP4, stills, contact sheet, audio
+├── references/                      naskah, skema proyek, QA
+└── assets/                          katalog, token, styles-data.js, font PT Sans (OFL), lockup
 ```
 
 Menambah gaya: tambahkan satu `add({...})` di `src/styles-data.js` (id, name, cat, tier, desc,
 when, aud, formats, dur, pace, ease, transition, palette, type, beats, dont, svg), daftarkan di
-baris A–Z yang relevan, lalu jalankan `node tools/build.mjs`.
+baris A–Z yang relevan, lalu jalankan `node tools/build.mjs`. Agar gaya membaca data proyek,
+tambahkan entri di `SLOT` dengan `svg(p, d)` dan daftar `slots`; patuhi ukuran teks minimal dan
+pastikan build (lint) lulus.
 
 ## Catatan
 
-- Pratinjau adalah ilustrasi gaya, bukan render final. Angka, lokasi pin, dan nama lokasi bersifat contoh dan ditandai demikian di setiap bingkai.
+- Pratinjau galeri untuk gaya tanpa slot adalah ilustrasi gaya; gaya berslot merender data proyek. Angka, lokasi pin, dan nama lokasi bersifat contoh dan ditandai demikian di setiap bingkai.
 - Tipografi memakai PT Sans sebagai pengganti Myriad Pro (lihat design system PLN NR). Jika lisensi Myriad Pro tersedia, cukup ganti `--font`.
 - Gerak menghormati `prefers-reduced-motion`; kartu di luar layar berhenti dan menampilkan bingkai akhir.
 - Semua gaya adalah interpretasi orisinal berbasis genre visual, bukan salinan karya atau produk tertentu.

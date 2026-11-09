@@ -6,7 +6,7 @@
   const C = {
     navy: '#00507C', deep: '#005F89', azure: '#0087BE', sky: '#0098D3', pln: '#009EE2',
     cyan: '#00ADEF', teal: '#00A2BA', green: '#94DA63', lime: '#B9DE41', yellow: '#FFF100',
-    paper: '#F1F6FA', white: '#FFFFFF', n25: '#BFD3DE', n50: '#7FA7BD', n75: '#407C9D', line: '#DFDFDF'
+    paper: '#F1F6FA', white: '#FFFFFF', n25: '#BFD3DE', n50: '#7FA7BD', n75: '#407C9D', inkSoft: '#3A6E8C', line: '#DFDFDF'
   };
 
   const D = p => `<defs>
@@ -45,8 +45,10 @@
 
   const house = (x, y, c) => `<path d="M${x} ${y + 9} L${x + 9} ${y} L${x + 18} ${y + 9} L${x + 18} ${y + 20} L${x} ${y + 20} Z" fill="${c}"/>`;
 
+  /* Penjaga kontras teks: navy-75 (4,2:1 di atas paper) → ink-soft; navy-50 (2,6:1) hanya untuk latar gelap → navy-25. */
+  const TXT_GUARD = { '#407C9D': '#3A6E8C', '#7FA7BD': '#BFD3DE' };
   const T = (x, y, s, txt, fill, weight = 700, extra = '') =>
-    `<text x="${x}" y="${y}" font-size="${s}" font-weight="${weight}" fill="${fill}" ${extra}>${txt}</text>`;
+    (fill = TXT_GUARD[fill] || fill, `<text x="${x}" y="${y}" font-size="${s}" font-weight="${weight}" fill="${fill}" ${extra}>${txt}</text>`);
 
   const d = (v) => `style="--d:${v}s"`;
 
@@ -64,11 +66,7 @@
     type: 'PT Sans Bold 700, display 64–100 px, tracking −1%',
     beats: ['Layar navy kosong 0,5 dtk', 'Pita gradient menyapu dari kiri ke kanan', 'Judul muncul di belakang sapuan', 'Lockup PLN NR mengunci di kanan atas'],
     dont: ['Jangan menaruh teks di atas gradient', 'Jangan memutar arah gradient (selalu kuning di kiri)'],
-    svg: p => svg(p, `<rect width="640" height="360" fill="url(#${p}N)"/>
-<g class="a-up" ${d(.6)}>${T(64, 170, 46, 'Energi untuk', C.white)}${T(64, 222, 46, 'Nusantara', C.white)}</g>
-<rect class="a-wipe" ${d(1.1)} x="64" y="244" width="220" height="6" fill="url(#${p}E)"/>
-<g class="a-sweepband"><rect x="-200" y="0" width="240" height="360" fill="url(#${p}E)" transform="skewX(-14)"/></g>
-${T(64, 290, 15, 'PT PLN NUSANTARA RENEWABLES', C.n25, 700, 'letter-spacing="3"')}`)
+    svg: null // dirender oleh SLOT (kontrak slot data)
   });
 
   add({
@@ -102,12 +100,7 @@ ${T(64, 290, 15, 'PT PLN NUSANTARA RENEWABLES', C.n25, 700, 'letter-spacing="3"'
     type: 'PT Sans Bold 700, 58–100 px; satu kata kuning sebagai sinyal',
     beats: ['Bidang navy', 'Kata pertama masuk, kata kunci berwarna kuning', 'Garis gradient tumbuh di bawah', 'Tahan 2 dtk lalu cross-fade'],
     dont: ['Maksimal 12 kata', 'Hanya satu kata berwarna sinyal'],
-    svg: p => svg(p, `<rect width="640" height="360" fill="url(#${p}N)"/>
-<g class="a-up" ${d(.2)}>${T(70, 150, 52, 'Bersih.', C.white)}</g>
-<g class="a-up" ${d(.7)}>${T(70, 210, 52, 'Andal.', C.white)}</g>
-<g class="a-up" ${d(1.2)}>${T(70, 270, 52, 'Berkelanjutan.', C.yellow)}</g>
-<rect class="a-wipe" ${d(1.8)} x="70" y="292" width="180" height="5" fill="url(#${p}E)"/>
-${T(70, 90, 13, '03 — BUDAYA KERJA', C.n25, 700, 'letter-spacing="3"')}`)
+    svg: null // dirender oleh SLOT (kontrak slot data)
   });
 
   add({
@@ -194,16 +187,7 @@ ${T(48, 330, 12, 'www.ptplnnr.com', C.n75, 400)}`);
     type: 'PT Sans Bold 30 px judul aksi (sentence case), angka tabular',
     beats: ['Judul aksi terketik penuh', 'Batang konteks tumbuh (navy)', 'Batang bukti tumbuh terakhir (cyan)', 'Kotak so-what menegaskan satu angka'],
     dont: ['Tanpa gridline, tanpa legenda bila label langsung bisa', 'Wajib baris Sumber di setiap angka'],
-    svg: p => {
-      const v = [70, 92, 110, 128, 176];
-      let g = `<rect width="640" height="360" fill="#fff"/>${T(40, 52, 21, 'Kapasitas terpasang naik paling tajam', C.navy)}${T(40, 78, 21, 'pada tahun terakhir', C.navy)}<rect x="40" y="92" width="120" height="2" fill="url(#${p}E)"/><rect x="160" y="92" width="440" height="2" fill="${C.line}"/>${T(40, 118, 11, 'Kapasitas (MW, ilustratif) · n = 5 tahun', C.n75, 400)}`;
-      v.forEach((h, i) => {
-        const x = 50 + i * 74, c = i === 4 ? C.cyan : C.navy;
-        g += `<rect class="a-grow" ${d(.3 + i * .25)} x="${x}" y="${300 - h}" width="48" height="${h}" fill="${c}"/>${T(x + 24, 292 - h, 13, String(h * 4), c, 700, 'text-anchor="middle"')}${T(x + 24, 318, 11, 'T' + (i + 1), C.n75, 400, 'text-anchor="middle"')}`;
-      });
-      g += `<g class="a-up" ${d(1.9)}><rect x="430" y="150" width="180" height="110" fill="${C.paper}"/><rect x="430" y="150" width="4" height="110" fill="${C.cyan}"/>${T(448, 200, 34, '+38%', C.navy)}${T(448, 226, 12, 'pertumbuhan tahun terakhir', C.navy, 400)}${T(448, 244, 12, 'vs rata-rata 4 tahun', C.n75, 400)}</g>${T(40, 344, 10, 'Sumber: data ilustratif untuk contoh gaya', C.n75, 400)}`;
-      return svg(p, g);
-    }
+    svg: null // dirender oleh SLOT (kontrak slot data)
   });
 
   add({
@@ -215,16 +199,7 @@ ${T(48, 330, 12, 'www.ptplnnr.com', C.n75, 400)}`);
     type: 'PT Sans Bold angka tabular 40–64 px di tengah cakram',
     beats: ['Cakram navy muncul', 'Busur gradient tergambar searah jarum jam', 'Angka menghitung naik', 'Label UPPERCASE di bawah'],
     dont: ['Maksimal tiga busur per layar', 'Tahan angka final minimal 1,5 dtk'],
-    svg: p => {
-      let g = `<rect width="640" height="360" fill="#fff"/>`;
-      [[130, 82, 'PROGRES EPC'], [320, 64, 'TKDN'], [510, 91, 'KETERSEDIAAN']].forEach(([x, v, l], i) => {
-        const r = 66, len = 2 * Math.PI * r, arc = len * v / 100;
-        g += `<circle cx="${x}" cy="160" r="${r}" fill="none" stroke="${C.paper}" stroke-width="14"/>
-<circle class="a-arc" style="--len:${len.toFixed(0)};--arc:${(len - arc).toFixed(0)};--d:${.2 + i * .4}s" cx="${x}" cy="160" r="${r}" fill="none" stroke="url(#${p}E)" stroke-width="14" stroke-linecap="round" stroke-dasharray="${len.toFixed(0)}" stroke-dashoffset="${(len - arc).toFixed(0)}" transform="rotate(-90 ${x} 160)"/>
-<circle cx="${x}" cy="160" r="48" fill="${C.navy}"/>${T(x, 172, 32, v + '%', '#fff', 700, 'text-anchor="middle"')}${T(x, 268, 13, l, C.navy, 700, 'text-anchor="middle" letter-spacing="1.5"')}`;
-      });
-      return svg(p, g + T(40, 330, 10, 'Angka ilustratif', C.n75, 400));
-    }
+    svg: null // dirender oleh SLOT (kontrak slot data)
   });
 
   add({
@@ -236,22 +211,11 @@ ${T(48, 330, 12, 'www.ptplnnr.com', C.n75, 400)}`);
     type: 'PT Sans Bold label nilai di ujung batang, ▲/▼ selalu menyertai warna',
     beats: ['Batang awal muncul', 'Langkah naik/turun satu per satu dengan garis penghubung', 'Batang akhir cyan', 'Callout penyebab terbesar'],
     dont: ['Jangan pakai merah untuk penurunan; pakai ▼ navy', 'Maksimal 6 langkah'],
-    svg: p => {
-      let g = `<rect width="640" height="360" fill="#fff"/>${T(40, 48, 20, 'Interkoneksi menyumbang porsi terbesar kenaikan biaya', C.navy)}${T(40, 72, 11, 'CAPEX (USD juta, ilustratif)', C.n75, 400)}`;
-      const steps = [['Awal', 0, 150, C.navy], ['Lahan', 150, 20, C.teal], ['Interkoneksi', 170, 46, C.teal], ['Kurs', 216, -18, C.navy], ['Efisiensi', 198, -12, C.navy], ['Akhir', 0, 186, C.cyan]];
-      const base = 310, k = 1;
-      steps.forEach(([l, st, dv, c], i) => {
-        const x = 52 + i * 94; const y0 = base - (st + Math.max(dv, 0)) * k; const h = Math.abs(dv) * k;
-        const yy = dv < 0 ? base - st * k : y0;
-        g += `<rect class="a-grow" ${d(.2 + i * .3)} x="${x}" y="${yy}" width="56" height="${h}" fill="${c}"/>${T(x + 28, yy - 6, 12, (dv > 0 && i && i < 5 ? '▲ ' : dv < 0 ? '▼ ' : '') + Math.abs(dv), c === C.cyan ? C.cyan : C.navy, 700, 'text-anchor="middle"')}${T(x + 28, 332, 11, l, C.n75, 400, 'text-anchor="middle"')}`;
-        if (i < 5) g += `<line x1="${x + 56}" y1="${base - (st + dv) * k}" x2="${x + 94}" y2="${base - (st + dv) * k}" stroke="${C.n25}" stroke-dasharray="3 3"/>`;
-      });
-      return svg(p, g);
-    }
+    svg: null // dirender oleh SLOT (kontrak slot data)
   });
 
   add({
-    id: 'nusantara-map', name: 'Nusantara Portfolio Map', cat: 'Data & Eksekutif', tier: 'Signature',
+    id: 'nusantara-map', mode: 'expressive', name: 'Nusantara Portfolio Map', cat: 'Data & Eksekutif', tier: 'Signature',
     desc: 'Peta kepulauan bergaya datar dengan pin pembangkit yang berdenyut dan busur koneksi. Menunjukkan sebaran portofolio dalam satu pandangan.',
     when: 'Profil perusahaan, pitch kemitraan, laporan tahunan, pameran.',
     aud: 'Investor, mitra, publik', formats: ['16:9', '1:1'], dur: '15–40 dtk', pace: 'Sedang',
@@ -308,15 +272,7 @@ ${T(48, 330, 12, 'www.ptplnnr.com', C.n75, 400)}`);
     type: 'PT Sans Bold angka kunci, Regular kalimat satuan',
     beats: ['Satu simbol dan definisi satuannya', 'Deret simbol terisi kiri ke kanan', 'Angka total terhitung', 'Kalimat dampak dengan sumber'],
     dont: ['Wajib cantumkan faktor konversi dan sumber', 'Simbol hanya bentuk geometris sederhana, satu warna'],
-    svg: p => {
-      let g = `<rect width="640" height="360" fill="#fff"/>${T(40, 50, 20, 'Setiap simbol = 1.000 rumah tangga', C.navy)}${T(40, 72, 11, 'Faktor konversi ilustratif, ganti dengan data terverifikasi', C.n75, 400)}`;
-      for (let r = 0; r < 5; r++) for (let c = 0; c < 14; c++) {
-        const i = r * 14 + c, on = i < 58;
-        g += `<g class="a-pop" style="--d:${(i * .03).toFixed(2)}s;--t:7s">${house(40 + c * 28, 100 + r * 34, on ? (i >= 50 ? C.cyan : C.navy) : C.paper)}</g>`;
-      }
-      g += `<g class="a-up" ${d(2.2)}>${T(450, 300, 40, '58.000', C.cyan)}${T(450, 324, 12, 'rumah tangga (contoh)', C.navy, 400)}</g>`;
-      return svg(p, g);
-    }
+    svg: null // dirender oleh SLOT (kontrak slot data)
   });
 
   add({
@@ -388,7 +344,7 @@ ${T(440, 40, 12, 'LAYOUT ARRAY — REV.A', '#fff', 700, 'letter-spacing="2"')}`;
     desc: 'Potongan nacelle turbin atau turbin air memperlihatkan rotor, gearbox, generator bergerak. Untuk penjelasan yang butuh melihat ke dalam mesin.',
     when: 'Explainer cara kerja PLTB, PLTA, PLTP; pelatihan teknisi; pameran teknologi.',
     aud: 'Teknisi, mahasiswa, mitra teknis', formats: ['16:9'], dur: '45–90 dtk', pace: 'Sedang',
-    ease: 'brand-standard', transition: 'Lens Iris', palette: [C.white, C.navy, C.cyan, C.n25, C.yellow],
+    ease: 'brand-standard', transition: 'Line Draw', palette: [C.white, C.navy, C.cyan, C.n25, C.yellow],
     type: 'PT Sans Bold label komponen, Regular deskripsi satu baris',
     beats: ['Eksterior utuh', 'Cangkang membuka (cutaway)', 'Komponen berputar sesuai rantai daya', 'Label muncul mengikuti aliran energi'],
     dont: ['Proporsi komponen jangan diklaim akurat tanpa gambar teknik', 'Maksimal 5 label'],
@@ -435,7 +391,7 @@ ${T(30, 40, 11, 'DIGITAL TWIN — MODEL KONSEP', C.n25, 700, 'letter-spacing="2"
     desc: 'Aliran energi dari sumber ke konsumen sebagai pita yang mengalir. Lebar pita sebanding dengan nilai, partikel bergerak menunjukkan arah.',
     when: 'Bauran energi, neraca daya, jalur dekarbonisasi, alokasi pendanaan.',
     aud: 'Regulator, Direksi, publik terdidik', formats: ['16:9'], dur: '20–40 dtk', pace: 'Sedang',
-    ease: 'brand-standard', transition: 'Energy Sweep', palette: [C.white, C.yellow, C.teal, C.lime, C.cyan, C.navy],
+    ease: 'brand-standard', transition: 'Line Draw', palette: [C.white, C.yellow, C.teal, C.lime, C.cyan, C.navy],
     type: 'PT Sans Bold label sumber, angka tabular di ujung pita',
     beats: ['Kolom sumber muncul', 'Pita mengalir ke tengah', 'Pita bercabang ke penggunaan', 'Sorot satu aliran terbesar'],
     dont: ['Lebar pita harus proporsional', 'Maksimal 5 sumber'],
@@ -556,7 +512,7 @@ ${T(200, 280, 18, 'panel surya', C.navy, 700)}${T(408, 280, 18, 'inverter', C.na
   });
 
   add({
-    id: 'kinetic-type', name: 'Kinetic Typography', cat: 'Edukasi & Explainer', tier: 'Inti',
+    id: 'kinetic-type', mode: 'expressive', name: 'Kinetic Typography', cat: 'Edukasi & Explainer', tier: 'Inti',
     desc: 'Kata-kata bergerak, bertumpuk, dan berganti skala mengikuti ritme narasi. Paling efektif untuk pesan pendek yang harus diingat.',
     when: 'Pesan Direksi, kampanye nilai, teaser acara, ringkasan 30 detik.',
     aud: 'Karyawan, publik muda', formats: ['9:16', '1:1', '16:9'], dur: '15–45 dtk', pace: 'Cepat',
@@ -564,11 +520,7 @@ ${T(200, 280, 18, 'panel surya', C.navy, 700)}${T(408, 280, 18, 'inverter', C.na
     type: 'PT Sans Bold 700, 3 tingkat ukuran saja (display, sedang, kecil)',
     beats: ['Kata pembuka besar', 'Kata kedua menggeser kata pertama', 'Angka kunci membesar', 'Kunci dengan lockup'],
     dont: ['Kecepatan baca maksimal 3 kata per detik', 'Tanpa efek getar, glitch, atau elastic'],
-    svg: p => svg(p, `<rect width="640" height="360" fill="#fff"/>
-<g class="a-kin" ${d(0)}>${T(40, 130, 80, 'TERANGI', C.navy)}</g>
-<g class="a-kin" ${d(.5)}>${T(40, 200, 54, 'Nusantara dengan', C.cyan)}</g>
-<g class="a-kin" ${d(1)}>${T(40, 280, 80, 'EBT', C.navy)}<rect x="210" y="226" width="150" height="54" fill="${C.yellow}"/>${T(222, 266, 34, '23%', C.navy)}</g>
-${T(40, 330, 11, 'Target bauran ilustratif', C.n75, 400)}`)
+    svg: null // dirender oleh SLOT (kontrak slot data)
   });
 
   add({
@@ -597,14 +549,7 @@ ${card(40, 60, 'Sensor', 'Data lapangan', .1)}${card(245, 60, 'SCADA', 'Kendali 
     type: 'Angka dua digit (01–06) PT Sans Bold biru di hexagon kuning',
     beats: ['Gradient biru', 'Rel mulai terisi', 'Tiap hexagon menyala saat rel tiba', 'Label langkah muncul di bawah'],
     dont: ['Maksimal 6 langkah per layar', 'Label maksimal 3 kata'],
-    svg: p => {
-      let g = `<rect width="640" height="360" fill="url(#${p}B)"/><rect x="80" y="178" width="480" height="5" fill="#fff" fill-opacity=".25"/><rect class="a-wipe" style="--t:6s" x="80" y="178" width="480" height="5" fill="${C.yellow}"/>`;
-      ['Usulan', 'Kajian', 'Review', 'Persetujuan', 'Eksekusi'].forEach((l, i) => {
-        const x = 80 + i * 120;
-        g += `<g class="a-pop" style="--d:${(i * .55).toFixed(2)}s;--t:6s"><polygon points="${hexPts(x, 180, 30)}" fill="${C.yellow}"/>${T(x, 189, 22, '0' + (i + 1), C.navy, 700, 'text-anchor="middle"')}${T(x, 240, 13, l.toUpperCase(), '#fff', 700, 'text-anchor="middle" letter-spacing="1"')}</g>`;
-      });
-      return svg(p, g + T(40, 70, 26, 'Alur persetujuan investasi', '#fff'));
-    }
+    svg: null // dirender oleh SLOT (kontrak slot data)
   });
 
   /* ========== RUMPUN 5 — NUSANTARA & BUDAYA ========== */
@@ -859,16 +804,7 @@ ${T(40, 300, 22, 'Ayo kenali energi bersih', C.navy)}`)
     type: 'PT Sans Bold tiap langkah, satu klausa',
     beats: ['Judul prosedur', 'Langkah muncul dan tercentang', 'Cincin progres terisi', 'Status selesai dengan glyph ●'],
     dont: ['Isi prosedur harus sama dengan SOP berlaku', 'Satu prosedur per video'],
-    svg: p => {
-      let g = `<rect width="640" height="360" fill="${C.paper}"/>${T(40, 50, 22, 'Prosedur Lock-Out Tag-Out', C.navy)}`;
-      ['Identifikasi sumber energi', 'Beri tahu pihak terdampak', 'Matikan dan isolasi', 'Pasang gembok dan tag', 'Verifikasi energi nol'].forEach((s, i) => {
-        const y = 90 + i * 48;
-        g += `<rect x="40" y="${y}" width="360" height="38" fill="#fff"/><rect x="52" y="${y + 9}" width="20" height="20" fill="#fff" stroke="${C.navy}" stroke-width="2"/><path class="a-draw" style="--len:30;--d:${(.4 + i * .5).toFixed(1)}s;--t:7s" d="M56 ${y + 19} L61 ${y + 24} L69 ${y + 13}" fill="none" stroke="${C.cyan}" stroke-width="3"/>${T(84, y + 25, 14, s, C.navy, 700)}`;
-      });
-      const r = 70, len = (2 * Math.PI * r).toFixed(0);
-      g += `<circle cx="520" cy="190" r="${r}" fill="none" stroke="#fff" stroke-width="14"/><circle class="a-arc" style="--len:${len};--arc:0;--t:7s" cx="520" cy="190" r="${r}" fill="none" stroke="${C.teal}" stroke-width="14" stroke-dasharray="${len}" transform="rotate(-90 520 190)"/>${T(520, 200, 30, '5/5', C.navy, 700, 'text-anchor="middle"')}${T(520, 290, 12, '● SELESAI', C.teal, 700, 'text-anchor="middle" letter-spacing="1.5"')}`;
-      return svg(p, g);
-    }
+    svg: null // dirender oleh SLOT (kontrak slot data)
   });
 
   add({
@@ -876,7 +812,7 @@ ${T(40, 300, 22, 'Ayo kenali energi bersih', C.navy)}`)
     desc: 'Denah lokasi dari atas dengan jalur pejalan aman, zona bahaya bergaris, dan titik kumpul. Ideal untuk induksi tamu dan pembelajaran insiden.',
     when: 'Induksi lokasi, jalur evakuasi, lesson learned insiden, kampanye zero accident.',
     aud: 'Tamu, kontraktor, karyawan baru', formats: ['16:9', '9:16'], dur: '45–120 dtk', pace: 'Sedang',
-    ease: 'brand-standard', transition: 'Lens Iris', palette: [C.paper, C.navy, C.cyan, C.yellow, C.teal],
+    ease: 'brand-standard', transition: 'Cross-fade 220 ms', palette: [C.paper, C.navy, C.cyan, C.yellow, C.teal],
     type: 'PT Sans Bold label zona UPPERCASE',
     beats: ['Denah tergambar', 'Zona bahaya menyala bergaris', 'Ikon orang berjalan di jalur aman', 'Titik kumpul berdenyut'],
     dont: ['Denah harus sesuai layout resmi', 'Kronologi insiden tanpa menyebut nama individu'],
@@ -1035,7 +971,7 @@ ${T(40, 60, 24, 'Siang dari matahari,', '#fff')}${T(40, 92, 24, 'malam dari bate
 
   /* ========== RUMPUN 10 — PAKET BROADCAST ========== */
   add({
-    id: 'logo-sting', name: 'Logo Sting & Ident', cat: 'Paket Broadcast', tier: 'Signature',
+    id: 'logo-sting', mode: 'expressive', name: 'Logo Sting & Ident', cat: 'Paket Broadcast', tier: 'Signature',
     desc: 'Ident 3–4 detik: hexagon gradient berkumpul, pita energi melingkar, lalu lockup resmi PLN NR mengunci. Pembuka dan penutup semua video.',
     when: 'Awal dan akhir setiap video resmi, bumper YouTube, pembuka acara, layar tunggu.',
     aud: 'Semua audiens', formats: ['16:9', '9:16', '1:1'], dur: '3–4 dtk', pace: 'Sedang',
@@ -1064,13 +1000,7 @@ ${T(40, 60, 24, 'Siang dari matahari,', '#fff')}${T(40, 92, 24, 'malam dari bate
     type: 'Nama PT Sans Bold 28–32 px, jabatan Regular 18–20 px',
     beats: ['Aksen kuning tumbuh 120 ms', 'Bar putih wipe dari kiri', 'Nama lalu jabatan muncul', 'Tahan 4 dtk lalu keluar terbalik'],
     dont: ['Nama dan jabatan diverifikasi ejaannya', 'Maksimal dua baris, tidak menutupi wajah'],
-    svg: p => svg(p, `<linearGradient id="${p}ft" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7FA7BD"/><stop offset="1" stop-color="#005F89"/></linearGradient>
-<rect width="640" height="360" fill="url(#${p}ft)"/><rect x="0" y="0" width="640" height="360" fill="#00324F" opacity=".25"/>
-<g class="a-float" style="--amp:-3px;--t:5s"><circle cx="420" cy="130" r="46" fill="#C9DCE6"/><path d="M330 360 C330 240 510 240 510 360Z" fill="#C9DCE6"/></g>
-<rect class="a-grow" style="--t:6s" x="40" y="250" width="6" height="66" fill="${C.yellow}"/>
-<rect class="a-wipe" style="--t:6s;--d:.15s" x="46" y="250" width="300" height="66" fill="#fff"/>
-<g class="a-up" style="--t:6s;--d:.4s">${T(64, 280, 22, 'Nama Narasumber', C.navy)}${T(64, 304, 14, 'Jabatan, PT PLN Nusantara Renewables', C.n75, 400)}</g>
-${T(600, 340, 10, 'FOOTAGE PLACEHOLDER', '#E6F4FB', 700, 'text-anchor="end" letter-spacing="2"')}`)
+    svg: null // dirender oleh SLOT (kontrak slot data)
   });
 
   add({
@@ -1092,7 +1022,7 @@ ${T(600, 340, 10, 'FOOTAGE PLACEHOLDER', '#E6F4FB', 700, 'text-anchor="end" lett
   });
 
   add({
-    id: 'countdown', name: 'Event Countdown Loop', cat: 'Paket Broadcast', tier: 'Inti',
+    id: 'countdown', mode: 'expressive', name: 'Event Countdown Loop', cat: 'Paket Broadcast', tier: 'Inti',
     desc: 'Hitung mundur besar di dalam cincin gradient untuk layar panggung, transisi ke pembukaan acara. Juga bekerja sebagai loop layar tunggu.',
     when: 'Pembukaan acara, peresmian COD, RUPS, town hall, webinar.',
     aud: 'Peserta acara', formats: ['16:9', 'ultra-wide'], dur: '10–60 dtk', pace: 'Sedang',
@@ -1153,7 +1083,7 @@ ${T(40, 50, 20, 'Air mengalir, turbin berputar', C.navy)}`)
     desc: 'Penampang bumi berlapis: uap naik dari reservoir lewat sumur produksi ke pembangkit, air kembali lewat sumur injeksi. Siklus PLTP dalam satu bingkai.',
     when: 'Explainer PLTP, sosialisasi wilayah kerja panas bumi, materi investor dan regulator.',
     aud: 'Umum, komunitas sekitar, investor', formats: ['16:9'], dur: '45–90 dtk', pace: 'Tenang',
-    ease: 'linear (aliran)', transition: 'Lens Iris', palette: [C.navy, C.deep, C.azure, C.lime, C.yellow, C.white],
+    ease: 'linear (aliran)', transition: 'Line Draw', palette: [C.navy, C.deep, C.azure, C.lime, C.yellow, C.white],
     type: 'PT Sans Bold label lapisan, Regular satu kalimat penjelasan',
     beats: ['Permukaan dan pembangkit', 'Penampang bumi terbuka berlapis', 'Uap naik lewat sumur produksi', 'Air kembali lewat sumur injeksi'],
     dont: ['Kedalaman ilustratif harus ditandai', 'Siklus injeksi wajib ditampilkan (keberlanjutan)'],
@@ -1170,7 +1100,7 @@ ${T(232, 200, 11, 'SUMUR PRODUKSI', C.navy, 700)}${T(452, 200, 11, 'SUMUR INJEKS
     desc: 'Rantai nilai hidrogen hijau dari listrik surya, elektroliser, tangki H₂, sampai pengguna akhir. Gelembung dan aliran menjelaskan proses tanpa rumus.',
     when: 'Inisiatif hidrogen hijau, kerja sama teknologi, pameran transisi energi, pitch investor.',
     aud: 'Mitra teknologi, investor, regulator', formats: ['16:9', '1:1'], dur: '30–60 dtk', pace: 'Sedang',
-    ease: 'brand-standard', transition: 'Energy Sweep', palette: [C.white, C.yellow, C.cyan, C.teal, C.navy],
+    ease: 'brand-standard', transition: 'Wave Wipe', palette: [C.white, C.yellow, C.cyan, C.teal, C.navy],
     type: 'PT Sans Bold nama tahap, H₂ dengan subskrip yang benar',
     beats: ['Panel surya menghasilkan listrik', 'Elektroliser memecah air, gelembung naik', 'H₂ tersimpan di tangki', 'Hexagon pengguna: industri, transportasi, pembangkit'],
     dont: ['Jangan menyiratkan proyek sudah beroperasi bila masih kajian', 'Efisiensi hanya dari sumber teknis'],
@@ -1185,6 +1115,157 @@ ${[0, 1, 2, 3, 4].map(i => `<circle class="a-steam" style="--d:${(i * .6).toFixe
       return svg(p, g);
     }
   });
+
+  /* ==================================================================
+     KONTRAK SLOT DATA
+     Gaya di bawah ini menerima data adegan: svg(p, d) dengan
+       d = { title, kicker, lines[], values[{label,value,unit}], steps[], name, role, callout{value,text}, source, icons_on }
+     Tanpa d, gaya menampilkan konten contoh galeri. Ukuran teks minimal pada kanvas 640×360:
+     judul ≥ 22, label ≥ 14, angka kunci ≥ 32 (= 66/42/96 px pada 1920×1080).
+     Angka dengan atribut data-count dihitung naik oleh runtime render (Count-Up).
+     ================================================================== */
+  const d0 = v => `style="--d:${v}s"`;
+  const num = v => { const s = String(v ?? '').replace(/\./g, '').replace(',', '.'); const n = parseFloat(s); return isNaN(n) ? null : n; };
+  const decs = v => { const m = String(v ?? '').match(/,(\d+)/); return m ? m[1].length : 0; };
+  const cnt = (v, extra = '') => { const n = num(v); return n === null ? extra : `data-count="${n}" data-dec="${decs(v)}" ${extra}`; };
+  const xesc = s => String(s ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const wrap = (text, max) => { const out = []; let line = ''; String(text || '').split(/\s+/).forEach(w => { if ((line + ' ' + w).trim().length > max && line) { out.push(line); line = w; } else line = (line + ' ' + w).trim(); }); if (line) out.push(line); return out; };
+  const fitSize = (txt, width, max, min) => Math.max(min, Math.min(max, Math.floor(width / (0.52 * Math.max(1, String(txt).length)))));
+  const X = (x, y, s, txt, fill, weight = 700, extra = '') => T(x, y, s, xesc(txt), fill, weight, extra);
+
+  const SLOT = {
+    'energy-sweep': { slots: ['lines', 'kicker'], svg: (p, d = {}) => {
+      const L = (d.lines && d.lines.length ? d.lines : ['Energi untuk', 'Nusantara']).slice(0, 2);
+      const s = Math.min(46, ...L.map(l => fitSize(l, 520, 46, 24)));
+      return svg(p, `<rect width="640" height="360" fill="url(#${p}N)"/>
+<g class="a-up" ${d0(.6)}>${L.map((l, i) => X(64, 170 + i * (s + 6), s, l, C.white)).join('')}</g>
+<rect class="a-wipe" ${d0(1.1)} x="64" y="${170 + (L.length - 1) * (s + 6) + 22}" width="220" height="6" fill="url(#${p}E)"/>
+<g class="a-sweepband"><rect x="-200" y="0" width="240" height="360" fill="url(#${p}E)" transform="skewX(-14)"/></g>
+${X(64, 300, 14, (d.kicker || 'PT PLN NUSANTARA RENEWABLES').toUpperCase(), C.n25, 700, 'letter-spacing="3"')}`); } },
+
+    'navy-statement': { slots: ['lines', 'kicker'], svg: (p, d = {}) => {
+      const L = (d.lines && d.lines.length ? d.lines : ['Bersih.', 'Andal.', 'Berkelanjutan.']).slice(0, 3);
+      const s = Math.min(52, ...L.map(l => fitSize(l, 520, 52, 24)));
+      const y0 = 180 - ((L.length - 1) * (s + 8)) / 2 + s / 3;
+      return svg(p, `<rect width="640" height="360" fill="url(#${p}N)"/>
+${L.map((l, i) => `<g class="a-up" ${d0(.2 + i * .5)}>${X(70, y0 + i * (s + 8), s, l, i === L.length - 1 && L.length > 1 ? C.yellow : C.white)}</g>`).join('')}
+<rect class="a-wipe" ${d0(.4 + L.length * .5)} x="70" y="${y0 + (L.length - 1) * (s + 8) + 22}" width="180" height="5" fill="url(#${p}E)"/>
+${X(70, 70, 14, (d.kicker || '03 — BUDAYA KERJA').toUpperCase(), C.n25, 700, 'letter-spacing="3"')}`); } },
+
+    'kinetic-type': { slots: ['lines', 'values'], svg: (p, d = {}) => {
+      const L = (d.lines && d.lines.length ? d.lines : ['TERANGI', 'Nusantara dengan', 'EBT']).slice(0, 3);
+      const v = d.values && d.values[0] ? d.values[0] : (d.lines ? null : { value: '23', unit: '%' });
+      let y = 60, g = `<rect width="640" height="360" fill="#fff"/>`;
+      L.forEach((l, i) => { const s = fitSize(l, v && i === L.length - 1 ? 380 : 560, i % 2 ? 54 : 80, 28); y += s + 8; g += `<g class="a-kin" ${d0(i * .5)}>${X(40, y, s, l, i % 2 ? C.deep : C.navy)}</g>`; if (v && i === L.length - 1) g += `<g class="a-kin" ${d0(i * .5 + .2)}><rect x="${Math.min(470, 60 + l.length * s * .55)}" y="${y - s * .8}" width="150" height="${s * .9}" fill="${C.yellow}"/>${X(Math.min(470, 60 + l.length * s * .55) + 12, y - s * .2, Math.min(40, s * .55), v.value + (v.unit === '%' ? '%' : ''), C.navy, 700, cnt(v.value))}</g>`; });
+      return svg(p, g + (d.lines ? '' : X(40, 340, 14, 'Target bauran ilustratif', C.inkSoft, 400))); } },
+
+    'arc-kpi': { slots: ['values'], svg: (p, d = {}) => {
+      const V = (d.values && d.values.length ? d.values : [{ label: 'Progres EPC', value: '82', unit: '%' }, { label: 'TKDN', value: '64', unit: '%' }, { label: 'Ketersediaan', value: '91', unit: '%' }]).slice(0, 3);
+      const xs = { 1: [320], 2: [205, 435], 3: [130, 320, 510] }[V.length];
+      let g = `<rect width="640" height="360" fill="#fff"/>`;
+      V.forEach((v, i) => {
+        const x = xs[i], r = 66, len = 2 * Math.PI * r, n = num(v.value), frac = v.unit === '%' && n !== null ? Math.max(0, Math.min(1, n / 100)) : 1, arc = len * frac;
+        const big = v.value + (v.unit === '%' ? '%' : '');
+        const s = fitSize(big, 86, 32, 22);
+        g += `<circle cx="${x}" cy="160" r="${r}" fill="none" stroke="${C.paper}" stroke-width="14"/>
+<circle class="a-arc" style="--len:${len.toFixed(0)};--arc:${(len - arc).toFixed(0)};--d:${.2 + i * .4}s" cx="${x}" cy="160" r="${r}" fill="none" stroke="url(#${p}E)" stroke-width="14" stroke-linecap="round" stroke-dasharray="${len.toFixed(0)}" stroke-dashoffset="${(len - arc).toFixed(0)}" transform="rotate(-90 ${x} 160)"/>
+<circle cx="${x}" cy="160" r="48" fill="${C.navy}"/>${X(x, 160 + s * .36, s, big, '#fff', 700, 'text-anchor="middle" ' + cnt(v.value, ''))}
+${v.unit && v.unit !== '%' ? X(x, 250, 14, v.unit, C.inkSoft, 700, 'text-anchor="middle"') : ''}${X(x, 276, 14, String(v.label || '').toUpperCase(), C.navy, 700, 'text-anchor="middle" letter-spacing="1"')}`;
+      });
+      return svg(p, g + X(40, 336, 12, d.source ? 'Sumber: ' + d.source : 'Angka ilustratif', C.inkSoft, 400)); } },
+
+    'answer-first': { slots: ['title', 'values', 'callout', 'source'], svg: (p, d = {}) => {
+      const title = d.title || 'Kapasitas terpasang naik paling tajam pada tahun terakhir';
+      const V = (d.values && d.values.length ? d.values : [70, 92, 110, 128, 176].map((h, i) => ({ label: 'T' + (i + 1), value: String(h * 4) }))).slice(0, 6);
+      const tl = wrap(title, 40).slice(0, 2), max = Math.max(...V.map(v => num(v.value) || 0), 1);
+      const unit = d.unit_line || (V[0].unit ? `${V[0].unit}` : 'MW, ilustratif');
+      const callout = d.callout || (d.values ? null : { value: '+38%', text: 'pertumbuhan tahun terakhir' });
+      const area = callout ? 360 : 540, bw = Math.min(56, area / V.length - 16), step = area / V.length;
+      let g = `<rect width="640" height="360" fill="#fff"/>${tl.map((l, i) => X(32, 44 + i * 27, 22, l, C.navy)).join('')}<rect x="32" y="${44 + (tl.length - 1) * 27 + 12}" width="120" height="2" fill="url(#${p}E)"/><rect x="152" y="${44 + (tl.length - 1) * 27 + 12}" width="456" height="2" fill="${C.line}"/>${X(32, 44 + (tl.length - 1) * 27 + 34, 12, unit, C.inkSoft, 400)}`;
+      V.forEach((v, i) => {
+        const h = Math.max(4, 170 * (num(v.value) || 0) / max), x = 40 + i * step + (step - bw) / 2, c = i === V.length - 1 ? C.cyan : C.navy;
+        g += `<rect class="a-grow" ${d0(.3 + i * .25)} x="${x}" y="${300 - h}" width="${bw}" height="${h}" fill="${c}"/>${X(x + bw / 2, 292 - h, 14, v.value, C.navy, 700, 'text-anchor="middle"')}${X(x + bw / 2, 320, 14, v.label, C.inkSoft, 400, 'text-anchor="middle"')}`;
+      });
+      if (callout) g += `<g class="a-up" ${d0(1.9)}><rect x="420" y="140" width="190" height="120" fill="${C.paper}"/><rect x="420" y="140" width="4" height="120" fill="${C.cyan}"/>${X(438, 196, 34, callout.value, C.navy)}${wrap(callout.text, 22).slice(0, 2).map((l, i) => X(438, 222 + i * 18, 14, l, C.navy, 400)).join('')}</g>`;
+      return svg(p, g + X(32, 346, 11, 'Sumber: ' + (d.source || 'data ilustratif untuk contoh gaya'), C.inkSoft, 400)); } },
+
+    'waterfall': { slots: ['title', 'values', 'source'], svg: (p, d = {}) => {
+      const title = d.title || 'Interkoneksi menyumbang porsi terbesar kenaikan biaya';
+      const V = (d.values && d.values.length >= 3 ? d.values : [{ label: 'Awal', value: '150' }, { label: 'Lahan', value: '20' }, { label: 'Interkoneksi', value: '46' }, { label: 'Kurs', value: '-18' }, { label: 'Efisiensi', value: '-12' }, { label: 'Akhir', value: '186' }]).slice(0, 7);
+      const tl = wrap(title, 44).slice(0, 2);
+      let run = num(V[0].value) || 0, top = run; V.slice(1, -1).forEach(v => { run += num(v.value) || 0; top = Math.max(top, run); }); top = Math.max(top, num(V[V.length - 1].value) || 0);
+      const k = 180 / top, base = 300, step = 576 / V.length, bw = Math.min(56, step - 18);
+      let g = `<rect width="640" height="360" fill="#fff"/>${tl.map((l, i) => X(32, 40 + i * 27, 22, l, C.navy)).join('')}${X(32, 40 + (tl.length - 1) * 27 + 24, 12, d.unit_line || 'USD juta, ilustratif', C.inkSoft, 400)}`;
+      let cur = 0;
+      V.forEach((v, i) => {
+        const n = num(v.value) || 0, first = i === 0, last = i === V.length - 1, x = 32 + i * step + (step - bw) / 2;
+        let y, h, c, lab;
+        if (first || last) { y = base - n * k; h = n * k; c = last ? C.cyan : C.navy; lab = v.value; cur = first ? n : cur; }
+        else { const a = cur, b = cur + n; y = base - Math.max(a, b) * k; h = Math.abs(n) * k; c = n >= 0 ? C.teal : C.navy; lab = (n >= 0 ? '▲ ' : '▼ ') + String(v.value).replace('-', ''); cur = b; }
+        g += `<rect class="a-grow" ${d0(.2 + i * .3)} x="${x}" y="${y}" width="${bw}" height="${Math.max(2, h)}" fill="${c}"/>${X(x + bw / 2, y - 6, 14, lab, C.navy, 700, 'text-anchor="middle"')}${X(x + bw / 2, 324, 14, v.label, C.inkSoft, 400, 'text-anchor="middle"')}`;
+        if (!last) g += `<line x1="${x + bw}" y1="${base - cur * k}" x2="${x + step}" y2="${base - cur * k}" stroke="${C.n25}" stroke-dasharray="3 3"/>`;
+      });
+      return svg(p, g + X(32, 348, 11, 'Sumber: ' + (d.source || 'ilustratif'), C.inkSoft, 400)); } },
+
+    'isotype': { slots: ['title', 'values', 'icons_on', 'source'], svg: (p, d = {}) => {
+      const title = d.title || 'Setiap simbol = 1.000 rumah tangga';
+      const v = d.values && d.values[0] ? d.values[0] : { value: '58.000', label: 'rumah tangga (contoh)' };
+      const on = Math.max(0, Math.min(70, d.icons_on ?? 58));
+      let g = `<rect width="640" height="360" fill="#fff"/>${X(32, 46, 22, title, C.navy)}${X(32, 70, 12, 'Sumber: ' + (d.source || 'faktor konversi ilustratif'), C.inkSoft, 400)}`;
+      for (let r = 0; r < 5; r++) for (let c = 0; c < 14; c++) { const i = r * 14 + c; g += `<g class="a-pop" style="--d:${(i * .03).toFixed(2)}s;--t:7s">${house(32 + c * 28, 96 + r * 34, i < on ? (i >= on - 8 ? C.cyan : C.navy) : C.paper)}</g>`; }
+      const s = fitSize(v.value, 200, 40, 32);
+      return svg(p, g + `<g class="a-up" ${d0(2.2)}>${X(436, 296, s, v.value, C.navy, 700, cnt(v.value))}${wrap(v.label || '', 24).slice(0, 2).map((l, i) => X(436, 320 + i * 18, 14, l, C.navy, 400)).join('')}</g>`); } },
+
+    'hex-rail': { slots: ['title', 'steps'], svg: (p, d = {}) => {
+      const st = (d.steps && d.steps.length ? d.steps : ['Usulan', 'Kajian', 'Review', 'Persetujuan', 'Eksekusi']).slice(0, 5);
+      const gap = 480 / Math.max(1, st.length - 1);
+      let g = `<rect width="640" height="360" fill="url(#${p}B)"/><rect x="80" y="178" width="480" height="5" fill="#fff" fill-opacity=".25"/><rect class="a-wipe" style="--t:6s" x="80" y="178" width="480" height="5" fill="${C.yellow}"/>`;
+      st.forEach((l, i) => { const x = 80 + i * gap; g += `<g class="a-pop" style="--d:${(i * .55).toFixed(2)}s;--t:6s"><polygon points="${hexPts(x, 180, 30)}" fill="${C.yellow}"/>${X(x, 189, 22, String(i + 1).padStart(2, '0'), C.navy, 700, 'text-anchor="middle"')}${wrap(String(l).toUpperCase(), 13).slice(0, 2).map((w, k) => X(x, 240 + k * 18, 14, w, '#fff', 700, 'text-anchor="middle" letter-spacing="1"')).join('')}</g>`; });
+      return svg(p, g + X(40, 70, 26, d.title || 'Alur persetujuan investasi', '#fff')); } },
+
+    'sop-checklist': { slots: ['title', 'steps'], svg: (p, d = {}) => {
+      const st = (d.steps && d.steps.length ? d.steps : ['Identifikasi sumber energi', 'Beri tahu pihak terdampak', 'Matikan dan isolasi', 'Pasang gembok dan tag', 'Verifikasi energi nol']).slice(0, 5);
+      let g = `<rect width="640" height="360" fill="${C.paper}"/>${X(32, 50, 22, d.title || 'Prosedur Lock-Out Tag-Out', C.navy)}`;
+      st.forEach((s, i) => { const y = 78 + i * 52; g += `<rect x="32" y="${y}" width="380" height="42" fill="#fff"/><rect x="44" y="${y + 11}" width="20" height="20" fill="#fff" stroke="${C.navy}" stroke-width="2"/><path class="a-draw" style="--len:30;--d:${(.4 + i * .5).toFixed(1)}s;--t:7s" d="M48 ${y + 21} L53 ${y + 26} L61 ${y + 15}" fill="none" stroke="${C.cyan}" stroke-width="3"/>${X(76, y + 27, 15, s, C.navy, 700)}`; });
+      const r = 70, len = (2 * Math.PI * r).toFixed(0);
+      return svg(p, g + `<circle cx="520" cy="190" r="${r}" fill="none" stroke="#fff" stroke-width="14"/><circle class="a-arc" style="--len:${len};--arc:0;--t:7s" cx="520" cy="190" r="${r}" fill="none" stroke="${C.teal}" stroke-width="14" stroke-dasharray="${len}" transform="rotate(-90 520 190)"/>${X(520, 202, 32, st.length + '/' + st.length, C.navy, 700, 'text-anchor="middle"')}${X(520, 292, 14, '● SELESAI', C.navy, 700, 'text-anchor="middle" letter-spacing="1.5"')}`); } },
+
+    'lower-third': { slots: ['name', 'role'], svg: (p, d = {}) => {
+      const name = d.name || 'Nama Narasumber', role = d.role || 'Jabatan, PT PLN Nusantara Renewables';
+      const w = Math.min(560, Math.max(300, Math.max(name.length * 13, role.length * 8.2) + 40));
+      return svg(p, `<linearGradient id="${p}ft" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7FA7BD"/><stop offset="1" stop-color="#005F89"/></linearGradient>
+<rect width="640" height="360" fill="url(#${p}ft)"/><rect x="0" y="0" width="640" height="360" fill="#00324F" opacity=".25"/>
+<g class="a-float" style="--amp:-3px;--t:5s"><circle cx="420" cy="130" r="46" fill="#C9DCE6"/><path d="M330 360 C330 240 510 240 510 360Z" fill="#C9DCE6"/></g>
+<rect class="a-grow" style="--t:6s" x="40" y="246" width="6" height="72" fill="${C.yellow}"/>
+<rect class="a-wipe" style="--t:6s;--d:.15s" x="46" y="246" width="${w}" height="72" fill="#fff"/>
+<g class="a-up" style="--t:6s;--d:.4s">${X(64, 278, 22, name, C.navy)}${X(64, 302, 14, role, C.inkSoft, 400)}</g>
+${d.name ? '' : X(600, 340, 10, 'FOOTAGE PLACEHOLDER', '#E6F4FB', 700, 'text-anchor="end" letter-spacing="2"')}`); } }
+  };
+  /* Golden-Hour: lower third lokasi berasal dari data; tanpa data proyek, tidak menampilkan lokasi contoh. */
+  const ghBase = S.find(s => s.id === 'golden-hour').svg;
+  SLOT['golden-hour'] = { slots: ['location', 'sublabel', 'subject'], svg: (p, d) => {
+    let v = ghBase(p);
+    if (d && d.subject === 'surya') {   // ganti turbin dengan deret panel surya terapung
+      v = v.replace(/<line[^>]*stroke="#0B3550"[^>]*\/>/g, '').replace(/<g class="a-spin"[^>]*>(?:<line[^>]*\/>)+<\/g>/g, '').replace(/<circle[^>]*fill="#0B3550"\/>/g, '');
+      let rows = '';
+      for (let r = 0; r < 3; r++) for (let c = 0; c < 9; c++) rows += `<g transform="translate(${30 + c * 66 + r * 22} ${252 + r * 22}) skewX(-28)"><rect width="56" height="14" fill="#0B3550"/><line x1="28" y1="0" x2="28" y2="14" stroke="${C.azure}" stroke-width="1"/></g>`;
+      v = v.replace('<rect width="640" height="36" fill="#001A2A"/>', `<g class="a-float" style="--amp:-2px;--t:5s">${rows}</g><rect width="640" height="36" fill="#001A2A"/>`);
+    }
+    const box = /<g class="a-up"[^>]*><rect x="40" y="262"[\s\S]*?<\/g>/;
+    if (!d) return v;
+    if (!d.location) return v.replace(box, '');
+    const s = fitSize(d.location, 520, 18, 14);
+    return v.replace(box, `<g class="a-up" ${d0(1)}><rect x="40" y="262" width="4" height="44" fill="${C.yellow}"/>${X(54, 282, s, d.location, '#fff')}${d.sublabel ? X(54, 302, 13, d.sublabel, '#E6F4FB', 400) : ''}</g>`);
+  } };
+  /* Travel Poster: nama lokasi dari data (field location); tanpa itu memakai judul contoh. */
+  const tpBase = S.find(s => s.id === 'travel-poster').svg;
+  SLOT['travel-poster'] = { slots: ['location'], svg: (p, d) => {
+    const v = tpBase(p);
+    if (!d || !d.location) return v;
+    const t = String(d.location).toUpperCase(), s = fitSize(t, 600, 32, 18);
+    return v.replace(/<text x="320" y="336"[^>]*>PANAS BUMI NUSANTARA<\/text>/, X(320, 336, s, t, '#fff', 700, `text-anchor="middle" letter-spacing="${s > 24 ? 6 : 3}"`));
+  } };
+  S.forEach(s => { if (SLOT[s.id]) { s.slots = SLOT[s.id].slots; s.svg = SLOT[s.id].svg; } else s.slots = []; });
 
   // ------------------------------------------------------------------
   /* A–Z: kebutuhan animasi PLN NR → gaya utama & alternatif */
@@ -1222,16 +1303,16 @@ ${[0, 1, 2, 3, 4].map(i => `<circle class="a-steam" style="--d:${(i * .6).toFixe
 
   /* Arah produksi per rumpun: musik, tempo, nada VO, tools. Dapat ditimpa per gaya lewat PROD_OVERRIDE. */
   const FAMILY_PROD = {
-    'Signature PLN NR': { music: 'Orkestral-elektronik hangat, membangun perlahan', bpm: '90–100', vo: 'Tenang dan berwibawa', tools: ['After Effects', 'Lottie', 'Remotion'] },
-    'Data & Eksekutif': { music: 'Ambient minimal, piano dan pulse halus', bpm: '80–90', vo: 'Jelas, faktual, tempo sedang', tools: ['Remotion', 'After Effects', 'D3/SVG'] },
-    'Teknik & Engineering': { music: 'Elektronik bersih dengan tekstur mekanis halus', bpm: '95–110', vo: 'Teknis dan presisi', tools: ['Blender', 'After Effects', 'Remotion'] },
-    'Edukasi & Explainer': { music: 'Akustik ringan: marimba, gitar, ukulele', bpm: '100–115', vo: 'Ramah dan bercerita', tools: ['After Effects', 'Remotion', 'Lottie'] },
+    'Signature PLN NR': { music: 'Orkestral-elektronik hangat, membangun perlahan', bpm: '90–100', vo: 'Tenang dan berwibawa', tools: ['After Effects', 'Lottie', 'PLN NR render engine'] },
+    'Data & Eksekutif': { music: 'Ambient minimal, piano dan pulse halus', bpm: '80–90', vo: 'Jelas, faktual, tempo sedang', tools: ['PLN NR render engine', 'After Effects', 'D3/SVG'] },
+    'Teknik & Engineering': { music: 'Elektronik bersih dengan tekstur mekanis halus', bpm: '95–110', vo: 'Teknis dan presisi', tools: ['Blender', 'After Effects', 'PLN NR render engine'] },
+    'Edukasi & Explainer': { music: 'Akustik ringan: marimba, gitar, ukulele', bpm: '100–115', vo: 'Ramah dan bercerita', tools: ['After Effects', 'PLN NR render engine', 'Lottie'] },
     'Nusantara & Budaya': { music: 'Gamelan atau kolintang modern dengan pad', bpm: '70–90', vo: 'Bertutur dan hangat', tools: ['After Effects', 'Generative (p5/Canvas)'] },
-    'Kampanye & Sosial': { music: 'Pop elektronik upbeat, hook di 2 dtk pertama', bpm: '110–125', vo: 'Energik dan muda', tools: ['After Effects', 'CapCut/Premiere', 'Remotion'] },
-    'K3 & Operasional': { music: 'Minimal, perkusi lembut, tanpa ketegangan dramatis', bpm: '85–95', vo: 'Tegas dan jelas', tools: ['After Effects', 'Remotion'] },
+    'Kampanye & Sosial': { music: 'Pop elektronik upbeat, hook di 2 dtk pertama', bpm: '110–125', vo: 'Energik dan muda', tools: ['After Effects', 'CapCut/Premiere', 'PLN NR render engine'] },
+    'K3 & Operasional': { music: 'Minimal, perkusi lembut, tanpa ketegangan dramatis', bpm: '85–95', vo: 'Tegas dan jelas', tools: ['After Effects', 'PLN NR render engine'] },
     'Dokumenter & Sinematik': { music: 'Orkestral sinematik, strings dan piano', bpm: '70–85', vo: 'Reflektif dan bermakna', tools: ['Premiere/DaVinci', 'After Effects'] },
-    'Tata Kelola & Keuangan': { music: 'Ambient korporat netral, tanpa melodi menonjol', bpm: '80–90', vo: 'Formal dan terukur', tools: ['Remotion', 'After Effects'] },
-    'Paket Broadcast': { music: 'Stinger 2–4 dtk + bed loop bermerek', bpm: '100–120', vo: 'Tidak ada / mengikuti program', tools: ['After Effects (MOGRT)', 'Lottie', 'Remotion'] }
+    'Tata Kelola & Keuangan': { music: 'Ambient korporat netral, tanpa melodi menonjol', bpm: '80–90', vo: 'Formal dan terukur', tools: ['PLN NR render engine', 'After Effects'] },
+    'Paket Broadcast': { music: 'Stinger 2–4 dtk + bed loop bermerek', bpm: '100–120', vo: 'Tidak ada / mengikuti program', tools: ['After Effects (MOGRT)', 'Lottie', 'PLN NR render engine'] }
   };
   /* Tingkat usaha produksi: 1 = template ringan (≤ 2 hari), 2 = sedang (3–5 hari), 3 = berat (≥ 1 minggu, ilustrasi/3D khusus) */
   const EFFORT = {

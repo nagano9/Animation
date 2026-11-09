@@ -93,37 +93,52 @@ def cues(proj):
     return res
 
 
-def svg_for(sc, i, aspect):
-    s = read(f"previews/{sc['style']}.svg").replace("P0_", f"s{i}_")
-    if aspect == "9:16":
-        s = s.replace("xMidYMid slice", "xMidYMid meet")
+def slot_data(sc, src_text):
+    """Petakan field adegan ke kontrak slot gaya (lihat references/schema.md)."""
     lt = sc.get("lower_third") or {}
-    if sc["style"] == "lower-third" and lt.get("name"):
-        s = s.replace("Nama Narasumber", esc(lt["name"])).replace("Jabatan, PT PLN Nusantara Renewables", esc(lt.get("title", "")))
-    return s
+    srcs = sorted({x.get("source") for x in sc.get("data") or [] if x.get("source")})
+    d = {
+        "title": sc.get("title") or "",
+        "kicker": sc.get("kicker") or "",
+        "lines": sc.get("onscreen") or [],
+        "steps": sc.get("steps") or sc.get("onscreen") or [],
+        "values": [{"label": x.get("label", ""), "value": str(x.get("value", "")), "unit": x.get("unit", "")} for x in sc.get("data") or []],
+        "name": lt.get("name", ""), "role": lt.get("title", ""),
+        "callout": sc.get("callout"), "location": sc.get("location"), "sublabel": sc.get("sublabel"), "subject": sc.get("subject"), "unit_line": sc.get("unit_line"), "icons_on": sc.get("icons_on"),
+        "source": "; ".join(src_text.get(x, x) for x in srcs),
+    }
+    return {k: v for k, v in d.items() if v not in ("", None, [])}
 
 
 def build_html(proj, cue_list):
     starts, total = timeline(proj["scenes"])
+    src_text = {x["id"]: x.get("text", x["id"]) for x in proj.get("sources", [])}
     scenes = []
     for i, (sc, st) in enumerate(zip(proj["scenes"], starts)):
         s = S[sc["style"]]
+        slots = set(s.get("slots") or [])
+        d = slot_data(sc, src_text)
+        osd = [] if slots & {"lines", "title", "steps"} else (sc.get("onscreen") or [])
         scenes.append({
-            "id": sc["id"], "style": s["name"], "styleId": s["id"], "cat": s["cat"], "role": sc.get("role", ""),
+            "id": sc["id"], "style": s["id"], "styleName": s["name"], "cat": s["cat"], "role": sc.get("role", ""),
             "start": st, "dur": float(sc["duration_s"]), "tx": sc.get("transition_in") or "Cut",
-            "vo": sc.get("vo", ""), "osd": sc.get("onscreen") or [], "data": sc.get("data") or [],
-            "visual": sc.get("visual", ""), "notes": sc.get("notes", ""), "svg": svg_for(sc, i, proj.get("aspect")),
-            "logo": s["id"] == "logo-sting",
+            "vo": sc.get("vo", ""), "osd": osd, "d": d, "data": sc.get("data") or [],
+            "visual": sc.get("visual", ""), "notes": sc.get("notes", ""), "logo": s["id"] == "logo-sting",
         })
-    data = {"title": proj["title"], "aspect": proj.get("aspect", "16:9"), "total": total, "scenes": scenes, "cues": cue_list,
-            "sources": proj.get("sources", [])}
     logo = "data:image/png;base64," + base64.b64encode(read("logo-pln-nr-white.png", "rb")).decode()
-    anim = read("anim.css")
+    data = {"title": proj["title"], "aspect": proj.get("aspect", "16:9"), "total": total, "scenes": scenes, "cues": cue_list,
+            "sources": proj.get("sources", []), "transitions": cat["transitions"], "logo": logo}
+    font = lambda w: "data:font/woff2;base64," + base64.b64encode(read(f"fonts/ptsans-{w}-latin.woff2", "rb")).decode()
+    with open(os.path.join(os.path.dirname(ASSETS), "engine", "runtime.js"), encoding="utf-8") as f:
+        runtime = f.read()
     tpl = read("animatic.template.html")
-    return (tpl.replace("{{TITLE}}", esc(proj["title"]))
-               .replace("{{ANIM_CSS}}", anim)
-               .replace("{{LOGO}}", logo)
-               .replace("{{DATA}}", json.dumps(data, ensure_ascii=False).replace("</", "<\\/")))
+    rep = {"{{TITLE}}": esc(proj["title"]), "{{ANIM_CSS}}": read("anim.css"), "{{LOGO}}": logo,
+           "{{FONT400}}": font(400), "{{FONT700}}": font(700),
+           "{{STYLES_JS}}": read("styles-data.js").replace("</script", "<\\/script"), "{{RUNTIME_JS}}": runtime,
+           "{{DATA}}": json.dumps(data, ensure_ascii=False).replace("</", "<\\/")}
+    for k, v in rep.items():
+        tpl = tpl.replace(k, v)
+    return tpl
 
 
 def build_md(proj):
