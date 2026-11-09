@@ -87,7 +87,7 @@
 
 **Spesifikasi:** Sedang · easing entrance · palet #FFFFFF #00507C #FFF100 #407C9D · Nama PT Sans Bold 28–32 px, jabatan Regular 18–20 px
 
-**Catatan:** Dua narasumber: Direksi dan perwakilan warga; ganti nama sebelum render
+**Catatan:** Footage contoh: foto lapangan dari design system PLN NR. Ganti dengan rekaman wawancara; nama narasumber diganti sebelum render final
 
 ## s06 · 01:24 · Energy Sweep — Penutup
 

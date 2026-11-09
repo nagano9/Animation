@@ -38,6 +38,10 @@
       "beats": [0.2, 3.5, 7.0],                // opsional: waktu beat (detik); default dari frasa VO
       "words": [{ "w": "Di", "start": 0.18, "end": 0.3 }],  // opsional: timestamp kata (Whisper) untuk beat dan hitung naik
       "hold": 6,                               // opsional: lama lower third tampil sebelum keluar (detik)
+      "footage": "footage/wawancara-01.mp4",   // foto (jpg/png/webp, di-embed) atau video (mp4/webm/mov, disalin); relatif ke project.json
+      "footage_focus": "50% 40%",              // titik fokus crop (object-position)
+      "footage_in": 12.5,                      // video: detik awal klip yang dipakai
+      "tone": "dark",                          // diisi plan.py tone: varian gelap untuk gaya berlatar terang
       "colors": [],                 // opsional: warna khusus adegan, divalidasi ke palet
       "visual": "Arahan visual; default dari beat gaya",
       "notes": "Catatan untuk animator"

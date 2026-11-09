@@ -92,6 +92,7 @@ const D = {{DATA}};
     const rt = PLNNR_RT.mount(st, D, { captions: !/[?&]captions=0/.test(location.search) });
     window.__meta = { W: rt.W, H: rt.H, total: D.total, scenes: D.scenes.map(s => ({ id: s.id, start: s.start, dur: s.dur })) };
     window.__seek = t => rt.seek(t);
+    window.__settle = () => rt.settle();
     document.fonts.ready.then(() => { rt.seek(0); window.__ready = true; });
     return;
   }

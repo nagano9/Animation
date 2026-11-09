@@ -37,7 +37,7 @@ await probe.close();
 const page = await browser.newPage({ viewport: { width: meta.W, height: meta.H }, deviceScaleFactor: 1 });
 await page.goto(url);
 await page.waitForFunction(() => window.__ready, null, { timeout: 30000 });
-const seek = t => page.evaluate(t => window.__seek(t), t);
+const seek = t => page.evaluate(async t => { window.__seek(t); if (window.__settle) await window.__settle(); }, t);
 const shot = (o = {}) => page.screenshot({ clip: { x: 0, y: 0, width: meta.W, height: meta.H }, ...o });
 
 if (opt('stills')) {

@@ -177,6 +177,35 @@ def slot_data(sc, src_text):
     return {k: v for k, v in d.items() if v not in ("", None, [])}
 
 
+IMG_EXT = {".jpg": "image/jpeg", ".jpeg": "image/jpeg", ".png": "image/png", ".webp": "image/webp"}
+VID_EXT = {".mp4", ".webm", ".mov"}
+
+
+def footage_for(sc, base, out_dir):
+    """Foto di-embed (data URI, bisa dipublikasikan); video disalin ke folder keluaran dan dirujuk relatif."""
+    f = sc.get("footage")
+    if not f:
+        return None
+    path = f if os.path.isabs(f) else os.path.join(base, f)
+    if not os.path.exists(path):
+        print(f"  PERINGATAN: footage {path} tidak ditemukan; adegan {sc['id']} memakai ilustrasi")
+        return None
+    ext = os.path.splitext(path)[1].lower()
+    info = {"focus": sc.get("footage_focus", "50% 50%"), "in": float(sc.get("footage_in", 0))}
+    if ext in IMG_EXT:
+        with open(path, "rb") as fh:
+            info.update(kind="image", src=f"data:{IMG_EXT[ext]};base64," + base64.b64encode(fh.read()).decode())
+    elif ext in VID_EXT:
+        import shutil
+        name = f"footage-{sc['id']}{ext}"
+        shutil.copyfile(path, os.path.join(out_dir, name))
+        info.update(kind="video", src=name)
+    else:
+        print(f"  PERINGATAN: format footage {ext} tidak didukung")
+        return None
+    return info
+
+
 def build_html(proj, cue_list):
     starts, total = timeline(proj["scenes"])
     src_text = {x["id"]: x.get("text", x["id"]) for x in proj.get("sources", [])}
@@ -185,13 +214,16 @@ def build_html(proj, cue_list):
         s = S[sc["style"]]
         slots = set(s.get("slots") or [])
         d = slot_data(sc, src_text)
+        foot = footage_for(sc, BASE, OUT)
+        if foot:
+            d["footage"] = True
         osd = [] if slots & {"lines", "title", "steps"} else (sc.get("onscreen") or [])
         scenes.append({
             "id": sc["id"], "style": s["id"], "styleName": s["name"], "cat": s["cat"], "role": sc.get("role", ""),
             "start": st, "dur": float(sc["duration_s"]), "tx": sc.get("transition_in") or "Cut",
             "vo": sc.get("vo", ""), "osd": osd, "d": d, "data": sc.get("data") or [],
             "visual": sc.get("visual", ""), "notes": sc.get("notes", ""), "logo": s["id"] == "logo-sting",
-            "beats": beats_for(sc), "countAt": count_at(sc), "mode": s.get("mode", "productive"), "tone": sc.get("tone", ""),
+            "beats": beats_for(sc), "countAt": count_at(sc), "mode": s.get("mode", "productive"), "footage": foot, "tone": sc.get("tone", ""),
         })
     logo = "data:image/png;base64," + base64.b64encode(read("logo-pln-nr-white.png", "rb")).decode()
     data = {"title": proj["title"], "aspect": proj.get("aspect", "16:9"), "total": total, "scenes": scenes, "cues": cue_list,
@@ -278,6 +310,7 @@ ap.add_argument("--out", required=True)
 a = ap.parse_args()
 proj = load_project(a.path)
 os.makedirs(a.out, exist_ok=True)
+BASE, OUT = os.path.dirname(os.path.abspath(a.path)), a.out
 cl = cues(proj)
 files = {"animatic.html": build_html(proj, cl), "storyboard.md": build_md(proj), "captions.srt": build_srt(cl),
          "production.json": json.dumps(build_prod(proj), ensure_ascii=False, indent=2) + "\n"}

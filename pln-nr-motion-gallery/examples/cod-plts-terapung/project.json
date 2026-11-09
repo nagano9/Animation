@@ -110,7 +110,9 @@
         "title": "Direktur, PT PLN Nusantara Renewables"
       },
       "visual": "Aksen kuning tumbuh 120 ms → Bar putih wipe dari kiri → Nama lalu jabatan muncul → Tahan 4 dtk lalu keluar terbalik",
-      "notes": "Dua narasumber: Direksi dan perwakilan warga; ganti nama sebelum render"
+      "notes": "Footage contoh: foto lapangan dari design system PLN NR. Ganti dengan rekaman wawancara; nama narasumber diganti sebelum render final",
+      "footage": "footage/tim-lapangan-plts-terapung.jpg",
+      "footage_focus": "50% 42%"
     },
     {
       "id": "s06",

@@ -3135,7 +3135,8 @@
       "slots": [
         "location",
         "sublabel",
-        "subject"
+        "subject",
+        "footage"
       ],
       "letters": [
         "A",
@@ -3638,7 +3639,8 @@
       ],
       "slots": [
         "name",
-        "role"
+        "role",
+        "footage"
       ],
       "letters": [
         "C"

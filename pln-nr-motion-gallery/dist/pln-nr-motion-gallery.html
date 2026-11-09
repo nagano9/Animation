@@ -1932,9 +1932,14 @@ ${v.unit && v.unit !== '%' ? X(x, 250, 14, v.unit, C.inkSoft, 700, 'text-anchor=
       const r = 70, len = (2 * Math.PI * r).toFixed(0);
       return svg(p, g + `<circle cx="520" cy="190" r="${r}" fill="none" stroke="#fff" stroke-width="14"/><circle class="a-arc" style="--len:${len};--arc:0;--t:7s" cx="520" cy="190" r="${r}" fill="none" stroke="${C.teal}" stroke-width="14" stroke-dasharray="${len}" transform="rotate(-90 520 190)"/>${X(520, 202, 32, st.length + '/' + st.length, C.navy, 700, 'text-anchor="middle"')}${X(520, 292, 14, '● SELESAI', C.navy, 700, 'text-anchor="middle" letter-spacing="1.5"')}`); } },
 
-    'lower-third': { slots: ['name', 'role'], svg: (p, d = {}) => {
+    'lower-third': { slots: ['name', 'role', 'footage'], svg: (p, d = {}) => {
       const name = d.name || 'Nama Narasumber', role = d.role || 'Jabatan, PT PLN Nusantara Renewables';
       const w = Math.min(560, Math.max(300, Math.max(name.length * 13, role.length * 8.2) + 40));
+      const lt = `<clipPath id="${p}ltc"><rect class="a-wipe" style="--t:6s;--d:.15s" x="46" y="246" width="${w}" height="72"/></clipPath>
+<g class="lt-block"><rect class="a-grow" style="--t:6s" x="40" y="246" width="6" height="72" fill="${C.yellow}"/>
+<rect class="a-wipe" style="--t:6s;--d:.15s" x="46" y="246" width="${w}" height="72" fill="#fff"/>
+<g clip-path="url(#${p}ltc)"><g class="a-up" style="--t:6s;--d:.4s">${X(64, 278, 22, name, C.navy)}${X(64, 302, 14, role, C.inkSoft, 400)}</g></g></g>`;
+      if (d.footage) return svg(p, lt);   // footage berada di belakang, dari runtime
       return svg(p, `<linearGradient id="${p}ft" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7FA7BD"/><stop offset="1" stop-color="#005F89"/></linearGradient>
 <rect width="640" height="360" fill="url(#${p}ft)"/><rect x="0" y="0" width="640" height="360" fill="#00324F" opacity=".25"/>
 <g class="a-float" style="--amp:-3px;--t:5s"><circle cx="420" cy="130" r="46" fill="#C9DCE6"/><path d="M330 360 C330 240 510 240 510 360Z" fill="#C9DCE6"/></g>
@@ -1946,7 +1951,11 @@ ${d.name ? '' : X(600, 340, 10, 'FOOTAGE PLACEHOLDER', '#E6F4FB', 700, 'text-anc
   };
   /* Golden-Hour: lower third lokasi berasal dari data; tanpa data proyek, tidak menampilkan lokasi contoh. */
   const ghBase = S.find(s => s.id === 'golden-hour').svg;
-  SLOT['golden-hour'] = { slots: ['location', 'sublabel', 'subject'], svg: (p, d) => {
+  SLOT['golden-hour'] = { slots: ['location', 'sublabel', 'subject', 'footage'], svg: (p, d) => {
+    if (d && d.footage) {   // footage nyata: hanya letterbox sinematik + label lokasi
+      const s = d.location ? fitSize(d.location, 520, 18, 14) : 0;
+      return svg(p, `<rect width="640" height="36" fill="#001A2A"/><rect y="324" width="640" height="36" fill="#001A2A"/>${d.location ? `<g class="a-up" ${d0(1)}><rect x="40" y="218" width="4" height="44" fill="${C.yellow}"/>${X(54, 238, s, d.location, '#fff')}${d.sublabel ? X(54, 258, 13, d.sublabel, '#E6F4FB', 400) : ''}</g>` : ''}`);
+    }
     let v = ghBase(p);
     if (d && d.subject === 'surya') {   // ganti turbin dengan deret panel surya terapung
       v = v.replace(/<line[^>]*stroke="#0B3550"[^>]*\/>/g, '').replace(/<g class="a-spin"[^>]*>(?:<line[^>]*\/>)+<\/g>/g, '').replace(/<circle[^>]*fill="#0B3550"\/>/g, '');

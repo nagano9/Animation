@@ -65,6 +65,10 @@
     stage.classList.add('plnnr-stage', square ? 'is-square' : portrait ? 'is-portrait' : 'is-landscape');
     const mbg = stage.querySelector('#plnnr-mbg');
 
+    /* Footage nyata (foto atau video) di belakang art; ikut gerak kamera (Ken Burns untuk foto). */
+    const footage = sc => { const f = sc.footage; if (!f) return '';
+      const pos = `object-position:${esc(f.focus || '50% 50%')}`;
+      return f.kind === 'video' ? `<video class="foot" muted playsinline preload="auto" src="${esc(f.src)}" style="${pos}"></video>` : `<img class="foot" alt="" src="${f.src}" style="${pos}">`; };
     const layers = P.scenes.map((sc, i) => {
       const s = byId[sc.style];
       const L = document.createElement('div'); L.className = 'sc-layer art'; L.style.display = 'none';
@@ -72,10 +76,10 @@
       const textCovered = (s.slots || []).some(k => ['lines', 'title', 'steps', 'name'].includes(k));
       const lines = (sc.osd && sc.osd.length ? sc.osd : (portrait && !DISPLAY_TEXT.has(sc.style) ? [sc.d.title, ...(sc.d.lines || sc.d.steps || [])].filter(Boolean) : [])).slice(0, portrait ? 2 : 3);
       if (portrait) {
-        L.innerHTML = `<div class="pt-bg"></div><div class="pt-top"><img alt="" src="${P.logo}"></div><div class="pt-art cam">${art.replace('xMidYMid slice', 'xMidYMid meet')}</div>`
+        L.innerHTML = `<div class="pt-bg"></div><div class="pt-top"><img alt="" src="${P.logo}"></div><div class="pt-art cam">${footage(sc)}${art.replace('xMidYMid slice', 'xMidYMid meet')}</div>`
           + `<div class="pt-text">${lines.map(l => `<span>${esc(l)}</span>`).join('')}</div>`;
       } else {
-        L.innerHTML = `<div class="ls-art cam">${art}</div>` + (!textCovered && lines.length ? `<div class="osd">${lines.map(l => `<span>${esc(l)}</span>`).join('')}</div>` : '');
+        L.innerHTML = `<div class="ls-art cam">${footage(sc)}${art}</div>` + (!textCovered && lines.length ? `<div class="osd">${lines.map(l => `<span>${esc(l)}</span>`).join('')}</div>` : '');
       }
       // masuk lewat Energy Sweep: pita internal gaya dimatikan agar tidak ada sapuan ganda
       if (sc.tx === 'Energy Sweep') L.querySelectorAll('.a-sweepband').forEach(e => e.remove());
@@ -97,7 +101,7 @@
       // lockup: reveal bermasker kiri ke kanan setelah cincin hexagon tertutup
       L.querySelectorAll('.lockup').forEach(el => el.animate([{ clipPath: 'inset(0 100% 0 0)', transform: 'translate(-50%,-50%) scale(.96)' }, { clipPath: 'inset(0 0 0 0)', transform: 'translate(-50%,-50%) scale(1)' }], { duration: 650, delay: 1150, easing: 'cubic-bezier(.16,1,.3,1)', fill: 'backwards' }));
       L.querySelectorAll('[data-count]').forEach(el => { el.dataset.orig = el.textContent; });
-      return { el: L, sc, s, beats, cam: L.querySelector('.cam'), camKeys: cameraKeys(beats, dur), svgs: [...L.querySelectorAll('svg')], plan: null };
+      return { el: L, sc, s, beats, cam: L.querySelector('.cam'), camKeys: cameraKeys(beats, dur), svgs: [...L.querySelectorAll('svg')], vids: [...L.querySelectorAll('video.foot')], plan: null };
     });
     const band = document.createElement('div'); band.className = 'tx-band'; stage.append(band);
     const dip = document.createElement('div'); dip.className = 'tx-dip'; stage.append(dip);
@@ -107,14 +111,18 @@
     /* Rencana beat per layer: dibuat sekali saat layer pertama kali tampil (animasi CSS baru ada setelah display). */
     function planFor(ly) {
       const anims = ly.el.getAnimations({ subtree: true }).filter(a => a.animationName && ENTRANCE[a.animationName]);
-      const delays = [...new Set(anims.map(a => Math.round((a.effect.getTiming().delay || 0) / 50) * 50))].sort((a, b) => a - b);
-      const groups = Math.max(1, Math.min(ly.beats.length, delays.length));
+      const q = a => Math.round((a.effect.getTiming().delay || 0) / 50) * 50;
+      const delays = [...new Set(anims.map(q))].sort((a, b) => a - b);
+      // klaster: delay yang berjarak < 350 ms adalah satu komponen (stagger internal) dan tidak dipecah ke beat berbeda
+      const clusters = [];
+      delays.forEach(d => { const c = clusters[clusters.length - 1]; if (c && d - c[c.length - 1] < 350) c.push(d); else clusters.push([d]); });
+      const groups = Math.max(1, Math.min(ly.beats.length, clusters.length));
+      const groupOf = new Map();
+      clusters.forEach((c, i) => { const g = Math.min(groups - 1, Math.floor(i * groups / clusters.length)); c.forEach(d => groupOf.set(d, g)); });
+      const first = [];
+      delays.forEach(d => { const g = groupOf.get(d); if (first[g] === undefined) first[g] = d; });
       const shift = new Map();
-      // kelompokkan delay asli menjadi `groups` bagian, setiap bagian mulai di beat-nya
-      const bucketOf = d => Math.min(groups - 1, Math.floor(delays.indexOf(d) * groups / delays.length));
-      const firstDelay = [];
-      delays.forEach(d => { const b = bucketOf(d); if (firstDelay[b] === undefined) firstDelay[b] = d; });
-      anims.forEach(a => { const d = Math.round((a.effect.getTiming().delay || 0) / 50) * 50, b = bucketOf(d); shift.set(a, ly.beats[b] * 1000 - firstDelay[b] + (b === 0 ? 150 : 0)); });
+      anims.forEach(a => { const d = q(a), g = groupOf.get(d); shift.set(a, ly.beats[g] * 1000 - first[g] + (g === 0 ? 150 : 0)); });
       return { shift };
     }
 
@@ -132,6 +140,7 @@
         a.currentTime = Math.max(0, ms);
       });
       ly.svgs.forEach(s => { try { s.pauseAnimations(); s.setCurrentTime(Math.max(0, local)); } catch (e) {} });
+      ly.vids.forEach(v => { const want = Math.max(0, (ly.sc.footage.in || 0) + local); if (!v.paused) v.pause(); if (Math.abs(v.currentTime - want) > .02) v.currentTime = want; });
       ly.el.querySelectorAll('[data-count]').forEach(el => {
         const n = +el.dataset.count, dec = +el.dataset.dec || 0;
         const start = (ly.sc.countAt && ly.sc.countAt[el.dataset.count] !== undefined ? ly.sc.countAt[el.dataset.count] : (ly.beats[1] ?? ly.beats[0] ?? 0)) + .35;
@@ -189,7 +198,12 @@
       cap.style.display = c ? 'block' : 'none';
       return i;
     }
-    return { W, H, seek, idxAt, setCaptions(v) { capsOn = v; }, total: P.total };
+    /* Untuk render: tunggu semua video selesai seek sebelum frame diambil. */
+    function settle() {
+      const vs = [...stage.querySelectorAll('video.foot')].filter(v => v.closest('.sc-layer').style.display !== 'none');
+      return Promise.all(vs.map(v => (v.seeking || v.readyState < 2) ? new Promise(r => { const done = () => r(); v.addEventListener('seeked', done, { once: true }); v.addEventListener('loadeddata', done, { once: true }); setTimeout(done, 3000); }) : null));
+    }
+    return { W, H, seek, settle, idxAt, setCaptions(v) { capsOn = v; }, total: P.total };
   };
 
   NS.CSS = `
@@ -197,6 +211,7 @@
 .plnnr-stage .sc-layer{position:absolute;inset:0;overflow:hidden}
 .plnnr-stage .ls-art{position:absolute;inset:0;transform-origin:50% 50%}
 .plnnr-stage .ls-art svg{position:absolute;inset:0;width:100%;height:100%;display:block}
+.plnnr-stage .foot{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
 .plnnr-stage .osd{position:absolute;left:96px;top:72px;max-width:1150px;display:grid;gap:12px;justify-items:start}
 .plnnr-stage .osd span{background:rgba(255,255,255,.96);color:#00507C;font-weight:700;font-size:66px;line-height:1.08;padding:10px 22px}
 .plnnr-stage .lockup{position:absolute;left:50%;top:47.2%;transform:translate(-50%,-50%);width:30%;background:#00507C;padding:1.2% 1.6%}

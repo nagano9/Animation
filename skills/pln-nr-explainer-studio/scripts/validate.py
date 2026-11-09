@@ -114,6 +114,13 @@ def run(proj):
             add("PERINGATAN", w, "ada angka di teks layar tetapi tidak tercatat di data + sumber")
         if not vo and sid not in BROADCAST and sid not in ("particle-field", "batik-generative", "night-glow"):
             add("PERINGATAN", w, "VO kosong")
+        if sid == "lower-third" and not sc.get("footage"):
+            add("PERINGATAN", w, "wawancara tanpa footage: visual hanya placeholder dan akan gagal QA gerak; isi 'footage' (foto atau video)")
+        if sc.get("footage"):
+            import os as _os
+            fp = sc["footage"] if _os.path.isabs(sc["footage"]) else _os.path.join(BASE_DIR, sc["footage"])
+            if not _os.path.exists(fp):
+                add("ERROR", w, f"footage tidak ditemukan: {sc['footage']}")
         if sid == "lower-third" and not (sc.get("lower_third") or {}).get("name"):
             add("PERINGATAN", w, "lower third tanpa nama narasumber")
         for h in HEX.findall(json.dumps(sc.get("colors", []))):
@@ -160,6 +167,7 @@ ap = argparse.ArgumentParser()
 ap.add_argument("path")
 ap.add_argument("--json", action="store_true")
 a = ap.parse_args()
+BASE_DIR = __import__("os").path.dirname(__import__("os").path.abspath(a.path))
 res = run(load_project(a.path))
 errs = [r for r in res if r["level"] == "ERROR"]
 warns = [r for r in res if r["level"] == "PERINGATAN"]

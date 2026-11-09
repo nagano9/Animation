@@ -141,6 +141,15 @@ Tulis VO dalam frasa pendek berkoma agar beat terasa. Untuk sinkron per kata, is
 (timestamp kata hasil transkripsi, format Whisper `[{w, start, end}]`) atau `beats` (detik)
 secara manual.
 
+**Footage.** Adegan wawancara (`lower-third`) dan establishing (`golden-hour`) sebaiknya memakai
+footage nyata lewat field `footage`. Foto diberi gerak kamera otomatis (Ken Burns); video di-seek per
+frame sehingga tetap deterministik. Pakai sumber minimal selebar 1920 px agar tidak buram.
+Tanpa footage, adegan wawancara hanya placeholder dan hampir pasti gagal QA gerak.
+
+**Rencana nada.** Jalankan `python3 scripts/plan.py tone work/project.json` setelah susunan adegan final.
+Gaya berlatar putih yang diapit adegan navy otomatis memakai varian gelap (navy dan putih ditukar,
+sinyal cyan menjadi kuning); lompatan kecerahan yang tersisa memakai Dip Navy.
+
 **Transisi.** Hanya Cross-fade, Wave Wipe, Dip Navy, Energy Sweep, Hex Bloom, Chevron Push, dan
 Lens Iris yang berfungsi sebagai perpindahan adegan. Count-Up dan Line Draw adalah animasi isi.
 `plan.py new` otomatis memakai Dip Navy saat kecerahan latar dua adegan berbeda jauh.
