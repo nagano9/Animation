@@ -947,39 +947,354 @@ ${T(60, 356, 10, '06.00', C.navy, 700)}${T(306, 356, 10, '12.00', C.navy, 700)}$
 ${T(40, 60, 24, 'Siang dari matahari,', '#fff')}${T(40, 92, 24, 'malam dari baterai', C.yellow)}`)
   });
 
+  /* ========== RUMPUN 9 — TATA KELOLA & KEUANGAN ========== */
+  add({
+    id: 'authority-ladder', name: 'Authority Ladder Climb', cat: 'Tata Kelola & Keuangan', tier: 'Inti',
+    desc: 'Tangga kewenangan naik anak tangga demi anak tangga sesuai nilai keputusan, sampai organ yang berwenang menyala. Menjawab pertanyaan "siapa yang memutuskan" tanpa tabel panjang.',
+    when: 'Usulan investasi, materi persetujuan Direksi/Dekom/RUPS, sosialisasi batas kewenangan.',
+    aud: 'Direksi, Dekom, SPI, unit pengusul', formats: ['16:9'], dur: '15–30 dtk', pace: 'Tenang',
+    ease: 'brand-standard', transition: 'Line Draw', palette: [C.white, C.navy, C.cyan, C.n25, C.paper],
+    type: 'PT Sans Bold nama organ, angka ambang tabular',
+    beats: ['Anak tangga kosong dengan nama organ', 'Nilai usulan muncul di kiri', 'Penanda naik sampai ambang terlewati', 'Organ berwenang menyala cyan dengan dasar aturan'],
+    dont: ['Ambang nilai wajib sesuai pedoman kewenangan berlaku', 'Sebut dasar aturan di layar'],
+    svg: p => {
+      let g = `<rect width="640" height="360" fill="#fff"/>${T(40, 48, 20, 'Usulan Rp 240 M membutuhkan persetujuan Dekom', C.navy)}${T(40, 70, 11, 'Ambang ilustratif, sesuaikan dengan pedoman kewenangan', C.n75, 400)}`;
+      const st = [['Manajer Unit', '< Rp 5 M'], ['Direktur', '< Rp 50 M'], ['Direksi', '< Rp 150 M'], ['Dekom', '< Rp 500 M'], ['RUPS', '≥ Rp 500 M']];
+      st.forEach(([n, v], i) => {
+        const x = 70 + i * 106, y = 300 - i * 44, on = i === 3;
+        g += `<rect class="a-up" ${d(.2 + i * .2)} x="${x}" y="${y}" width="100" height="${360 - y}" fill="${on ? C.cyan : i < 3 ? C.n25 : C.paper}"/>${T(x + 8, y + 22, 13, n, on ? '#fff' : C.navy, 700)}${T(x + 8, y + 40, 11, v, on ? '#fff' : C.n75, 400)}`;
+      });
+      g += `<circle r="9" fill="${C.yellow}" stroke="${C.navy}" stroke-width="3"><animateMotion dur="5s" repeatCount="indefinite" keyTimes="0;.8;1" keyPoints="0;1;1" calcMode="linear" path="M180 290 L286 246 L392 202 L498 158"/></circle>`;
+      return svg(p, g);
+    }
+  });
+
+  add({
+    id: 'risk-heatmap', name: 'Risk Heatmap Shift', cat: 'Tata Kelola & Keuangan', tier: 'Inti',
+    desc: 'Matriks 5×5 dengan kepadatan navy; titik risiko bergeser dari posisi inheren ke residual setelah mitigasi. Satu gerak menjelaskan efektivitas mitigasi.',
+    when: 'Profil risiko proyek, laporan manajemen risiko triwulanan, materi Komite Audit dan lender.',
+    aud: 'Direksi, Komite Pemantau Risiko, lender', formats: ['16:9'], dur: '20–40 dtk', pace: 'Tenang',
+    ease: 'brand-standard', transition: 'Cross-fade 220 ms', palette: [C.white, C.navy, C.n50, C.n25, C.cyan],
+    type: 'PT Sans Bold kode risiko (R1–R5), label sumbu UPPERCASE',
+    beats: ['Matriks dan sumbu', 'Titik risiko inheren muncul', 'Panah mitigasi, titik bergeser ke residual', 'Ringkasan: berapa risiko turun level'],
+    dont: ['Tanpa pita merah; kepadatan navy membawa makna', 'Maksimal 6 titik risiko per layar'],
+    svg: p => {
+      let g = `<rect width="640" height="360" fill="#fff"/>`;
+      const den = ['#F1F6FA', '#D5E4EE', '#BFD3DE', '#7FA7BD', '#407C9D', '#00507C'];
+      for (let r = 0; r < 5; r++) for (let c = 0; c < 5; c++) g += `<rect x="${120 + c * 56}" y="${40 + r * 56}" width="54" height="54" fill="${den[Math.min(5, Math.floor((c + (4 - r)) * .7))]}"/>`;
+      g += `${T(100, 190, 11, 'KEMUNGKINAN', C.n75, 700, 'transform="rotate(-90 100 190)" text-anchor="middle" letter-spacing="2"')}${T(260, 336, 11, 'DAMPAK', C.n75, 700, 'text-anchor="middle" letter-spacing="2"')}`;
+      [[372, 68, 204, 236, 'R1'], [316, 124, 260, 236, 'R2'], [372, 180, 316, 292, 'R3']].forEach(([x1, y1, x2, y2, l], i) => {
+        g += `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${C.cyan}" stroke-width="2" stroke-dasharray="4 4"/><g><circle r="14" fill="#fff" stroke="${C.cyan}" stroke-width="3"/>${T(0, 5, 12, l, C.navy, 700, 'text-anchor="middle"')}<animateTransform attributeName="transform" type="translate" values="${x1} ${y1};${x1} ${y1};${x2} ${y2};${x2} ${y2}" keyTimes="0;.25;.6;1" dur="6s" begin="${i * .3}s" repeatCount="indefinite"/></g>`;
+      });
+      g += `<g class="a-up" ${d(2)}><rect x="430" y="110" width="180" height="110" fill="${C.paper}"/><rect x="430" y="110" width="4" height="110" fill="${C.cyan}"/>${T(448, 160, 34, '3 → 0', C.navy)}${T(448, 186, 12, 'risiko tinggi setelah', C.navy, 400)}${T(448, 204, 12, 'mitigasi (ilustratif)', C.n75, 400)}</g>`;
+      return svg(p, g);
+    }
+  });
+
+  add({
+    id: 'covenant-gauge', name: 'Covenant Headroom', cat: 'Tata Kelola & Keuangan', tier: 'Spesialis',
+    desc: 'Garis DSCR proyeksi tergambar di atas garis kovenan, ruang di antaranya terisi sebagai headroom. Lender melihat jarak aman dalam satu gerakan.',
+    when: 'Pembiayaan proyek, monitoring kovenan, materi lender meeting, stress test.',
+    aud: 'Lender, Direktorat Keuangan, Dekom', formats: ['16:9'], dur: '15–30 dtk', pace: 'Tenang',
+    ease: 'brand-standard', transition: 'Line Draw', palette: [C.white, C.navy, C.cyan, C.n25, C.paper],
+    type: 'PT Sans Bold angka rasio dua desimal dengan "x" (1,30x)',
+    beats: ['Sumbu dan garis kovenan putus-putus', 'Garis DSCR tergambar per tahun', 'Area headroom terisi', 'Titik terendah ditandai dengan nilainya'],
+    dont: ['Angka wajib dari model keuangan resmi', 'Titik terendah harus disebut, bukan disembunyikan'],
+    svg: p => {
+      const pts = [[80, 150], [150, 132], [220, 170], [290, 196], [360, 160], [430, 140], [500, 120], [570, 110]];
+      const line = pts.map(q => q.join(',')).join(' ');
+      let g = `<rect width="640" height="360" fill="#fff"/>${T(40, 44, 20, 'DSCR tetap di atas kovenan sepanjang tenor', C.navy)}${T(40, 66, 11, 'DSCR (x), proyeksi ilustratif', C.n75, 400)}
+<path class="a-up" ${d(1.4)} d="M${line.replace(/ /g, ' L')} L570 230 L80 230Z" fill="${C.cyan}" fill-opacity=".14"/>
+<line x1="70" y1="230" x2="590" y2="230" stroke="${C.navy}" stroke-width="2" stroke-dasharray="6 5"/>${T(500, 250, 12, 'Kovenan 1,30x', C.navy, 700)}
+<polyline class="a-draw" style="--len:620" points="${line}" fill="none" stroke="${C.cyan}" stroke-width="4" stroke-linejoin="round"/>`;
+      pts.forEach(([x], i) => g += T(x, 300, 11, 'T' + (i + 1), C.n75, 400, 'text-anchor="middle"'));
+      g += `<g class="a-pop" ${d(1.8)}><circle cx="290" cy="196" r="7" fill="${C.navy}"/><line x1="290" y1="196" x2="290" y2="230" stroke="${C.navy}" stroke-width="1.5"/>${T(300, 190, 13, 'Terendah 1,48x', C.navy, 700)}${T(300, 216, 11, 'headroom 0,18x', C.n75, 400)}</g>`;
+      return svg(p, g);
+    }
+  });
+
+  add({
+    id: 'three-lines', name: 'Three Lines Assurance', cat: 'Tata Kelola & Keuangan', tier: 'Inti',
+    desc: 'Tiga kolom lini pertahanan tersusun, aliran laporan mengalir ke Direksi dan Dekom/Komite Audit. Struktur GRC menjadi mudah diingat.',
+    when: 'Sosialisasi GRC, materi SPI dan Komite Audit, onboarding manajer, audit readiness.',
+    aud: 'Manajer, SPI, Komite Audit', formats: ['16:9'], dur: '30–60 dtk', pace: 'Tenang',
+    ease: 'brand-standard', transition: 'Wave Wipe', palette: [C.white, C.navy, C.azure, C.cyan, C.yellow],
+    type: 'PT Sans Bold judul lini, Regular peran satu baris',
+    beats: ['Organ pengawas di atas', 'Lini 1 sampai 3 berdiri bergiliran', 'Aliran laporan bergerak ke atas', 'Sorot lini yang dibahas'],
+    dont: ['Peran sesuai piagam SPI dan pedoman GRC', 'Satu lini disorot per beat'],
+    svg: p => {
+      let g = `<rect width="640" height="360" fill="#fff"/><rect x="40" y="30" width="270" height="44" fill="${C.navy}"/>${T(175, 58, 14, 'DIREKSI', '#fff', 700, 'text-anchor="middle" letter-spacing="2"')}<rect x="330" y="30" width="270" height="44" fill="${C.navy}"/>${T(465, 58, 14, 'DEKOM · KOMITE AUDIT', '#fff', 700, 'text-anchor="middle" letter-spacing="2"')}`;
+      [['Lini 1', 'Pemilik risiko', C.azure], ['Lini 2', 'Risiko & kepatuhan', C.sky], ['Lini 3', 'Satuan Pengawasan Internal', C.cyan]].forEach(([a, b, c], i) => {
+        const x = 40 + i * 192;
+        g += `<rect class="a-grow" ${d(.3 + i * .35)} x="${x}" y="150" width="176" height="180" fill="${c}"/>${T(x + 16, 186, 22, a, '#fff')}${T(x + 16, 210, 12, b, '#fff', 400)}
+<line class="a-flow" style="--dash:6 8;--len:14;--t:1s;animation-direction:reverse" x1="${x + 88}" y1="150" x2="${i < 2 ? 175 : 465}" y2="74" stroke="${C.navy}" stroke-width="2"/>`;
+      });
+      return svg(p, g + `<rect class="a-pulse" x="424" y="146" width="184" height="188" fill="none" stroke="${C.navy}" stroke-width="3"/>`);
+    }
+  });
+
+  /* ========== RUMPUN 10 — PAKET BROADCAST ========== */
+  add({
+    id: 'logo-sting', name: 'Logo Sting & Ident', cat: 'Paket Broadcast', tier: 'Signature',
+    desc: 'Ident 3–4 detik: hexagon gradient berkumpul, pita energi melingkar, lalu lockup resmi PLN NR mengunci. Pembuka dan penutup semua video.',
+    when: 'Awal dan akhir setiap video resmi, bumper YouTube, pembuka acara, layar tunggu.',
+    aud: 'Semua audiens', formats: ['16:9', '9:16', '1:1'], dur: '3–4 dtk', pace: 'Sedang',
+    ease: 'emphasis', transition: 'Hex Bloom', palette: [C.navy, C.yellow, C.lime, C.teal, C.cyan, C.white],
+    type: 'Tanpa teks selain lockup resmi dan URL',
+    beats: ['Navy kosong 0,3 dtk', 'Hexagon gradient berkumpul ke tengah', 'Pita energi melingkar dan memudar', 'Lockup resmi + www.ptplnnr.com, tahan 1,5 dtk'],
+    dont: ['Lockup selalu dari aset resmi, jangan digambar ulang atau dianimasikan per huruf', 'Satu versi ident untuk semua video'],
+    svg: p => {
+      let g = `<rect width="640" height="360" fill="url(#${p}N)"/>`;
+      for (let i = 0; i < 6; i++) {
+        const a = (-90 + i * 60) * Math.PI / 180;
+        g += `<g class="a-pop" style="--d:${(i * .12).toFixed(2)}s;--t:4.5s"><polygon points="${hexPts(320 + 70 * Math.cos(a), 170 + 70 * Math.sin(a), 30)}" fill="url(#${p}V)" opacity=".9"/></g>`;
+      }
+      g += `<circle class="a-draw" style="--len:760;--t:4.5s;--d:.6s" cx="320" cy="170" r="120" fill="none" stroke="url(#${p}E)" stroke-width="5"/>
+<g class="a-up" style="--d:1.4s;--t:4.5s"><rect x="236" y="148" width="168" height="44" fill="#fff"/>${T(320, 176, 13, 'LOCKUP RESMI', C.navy, 700, 'text-anchor="middle" letter-spacing="2"')}${T(320, 316, 13, 'www.ptplnnr.com', C.n25, 400, 'text-anchor="middle"')}</g>`;
+      return svg(p, g);
+    }
+  });
+
+  add({
+    id: 'lower-third', name: 'Lower Third & Name Super', cat: 'Paket Broadcast', tier: 'Signature',
+    desc: 'Bar nama narasumber masuk dengan aksen kuning dan wipe putih, tahan, lalu keluar rapi. Paket wajib untuk wawancara dan liputan.',
+    when: 'Wawancara Direksi, testimoni karyawan dan mitra, liputan acara, video dokumenter.',
+    aud: 'Semua audiens', formats: ['16:9', '9:16'], dur: '4–6 dtk per tampil', pace: 'Sedang',
+    ease: 'entrance', transition: 'Cross-fade 220 ms', palette: [C.white, C.navy, C.yellow, C.n75],
+    type: 'Nama PT Sans Bold 28–32 px, jabatan Regular 18–20 px',
+    beats: ['Aksen kuning tumbuh 120 ms', 'Bar putih wipe dari kiri', 'Nama lalu jabatan muncul', 'Tahan 4 dtk lalu keluar terbalik'],
+    dont: ['Nama dan jabatan diverifikasi ejaannya', 'Maksimal dua baris, tidak menutupi wajah'],
+    svg: p => svg(p, `<linearGradient id="${p}ft" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7FA7BD"/><stop offset="1" stop-color="#005F89"/></linearGradient>
+<rect width="640" height="360" fill="url(#${p}ft)"/><rect x="0" y="0" width="640" height="360" fill="#00324F" opacity=".25"/>
+<g class="a-float" style="--amp:-3px;--t:5s"><circle cx="420" cy="130" r="46" fill="#C9DCE6"/><path d="M330 360 C330 240 510 240 510 360Z" fill="#C9DCE6"/></g>
+<rect class="a-grow" style="--t:6s" x="40" y="250" width="6" height="66" fill="${C.yellow}"/>
+<rect class="a-wipe" style="--t:6s;--d:.15s" x="46" y="250" width="300" height="66" fill="#fff"/>
+<g class="a-up" style="--t:6s;--d:.4s">${T(64, 280, 22, 'Nama Narasumber', C.navy)}${T(64, 304, 14, 'Jabatan, PT PLN Nusantara Renewables', C.n75, 400)}</g>
+${T(600, 340, 10, 'FOOTAGE PLACEHOLDER', '#E6F4FB', 700, 'text-anchor="end" letter-spacing="2"')}`)
+  });
+
+  add({
+    id: 'caption-pack', name: 'Caption & Subtitle Pack', cat: 'Paket Broadcast', tier: 'Inti',
+    desc: 'Caption Bahasa Indonesia dengan sorotan kata aktif, di zona aman platform. Wajib untuk video sosial yang mayoritas ditonton tanpa suara.',
+    when: 'Semua video media sosial, video internal di layar publik, aksesibilitas tunarungu.',
+    aud: 'Publik, karyawan', formats: ['9:16', '1:1', '16:9'], dur: 'Mengikuti video', pace: 'Cepat',
+    ease: 'brand-standard', transition: 'Cross-fade 220 ms', palette: [C.navy, C.white, C.yellow],
+    type: 'PT Sans Bold 44–56 px (9:16), maksimal 2 baris, 32 karakter per baris',
+    beats: ['Caption muncul serentak dengan suara', 'Kata aktif disorot kuning', 'Ganti baris di jeda kalimat', 'SRT terpisah untuk platform'],
+    dont: ['Jangan menutupi lower third atau logo', 'Tanpa emoji dan efek pop berlebihan'],
+    svg: p => {
+      const ws = [['Energi', 22], ['bersih', 120], ['untuk', 210]], ws2 = [['masa', 22], ['depan', 108], ['Nusantara', 200]];
+      let cap = `<rect x="14" y="214" width="76" height="34" fill="${C.yellow}"><animate attributeName="x" values="14;112;202;14;100;192;14" keyTimes="0;.16;.33;.5;.66;.83;1" calcMode="discrete" dur="4.8s" repeatCount="indefinite"/><animate attributeName="y" values="214;214;214;254;254;254;214" keyTimes="0;.16;.33;.5;.66;.83;1" calcMode="discrete" dur="4.8s" repeatCount="indefinite"/></rect>`;
+      ws.forEach(([w, x]) => cap += T(x, 240, 26, w, '#fff'));
+      ws2.forEach(([w, x]) => cap += T(x, 280, 26, w, '#fff'));
+      return svg(p, `<rect width="640" height="360" fill="${C.paper}"/><g transform="translate(160 0)"><rect width="320" height="360" fill="${C.deep}"/>${turbine(230, 200, 120, '#7FA7BD', 3, '6s')}<rect y="200" width="320" height="100" fill="${C.navy}" opacity=".7"/>${cap}</g>${T(40, 60, 12, '9:16 · CAPTION', C.n75, 700, 'letter-spacing="2"')}`);
+    }
+  });
+
+  add({
+    id: 'countdown', name: 'Event Countdown Loop', cat: 'Paket Broadcast', tier: 'Inti',
+    desc: 'Hitung mundur besar di dalam cincin gradient untuk layar panggung, transisi ke pembukaan acara. Juga bekerja sebagai loop layar tunggu.',
+    when: 'Pembukaan acara, peresmian COD, RUPS, town hall, webinar.',
+    aud: 'Peserta acara', formats: ['16:9', 'ultra-wide'], dur: '10–60 dtk', pace: 'Sedang',
+    ease: 'linear (detik)', transition: 'Energy Sweep', palette: [C.navy, C.yellow, C.lime, C.teal, C.cyan],
+    type: 'PT Sans Bold angka tabular 200+ px di layar LED',
+    beats: ['Judul acara dan tanggal', 'Cincin menghitung detik', 'Angka berganti tiap detik', 'Energy Sweep ke ident pembuka'],
+    dont: ['Angka harus tabular agar tidak bergoyang', 'Kontras tinggi untuk LED jarak jauh'],
+    svg: p => {
+      let g = `<rect width="640" height="360" fill="url(#${p}N)"/><circle cx="320" cy="170" r="100" fill="none" stroke="#00324F" stroke-width="10"/><circle class="a-draw" style="--len:629;--t:5s" cx="320" cy="170" r="100" fill="none" stroke="url(#${p}E)" stroke-width="10" transform="rotate(-90 320 170)"/>`;
+      ['05', '04', '03', '02', '01'].forEach((n, i) => g += `<g class="a-tick" style="--d:${i ? i - 5 : 0}s;${i ? 'opacity:0' : ''}">${T(320, 200, 88, n, '#fff', 700, 'text-anchor="middle"')}</g>`);
+      return svg(p, g + `${T(320, 318, 14, 'PERESMIAN · PEMBANGKIT EBT', C.n25, 700, 'text-anchor="middle" letter-spacing="3"')}`);
+    }
+  });
+
+  add({
+    id: 'split-screen', name: 'Before / After Split', cat: 'Paket Broadcast', tier: 'Inti',
+    desc: 'Garis pembatas bergeser memperlihatkan kondisi sebelum dan sesudah: lahan atau waduk kosong menjadi pembangkit. Bukti perubahan paling kuat.',
+    when: 'Progres konstruksi, rehabilitasi lahan, dampak TJSL, laporan tahunan.',
+    aud: 'Publik, lender, Direksi', formats: ['16:9', '1:1'], dur: '6–15 dtk', pace: 'Tenang',
+    ease: 'brand-standard', transition: 'Cross-fade 220 ms', palette: [C.paper, C.n25, C.navy, C.azure, C.yellow],
+    type: 'PT Sans Bold label SEBELUM / SESUDAH dengan tanggal',
+    beats: ['Kondisi sebelum penuh layar', 'Pembatas masuk dari kanan', 'Pembatas bergeser bolak-balik pelan', 'Label tanggal di dua sisi'],
+    dont: ['Sudut kamera dan jam pengambilan harus sama', 'Tanggal kedua foto wajib'],
+    svg: p => {
+      let after = `<rect width="640" height="360" fill="#DCEFF7"/><circle cx="520" cy="80" r="30" fill="${C.yellow}"/><rect y="200" width="640" height="160" fill="${C.teal}" opacity=".5"/>`;
+      for (let r = 0; r < 3; r++) for (let c = 0; c < 7; c++) after += `<g transform="translate(${60 + c * 80 + r * 20} ${220 + r * 36}) skewX(-25)"><rect width="66" height="24" fill="${C.navy}"/><line x1="33" y1="0" x2="33" y2="24" stroke="${C.azure}"/></g>`;
+      return svg(p, `<clipPath id="${p}cl"><rect x="0" y="0" width="320" height="360"><animate attributeName="width" values="320;160;480;320" dur="7s" repeatCount="indefinite"/></rect></clipPath>
+${after}${T(600, 340, 14, 'SESUDAH · 2026', C.navy, 700, 'text-anchor="end" letter-spacing="1.5"')}
+<g clip-path="url(#${p}cl)"><rect width="640" height="360" fill="#EDF3F6"/><rect y="200" width="640" height="160" fill="${C.n25}"/>${T(40, 340, 14, 'SEBELUM · 2024', C.navy, 700, 'letter-spacing="1.5"')}</g>
+<rect x="318" y="0" width="4" height="360" fill="#fff"><animate attributeName="x" values="318;158;478;318" dur="7s" repeatCount="indefinite"/></rect>`);
+    }
+  });
+
+  /* ========== TAMBAHAN TEKNIK ========== */
+  add({
+    id: 'hydro-flow', name: 'Hydro Water Path', cat: 'Teknik & Engineering', tier: 'Inti',
+    desc: 'Potongan PLTA: air dari waduk masuk penstock, memutar turbin di powerhouse, keluar ke saluran buang. Partikel air membuat aliran energi terlihat.',
+    when: 'Explainer PLTA dan PLTM, pumped storage, studi waduk, edukasi publik.',
+    aud: 'Umum, regulator, mahasiswa', formats: ['16:9'], dur: '45–90 dtk', pace: 'Sedang',
+    ease: 'linear (aliran)', transition: 'Line Draw', palette: [C.white, C.navy, C.cyan, C.azure, C.yellow],
+    type: 'PT Sans Bold label komponen UPPERCASE',
+    beats: ['Waduk dan bendungan', 'Air masuk intake dan penstock', 'Turbin berputar, generator menyala', 'Air kembali ke sungai'],
+    dont: ['Arah aliran selalu dari tinggi ke rendah', 'Head dan debit hanya bila datanya resmi'],
+    svg: p => svg(p, `<rect width="640" height="360" fill="#fff"/>
+<path d="M0 120 L200 120 L200 330 L0 330Z" fill="${C.cyan}" opacity=".35"/><path d="M200 90 L240 90 L270 330 L200 330Z" fill="${C.n25}"/>
+<path d="M200 260 C300 260 360 290 430 300" fill="none" stroke="${C.navy}" stroke-width="18" stroke-linecap="round"/>
+<path class="a-flow" style="--dash:6 12;--len:18;--t:.7s" d="M200 260 C300 260 360 290 430 300" fill="none" stroke="${C.cyan}" stroke-width="6" stroke-linecap="round"/>
+<rect x="420" y="230" width="110" height="100" fill="${C.paper}" stroke="${C.navy}" stroke-width="2"/>
+<g class="a-spin" style="--t:1.6s;transform-origin:460px 300px">${[0, 60, 120, 180, 240, 300].map(a => `<rect x="457" y="282" width="6" height="18" fill="${C.azure}" transform="rotate(${a} 460 300)"/>`).join('')}</g><circle cx="460" cy="300" r="5" fill="${C.navy}"/>
+<rect class="a-pulse" x="486" y="250" width="32" height="40" fill="${C.yellow}"/>
+<path d="M530 320 L640 320" stroke="${C.cyan}" stroke-width="12" opacity=".5"/><path class="a-flow" style="--dash:6 12;--len:18;--t:.9s" d="M530 320 L640 320" stroke="${C.navy}" stroke-width="2"/>
+${T(40, 110, 12, 'WADUK', C.navy, 700, 'letter-spacing="1.5"')}${T(280, 250, 12, 'PENSTOCK', C.navy, 700, 'letter-spacing="1.5"')}${T(420, 220, 12, 'POWERHOUSE', C.navy, 700, 'letter-spacing="1.5"')}${T(560, 306, 12, 'TAILRACE', C.navy, 700, 'letter-spacing="1.5"')}
+${T(40, 50, 20, 'Air mengalir, turbin berputar', C.navy)}`)
+  });
+
+  add({
+    id: 'geothermal-section', name: 'Geothermal Cross-Section', cat: 'Teknik & Engineering', tier: 'Spesialis',
+    desc: 'Penampang bumi berlapis: uap naik dari reservoir lewat sumur produksi ke pembangkit, air kembali lewat sumur injeksi. Siklus PLTP dalam satu bingkai.',
+    when: 'Explainer PLTP, sosialisasi wilayah kerja panas bumi, materi investor dan regulator.',
+    aud: 'Umum, komunitas sekitar, investor', formats: ['16:9'], dur: '45–90 dtk', pace: 'Tenang',
+    ease: 'linear (aliran)', transition: 'Lens Iris', palette: [C.navy, C.deep, C.azure, C.lime, C.yellow, C.white],
+    type: 'PT Sans Bold label lapisan, Regular satu kalimat penjelasan',
+    beats: ['Permukaan dan pembangkit', 'Penampang bumi terbuka berlapis', 'Uap naik lewat sumur produksi', 'Air kembali lewat sumur injeksi'],
+    dont: ['Kedalaman ilustratif harus ditandai', 'Siklus injeksi wajib ditampilkan (keberlanjutan)'],
+    svg: p => svg(p, `<rect width="640" height="360" fill="#EAF6FB"/><rect y="90" width="640" height="70" fill="${C.n25}"/><rect y="160" width="640" height="80" fill="${C.n50}"/><rect y="240" width="640" height="70" fill="${C.deep}"/><rect class="a-pulse" y="310" width="640" height="50" fill="${C.lime}" opacity=".7"/>
+<rect x="200" y="56" width="110" height="34" fill="${C.navy}"/>${[0, 1, 2].map(i => `<circle class="a-steam" style="--d:${i}s" cx="${230 + i * 22}" cy="54" r="10" fill="#fff"/>`).join('')}
+<line x1="220" y1="90" x2="220" y2="280" stroke="${C.navy}" stroke-width="10"/><line class="a-flow" style="--dash:6 10;--len:16;--t:.8s;animation-direction:reverse" x1="220" y1="90" x2="220" y2="280" stroke="#fff" stroke-width="3"/>
+<path d="M310 74 L440 74 L440 280" fill="none" stroke="${C.teal}" stroke-width="10"/><path class="a-flow" style="--dash:6 10;--len:16;--t:.8s" d="M310 74 L440 74 L440 280" fill="none" stroke="#fff" stroke-width="3"/>
+${T(30, 130, 11, 'BATUAN PENUTUP', C.navy, 700, 'letter-spacing="1.5"')}${T(30, 278, 11, 'RESERVOIR', '#fff', 700, 'letter-spacing="1.5"')}${T(30, 340, 11, 'SUMBER PANAS', C.navy, 700, 'letter-spacing="1.5"')}
+${T(232, 200, 11, 'SUMUR PRODUKSI', C.navy, 700)}${T(452, 200, 11, 'SUMUR INJEKSI', C.navy, 700)}${T(520, 30, 10, 'Kedalaman ilustratif', C.n75, 400)}`)
+  });
+
+  add({
+    id: 'green-hydrogen', name: 'Green Hydrogen Chain', cat: 'Teknik & Engineering', tier: 'Spesialis',
+    desc: 'Rantai nilai hidrogen hijau dari listrik surya, elektroliser, tangki H₂, sampai pengguna akhir. Gelembung dan aliran menjelaskan proses tanpa rumus.',
+    when: 'Inisiatif hidrogen hijau, kerja sama teknologi, pameran transisi energi, pitch investor.',
+    aud: 'Mitra teknologi, investor, regulator', formats: ['16:9', '1:1'], dur: '30–60 dtk', pace: 'Sedang',
+    ease: 'brand-standard', transition: 'Energy Sweep', palette: [C.white, C.yellow, C.cyan, C.teal, C.navy],
+    type: 'PT Sans Bold nama tahap, H₂ dengan subskrip yang benar',
+    beats: ['Panel surya menghasilkan listrik', 'Elektroliser memecah air, gelembung naik', 'H₂ tersimpan di tangki', 'Hexagon pengguna: industri, transportasi, pembangkit'],
+    dont: ['Jangan menyiratkan proyek sudah beroperasi bila masih kajian', 'Efisiensi hanya dari sumber teknis'],
+    svg: p => {
+      let g = `<rect width="640" height="360" fill="#fff"/><g transform="translate(40 150) skewX(-20)">${panel(0, 0, 100, 50, C.azure, '#fff')}</g><circle cx="90" cy="100" r="22" fill="${C.yellow}"/>
+<path class="a-flow" style="--dash:6 8;--len:14;--t:.8s" d="M150 180 L210 180 M330 180 L390 180 M480 180 L520 180" fill="none" stroke="${C.yellow}" stroke-width="4"/>
+<rect x="210" y="120" width="120" height="120" fill="${C.paper}" stroke="${C.navy}" stroke-width="2"/><rect x="220" y="170" width="100" height="62" fill="${C.cyan}" opacity=".45"/>
+${[0, 1, 2, 3, 4].map(i => `<circle class="a-steam" style="--d:${(i * .6).toFixed(1)}s" cx="${236 + i * 18}" cy="226" r="4" fill="#fff" stroke="${C.cyan}"/>`).join('')}
+<rect x="390" y="130" width="90" height="100" rx="45" fill="${C.teal}"/>${T(435, 190, 22, 'H₂', '#fff', 700, 'text-anchor="middle"')}`;
+      ['INDUSTRI', 'TRANSPORT', 'PEMBANGKIT'].forEach((l, i) => g += `<g class="a-pop" ${d(1 + i * .3)}><polygon points="${hexPts(560, 100 + i * 80, 32)}" fill="url(#${p}V)"/>${T(560, 104 + i * 80, 9, l, C.navy, 700, 'text-anchor="middle"')}</g>`);
+      g += `${T(90, 270, 12, 'LISTRIK SURYA', C.navy, 700, 'text-anchor="middle" letter-spacing="1"')}${T(270, 270, 12, 'ELEKTROLISER', C.navy, 700, 'text-anchor="middle" letter-spacing="1"')}${T(435, 270, 12, 'PENYIMPANAN', C.navy, 700, 'text-anchor="middle" letter-spacing="1"')}${T(40, 48, 20, 'Dari matahari menjadi hidrogen hijau', C.navy)}`;
+      return svg(p, g);
+    }
+  });
+
   // ------------------------------------------------------------------
   /* A–Z: kebutuhan animasi PLN NR → gaya utama & alternatif */
   const AZ = [
     ['A', 'Annual Report & RUPS', 'Pemegang saham, Dekom', ['answer-first', 'arc-kpi'], ['navy-statement', 'golden-hour'], '90–180 dtk', '16:9'],
-    ['B', 'Board Briefing Direksi', 'Direksi', ['answer-first', 'waterfall'], ['transit-roadmap'], '60–120 dtk', '16:9'],
-    ['C', 'COD & Commissioning', 'Publik, PLN Induk, media', ['golden-hour', 'chevron-chapter'], ['hero-reveal', 'energy-sweep'], '60–120 dtk', '16:9 · 9:16'],
+    ['B', 'Board Briefing Direksi', 'Direksi', ['answer-first', 'waterfall'], ['authority-ladder', 'risk-heatmap'], '60–120 dtk', '16:9'],
+    ['C', 'COD & Commissioning', 'Publik, PLN Induk, media', ['golden-hour', 'logo-sting'], ['lower-third', 'countdown', 'chevron-chapter'], '60–120 dtk', '16:9 · 9:16'],
     ['D', 'Dekarbonisasi & NZE 2060', 'Publik, regulator', ['energy-sankey', 'hex-bloom'], ['day-night', 'transit-roadmap'], '60–90 dtk', '16:9'],
-    ['E', 'ESG & Safeguard', 'Lender, investor ESG', ['isotype', 'answer-first'], ['contour-topo', 'watercolor'], '60–120 dtk', '16:9'],
-    ['F', 'Financing & Green Bond', 'Lender, investor', ['waterfall', 'arc-kpi'], ['hero-reveal', 'nusantara-map'], '60–90 dtk', '16:9'],
-    ['G', 'Groundbreaking & Water Breaking', 'Publik, media', ['lens-mask', 'golden-hour'], ['kinetic-type', 'energy-sweep'], '30–90 dtk', '16:9 · 9:16'],
+    ['E', 'ESG & Safeguard', 'Lender, investor ESG', ['isotype', 'split-screen'], ['contour-topo', 'three-lines'], '60–120 dtk', '16:9'],
+    ['F', 'Financing & Green Bond', 'Lender, investor', ['waterfall', 'covenant-gauge'], ['arc-kpi', 'nusantara-map'], '60–90 dtk', '16:9'],
+    ['G', 'Groundbreaking & Water Breaking', 'Publik, media', ['lens-mask', 'golden-hour'], ['countdown', 'energy-sweep'], '30–90 dtk', '16:9 · 9:16'],
     ['H', 'HSE / K3', 'Karyawan, kontraktor', ['safety-pictogram', 'sop-checklist'], ['site-walkthrough'], '60–180 dtk', '16:9 · 9:16'],
-    ['I', 'Investor & Kemitraan', 'Mitra strategis, investor', ['nusantara-map', 'hero-reveal'], ['glass-tech', 'answer-first'], '60–120 dtk', '16:9'],
+    ['I', 'Investor & Kemitraan', 'Mitra strategis, investor', ['nusantara-map', 'hero-reveal'], ['covenant-gauge', 'answer-first'], '60–120 dtk', '16:9'],
     ['J', 'JETP & Kebijakan Transisi', 'Regulator, mitra internasional', ['energy-sankey', 'transit-roadmap'], ['whiteboard'], '60–120 dtk', '16:9'],
     ['K', 'Kinerja & KPI Bulanan', 'Manajemen', ['live-ops', 'arc-kpi'], ['answer-first'], '30–60 dtk', '16:9'],
     ['L', 'Lingkungan & Biodiversitas', 'Publik, lender', ['watercolor', 'paper-layers'], ['contour-topo'], '60–120 dtk', '16:9 · 1:1'],
     ['M', 'Masyarakat / TJSL', 'Komunitas, sekolah', ['soft-clay', 'flat-explainer'], ['wayang-silhouette', 'paper-layers'], '60–180 dtk', '16:9 · 9:16'],
-    ['N', 'Nusantara Portfolio', 'Semua audiens', ['nusantara-map', 'travel-poster'], ['batik-generative'], '30–90 dtk', '16:9 · 1:1'],
+    ['N', 'Nusantara Portfolio', 'Semua audiens', ['nusantara-map', 'travel-poster'], ['batik-generative', 'monoline-scene'], '30–90 dtk', '16:9 · 1:1'],
     ['O', 'Onboarding Karyawan', 'Karyawan baru', ['whiteboard', 'hex-rail'], ['flat-explainer', 'wave-edge'], '120–300 dtk', '16:9'],
-    ['P', 'Pembangkit Explained (PLTS/PLTB/PLTP/PLTA)', 'Umum, mahasiswa', ['isometric-plant', 'cutaway'], ['blueprint', 'monoline-scene'], '60–180 dtk', '16:9'],
-    ['Q', 'Quality, GRC & Kepatuhan', 'SPI, Komite Audit', ['hex-rail', 'sop-checklist'], ['answer-first'], '60–120 dtk', '16:9'],
+    ['P', 'Pembangkit Explained (PLTS/PLTB/PLTP/PLTA)', 'Umum, mahasiswa', ['isometric-plant', 'cutaway'], ['hydro-flow', 'geothermal-section', 'blueprint'], '60–180 dtk', '16:9'],
+    ['Q', 'Quality, GRC & Kepatuhan', 'SPI, Komite Audit', ['three-lines', 'risk-heatmap'], ['hex-rail', 'sop-checklist'], '60–120 dtk', '16:9'],
     ['R', 'RJPP / RKAP', 'Direksi, Dekom', ['transit-roadmap', 'waterfall'], ['hex-bloom'], '60–120 dtk', '16:9'],
-    ['S', 'Sosial Media & Kampanye', 'Publik muda', ['vertical-reels', 'kinetic-type'], ['particle-field', 'travel-poster'], '15–45 dtk', '9:16 · 1:1'],
-    ['T', 'Teknologi Baru (BESS, Hidrogen, Digital Twin)', 'Mitra teknis, investor', ['glass-tech', 'wireframe'], ['hero-reveal', 'isometric-plant'], '60–120 dtk', '16:9'],
+    ['S', 'Sosial Media & Kampanye', 'Publik muda', ['vertical-reels', 'caption-pack'], ['kinetic-type', 'travel-poster'], '15–45 dtk', '9:16 · 1:1'],
+    ['T', 'Teknologi Baru (BESS, Hidrogen, Digital Twin)', 'Mitra teknis, investor', ['green-hydrogen', 'glass-tech'], ['wireframe', 'hero-reveal'], '60–120 dtk', '16:9'],
     ['U', 'Unit O&M & Inspeksi', 'Teknisi, manajemen aset', ['thermal-inspection', 'single-line'], ['live-ops', 'cutaway'], '30–120 dtk', '16:9'],
     ['V', 'Visi, Misi & Budaya AKHLAK', 'Karyawan', ['navy-statement', 'kinetic-type'], ['hex-bloom'], '30–90 dtk', '16:9 · 9:16'],
-    ['W', 'Water: PLTA & PLTS Terapung', 'Umum, regulator', ['contour-topo', 'watercolor'], ['paper-layers', 'lens-mask'], '60–120 dtk', '16:9'],
-    ['X', 'eXhibition & Booth Loop', 'Pengunjung pameran', ['night-glow', 'particle-field'], ['batik-generative', 'monoline-scene'], 'Loop 30–120 dtk', '16:9 · ultra-wide'],
+    ['W', 'Water: PLTA & PLTS Terapung', 'Umum, regulator', ['hydro-flow', 'contour-topo'], ['watercolor', 'lens-mask'], '60–120 dtk', '16:9'],
+    ['X', 'eXhibition & Booth Loop', 'Pengunjung pameran', ['night-glow', 'particle-field'], ['batik-generative', 'countdown'], 'Loop 30–120 dtk', '16:9 · ultra-wide'],
     ['Y', 'Youth & Rekrutmen Talenta', 'Mahasiswa, profesional muda', ['vertical-reels', 'low-poly'], ['flat-explainer', 'soft-clay'], '30–60 dtk', '9:16 · 16:9'],
     ['Z', 'Zero Accident & Zero Emission', 'Internal dan publik', ['site-walkthrough', 'day-night'], ['safety-pictogram', 'tenun-weave'], '30–90 dtk', '16:9 · 9:16']
   ];
 
   // hubungkan huruf A–Z ke tiap style
   S.forEach(s => { s.letters = AZ.filter(r => r[3].includes(s.id) || r[4].includes(s.id)).map(r => r[0]); s.no = String(S.indexOf(s) + 1).padStart(2, '0'); });
+
+  /* Arah produksi per rumpun: musik, tempo, nada VO, tools. Dapat ditimpa per gaya lewat PROD_OVERRIDE. */
+  const FAMILY_PROD = {
+    'Signature PLN NR': { music: 'Orkestral-elektronik hangat, membangun perlahan', bpm: '90–100', vo: 'Tenang dan berwibawa', tools: ['After Effects', 'Lottie', 'Remotion'] },
+    'Data & Eksekutif': { music: 'Ambient minimal, piano dan pulse halus', bpm: '80–90', vo: 'Jelas, faktual, tempo sedang', tools: ['Remotion', 'After Effects', 'D3/SVG'] },
+    'Teknik & Engineering': { music: 'Elektronik bersih dengan tekstur mekanis halus', bpm: '95–110', vo: 'Teknis dan presisi', tools: ['Blender', 'After Effects', 'Remotion'] },
+    'Edukasi & Explainer': { music: 'Akustik ringan: marimba, gitar, ukulele', bpm: '100–115', vo: 'Ramah dan bercerita', tools: ['After Effects', 'Remotion', 'Lottie'] },
+    'Nusantara & Budaya': { music: 'Gamelan atau kolintang modern dengan pad', bpm: '70–90', vo: 'Bertutur dan hangat', tools: ['After Effects', 'Generative (p5/Canvas)'] },
+    'Kampanye & Sosial': { music: 'Pop elektronik upbeat, hook di 2 dtk pertama', bpm: '110–125', vo: 'Energik dan muda', tools: ['After Effects', 'CapCut/Premiere', 'Remotion'] },
+    'K3 & Operasional': { music: 'Minimal, perkusi lembut, tanpa ketegangan dramatis', bpm: '85–95', vo: 'Tegas dan jelas', tools: ['After Effects', 'Remotion'] },
+    'Dokumenter & Sinematik': { music: 'Orkestral sinematik, strings dan piano', bpm: '70–85', vo: 'Reflektif dan bermakna', tools: ['Premiere/DaVinci', 'After Effects'] },
+    'Tata Kelola & Keuangan': { music: 'Ambient korporat netral, tanpa melodi menonjol', bpm: '80–90', vo: 'Formal dan terukur', tools: ['Remotion', 'After Effects'] },
+    'Paket Broadcast': { music: 'Stinger 2–4 dtk + bed loop bermerek', bpm: '100–120', vo: 'Tidak ada / mengikuti program', tools: ['After Effects (MOGRT)', 'Lottie', 'Remotion'] }
+  };
+  /* Tingkat usaha produksi: 1 = template ringan (≤ 2 hari), 2 = sedang (3–5 hari), 3 = berat (≥ 1 minggu, ilustrasi/3D khusus) */
+  const EFFORT = {
+    'energy-sweep': 1, 'hex-bloom': 1, 'navy-statement': 1, 'monoline-scene': 2, 'lens-mask': 1, 'chevron-chapter': 1, 'wave-edge': 1,
+    'answer-first': 1, 'arc-kpi': 1, 'waterfall': 1, 'nusantara-map': 2, 'transit-roadmap': 2, 'isotype': 1, 'live-ops': 2,
+    'blueprint': 2, 'isometric-plant': 3, 'cutaway': 3, 'wireframe': 3, 'energy-sankey': 2, 'single-line': 2, 'thermal-inspection': 2,
+    'whiteboard': 2, 'flat-explainer': 2, 'paper-layers': 2, 'kinetic-type': 1, 'glass-tech': 1, 'hex-rail': 1,
+    'batik-generative': 2, 'wayang-silhouette': 3, 'watercolor': 3, 'travel-poster': 2, 'tenun-weave': 1,
+    'vertical-reels': 1, 'hero-reveal': 3, 'night-glow': 2, 'low-poly': 2, 'soft-clay': 3, 'particle-field': 2,
+    'safety-pictogram': 1, 'sop-checklist': 1, 'site-walkthrough': 2, 'golden-hour': 2, 'contour-topo': 2, 'day-night': 2,
+    'authority-ladder': 1, 'risk-heatmap': 1, 'covenant-gauge': 1, 'three-lines': 1,
+    'logo-sting': 1, 'lower-third': 1, 'caption-pack': 1, 'countdown': 1, 'split-screen': 1,
+    'hydro-flow': 2, 'geothermal-section': 2, 'green-hydrogen': 2
+  };
+  const PROD_OVERRIDE = {
+    'wireframe': { tools: ['Blender', 'Cinema 4D'] }, 'hero-reveal': { tools: ['Blender', 'Cinema 4D', 'After Effects'] }, 'soft-clay': { tools: ['Blender', 'Cinema 4D'] },
+    'golden-hour': { tools: ['Footage drone', 'DaVinci Resolve'] }, 'particle-field': { tools: ['TouchDesigner', 'Canvas/WebGL'] },
+    'batik-generative': { tools: ['p5.js / Canvas', 'After Effects'] }, 'logo-sting': { music: 'Sonic logo 2–3 dtk (satu versi untuk semua video)' }
+  };
+  S.forEach(s => {
+    const f = FAMILY_PROD[s.cat] || {};
+    const o = PROD_OVERRIDE[s.id] || {};
+    s.prod = { effort: EFFORT[s.id] || 2, music: o.music || f.music, bpm: o.bpm || f.bpm, vo: o.vo || f.vo, tools: o.tools || f.tools };
+  });
+
+  /* Resep video: rangkaian gaya menjadi satu video utuh. sec = durasi segmen (detik). */
+  const RECIPES = [
+    { id: 'cod-90', name: 'Video Peresmian COD', letter: 'C', aspect: '16:9', goal: 'Mengumumkan pembangkit beroperasi komersial dan dampaknya.', segs: [
+      ['logo-sting', 4, 'Ident pembuka', 'Satu versi ident untuk semua video'], ['golden-hour', 26, 'Establishing', 'Footage drone senja, lower third lokasi'],
+      ['nusantara-map', 12, 'Konteks portofolio', 'Zoom ke lokasi pembangkit'], ['arc-kpi', 14, 'Angka kunci', 'Kapasitas, TKDN, progres; satu angka disorot'],
+      ['lower-third', 28, 'Testimoni', 'Direksi dan warga sekitar, 2 narasumber'], ['energy-sweep', 6, 'Penutup', 'Pesan satu kalimat + lockup']] },
+    { id: 'board-120', name: 'Briefing Direksi 2 Menit', letter: 'B', aspect: '16:9', goal: 'Membawa Direksi ke keputusan dengan argumen answer-first.', segs: [
+      ['navy-statement', 8, 'Jawaban di depan', 'Satu kalimat kesimpulan'], ['answer-first', 34, 'Bukti utama', 'Satu grafik, satu sinyal cyan'],
+      ['waterfall', 30, 'Mengapa angka berubah', 'Maksimal 6 langkah'], ['risk-heatmap', 22, 'Risiko dan mitigasi', 'Inheren ke residual'],
+      ['authority-ladder', 14, 'Dasar kewenangan', 'Organ berwenang dan aturan'], ['navy-statement', 12, 'Permintaan', 'Apa yang diminta dan kapan']] },
+    { id: 'safety-180', name: 'Safety Induction Lokasi', letter: 'H', aspect: '16:9', goal: 'Tamu dan kontraktor memahami bahaya, APD, dan jalur aman sebelum masuk lokasi.', segs: [
+      ['logo-sting', 4, 'Ident', ''], ['site-walkthrough', 50, 'Denah dan jalur aman', 'Zona bahaya, titik kumpul'],
+      ['safety-pictogram', 56, 'APD wajib', 'Satu rambu per kalimat'], ['sop-checklist', 54, 'Prosedur kunci', 'Izin kerja / LOTO'],
+      ['navy-statement', 10, 'Komitmen', 'Zero accident'], ['logo-sting', 6, 'Penutup', '']] },
+    { id: 'reels-30', name: 'Reels Kampanye 30 Detik', letter: 'S', aspect: '9:16', goal: 'Menarik perhatian publik muda dalam 2 detik dan meninggalkan satu pesan.', segs: [
+      ['vertical-reels', 3, 'Hook', 'Pertanyaan atau angka mengejutkan'], ['kinetic-type', 9, 'Pesan inti', 'Maksimal 3 kata per detik'],
+      ['day-night', 10, 'Bukti visual', 'Siklus surya + baterai'], ['travel-poster', 5, 'Kebanggaan lokasi', ''], ['logo-sting', 3, 'Lockup', 'Caption tetap aktif']] },
+    { id: 'onboarding-240', name: 'Onboarding Karyawan Baru', letter: 'O', aspect: '16:9', goal: 'Karyawan baru memahami bisnis, alur kerja, dan budaya PLN NR.', segs: [
+      ['energy-sweep', 6, 'Pembuka', ''], ['monoline-scene', 30, 'Siapa kita', 'Profil dan portofolio'], ['whiteboard', 84, 'Cara kerja bisnis', 'Dari proyek sampai listrik mengalir'],
+      ['hex-rail', 60, 'Alur kerja kunci', 'Persetujuan, pengadaan'], ['flat-explainer', 48, 'Budaya kerja', 'AKHLAK dalam keseharian'], ['navy-statement', 12, 'Selamat bergabung', '']] },
+    { id: 'investor-120', name: 'Pitch Investor & Mitra', letter: 'I', aspect: '16:9', goal: 'Meyakinkan mitra tentang portofolio, kesiapan teknis, dan bankability.', segs: [
+      ['logo-sting', 4, 'Ident', ''], ['nusantara-map', 24, 'Portofolio', 'Sebaran dan total kapasitas'], ['hero-reveal', 20, 'Teknologi', 'Aset unggulan'],
+      ['answer-first', 30, 'Kinerja', 'Pertumbuhan dengan sumber'], ['covenant-gauge', 26, 'Bankability', 'Headroom kovenan'], ['navy-statement', 16, 'Ajakan kemitraan', '']] },
+    { id: 'booth-60', name: 'Loop Booth Pameran', letter: 'X', aspect: '16:9', goal: 'Menarik pengunjung dari jarak jauh tanpa suara.', segs: [
+      ['particle-field', 15, 'Atraksi', 'Tanpa teks kecil'], ['night-glow', 15, 'Emosi', 'Listrik sampai ke rumah'], ['batik-generative', 15, 'Identitas', ''], ['monoline-scene', 15, 'Profil', 'Loop mulus ke awal']] },
+    { id: 'esg-90', name: 'Update ESG untuk Lender', letter: 'E', aspect: '16:9', goal: 'Menunjukkan kepatuhan safeguard dan dampak terukur kepada lender.', segs: [
+      ['contour-topo', 18, 'Konteks lokasi', 'Daerah tangkapan, sensitivitas'], ['isotype', 20, 'Dampak terukur', 'Faktor konversi tertulis'], ['split-screen', 16, 'Bukti rehabilitasi', 'Sebelum/sesudah, tanggal sama'],
+      ['three-lines', 22, 'Tata kelola', 'Siapa memantau apa'], ['wave-edge', 14, 'Ringkasan dan tindak lanjut', '']] }
+  ];
+  RECIPES.forEach(r => { r.total = r.segs.reduce((a, s) => a + s[1], 0); });
+
+  /* Checklist QA sebelum tayang */
+  const QA = [
+    ['Merek', ['Lockup dari aset resmi, posisi dan ukuran benar', 'Hanya warna ramp PLN NR; merah hanya di petir logo', 'Teks gelap navy, tidak hitam', 'Satu sinyal per bingkai (cyan di putih, kuning di navy)', 'Ident pembuka/penutup memakai versi resmi']],
+    ['Konten', ['Setiap angka punya baris Sumber dan sudah diverifikasi', 'Angka ilustratif sudah diganti data resmi', 'Nama, jabatan, lokasi dieja benar', 'Bahasa Indonesia baku, desimal koma, ribuan titik', 'Tidak ada klaim proyek yang belum diputuskan']],
+    ['Aksesibilitas', ['Caption Bahasa Indonesia tersedia (SRT)', 'Teks layar maksimal 3 kata per detik', 'Kontras teks minimal 4,5:1', 'Status tidak hanya warna (▲ ● ▼)', 'Tanpa kedipan lebih dari 3 kali per detik']],
+    ['Teknis', ['Resolusi dan rasio sesuai kanal', 'Teks di dalam title-safe 90%', 'Loudness −14 LUFS (sosial) / −23 LUFS (siaran)', 'Musik berlisensi untuk kanal yang dipakai', 'Thumbnail dan judul file sesuai konvensi']]
+  ];
 
   /* Tata bahasa gerak: transisi resmi */
   const TRANSITIONS = [
@@ -997,7 +1312,7 @@ ${T(40, 60, 24, 'Siang dari matahari,', '#fff')}${T(40, 92, 24, 'malam dari bate
     'brand-standard': 'cubic-bezier(.4,0,.2,1)', 'entrance': 'cubic-bezier(0,0,.2,1)', 'emphasis': 'cubic-bezier(.16,1,.3,1)', 'exit': 'cubic-bezier(.4,0,1,1)'
   };
 
-  const CATS = ['Signature PLN NR', 'Data & Eksekutif', 'Teknik & Engineering', 'Edukasi & Explainer', 'Nusantara & Budaya', 'Kampanye & Sosial', 'K3 & Operasional', 'Dokumenter & Sinematik'];
+  const CATS = ['Signature PLN NR', 'Data & Eksekutif', 'Teknik & Engineering', 'Edukasi & Explainer', 'Nusantara & Budaya', 'Kampanye & Sosial', 'K3 & Operasional', 'Dokumenter & Sinematik', 'Tata Kelola & Keuangan', 'Paket Broadcast'];
 
-  root.PLNNR = { STYLES: S, AZ, TRANSITIONS, EASES, CATS, COLORS: C, hexPts };
+  root.PLNNR = { STYLES: S, AZ, TRANSITIONS, EASES, CATS, COLORS: C, hexPts, RECIPES, QA, FAMILY_PROD };
 })(typeof window !== 'undefined' ? window : globalThis);

@@ -1,0 +1,14 @@
+<svg viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs>
+<linearGradient id="P0_E" x1="0" x2="1"><stop offset="0" stop-color="#FFF100"/><stop offset=".22" stop-color="#B9DE41"/><stop offset=".52" stop-color="#00A2BA"/><stop offset=".76" stop-color="#00ADEF"/><stop offset="1" stop-color="#005F89"/></linearGradient>
+<linearGradient id="P0_V" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#00BCC0"/><stop offset=".5" stop-color="#94DA63"/><stop offset="1" stop-color="#FFF100"/></linearGradient>
+<linearGradient id="P0_B" x1="0" x2="1"><stop offset="0" stop-color="#00ADEF"/><stop offset=".55" stop-color="#0087BE"/><stop offset="1" stop-color="#005F89"/></linearGradient>
+<linearGradient id="P0_N" x1="0" y1="0" x2=".4" y2="1"><stop offset="0" stop-color="#00618F"/><stop offset=".6" stop-color="#00507C"/><stop offset="1" stop-color="#004367"/></linearGradient>
+<linearGradient id="P0_C" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#009FDC"/><stop offset=".5" stop-color="#0073A3"/><stop offset="1" stop-color="#00567E"/></linearGradient>
+<linearGradient id="P0_S" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#005F89"/><stop offset=".55" stop-color="#00A2BA"/><stop offset=".85" stop-color="#B9DE41"/><stop offset="1" stop-color="#FFF100"/></linearGradient>
+</defs><filter id="P0_wc"><feTurbulence type="fractalNoise" baseFrequency=".02" numOctaves="3" seed="4"/><feDisplacementMap in="SourceGraphic" scale="22"/></filter>
+<rect width="640" height="360" fill="#FCFDF7"/>
+<g filter="url(#P0_wc)"><ellipse class="a-breathe" style="--s:1.05;--t:6s" cx="320" cy="90" rx="320" ry="80" fill="#00ADEF" opacity=".35"/><circle cx="480" cy="110" r="40" fill="#FFF100" opacity=".6"/>
+<path d="M0 200 Q160 170 320 195 T640 190 L640 260 L0 260Z" fill="#B9DE41" opacity=".45"/>
+<rect class="a-breathe" style="--s:1.02;--t:7s" x="0" y="240" width="640" height="120" fill="#00A2BA" opacity=".4"/></g>
+<g class="a-float" style="--amp:-3px;--t:4s"><g transform="translate(170 268) skewX(-25)"><rect width="54" height="16" fill="#00507C" opacity=".75"/></g><g transform="translate(234 268) skewX(-25)"><rect width="54" height="16" fill="#00507C" opacity=".75"/></g><g transform="translate(298 268) skewX(-25)"><rect width="54" height="16" fill="#00507C" opacity=".75"/></g><g transform="translate(362 268) skewX(-25)"><rect width="54" height="16" fill="#00507C" opacity=".75"/></g><g transform="translate(426 268) skewX(-25)"><rect width="54" height="16" fill="#00507C" opacity=".75"/></g></g>
+<text x="40" y="60" font-size="28" font-weight="700" fill="#00507C" >Waduk yang bekerja dua kali</text><text x="40" y="86" font-size="15" font-weight="400" fill="#407C9D" font-style="italic">Air untuk irigasi, permukaan untuk energi</text></svg>

@@ -1,0 +1,4265 @@
+{
+  "schema": "plnnr.motion-catalog/1",
+  "brand": "PT PLN Nusantara Renewables",
+  "generated": "2026-11-09",
+  "easing": {
+    "brand-standard": "cubic-bezier(.4,0,.2,1)",
+    "entrance": "cubic-bezier(0,0,.2,1)",
+    "emphasis": "cubic-bezier(.16,1,.3,1)",
+    "exit": "cubic-bezier(.4,0,1,1)"
+  },
+  "transitions": [
+    {
+      "key": "Cross-fade 220 ms",
+      "ms": 220,
+      "ease": "cubic-bezier(.4,0,.2,1)",
+      "use": "Default antarslide dan antaradegan. Dipakai 70% waktu."
+    },
+    {
+      "key": "Energy Sweep",
+      "ms": 600,
+      "ease": "cubic-bezier(.4,0,.2,1)",
+      "use": "Pembuka, penutup, bumper bab. Maksimal 2 kali per video."
+    },
+    {
+      "key": "Hex Bloom",
+      "ms": 700,
+      "ease": "cubic-bezier(.16,1,.3,1)",
+      "use": "Memperkenalkan pilar, nilai, atau siklus."
+    },
+    {
+      "key": "Wave Wipe",
+      "ms": 650,
+      "ease": "cubic-bezier(.4,0,.2,1)",
+      "use": "Pergantian halaman di materi informatif panjang."
+    },
+    {
+      "key": "Chevron Push",
+      "ms": 520,
+      "ease": "cubic-bezier(0,0,.2,1)",
+      "use": "Masuk ke bab baru; arah maju."
+    },
+    {
+      "key": "Lens Iris",
+      "ms": 800,
+      "ease": "cubic-bezier(0,0,.2,1)",
+      "use": "Membuka footage atau peta; fokus ke satu lokasi."
+    },
+    {
+      "key": "Line Draw",
+      "ms": 1200,
+      "ease": "linear",
+      "use": "Diagram teknis, line-art, peta jalan tergambar."
+    },
+    {
+      "key": "Count-Up",
+      "ms": 900,
+      "ease": "cubic-bezier(.16,1,.3,1)",
+      "use": "Angka KPI; tahan angka akhir minimal 1,5 dtk."
+    }
+  ],
+  "families": [
+    "Signature PLN NR",
+    "Data & Eksekutif",
+    "Teknik & Engineering",
+    "Edukasi & Explainer",
+    "Nusantara & Budaya",
+    "Kampanye & Sosial",
+    "K3 & Operasional",
+    "Dokumenter & Sinematik",
+    "Tata Kelola & Keuangan",
+    "Paket Broadcast"
+  ],
+  "family_production": {
+    "Signature PLN NR": {
+      "music": "Orkestral-elektronik hangat, membangun perlahan",
+      "bpm": "90–100",
+      "vo": "Tenang dan berwibawa",
+      "tools": [
+        "After Effects",
+        "Lottie",
+        "Remotion"
+      ]
+    },
+    "Data & Eksekutif": {
+      "music": "Ambient minimal, piano dan pulse halus",
+      "bpm": "80–90",
+      "vo": "Jelas, faktual, tempo sedang",
+      "tools": [
+        "Remotion",
+        "After Effects",
+        "D3/SVG"
+      ]
+    },
+    "Teknik & Engineering": {
+      "music": "Elektronik bersih dengan tekstur mekanis halus",
+      "bpm": "95–110",
+      "vo": "Teknis dan presisi",
+      "tools": [
+        "Blender",
+        "After Effects",
+        "Remotion"
+      ]
+    },
+    "Edukasi & Explainer": {
+      "music": "Akustik ringan: marimba, gitar, ukulele",
+      "bpm": "100–115",
+      "vo": "Ramah dan bercerita",
+      "tools": [
+        "After Effects",
+        "Remotion",
+        "Lottie"
+      ]
+    },
+    "Nusantara & Budaya": {
+      "music": "Gamelan atau kolintang modern dengan pad",
+      "bpm": "70–90",
+      "vo": "Bertutur dan hangat",
+      "tools": [
+        "After Effects",
+        "Generative (p5/Canvas)"
+      ]
+    },
+    "Kampanye & Sosial": {
+      "music": "Pop elektronik upbeat, hook di 2 dtk pertama",
+      "bpm": "110–125",
+      "vo": "Energik dan muda",
+      "tools": [
+        "After Effects",
+        "CapCut/Premiere",
+        "Remotion"
+      ]
+    },
+    "K3 & Operasional": {
+      "music": "Minimal, perkusi lembut, tanpa ketegangan dramatis",
+      "bpm": "85–95",
+      "vo": "Tegas dan jelas",
+      "tools": [
+        "After Effects",
+        "Remotion"
+      ]
+    },
+    "Dokumenter & Sinematik": {
+      "music": "Orkestral sinematik, strings dan piano",
+      "bpm": "70–85",
+      "vo": "Reflektif dan bermakna",
+      "tools": [
+        "Premiere/DaVinci",
+        "After Effects"
+      ]
+    },
+    "Tata Kelola & Keuangan": {
+      "music": "Ambient korporat netral, tanpa melodi menonjol",
+      "bpm": "80–90",
+      "vo": "Formal dan terukur",
+      "tools": [
+        "Remotion",
+        "After Effects"
+      ]
+    },
+    "Paket Broadcast": {
+      "music": "Stinger 2–4 dtk + bed loop bermerek",
+      "bpm": "100–120",
+      "vo": "Tidak ada / mengikuti program",
+      "tools": [
+        "After Effects (MOGRT)",
+        "Lottie",
+        "Remotion"
+      ]
+    }
+  },
+  "styles": [
+    {
+      "id": "energy-sweep",
+      "name": "Energy Sweep",
+      "cat": "Signature PLN NR",
+      "tier": "Signature",
+      "desc": "Pita gradient matahari-ke-laut menyapu layar dan membuka adegan. Gerak paling khas PLN NR: transisi energi sebagai satu sapuan.",
+      "when": "Pembuka dan penutup video korporat, bumper antar bab, intro tayangan resmi.",
+      "aud": "Semua audiens",
+      "formats": [
+        "16:9",
+        "9:16",
+        "1:1"
+      ],
+      "dur": "5–8 dtk (bumper)",
+      "pace": "Sedang",
+      "ease": "brand-standard",
+      "transition": "Energy Sweep",
+      "palette": [
+        "#00507C",
+        "#FFF100",
+        "#B9DE41",
+        "#00A2BA",
+        "#00ADEF",
+        "#005F89"
+      ],
+      "type": "PT Sans Bold 700, display 64–100 px, tracking −1%",
+      "beats": [
+        "Layar navy kosong 0,5 dtk",
+        "Pita gradient menyapu dari kiri ke kanan",
+        "Judul muncul di belakang sapuan",
+        "Lockup PLN NR mengunci di kanan atas"
+      ],
+      "dont": [
+        "Jangan menaruh teks di atas gradient",
+        "Jangan memutar arah gradient (selalu kuning di kiri)"
+      ],
+      "letters": [
+        "G"
+      ],
+      "no": "01",
+      "prod": {
+        "effort": 1,
+        "music": "Orkestral-elektronik hangat, membangun perlahan",
+        "bpm": "90–100",
+        "vo": "Tenang dan berwibawa",
+        "tools": [
+          "After Effects",
+          "Lottie",
+          "Remotion"
+        ]
+      },
+      "use_cases": [
+        {
+          "letter": "G",
+          "need": "Groundbreaking & Water Breaking"
+        }
+      ]
+    },
+    {
+      "id": "hex-bloom",
+      "name": "Hexagon Bloom",
+      "cat": "Signature PLN NR",
+      "tier": "Signature",
+      "desc": "Enam hexagon gradient mekar berurutan membentuk siklus. Hexagon adalah perangkat ikon resmi PLN NR, jadi gaya ini aman untuk semua konten pilar.",
+      "when": "Menjelaskan pilar strategi, siklus proyek, nilai AKHLAK, enam tahap pengembangan.",
+      "aud": "Direksi, karyawan, mitra",
+      "formats": [
+        "16:9",
+        "1:1"
+      ],
+      "dur": "20–40 dtk",
+      "pace": "Tenang",
+      "ease": "emphasis",
+      "transition": "Hex Bloom",
+      "palette": [
+        "#00507C",
+        "#FFF100",
+        "#B9DE41",
+        "#00A2BA",
+        "#00ADEF"
+      ],
+      "type": "PT Sans SemiBold 600 UPPERCASE untuk label hexagon (2 kata)",
+      "beats": [
+        "Hexagon pusat navy muncul",
+        "Enam hexagon mekar searah jarum jam",
+        "Label tiap pilar terketik",
+        "Garis penghubung menyala satu per satu"
+      ],
+      "dont": [
+        "Jangan isi hexagon dengan ikon buatan sendiri",
+        "Maksimal enam hexagon per siklus"
+      ],
+      "letters": [
+        "D",
+        "R",
+        "V"
+      ],
+      "no": "02",
+      "prod": {
+        "effort": 1,
+        "music": "Orkestral-elektronik hangat, membangun perlahan",
+        "bpm": "90–100",
+        "vo": "Tenang dan berwibawa",
+        "tools": [
+          "After Effects",
+          "Lottie",
+          "Remotion"
+        ]
+      },
+      "use_cases": [
+        {
+          "letter": "D",
+          "need": "Dekarbonisasi & NZE 2060"
+        },
+        {
+          "letter": "R",
+          "need": "RJPP / RKAP"
+        },
+        {
+          "letter": "V",
+          "need": "Visi, Misi & Budaya AKHLAK"
+        }
+      ]
+    },
+    {
+      "id": "navy-statement",
+      "name": "Navy Statement Kinetic",
+      "cat": "Signature PLN NR",
+      "tier": "Signature",
+      "desc": "Pernyataan besar di bidang navy, muncul kata demi kata, dikunci garis gradient. Turunan langsung dari slide statement PLN NR.",
+      "when": "Kutipan Direksi, pesan kunci, kicker antar bagian, penutup kampanye budaya.",
+      "aud": "Karyawan, publik",
+      "formats": [
+        "16:9",
+        "9:16",
+        "1:1"
+      ],
+      "dur": "6–12 dtk per pernyataan",
+      "pace": "Tenang",
+      "ease": "entrance",
+      "transition": "Cross-fade 220 ms",
+      "palette": [
+        "#00507C",
+        "#FFFFFF",
+        "#FFF100"
+      ],
+      "type": "PT Sans Bold 700, 58–100 px; satu kata kuning sebagai sinyal",
+      "beats": [
+        "Bidang navy",
+        "Kata pertama masuk, kata kunci berwarna kuning",
+        "Garis gradient tumbuh di bawah",
+        "Tahan 2 dtk lalu cross-fade"
+      ],
+      "dont": [
+        "Maksimal 12 kata",
+        "Hanya satu kata berwarna sinyal"
+      ],
+      "letters": [
+        "A",
+        "V"
+      ],
+      "no": "03",
+      "prod": {
+        "effort": 1,
+        "music": "Orkestral-elektronik hangat, membangun perlahan",
+        "bpm": "90–100",
+        "vo": "Tenang dan berwibawa",
+        "tools": [
+          "After Effects",
+          "Lottie",
+          "Remotion"
+        ]
+      },
+      "use_cases": [
+        {
+          "letter": "A",
+          "need": "Annual Report & RUPS"
+        },
+        {
+          "letter": "V",
+          "need": "Visi, Misi & Budaya AKHLAK"
+        }
+      ]
+    },
+    {
+      "id": "monoline-scene",
+      "name": "Monoline Energy Scene",
+      "cat": "Signature PLN NR",
+      "tier": "Signature",
+      "desc": "Pemandangan line-art biru (matahari, menara transmisi, bendungan, turbin) yang tergambar sendiri lalu hidup. Tekstur resmi PLN NR menggantikan ikon.",
+      "when": "Latar belakang narasi profil perusahaan, opening laporan tahunan, layar tunggu acara.",
+      "aud": "Semua audiens",
+      "formats": [
+        "16:9",
+        "1:1"
+      ],
+      "dur": "10–30 dtk (loop)",
+      "pace": "Tenang",
+      "ease": "brand-standard",
+      "transition": "Line Draw",
+      "palette": [
+        "#00507C",
+        "#0087BE",
+        "#0098D3",
+        "#BFD3DE"
+      ],
+      "type": "PT Sans Regular 400 untuk keterangan; judul di luar area line-art",
+      "beats": [
+        "Garis cakrawala tergambar",
+        "Matahari, menara, bendungan muncul berurutan",
+        "Turbin mulai berputar",
+        "Judul fade-in di ruang kosong"
+      ],
+      "dont": [
+        "Garis selalu satu warna dan satu ketebalan",
+        "Jangan tambah warna isi (fill)"
+      ],
+      "letters": [
+        "N"
+      ],
+      "no": "04",
+      "prod": {
+        "effort": 2,
+        "music": "Orkestral-elektronik hangat, membangun perlahan",
+        "bpm": "90–100",
+        "vo": "Tenang dan berwibawa",
+        "tools": [
+          "After Effects",
+          "Lottie",
+          "Remotion"
+        ]
+      },
+      "use_cases": [
+        {
+          "letter": "N",
+          "need": "Nusantara Portfolio"
+        }
+      ]
+    },
+    {
+      "id": "lens-mask",
+      "name": "Curved Lens Reveal",
+      "cat": "Signature PLN NR",
+      "tier": "Signature",
+      "desc": "Foto atau ilustrasi golden-hour selalu dimasker dalam kurva lensa, tidak pernah kotak. Masker bernapas pelan dan membuka adegan.",
+      "when": "Cover video, pembuka groundbreaking, highlight proyek dengan footage lapangan.",
+      "aud": "Publik, media",
+      "formats": [
+        "16:9",
+        "9:16"
+      ],
+      "dur": "6–15 dtk",
+      "pace": "Tenang",
+      "ease": "entrance",
+      "transition": "Lens Iris",
+      "palette": [
+        "#00507C",
+        "#FFFFFF",
+        "#FFF100",
+        "#00A2BA"
+      ],
+      "type": "PT Sans Bold 700 judul di sisi putih; italic hanya untuk subjudul bab",
+      "beats": [
+        "Bidang putih dengan judul",
+        "Kurva lensa terbuka dari kanan atas",
+        "Footage bergerak pelan (push-in 4%)",
+        "Lockup mengunci"
+      ],
+      "dont": [
+        "Jangan pakai masker kotak atau rounded-rect",
+        "Jangan tint atau blur foto"
+      ],
+      "letters": [
+        "G",
+        "W"
+      ],
+      "no": "05",
+      "prod": {
+        "effort": 1,
+        "music": "Orkestral-elektronik hangat, membangun perlahan",
+        "bpm": "90–100",
+        "vo": "Tenang dan berwibawa",
+        "tools": [
+          "After Effects",
+          "Lottie",
+          "Remotion"
+        ]
+      },
+      "use_cases": [
+        {
+          "letter": "G",
+          "need": "Groundbreaking & Water Breaking"
+        },
+        {
+          "letter": "W",
+          "need": "Water: PLTA & PLTS Terapung"
+        }
+      ]
+    },
+    {
+      "id": "chevron-chapter",
+      "name": "Chevron Chapter Push",
+      "cat": "Signature PLN NR",
+      "tier": "Signature",
+      "desc": "Pembatas bab bergradient diagonal dengan chevron lime-teal yang mendorong masuk. Penanda struktur video panjang.",
+      "when": "Pergantian bab pada video laporan tahunan, webinar, materi pelatihan panjang.",
+      "aud": "Semua audiens",
+      "formats": [
+        "16:9"
+      ],
+      "dur": "3–4 dtk per bab",
+      "pace": "Sedang",
+      "ease": "brand-standard",
+      "transition": "Chevron Push",
+      "palette": [
+        "#00ADEF",
+        "#0087BE",
+        "#005F89",
+        "#B9DE41",
+        "#00A2BA"
+      ],
+      "type": "PT Sans Bold 54 px untuk judul bab, italic untuk subjudul",
+      "beats": [
+        "Gradient cover masuk",
+        "Chevron mendorong dari kiri",
+        "Nomor bab dan judul muncul",
+        "Cross-fade ke isi bab"
+      ],
+      "dont": [
+        "Jangan dua chevron dalam satu layar",
+        "Nomor bab dua digit (01, 02)"
+      ],
+      "letters": [
+        "C"
+      ],
+      "no": "06",
+      "prod": {
+        "effort": 1,
+        "music": "Orkestral-elektronik hangat, membangun perlahan",
+        "bpm": "90–100",
+        "vo": "Tenang dan berwibawa",
+        "tools": [
+          "After Effects",
+          "Lottie",
+          "Remotion"
+        ]
+      },
+      "use_cases": [
+        {
+          "letter": "C",
+          "need": "COD & Commissioning"
+        }
+      ]
+    },
+    {
+      "id": "wave-edge",
+      "name": "Wave Edge Flow",
+      "cat": "Signature PLN NR",
+      "tier": "Signature",
+      "desc": "Pita gelombang di tepi kanan dan bawah bergerak perlahan, konten tetap di area putih. Gaya paling aman untuk materi informatif panjang.",
+      "when": "Video informasi internal, webinar, rekap rapat, pengumuman resmi.",
+      "aud": "Karyawan, manajemen",
+      "formats": [
+        "16:9"
+      ],
+      "dur": "30–180 dtk",
+      "pace": "Tenang",
+      "ease": "brand-standard",
+      "transition": "Wave Wipe",
+      "palette": [
+        "#FFFFFF",
+        "#00507C",
+        "#00A2BA",
+        "#B9DE41",
+        "#FFF100"
+      ],
+      "type": "PT Sans Bold 48 px judul halaman, Regular 16–22 px isi",
+      "beats": [
+        "Judul kiri atas, lockup kanan atas",
+        "Poin isi muncul bertahap",
+        "Gelombang tepi bergerak terus",
+        "Wave wipe ke halaman berikutnya"
+      ],
+      "dont": [
+        "Konten tidak boleh masuk area gelombang (78 px kanan)",
+        "Jangan percepat gelombang"
+      ],
+      "letters": [
+        "O"
+      ],
+      "no": "07",
+      "prod": {
+        "effort": 1,
+        "music": "Orkestral-elektronik hangat, membangun perlahan",
+        "bpm": "90–100",
+        "vo": "Tenang dan berwibawa",
+        "tools": [
+          "After Effects",
+          "Lottie",
+          "Remotion"
+        ]
+      },
+      "use_cases": [
+        {
+          "letter": "O",
+          "need": "Onboarding Karyawan"
+        }
+      ]
+    },
+    {
+      "id": "answer-first",
+      "name": "Answer-First Data Story",
+      "cat": "Data & Eksekutif",
+      "tier": "Inti",
+      "desc": "Judul aksi berupa kalimat kesimpulan, lalu satu grafik membuktikannya. Satu batang cyan sebagai sinyal, sisanya navy. Metode deck konsultan dalam gerak.",
+      "when": "Video ringkasan untuk Direksi, laporan kinerja, materi RUPS, briefing pendanaan.",
+      "aud": "Direksi, Dekom, pemegang saham",
+      "formats": [
+        "16:9"
+      ],
+      "dur": "30–90 dtk",
+      "pace": "Sedang",
+      "ease": "entrance",
+      "transition": "Cross-fade 220 ms",
+      "palette": [
+        "#FFFFFF",
+        "#00507C",
+        "#00ADEF",
+        "#BFD3DE",
+        "#F1F6FA"
+      ],
+      "type": "PT Sans Bold 30 px judul aksi (sentence case), angka tabular",
+      "beats": [
+        "Judul aksi terketik penuh",
+        "Batang konteks tumbuh (navy)",
+        "Batang bukti tumbuh terakhir (cyan)",
+        "Kotak so-what menegaskan satu angka"
+      ],
+      "dont": [
+        "Tanpa gridline, tanpa legenda bila label langsung bisa",
+        "Wajib baris Sumber di setiap angka"
+      ],
+      "letters": [
+        "A",
+        "B",
+        "I",
+        "K"
+      ],
+      "no": "08",
+      "prod": {
+        "effort": 1,
+        "music": "Ambient minimal, piano dan pulse halus",
+        "bpm": "80–90",
+        "vo": "Jelas, faktual, tempo sedang",
+        "tools": [
+          "Remotion",
+          "After Effects",
+          "D3/SVG"
+        ]
+      },
+      "use_cases": [
+        {
+          "letter": "A",
+          "need": "Annual Report & RUPS"
+        },
+        {
+          "letter": "B",
+          "need": "Board Briefing Direksi"
+        },
+        {
+          "letter": "I",
+          "need": "Investor & Kemitraan"
+        },
+        {
+          "letter": "K",
+          "need": "Kinerja & KPI Bulanan"
+        }
+      ]
+    },
+    {
+      "id": "arc-kpi",
+      "name": "Gradient Arc KPI",
+      "cat": "Data & Eksekutif",
+      "tier": "Inti",
+      "desc": "Busur gradient terbuka dengan cakram navy di tengah, menghitung naik ke angka akhir. Satu-satunya bentuk grafik asli template PLN NR.",
+      "when": "Capaian KPI, persentase progres proyek, bauran energi, rasio kepatuhan.",
+      "aud": "Manajemen, publik",
+      "formats": [
+        "16:9",
+        "1:1",
+        "9:16"
+      ],
+      "dur": "8–20 dtk",
+      "pace": "Sedang",
+      "ease": "emphasis",
+      "transition": "Count-Up",
+      "palette": [
+        "#00507C",
+        "#FFF100",
+        "#B9DE41",
+        "#00A2BA",
+        "#00ADEF"
+      ],
+      "type": "PT Sans Bold angka tabular 40–64 px di tengah cakram",
+      "beats": [
+        "Cakram navy muncul",
+        "Busur gradient tergambar searah jarum jam",
+        "Angka menghitung naik",
+        "Label UPPERCASE di bawah"
+      ],
+      "dont": [
+        "Maksimal tiga busur per layar",
+        "Tahan angka final minimal 1,5 dtk"
+      ],
+      "letters": [
+        "A",
+        "F",
+        "K"
+      ],
+      "no": "09",
+      "prod": {
+        "effort": 1,
+        "music": "Ambient minimal, piano dan pulse halus",
+        "bpm": "80–90",
+        "vo": "Jelas, faktual, tempo sedang",
+        "tools": [
+          "Remotion",
+          "After Effects",
+          "D3/SVG"
+        ]
+      },
+      "use_cases": [
+        {
+          "letter": "A",
+          "need": "Annual Report & RUPS"
+        },
+        {
+          "letter": "F",
+          "need": "Financing & Green Bond"
+        },
+        {
+          "letter": "K",
+          "need": "Kinerja & KPI Bulanan"
+        }
+      ]
+    },
+    {
+      "id": "waterfall",
+      "name": "Waterfall Bridge",
+      "cat": "Data & Eksekutif",
+      "tier": "Inti",
+      "desc": "Jembatan angka yang melangkah dari nilai awal ke nilai akhir, setiap batang menjelaskan satu penyebab perubahan.",
+      "when": "Menjelaskan perubahan CAPEX, LCOE, EBITDA, atau kebutuhan pendanaan.",
+      "aud": "Direksi, lender, investor",
+      "formats": [
+        "16:9"
+      ],
+      "dur": "20–45 dtk",
+      "pace": "Sedang",
+      "ease": "entrance",
+      "transition": "Cross-fade 220 ms",
+      "palette": [
+        "#00507C",
+        "#00ADEF",
+        "#00A2BA",
+        "#BFD3DE"
+      ],
+      "type": "PT Sans Bold label nilai di ujung batang, ▲/▼ selalu menyertai warna",
+      "beats": [
+        "Batang awal muncul",
+        "Langkah naik/turun satu per satu dengan garis penghubung",
+        "Batang akhir cyan",
+        "Callout penyebab terbesar"
+      ],
+      "dont": [
+        "Jangan pakai merah untuk penurunan; pakai ▼ navy",
+        "Maksimal 6 langkah"
+      ],
+      "letters": [
+        "B",
+        "F",
+        "R"
+      ],
+      "no": "10",
+      "prod": {
+        "effort": 1,
+        "music": "Ambient minimal, piano dan pulse halus",
+        "bpm": "80–90",
+        "vo": "Jelas, faktual, tempo sedang",
+        "tools": [
+          "Remotion",
+          "After Effects",
+          "D3/SVG"
+        ]
+      },
+      "use_cases": [
+        {
+          "letter": "B",
+          "need": "Board Briefing Direksi"
+        },
+        {
+          "letter": "F",
+          "need": "Financing & Green Bond"
+        },
+        {
+          "letter": "R",
+          "need": "RJPP / RKAP"
+        }
+      ]
+    },
+    {
+      "id": "nusantara-map",
+      "name": "Nusantara Portfolio Map",
+      "cat": "Data & Eksekutif",
+      "tier": "Signature",
+      "desc": "Peta kepulauan bergaya datar dengan pin pembangkit yang berdenyut dan busur koneksi. Menunjukkan sebaran portofolio dalam satu pandangan.",
+      "when": "Profil perusahaan, pitch kemitraan, laporan tahunan, pameran.",
+      "aud": "Investor, mitra, publik",
+      "formats": [
+        "16:9",
+        "1:1"
+      ],
+      "dur": "15–40 dtk",
+      "pace": "Sedang",
+      "ease": "brand-standard",
+      "transition": "Lens Iris",
+      "palette": [
+        "#00507C",
+        "#005F89",
+        "#00ADEF",
+        "#FFF100",
+        "#B9DE41"
+      ],
+      "type": "PT Sans Bold kode pembangkit (PLTS, PLTB, PLTP, PLTA), Regular nama lokasi",
+      "beats": [
+        "Peta kepulauan tergambar",
+        "Kamera mendekat ke wilayah",
+        "Pin muncul per jenis pembangkit",
+        "Total kapasitas terhitung naik"
+      ],
+      "dont": [
+        "Lokasi pin harus diverifikasi sebelum rilis",
+        "Jangan pakai peta satelit berwarna"
+      ],
+      "letters": [
+        "F",
+        "I",
+        "N"
+      ],
+      "no": "11",
+      "prod": {
+        "effort": 2,
+        "music": "Ambient minimal, piano dan pulse halus",
+        "bpm": "80–90",
+        "vo": "Jelas, faktual, tempo sedang",
+        "tools": [
+          "Remotion",
+          "After Effects",
+          "D3/SVG"
+        ]
+      },
+      "use_cases": [
+        {
+          "letter": "F",
+          "need": "Financing & Green Bond"
+        },
+        {
+          "letter": "I",
+          "need": "Investor & Kemitraan"
+        },
+        {
+          "letter": "N",
+          "need": "Nusantara Portfolio"
+        }
+      ]
+    },
+    {
+      "id": "transit-roadmap",
+      "name": "Transit Line Roadmap",
+      "cat": "Data & Eksekutif",
+      "tier": "Inti",
+      "desc": "Rencana jangka panjang digambar sebagai jalur transit: tiap jalur adalah program, tiap stasiun adalah tonggak. Kereta cahaya bergerak sepanjang jalur.",
+      "when": "RJPP, peta jalan NZE, jadwal proyek multi-tahun, roadmap digitalisasi.",
+      "aud": "Direksi, Dekom, regulator",
+      "formats": [
+        "16:9"
+      ],
+      "dur": "30–60 dtk",
+      "pace": "Sedang",
+      "ease": "brand-standard",
+      "transition": "Line Draw",
+      "palette": [
+        "#FFFFFF",
+        "#00507C",
+        "#00ADEF",
+        "#00A2BA",
+        "#B9DE41"
+      ],
+      "type": "PT Sans Bold nama stasiun, angka tahun tabular",
+      "beats": [
+        "Sumbu waktu tergambar",
+        "Jalur program tergambar satu per satu",
+        "Stasiun tonggak menyala",
+        "Kereta cahaya berjalan sampai tahun target"
+      ],
+      "dont": [
+        "Maksimal 4 jalur",
+        "Setiap stasiun maksimal 2 kata"
+      ],
+      "letters": [
+        "D",
+        "J",
+        "R"
+      ],
+      "no": "12",
+      "prod": {
+        "effort": 2,
+        "music": "Ambient minimal, piano dan pulse halus",
+        "bpm": "80–90",
+        "vo": "Jelas, faktual, tempo sedang",
+        "tools": [
+          "Remotion",
+          "After Effects",
+          "D3/SVG"
+        ]
+      },
+      "use_cases": [
+        {
+          "letter": "D",
+          "need": "Dekarbonisasi & NZE 2060"
+        },
+        {
+          "letter": "J",
+          "need": "JETP & Kebijakan Transisi"
+        },
+        {
+          "letter": "R",
+          "need": "RJPP / RKAP"
+        }
+      ]
+    },
+    {
+      "id": "isotype",
+      "name": "ISOTYPE Count",
+      "cat": "Data & Eksekutif",
+      "tier": "Inti",
+      "desc": "Satu simbol mewakili satu satuan, berderet mengisi layar. Membuat angka abstrak (MWh, ton CO₂) terasa nyata bagi publik.",
+      "when": "Dampak lingkungan, manfaat sosial, ESG report, kampanye publik.",
+      "aud": "Publik, lender, komunitas",
+      "formats": [
+        "16:9",
+        "1:1",
+        "9:16"
+      ],
+      "dur": "10–25 dtk",
+      "pace": "Sedang",
+      "ease": "emphasis",
+      "transition": "Count-Up",
+      "palette": [
+        "#FFFFFF",
+        "#00507C",
+        "#00ADEF",
+        "#BFD3DE"
+      ],
+      "type": "PT Sans Bold angka kunci, Regular kalimat satuan",
+      "beats": [
+        "Satu simbol dan definisi satuannya",
+        "Deret simbol terisi kiri ke kanan",
+        "Angka total terhitung",
+        "Kalimat dampak dengan sumber"
+      ],
+      "dont": [
+        "Wajib cantumkan faktor konversi dan sumber",
+        "Simbol hanya bentuk geometris sederhana, satu warna"
+      ],
+      "letters": [
+        "E"
+      ],
+      "no": "13",
+      "prod": {
+        "effort": 1,
+        "music": "Ambient minimal, piano dan pulse halus",
+        "bpm": "80–90",
+        "vo": "Jelas, faktual, tempo sedang",
+        "tools": [
+          "Remotion",
+          "After Effects",
+          "D3/SVG"
+        ]
+      },
+      "use_cases": [
+        {
+          "letter": "E",
+          "need": "ESG & Safeguard"
+        }
+      ]
+    },
+    {
+      "id": "live-ops",
+      "name": "Live Ops Dashboard",
+      "cat": "Data & Eksekutif",
+      "tier": "Spesialis",
+      "desc": "Ruang kendali digital: grafik produksi berjalan, gauge, status unit dengan glyph ▲●▼. Terasa real-time tanpa harus memakai data live.",
+      "when": "Laporan kinerja bulanan, demo command center, video monitoring pembangkit.",
+      "aud": "Manajemen, operator, mitra teknis",
+      "formats": [
+        "16:9"
+      ],
+      "dur": "20–60 dtk",
+      "pace": "Sedang",
+      "ease": "brand-standard",
+      "transition": "Cross-fade 220 ms",
+      "palette": [
+        "#00507C",
+        "#003A5C",
+        "#00ADEF",
+        "#FFF100",
+        "#00A2BA"
+      ],
+      "type": "PT Sans Bold angka tabular; label UPPERCASE 11 px tracking 0,1em",
+      "beats": [
+        "Panel-panel menyala bertahap",
+        "Grafik produksi bergulir",
+        "Status unit berganti dengan glyph",
+        "Zoom ke satu angka kunci"
+      ],
+      "dont": [
+        "Status tidak boleh hanya warna; selalu ▲●▼",
+        "Jangan tampilkan data operasional rahasia"
+      ],
+      "letters": [
+        "K",
+        "U"
+      ],
+      "no": "14",
+      "prod": {
+        "effort": 2,
+        "music": "Ambient minimal, piano dan pulse halus",
+        "bpm": "80–90",
+        "vo": "Jelas, faktual, tempo sedang",
+        "tools": [
+          "Remotion",
+          "After Effects",
+          "D3/SVG"
+        ]
+      },
+      "use_cases": [
+        {
+          "letter": "K",
+          "need": "Kinerja & KPI Bulanan"
+        },
+        {
+          "letter": "U",
+          "need": "Unit O&M & Inspeksi"
+        }
+      ]
+    },
+    {
+      "id": "blueprint",
+      "name": "Engineering Blueprint",
+      "cat": "Teknik & Engineering",
+      "tier": "Inti",
+      "desc": "Kertas biru PLN NR dengan grid gambar teknik, garis putih tergambar, dimensi dan anotasi muncul. Kredibilitas teknis tanpa kehilangan merek.",
+      "when": "Layout PLTS, desain bendungan, konsep pembangkit untuk presentasi teknis dan lender engineer.",
+      "aud": "Tim teknis, lender engineer, EPC",
+      "formats": [
+        "16:9"
+      ],
+      "dur": "30–90 dtk",
+      "pace": "Sedang",
+      "ease": "brand-standard",
+      "transition": "Line Draw",
+      "palette": [
+        "#005F89",
+        "#FFFFFF",
+        "#BFD3DE",
+        "#FFF100"
+      ],
+      "type": "PT Sans Bold anotasi UPPERCASE; angka dimensi tabular",
+      "beats": [
+        "Grid kertas biru",
+        "Batas lahan tergambar",
+        "Blok array panel muncul berurutan",
+        "Garis dimensi dan label kapasitas"
+      ],
+      "dont": [
+        "Dimensi ilustratif harus diberi tanda",
+        "Satu warna aksen (kuning) untuk sorotan"
+      ],
+      "letters": [
+        "P"
+      ],
+      "no": "15",
+      "prod": {
+        "effort": 2,
+        "music": "Elektronik bersih dengan tekstur mekanis halus",
+        "bpm": "95–110",
+        "vo": "Teknis dan presisi",
+        "tools": [
+          "Blender",
+          "After Effects",
+          "Remotion"
+        ]
+      },
+      "use_cases": [
+        {
+          "letter": "P",
+          "need": "Pembangkit Explained (PLTS/PLTB/PLTP/PLTA)"
+        }
+      ]
+    },
+    {
+      "id": "isometric-plant",
+      "name": "Isometric Plant",
+      "cat": "Teknik & Engineering",
+      "tier": "Inti",
+      "desc": "Pembangkit dalam sudut isometrik: deret panel, BESS, gardu induk, jalur listrik dengan partikel energi berjalan. Cara paling jelas menjelaskan cara kerja sistem.",
+      "when": "Explainer cara kerja PLTS + BESS, hybrid, microgrid; materi edukasi dan pitch.",
+      "aud": "Umum, mitra, mahasiswa",
+      "formats": [
+        "16:9",
+        "1:1"
+      ],
+      "dur": "45–120 dtk",
+      "pace": "Sedang",
+      "ease": "brand-standard",
+      "transition": "Cross-fade 220 ms",
+      "palette": [
+        "#F1F6FA",
+        "#00507C",
+        "#00ADEF",
+        "#0087BE",
+        "#FFF100"
+      ],
+      "type": "PT Sans Bold callout UPPERCASE dengan garis penunjuk",
+      "beats": [
+        "Tanah isometrik muncul",
+        "Komponen tersusun satu per satu",
+        "Partikel energi mengalir panel → BESS → jaringan",
+        "Callout tiap komponen"
+      ],
+      "dont": [
+        "Sudut isometrik konsisten 30°",
+        "Tanpa bayangan blur; kedalaman lewat warna sisi"
+      ],
+      "letters": [
+        "P"
+      ],
+      "no": "16",
+      "prod": {
+        "effort": 3,
+        "music": "Elektronik bersih dengan tekstur mekanis halus",
+        "bpm": "95–110",
+        "vo": "Teknis dan presisi",
+        "tools": [
+          "Blender",
+          "After Effects",
+          "Remotion"
+        ]
+      },
+      "use_cases": [
+        {
+          "letter": "P",
+          "need": "Pembangkit Explained (PLTS/PLTB/PLTP/PLTA)"
+        }
+      ]
+    },
+    {
+      "id": "cutaway",
+      "name": "Mechanical Cutaway",
+      "cat": "Teknik & Engineering",
+      "tier": "Spesialis",
+      "desc": "Potongan nacelle turbin atau turbin air memperlihatkan rotor, gearbox, generator bergerak. Untuk penjelasan yang butuh melihat ke dalam mesin.",
+      "when": "Explainer cara kerja PLTB, PLTA, PLTP; pelatihan teknisi; pameran teknologi.",
+      "aud": "Teknisi, mahasiswa, mitra teknis",
+      "formats": [
+        "16:9"
+      ],
+      "dur": "45–90 dtk",
+      "pace": "Sedang",
+      "ease": "brand-standard",
+      "transition": "Lens Iris",
+      "palette": [
+        "#FFFFFF",
+        "#00507C",
+        "#00ADEF",
+        "#BFD3DE",
+        "#FFF100"
+      ],
+      "type": "PT Sans Bold label komponen, Regular deskripsi satu baris",
+      "beats": [
+        "Eksterior utuh",
+        "Cangkang membuka (cutaway)",
+        "Komponen berputar sesuai rantai daya",
+        "Label muncul mengikuti aliran energi"
+      ],
+      "dont": [
+        "Proporsi komponen jangan diklaim akurat tanpa gambar teknik",
+        "Maksimal 5 label"
+      ],
+      "letters": [
+        "P",
+        "U"
+      ],
+      "no": "17",
+      "prod": {
+        "effort": 3,
+        "music": "Elektronik bersih dengan tekstur mekanis halus",
+        "bpm": "95–110",
+        "vo": "Teknis dan presisi",
+        "tools": [
+          "Blender",
+          "After Effects",
+          "Remotion"
+        ]
+      },
+      "use_cases": [
+        {
+          "letter": "P",
+          "need": "Pembangkit Explained (PLTS/PLTB/PLTP/PLTA)"
+        },
+        {
+          "letter": "U",
+          "need": "Unit O&M & Inspeksi"
+        }
+      ]
+    },
+    {
+      "id": "wireframe",
+      "name": "Hidden-Line Wireframe",
+      "cat": "Teknik & Engineering",
+      "tier": "Spesialis",
+      "desc": "Model rangka garis di atas lantai perspektif, berputar pelan. Kesan rekayasa digital, digital twin, dan teknologi masa depan.",
+      "when": "Teknologi baru (digital twin, BESS, hidrogen hijau), pitch inovasi, pameran.",
+      "aud": "Mitra teknologi, investor, Direksi",
+      "formats": [
+        "16:9",
+        "9:16"
+      ],
+      "dur": "10–30 dtk",
+      "pace": "Tenang",
+      "ease": "brand-standard",
+      "transition": "Line Draw",
+      "palette": [
+        "#00507C",
+        "#00ADEF",
+        "#7FA7BD",
+        "#FFF100"
+      ],
+      "type": "PT Sans Bold 11 px label teknis, monospace untuk koordinat",
+      "beats": [
+        "Lantai grid perspektif",
+        "Rangka objek tergambar",
+        "Objek berputar 30°",
+        "Satu titik sorot kuning"
+      ],
+      "dont": [
+        "Jangan glow berlebihan",
+        "Satu objek utama per adegan"
+      ],
+      "letters": [
+        "T"
+      ],
+      "no": "18",
+      "prod": {
+        "effort": 3,
+        "music": "Elektronik bersih dengan tekstur mekanis halus",
+        "bpm": "95–110",
+        "vo": "Teknis dan presisi",
+        "tools": [
+          "Blender",
+          "Cinema 4D"
+        ]
+      },
+      "use_cases": [
+        {
+          "letter": "T",
+          "need": "Teknologi Baru (BESS, Hidrogen, Digital Twin)"
+        }
+      ]
+    },
+    {
+      "id": "energy-sankey",
+      "name": "Energy Flow Sankey",
+      "cat": "Teknik & Engineering",
+      "tier": "Inti",
+      "desc": "Aliran energi dari sumber ke konsumen sebagai pita yang mengalir. Lebar pita sebanding dengan nilai, partikel bergerak menunjukkan arah.",
+      "when": "Bauran energi, neraca daya, jalur dekarbonisasi, alokasi pendanaan.",
+      "aud": "Regulator, Direksi, publik terdidik",
+      "formats": [
+        "16:9"
+      ],
+      "dur": "20–40 dtk",
+      "pace": "Sedang",
+      "ease": "brand-standard",
+      "transition": "Energy Sweep",
+      "palette": [
+        "#FFFFFF",
+        "#FFF100",
+        "#00A2BA",
+        "#B9DE41",
+        "#00ADEF",
+        "#00507C"
+      ],
+      "type": "PT Sans Bold label sumber, angka tabular di ujung pita",
+      "beats": [
+        "Kolom sumber muncul",
+        "Pita mengalir ke tengah",
+        "Pita bercabang ke penggunaan",
+        "Sorot satu aliran terbesar"
+      ],
+      "dont": [
+        "Lebar pita harus proporsional",
+        "Maksimal 5 sumber"
+      ],
+      "letters": [
+        "D",
+        "J"
+      ],
+      "no": "19",
+      "prod": {
+        "effort": 2,
+        "music": "Elektronik bersih dengan tekstur mekanis halus",
+        "bpm": "95–110",
+        "vo": "Teknis dan presisi",
+        "tools": [
+          "Blender",
+          "After Effects",
+          "Remotion"
+        ]
+      },
+      "use_cases": [
+        {
+          "letter": "D",
+          "need": "Dekarbonisasi & NZE 2060"
+        },
+        {
+          "letter": "J",
+          "need": "JETP & Kebijakan Transisi"
+        }
+      ]
+    },
+    {
+      "id": "single-line",
+      "name": "Single-Line Diagram Pulse",
+      "cat": "Teknik & Engineering",
+      "tier": "Spesialis",
+      "desc": "Diagram satu garis kelistrikan dengan simbol standar; denyut arus berjalan dari generator ke busbar. Bahasa visual operator dan engineer listrik.",
+      "when": "Pelatihan operator, penjelasan interkoneksi, studi sistem, investigasi gangguan.",
+      "aud": "Operator, engineer, PLN UIP/UIW",
+      "formats": [
+        "16:9"
+      ],
+      "dur": "30–90 dtk",
+      "pace": "Sedang",
+      "ease": "linear (aliran)",
+      "transition": "Line Draw",
+      "palette": [
+        "#FFFFFF",
+        "#00507C",
+        "#00ADEF",
+        "#FFF100"
+      ],
+      "type": "Monospace untuk tag peralatan, PT Sans untuk judul",
+      "beats": [
+        "Busbar tergambar",
+        "Peralatan muncul dengan tag",
+        "Breaker menutup",
+        "Denyut arus mengalir ke jaringan"
+      ],
+      "dont": [
+        "Gunakan simbol IEC yang benar",
+        "Tag peralatan sesuai dokumen resmi"
+      ],
+      "letters": [
+        "U"
+      ],
+      "no": "20",
+      "prod": {
+        "effort": 2,
+        "music": "Elektronik bersih dengan tekstur mekanis halus",
+        "bpm": "95–110",
+        "vo": "Teknis dan presisi",
+        "tools": [
+          "Blender",
+          "After Effects",
+          "Remotion"
+        ]
+      },
+      "use_cases": [
+        {
+          "letter": "U",
+          "need": "Unit O&M & Inspeksi"
+        }
+      ]
+    },
+    {
+      "id": "thermal-inspection",
+      "name": "Thermal Drone Inspection",
+      "cat": "Teknik & Engineering",
+      "tier": "Spesialis",
+      "desc": "Pandangan drone termal di atas array panel memakai ramp energi PLN NR sebagai skala panas. Garis pindai bergerak, hotspot berdenyut dan diberi label.",
+      "when": "Video O&M, inspeksi aset, digitalisasi pemeliharaan, laporan keandalan.",
+      "aud": "Tim O&M, manajemen aset",
+      "formats": [
+        "16:9",
+        "9:16"
+      ],
+      "dur": "15–45 dtk",
+      "pace": "Sedang",
+      "ease": "linear (pindai)",
+      "transition": "Cross-fade 220 ms",
+      "palette": [
+        "#00507C",
+        "#005F89",
+        "#00A2BA",
+        "#B9DE41",
+        "#FFF100"
+      ],
+      "type": "Monospace untuk HUD (suhu, koordinat), PT Sans Bold untuk temuan",
+      "beats": [
+        "Footage drone biasa",
+        "Beralih ke mode termal",
+        "Garis pindai menemukan hotspot",
+        "Kartu temuan dan tindak lanjut"
+      ],
+      "dont": [
+        "Skala warna wajib dengan legenda suhu",
+        "Jangan memakai palet pelangi"
+      ],
+      "letters": [
+        "U"
+      ],
+      "no": "21",
+      "prod": {
+        "effort": 2,
+        "music": "Elektronik bersih dengan tekstur mekanis halus",
+        "bpm": "95–110",
+        "vo": "Teknis dan presisi",
+        "tools": [
+          "Blender",
+          "After Effects",
+          "Remotion"
+        ]
+      },
+      "use_cases": [
+        {
+          "letter": "U",
+          "need": "Unit O&M & Inspeksi"
+        }
+      ]
+    },
+    {
+      "id": "whiteboard",
+      "name": "Whiteboard Explainer",
+      "cat": "Edukasi & Explainer",
+      "tier": "Inti",
+      "desc": "Spidol navy menggambar diagram di papan putih, langkah demi langkah sesuai narasi. Hangat, jujur, cepat diproduksi.",
+      "when": "Onboarding, sosialisasi kebijakan, explainer proses bisnis, pelatihan internal.",
+      "aud": "Karyawan, mitra baru",
+      "formats": [
+        "16:9"
+      ],
+      "dur": "60–180 dtk",
+      "pace": "Sedang",
+      "ease": "linear (gores)",
+      "transition": "Line Draw",
+      "palette": [
+        "#FBFDFE",
+        "#00507C",
+        "#00ADEF",
+        "#FFF100"
+      ],
+      "type": "Tulisan tangan hanya untuk anotasi kecil; judul tetap PT Sans Bold",
+      "beats": [
+        "Papan kosong",
+        "Gores diagram sesuai kalimat narator",
+        "Sorot kuning pada kata kunci",
+        "Ringkasan di pojok kanan"
+      ],
+      "dont": [
+        "Jangan gambar logo dengan spidol",
+        "Satu konsep per papan"
+      ],
+      "letters": [
+        "J",
+        "O"
+      ],
+      "no": "22",
+      "prod": {
+        "effort": 2,
+        "music": "Akustik ringan: marimba, gitar, ukulele",
+        "bpm": "100–115",
+        "vo": "Ramah dan bercerita",
+        "tools": [
+          "After Effects",
+          "Remotion",
+          "Lottie"
+        ]
+      },
+      "use_cases": [
+        {
+          "letter": "J",
+          "need": "JETP & Kebijakan Transisi"
+        },
+        {
+          "letter": "O",
+          "need": "Onboarding Karyawan"
+        }
+      ]
+    },
+    {
+      "id": "flat-explainer",
+      "name": "Flat Vector People",
+      "cat": "Edukasi & Explainer",
+      "tier": "Inti",
+      "desc": "Karakter vektor datar berseragam dan berhelm PLN NR, bergerak sederhana di dunia geometris. Wajah manusia untuk cerita proses.",
+      "when": "Cerita karyawan, SOP layanan, rekrutmen, TJSL, cerita komunitas sekitar pembangkit.",
+      "aud": "Karyawan, publik, komunitas",
+      "formats": [
+        "16:9",
+        "9:16",
+        "1:1"
+      ],
+      "dur": "45–120 dtk",
+      "pace": "Sedang",
+      "ease": "brand-standard",
+      "transition": "Cross-fade 220 ms",
+      "palette": [
+        "#F1F6FA",
+        "#00507C",
+        "#00ADEF",
+        "#FFF100",
+        "#00A2BA"
+      ],
+      "type": "PT Sans Bold balon dialog, maksimal 8 kata",
+      "beats": [
+        "Lingkungan kerja diperkenalkan",
+        "Karakter masuk dan menyapa",
+        "Aksi utama (memeriksa panel)",
+        "Hasil dan pesan penutup"
+      ],
+      "dont": [
+        "APD selalu lengkap dan benar",
+        "Hindari karikatur berlebihan"
+      ],
+      "letters": [
+        "M",
+        "O",
+        "Y"
+      ],
+      "no": "23",
+      "prod": {
+        "effort": 2,
+        "music": "Akustik ringan: marimba, gitar, ukulele",
+        "bpm": "100–115",
+        "vo": "Ramah dan bercerita",
+        "tools": [
+          "After Effects",
+          "Remotion",
+          "Lottie"
+        ]
+      },
+      "use_cases": [
+        {
+          "letter": "M",
+          "need": "Masyarakat / TJSL"
+        },
+        {
+          "letter": "O",
+          "need": "Onboarding Karyawan"
+        },
+        {
+          "letter": "Y",
+          "need": "Youth & Rekrutmen Talenta"
+        }
+      ]
+    },
+    {
+      "id": "paper-layers",
+      "name": "Cut-Paper Layers",
+      "cat": "Edukasi & Explainer",
+      "tier": "Inti",
+      "desc": "Lapisan kertas potong (laut, bukit, matahari) dalam ramp warna PLN NR, bergerak parallax lembut. Ramah, hangat, tetap rapi.",
+      "when": "Cerita lingkungan, profil lokasi, edukasi sekolah, video TJSL.",
+      "aud": "Publik, pelajar, komunitas",
+      "formats": [
+        "16:9",
+        "1:1",
+        "9:16"
+      ],
+      "dur": "30–90 dtk",
+      "pace": "Tenang",
+      "ease": "brand-standard",
+      "transition": "Wave Wipe",
+      "palette": [
+        "#FFF100",
+        "#B9DE41",
+        "#94DA63",
+        "#00A2BA",
+        "#00ADEF",
+        "#005F89"
+      ],
+      "type": "PT Sans Bold judul di langit, maksimal dua baris",
+      "beats": [
+        "Langit dan matahari",
+        "Lapisan bukit naik satu per satu",
+        "Turbin dan panel muncul",
+        "Judul turun pelan"
+      ],
+      "dont": [
+        "Bayangan antarlapis tipis dan tajam, tanpa blur besar",
+        "Maksimal 5 lapisan"
+      ],
+      "letters": [
+        "L",
+        "M"
+      ],
+      "no": "24",
+      "prod": {
+        "effort": 2,
+        "music": "Akustik ringan: marimba, gitar, ukulele",
+        "bpm": "100–115",
+        "vo": "Ramah dan bercerita",
+        "tools": [
+          "After Effects",
+          "Remotion",
+          "Lottie"
+        ]
+      },
+      "use_cases": [
+        {
+          "letter": "L",
+          "need": "Lingkungan & Biodiversitas"
+        },
+        {
+          "letter": "M",
+          "need": "Masyarakat / TJSL"
+        }
+      ]
+    },
+    {
+      "id": "kinetic-type",
+      "name": "Kinetic Typography",
+      "cat": "Edukasi & Explainer",
+      "tier": "Inti",
+      "desc": "Kata-kata bergerak, bertumpuk, dan berganti skala mengikuti ritme narasi. Paling efektif untuk pesan pendek yang harus diingat.",
+      "when": "Pesan Direksi, kampanye nilai, teaser acara, ringkasan 30 detik.",
+      "aud": "Karyawan, publik muda",
+      "formats": [
+        "9:16",
+        "1:1",
+        "16:9"
+      ],
+      "dur": "15–45 dtk",
+      "pace": "Cepat",
+      "ease": "emphasis",
+      "transition": "Cross-fade 220 ms",
+      "palette": [
+        "#FFFFFF",
+        "#00507C",
+        "#00ADEF",
+        "#FFF100"
+      ],
+      "type": "PT Sans Bold 700, 3 tingkat ukuran saja (display, sedang, kecil)",
+      "beats": [
+        "Kata pembuka besar",
+        "Kata kedua menggeser kata pertama",
+        "Angka kunci membesar",
+        "Kunci dengan lockup"
+      ],
+      "dont": [
+        "Kecepatan baca maksimal 3 kata per detik",
+        "Tanpa efek getar, glitch, atau elastic"
+      ],
+      "letters": [
+        "S",
+        "V"
+      ],
+      "no": "25",
+      "prod": {
+        "effort": 1,
+        "music": "Akustik ringan: marimba, gitar, ukulele",
+        "bpm": "100–115",
+        "vo": "Ramah dan bercerita",
+        "tools": [
+          "After Effects",
+          "Remotion",
+          "Lottie"
+        ]
+      },
+      "use_cases": [
+        {
+          "letter": "S",
+          "need": "Sosial Media & Kampanye"
+        },
+        {
+          "letter": "V",
+          "need": "Visi, Misi & Budaya AKHLAK"
+        }
+      ]
+    },
+    {
+      "id": "glass-tech",
+      "name": "Glass Tech Cards",
+      "cat": "Edukasi & Explainer",
+      "tier": "Spesialis",
+      "desc": "Kartu kaca semi-transparan di atas gradient biru, terhubung oleh garis berdenyut. Cocok untuk arsitektur sistem dan platform digital.",
+      "when": "Explainer sistem informasi, SCADA, ERP, digital twin, alur data.",
+      "aud": "Tim TI, mitra teknologi, manajemen",
+      "formats": [
+        "16:9"
+      ],
+      "dur": "30–90 dtk",
+      "pace": "Sedang",
+      "ease": "brand-standard",
+      "transition": "Cross-fade 220 ms",
+      "palette": [
+        "#005F89",
+        "#0087BE",
+        "#00ADEF",
+        "#FFFFFF",
+        "#FFF100"
+      ],
+      "type": "PT Sans Bold judul kartu, Regular 1 baris keterangan",
+      "beats": [
+        "Latar gradient biru",
+        "Kartu muncul per lapisan arsitektur",
+        "Garis data berdenyut antar kartu",
+        "Sorot alur kritis kuning"
+      ],
+      "dont": [
+        "Efek kaca hanya untuk UI, tidak untuk foto",
+        "Maksimal 6 kartu"
+      ],
+      "letters": [
+        "T"
+      ],
+      "no": "26",
+      "prod": {
+        "effort": 1,
+        "music": "Akustik ringan: marimba, gitar, ukulele",
+        "bpm": "100–115",
+        "vo": "Ramah dan bercerita",
+        "tools": [
+          "After Effects",
+          "Remotion",
+          "Lottie"
+        ]
+      },
+      "use_cases": [
+        {
+          "letter": "T",
+          "need": "Teknologi Baru (BESS, Hidrogen, Digital Twin)"
+        }
+      ]
+    },
+    {
+      "id": "hex-rail",
+      "name": "Numbered Hex Rail",
+      "cat": "Edukasi & Explainer",
+      "tier": "Signature",
+      "desc": "Hexagon kuning bernomor di atas gradient biru, terhubung rel kuning 5 px yang terisi seiring langkah. Perangkat urutan resmi PLN NR.",
+      "when": "SOP, tahapan pengadaan, alur persetujuan, langkah onboarding, proses kepatuhan.",
+      "aud": "Karyawan, vendor, auditor",
+      "formats": [
+        "16:9",
+        "9:16"
+      ],
+      "dur": "20–60 dtk",
+      "pace": "Sedang",
+      "ease": "brand-standard",
+      "transition": "Wave Wipe",
+      "palette": [
+        "#00ADEF",
+        "#0087BE",
+        "#005F89",
+        "#FFF100",
+        "#00507C"
+      ],
+      "type": "Angka dua digit (01–06) PT Sans Bold biru di hexagon kuning",
+      "beats": [
+        "Gradient biru",
+        "Rel mulai terisi",
+        "Tiap hexagon menyala saat rel tiba",
+        "Label langkah muncul di bawah"
+      ],
+      "dont": [
+        "Maksimal 6 langkah per layar",
+        "Label maksimal 3 kata"
+      ],
+      "letters": [
+        "O",
+        "Q"
+      ],
+      "no": "27",
+      "prod": {
+        "effort": 1,
+        "music": "Akustik ringan: marimba, gitar, ukulele",
+        "bpm": "100–115",
+        "vo": "Ramah dan bercerita",
+        "tools": [
+          "After Effects",
+          "Remotion",
+          "Lottie"
+        ]
+      },
+      "use_cases": [
+        {
+          "letter": "O",
+          "need": "Onboarding Karyawan"
+        },
+        {
+          "letter": "Q",
+          "need": "Quality, GRC & Kepatuhan"
+        }
+      ]
+    },
+    {
+      "id": "batik-generative",
+      "name": "Batik Kawung Generative",
+      "cat": "Nusantara & Budaya",
+      "tier": "Signature",
+      "desc": "Pola kawung tersusun secara generatif dalam ramp warna PLN NR, berputar dan berubah menjadi matahari. Identitas Indonesia yang modern.",
+      "when": "Hari besar nasional, HUT perusahaan, pameran internasional, background panggung.",
+      "aud": "Publik, tamu internasional",
+      "formats": [
+        "16:9",
+        "1:1",
+        "9:16"
+      ],
+      "dur": "10–60 dtk (loop)",
+      "pace": "Tenang",
+      "ease": "linear (loop)",
+      "transition": "Hex Bloom",
+      "palette": [
+        "#00507C",
+        "#00A2BA",
+        "#B9DE41",
+        "#FFF100",
+        "#00ADEF"
+      ],
+      "type": "PT Sans Bold judul di bidang navy polos, tidak di atas pola",
+      "beats": [
+        "Satu motif kawung",
+        "Motif berlipat menjadi pola",
+        "Pola berputar dan warnanya mengalir",
+        "Bidang navy membuka untuk judul"
+      ],
+      "dont": [
+        "Hormati pakem motif; konsultasikan untuk motif sakral",
+        "Teks tidak boleh di atas pola padat"
+      ],
+      "letters": [
+        "N",
+        "X"
+      ],
+      "no": "28",
+      "prod": {
+        "effort": 2,
+        "music": "Gamelan atau kolintang modern dengan pad",
+        "bpm": "70–90",
+        "vo": "Bertutur dan hangat",
+        "tools": [
+          "p5.js / Canvas",
+          "After Effects"
+        ]
+      },
+      "use_cases": [
+        {
+          "letter": "N",
+          "need": "Nusantara Portfolio"
+        },
+        {
+          "letter": "X",
+          "need": "eXhibition & Booth Loop"
+        }
+      ]
+    },
+    {
+      "id": "wayang-silhouette",
+      "name": "Wayang Shadow Story",
+      "cat": "Nusantara & Budaya",
+      "tier": "Spesialis",
+      "desc": "Kelir bercahaya dengan siluet bertangkai, gunungan, dan turbin. Cara bercerita tradisi untuk pesan transisi energi.",
+      "when": "Sosialisasi ke masyarakat, acara budaya, cerita sejarah kelistrikan, edukasi sekolah.",
+      "aud": "Komunitas, pelajar, publik umum",
+      "formats": [
+        "16:9"
+      ],
+      "dur": "60–180 dtk",
+      "pace": "Tenang",
+      "ease": "brand-standard",
+      "transition": "Cross-fade 220 ms",
+      "palette": [
+        "#00507C",
+        "#FFF7B0",
+        "#FFF100",
+        "#005F89"
+      ],
+      "type": "PT Sans Italic untuk narasi bertutur, Bold untuk judul babak",
+      "beats": [
+        "Kelir menyala dari tengah",
+        "Gunungan masuk membuka cerita",
+        "Siluet tokoh dan turbin bergerak",
+        "Gunungan menutup babak"
+      ],
+      "dont": [
+        "Jangan memakai tokoh wayang tertentu tanpa konsultasi",
+        "Tidak untuk konteks formal investor"
+      ],
+      "letters": [
+        "M"
+      ],
+      "no": "29",
+      "prod": {
+        "effort": 3,
+        "music": "Gamelan atau kolintang modern dengan pad",
+        "bpm": "70–90",
+        "vo": "Bertutur dan hangat",
+        "tools": [
+          "After Effects",
+          "Generative (p5/Canvas)"
+        ]
+      },
+      "use_cases": [
+        {
+          "letter": "M",
+          "need": "Masyarakat / TJSL"
+        }
+      ]
+    },
+    {
+      "id": "watercolor",
+      "name": "Watercolor Nusantara",
+      "cat": "Nusantara & Budaya",
+      "tier": "Inti",
+      "desc": "Sapuan cat air transparan untuk langit, laut, dan waduk, dengan PLTS terapung tergambar halus. Lembut untuk cerita lingkungan dan manusia.",
+      "when": "Laporan keberlanjutan, cerita biodiversitas, video TJSL, ucapan hari besar.",
+      "aud": "Publik, lender ESG, komunitas",
+      "formats": [
+        "16:9",
+        "1:1"
+      ],
+      "dur": "20–60 dtk",
+      "pace": "Tenang",
+      "ease": "brand-standard",
+      "transition": "Cross-fade 220 ms",
+      "palette": [
+        "#FCFDF7",
+        "#00ADEF",
+        "#00A2BA",
+        "#B9DE41",
+        "#FFF100"
+      ],
+      "type": "PT Sans Bold judul, PT Sans Italic kutipan",
+      "beats": [
+        "Kertas kosong",
+        "Sapuan langit menyebar",
+        "Waduk dan panel terapung muncul",
+        "Judul dan kutipan"
+      ],
+      "dont": [
+        "Jangan tumpuk lebih dari 3 sapuan di satu area",
+        "Hindari warna di luar ramp brand"
+      ],
+      "letters": [
+        "L",
+        "W"
+      ],
+      "no": "30",
+      "prod": {
+        "effort": 3,
+        "music": "Gamelan atau kolintang modern dengan pad",
+        "bpm": "70–90",
+        "vo": "Bertutur dan hangat",
+        "tools": [
+          "After Effects",
+          "Generative (p5/Canvas)"
+        ]
+      },
+      "use_cases": [
+        {
+          "letter": "L",
+          "need": "Lingkungan & Biodiversitas"
+        },
+        {
+          "letter": "W",
+          "need": "Water: PLTA & PLTS Terapung"
+        }
+      ]
+    },
+    {
+      "id": "travel-poster",
+      "name": "Nusantara Travel Poster",
+      "cat": "Nusantara & Budaya",
+      "tier": "Inti",
+      "desc": "Poster datar gaya pertengahan abad: gunung, uap panas bumi, sinar matahari, tipografi besar. Membanggakan lokasi pembangkit.",
+      "when": "Seri profil lokasi, kampanye media sosial, merchandise, pameran.",
+      "aud": "Publik, karyawan, tamu",
+      "formats": [
+        "9:16",
+        "1:1",
+        "16:9"
+      ],
+      "dur": "8–20 dtk",
+      "pace": "Tenang",
+      "ease": "brand-standard",
+      "transition": "Chevron Push",
+      "palette": [
+        "#FFF100",
+        "#B9DE41",
+        "#00A2BA",
+        "#005F89",
+        "#00507C"
+      ],
+      "type": "PT Sans Bold UPPERCASE besar dengan tracking lebar untuk nama lokasi",
+      "beats": [
+        "Langit bergradasi",
+        "Sinar matahari berputar pelan",
+        "Uap naik dari gunung",
+        "Nama lokasi terkunci di bawah"
+      ],
+      "dont": [
+        "Nama lokasi harus sesuai aset resmi",
+        "Tanpa tekstur kertas tua berlebihan"
+      ],
+      "letters": [
+        "N",
+        "S"
+      ],
+      "no": "31",
+      "prod": {
+        "effort": 2,
+        "music": "Gamelan atau kolintang modern dengan pad",
+        "bpm": "70–90",
+        "vo": "Bertutur dan hangat",
+        "tools": [
+          "After Effects",
+          "Generative (p5/Canvas)"
+        ]
+      },
+      "use_cases": [
+        {
+          "letter": "N",
+          "need": "Nusantara Portfolio"
+        },
+        {
+          "letter": "S",
+          "need": "Sosial Media & Kampanye"
+        }
+      ]
+    },
+    {
+      "id": "tenun-weave",
+      "name": "Tenun Weave Lines",
+      "cat": "Nusantara & Budaya",
+      "tier": "Spesialis",
+      "desc": "Benang-benang warna energi saling menganyam membentuk pola tenun, menjadi metafora kolaborasi dan jaringan listrik.",
+      "when": "Kemitraan, sinergi grup PLN, pembuka forum, transisi tematik.",
+      "aud": "Mitra, karyawan, publik",
+      "formats": [
+        "16:9",
+        "1:1"
+      ],
+      "dur": "8–20 dtk",
+      "pace": "Tenang",
+      "ease": "brand-standard",
+      "transition": "Line Draw",
+      "palette": [
+        "#00507C",
+        "#FFF100",
+        "#B9DE41",
+        "#00A2BA",
+        "#00ADEF"
+      ],
+      "type": "PT Sans Bold di panel navy tengah",
+      "beats": [
+        "Benang vertikal turun",
+        "Benang horizontal menganyam",
+        "Pola terkunci",
+        "Judul di jendela tengah"
+      ],
+      "dont": [
+        "Maksimal 5 warna benang dari ramp",
+        "Hindari motif tenun daerah tertentu tanpa izin konteks"
+      ],
+      "letters": [
+        "Z"
+      ],
+      "no": "32",
+      "prod": {
+        "effort": 1,
+        "music": "Gamelan atau kolintang modern dengan pad",
+        "bpm": "70–90",
+        "vo": "Bertutur dan hangat",
+        "tools": [
+          "After Effects",
+          "Generative (p5/Canvas)"
+        ]
+      },
+      "use_cases": [
+        {
+          "letter": "Z",
+          "need": "Zero Accident & Zero Emission"
+        }
+      ]
+    },
+    {
+      "id": "vertical-reels",
+      "name": "Vertical Reels Hook",
+      "cat": "Kampanye & Sosial",
+      "tier": "Inti",
+      "desc": "Format 9:16 dengan hook 2 detik pertama, caption besar, progress bar, dan potongan cepat. Disiplin platform, tetap disiplin merek.",
+      "when": "Instagram Reels, TikTok, YouTube Shorts, LinkedIn video vertikal.",
+      "aud": "Publik muda, calon talenta",
+      "formats": [
+        "9:16"
+      ],
+      "dur": "15–45 dtk",
+      "pace": "Cepat",
+      "ease": "emphasis",
+      "transition": "Cross-fade 220 ms",
+      "palette": [
+        "#00507C",
+        "#FFFFFF",
+        "#FFF100",
+        "#00ADEF"
+      ],
+      "type": "PT Sans Bold 64–80 px caption, maksimal 2 baris di zona aman tengah",
+      "beats": [
+        "Hook pertanyaan atau angka dalam 2 dtk",
+        "Tiga potongan bukti 3–4 dtk",
+        "Caption mengikuti suara",
+        "CTA dan lockup 3 dtk"
+      ],
+      "dont": [
+        "Jauhkan teks dari zona UI platform (atas 14%, bawah 20%)",
+        "Tanpa emoji di grafik"
+      ],
+      "letters": [
+        "S",
+        "Y"
+      ],
+      "no": "33",
+      "prod": {
+        "effort": 1,
+        "music": "Pop elektronik upbeat, hook di 2 dtk pertama",
+        "bpm": "110–125",
+        "vo": "Energik dan muda",
+        "tools": [
+          "After Effects",
+          "CapCut/Premiere",
+          "Remotion"
+        ]
+      },
+      "use_cases": [
+        {
+          "letter": "S",
+          "need": "Sosial Media & Kampanye"
+        },
+        {
+          "letter": "Y",
+          "need": "Youth & Rekrutmen Talenta"
+        }
+      ]
+    },
+    {
+      "id": "hero-reveal",
+      "name": "Hero Asset Reveal",
+      "cat": "Kampanye & Sosial",
+      "tier": "Inti",
+      "desc": "Panggung gelap, satu aset utama (modul panel, kontainer BESS, nacelle) disapu cahaya rim, berputar pelan. Gaya peluncuran premium.",
+      "when": "Peluncuran teknologi, penandatanganan kerja sama, pembukaan pameran, teaser COD.",
+      "aud": "Investor, media, mitra",
+      "formats": [
+        "16:9",
+        "1:1"
+      ],
+      "dur": "10–30 dtk",
+      "pace": "Tenang",
+      "ease": "emphasis",
+      "transition": "Lens Iris",
+      "palette": [
+        "#00243A",
+        "#00507C",
+        "#00ADEF",
+        "#FFF100",
+        "#FFFFFF"
+      ],
+      "type": "PT Sans Bold judul tunggal, angka spesifikasi tabular",
+      "beats": [
+        "Gelap total",
+        "Sapuan cahaya memperlihatkan siluet",
+        "Aset berputar dan spesifikasi muncul",
+        "Judul dan tanggal"
+      ],
+      "dont": [
+        "Spesifikasi harus dari dokumen resmi",
+        "Tanpa lens flare berlebihan"
+      ],
+      "letters": [
+        "I",
+        "T"
+      ],
+      "no": "34",
+      "prod": {
+        "effort": 3,
+        "music": "Pop elektronik upbeat, hook di 2 dtk pertama",
+        "bpm": "110–125",
+        "vo": "Energik dan muda",
+        "tools": [
+          "Blender",
+          "Cinema 4D",
+          "After Effects"
+        ]
+      },
+      "use_cases": [
+        {
+          "letter": "I",
+          "need": "Investor & Kemitraan"
+        },
+        {
+          "letter": "T",
+          "need": "Teknologi Baru (BESS, Hidrogen, Digital Twin)"
+        }
+      ]
+    },
+    {
+      "id": "night-glow",
+      "name": "Night Grid Glow",
+      "cat": "Kampanye & Sosial",
+      "tier": "Inti",
+      "desc": "Kota dan desa di malam hari, jendela menyala satu per satu mengikuti garis transmisi bercahaya. Emosi utama: listrik yang sampai ke rumah.",
+      "when": "Hari Listrik Nasional, kampanye elektrifikasi, layar booth pameran, video penutup acara.",
+      "aud": "Publik umum",
+      "formats": [
+        "16:9",
+        "9:16",
+        "1:1"
+      ],
+      "dur": "15–40 dtk",
+      "pace": "Tenang",
+      "ease": "brand-standard",
+      "transition": "Energy Sweep",
+      "palette": [
+        "#00243A",
+        "#00507C",
+        "#FFF100",
+        "#00ADEF",
+        "#B9DE41"
+      ],
+      "type": "PT Sans Bold di langit malam, kontras tinggi",
+      "beats": [
+        "Siluet gelap",
+        "Garis transmisi menyala dari pembangkit",
+        "Jendela menyala berurutan",
+        "Pesan dan lockup"
+      ],
+      "dont": [
+        "Glow lembut, tanpa neon berlebihan",
+        "Kuning hanya untuk cahaya"
+      ],
+      "letters": [
+        "X"
+      ],
+      "no": "35",
+      "prod": {
+        "effort": 2,
+        "music": "Pop elektronik upbeat, hook di 2 dtk pertama",
+        "bpm": "110–125",
+        "vo": "Energik dan muda",
+        "tools": [
+          "After Effects",
+          "CapCut/Premiere",
+          "Remotion"
+        ]
+      },
+      "use_cases": [
+        {
+          "letter": "X",
+          "need": "eXhibition & Booth Loop"
+        }
+      ]
+    },
+    {
+      "id": "low-poly",
+      "name": "Low-Poly Landscape",
+      "cat": "Kampanye & Sosial",
+      "tier": "Spesialis",
+      "desc": "Lanskap faset segitiga dalam ramp energi, kamera melayang pelan. Modern, ringan, cocok untuk konten rekrutmen dan teknologi.",
+      "when": "Rekrutmen talenta, employer branding, intro webinar teknologi, background presentasi.",
+      "aud": "Mahasiswa, profesional muda",
+      "formats": [
+        "16:9",
+        "9:16"
+      ],
+      "dur": "10–30 dtk",
+      "pace": "Sedang",
+      "ease": "brand-standard",
+      "transition": "Chevron Push",
+      "palette": [
+        "#005F89",
+        "#00A2BA",
+        "#B9DE41",
+        "#FFF100",
+        "#00ADEF"
+      ],
+      "type": "PT Sans Bold judul besar di ruang langit",
+      "beats": [
+        "Faset muncul dari bawah",
+        "Kamera bergeser",
+        "Turbin dan panel low-poly",
+        "Judul dan ajakan"
+      ],
+      "dont": [
+        "Faset maksimal 4 warna per bidang",
+        "Tanpa efek glitch"
+      ],
+      "letters": [
+        "Y"
+      ],
+      "no": "36",
+      "prod": {
+        "effort": 2,
+        "music": "Pop elektronik upbeat, hook di 2 dtk pertama",
+        "bpm": "110–125",
+        "vo": "Energik dan muda",
+        "tools": [
+          "After Effects",
+          "CapCut/Premiere",
+          "Remotion"
+        ]
+      },
+      "use_cases": [
+        {
+          "letter": "Y",
+          "need": "Youth & Rekrutmen Talenta"
+        }
+      ]
+    },
+    {
+      "id": "soft-clay",
+      "name": "Soft 3D Clay",
+      "cat": "Kampanye & Sosial",
+      "tier": "Spesialis",
+      "desc": "Objek bulat lembut seperti mainan tanah liat: matahari, turbin, rumah. Gerak memantul halus tanpa elastis berlebihan. Ramah anak.",
+      "when": "Edukasi energi untuk sekolah, TJSL, konten keluarga, kampanye hemat energi.",
+      "aud": "Anak, keluarga, komunitas",
+      "formats": [
+        "1:1",
+        "9:16",
+        "16:9"
+      ],
+      "dur": "20–60 dtk",
+      "pace": "Sedang",
+      "ease": "entrance",
+      "transition": "Cross-fade 220 ms",
+      "palette": [
+        "#EAF6FB",
+        "#00ADEF",
+        "#B9DE41",
+        "#FFF100",
+        "#00507C"
+      ],
+      "type": "PT Sans Bold, kalimat pendek ramah anak",
+      "beats": [
+        "Ruang pastel",
+        "Objek jatuh pelan dan mendarat",
+        "Turbin berputar, matahari tersenyum",
+        "Pesan sederhana"
+      ],
+      "dont": [
+        "Tanpa overshoot/bounce besar",
+        "Wajah karakter hanya pada objek non-manusia"
+      ],
+      "letters": [
+        "M",
+        "Y"
+      ],
+      "no": "37",
+      "prod": {
+        "effort": 3,
+        "music": "Pop elektronik upbeat, hook di 2 dtk pertama",
+        "bpm": "110–125",
+        "vo": "Energik dan muda",
+        "tools": [
+          "Blender",
+          "Cinema 4D"
+        ]
+      },
+      "use_cases": [
+        {
+          "letter": "M",
+          "need": "Masyarakat / TJSL"
+        },
+        {
+          "letter": "Y",
+          "need": "Youth & Rekrutmen Talenta"
+        }
+      ]
+    },
+    {
+      "id": "particle-field",
+      "name": "Particle Energy Field",
+      "cat": "Kampanye & Sosial",
+      "tier": "Spesialis",
+      "desc": "Ribuan partikel mengalir seperti angin dan arus laut, berkumpul membentuk hexagon atau angka. Generatif, cocok untuk layar besar.",
+      "when": "Layar LED panggung, booth pameran, intro konferensi, background keynote Direksi.",
+      "aud": "Tamu acara, publik",
+      "formats": [
+        "16:9",
+        "ultra-wide"
+      ],
+      "dur": "Loop 30–120 dtk",
+      "pace": "Tenang",
+      "ease": "linear (loop)",
+      "transition": "Hex Bloom",
+      "palette": [
+        "#00507C",
+        "#00ADEF",
+        "#00A2BA",
+        "#B9DE41",
+        "#FFF100"
+      ],
+      "type": "PT Sans Bold judul besar dengan jarak aman dari partikel padat",
+      "beats": [
+        "Partikel mengalir acak",
+        "Arus membentuk pita gradient",
+        "Partikel berkumpul membentuk hexagon",
+        "Hexagon pecah kembali menjadi arus"
+      ],
+      "dont": [
+        "Jangan membentuk petir (petir khusus logo)",
+        "Kepadatan rendah di area teks"
+      ],
+      "letters": [
+        "X"
+      ],
+      "no": "38",
+      "prod": {
+        "effort": 2,
+        "music": "Pop elektronik upbeat, hook di 2 dtk pertama",
+        "bpm": "110–125",
+        "vo": "Energik dan muda",
+        "tools": [
+          "TouchDesigner",
+          "Canvas/WebGL"
+        ]
+      },
+      "use_cases": [
+        {
+          "letter": "X",
+          "need": "eXhibition & Booth Loop"
+        }
+      ]
+    },
+    {
+      "id": "safety-pictogram",
+      "name": "K3 Safety Pictogram",
+      "cat": "K3 & Operasional",
+      "tier": "Inti",
+      "desc": "Rambu wajib (lingkaran biru) dan peringatan (segitiga kuning) bergaya ISO 7010 yang muncul berurutan dengan penjelasan singkat. Biru dan kuning PLN NR kebetulan sejalan dengan standar rambu.",
+      "when": "Safety induction, safety briefing harian, video izin kerja, kampanye K3.",
+      "aud": "Karyawan, kontraktor, tamu lokasi",
+      "formats": [
+        "16:9",
+        "9:16"
+      ],
+      "dur": "30–120 dtk",
+      "pace": "Sedang",
+      "ease": "brand-standard",
+      "transition": "Cross-fade 220 ms",
+      "palette": [
+        "#FFFFFF",
+        "#00507C",
+        "#0087BE",
+        "#FFF100"
+      ],
+      "type": "PT Sans Bold perintah singkat (Wajib Helm), Regular alasan",
+      "beats": [
+        "Area kerja diperkenalkan",
+        "Rambu muncul satu per satu",
+        "Perintah + alasan tiap rambu",
+        "Ringkasan APD lengkap"
+      ],
+      "dont": [
+        "Gunakan rambu standar resmi, jangan stilasi",
+        "Merah larangan hanya untuk rambu larangan resmi"
+      ],
+      "letters": [
+        "H",
+        "Z"
+      ],
+      "no": "39",
+      "prod": {
+        "effort": 1,
+        "music": "Minimal, perkusi lembut, tanpa ketegangan dramatis",
+        "bpm": "85–95",
+        "vo": "Tegas dan jelas",
+        "tools": [
+          "After Effects",
+          "Remotion"
+        ]
+      },
+      "use_cases": [
+        {
+          "letter": "H",
+          "need": "HSE / K3"
+        },
+        {
+          "letter": "Z",
+          "need": "Zero Accident & Zero Emission"
+        }
+      ]
+    },
+    {
+      "id": "sop-checklist",
+      "name": "SOP Checklist Flow",
+      "cat": "K3 & Operasional",
+      "tier": "Inti",
+      "desc": "Daftar periksa yang tercentang satu per satu, dengan cincin progres dan nomor langkah. Jelas untuk prosedur yang tidak boleh terlewat.",
+      "when": "LOTO, izin kerja, prosedur start-up/shut-down, audit kepatuhan, GRC.",
+      "aud": "Operator, kontraktor, auditor",
+      "formats": [
+        "16:9",
+        "9:16"
+      ],
+      "dur": "30–120 dtk",
+      "pace": "Sedang",
+      "ease": "brand-standard",
+      "transition": "Cross-fade 220 ms",
+      "palette": [
+        "#F1F6FA",
+        "#00507C",
+        "#00ADEF",
+        "#00A2BA"
+      ],
+      "type": "PT Sans Bold tiap langkah, satu klausa",
+      "beats": [
+        "Judul prosedur",
+        "Langkah muncul dan tercentang",
+        "Cincin progres terisi",
+        "Status selesai dengan glyph ●"
+      ],
+      "dont": [
+        "Isi prosedur harus sama dengan SOP berlaku",
+        "Satu prosedur per video"
+      ],
+      "letters": [
+        "H",
+        "Q"
+      ],
+      "no": "40",
+      "prod": {
+        "effort": 1,
+        "music": "Minimal, perkusi lembut, tanpa ketegangan dramatis",
+        "bpm": "85–95",
+        "vo": "Tegas dan jelas",
+        "tools": [
+          "After Effects",
+          "Remotion"
+        ]
+      },
+      "use_cases": [
+        {
+          "letter": "H",
+          "need": "HSE / K3"
+        },
+        {
+          "letter": "Q",
+          "need": "Quality, GRC & Kepatuhan"
+        }
+      ]
+    },
+    {
+      "id": "site-walkthrough",
+      "name": "Top-Down Site Walkthrough",
+      "cat": "K3 & Operasional",
+      "tier": "Spesialis",
+      "desc": "Denah lokasi dari atas dengan jalur pejalan aman, zona bahaya bergaris, dan titik kumpul. Ideal untuk induksi tamu dan pembelajaran insiden.",
+      "when": "Induksi lokasi, jalur evakuasi, lesson learned insiden, kampanye zero accident.",
+      "aud": "Tamu, kontraktor, karyawan baru",
+      "formats": [
+        "16:9",
+        "9:16"
+      ],
+      "dur": "45–120 dtk",
+      "pace": "Sedang",
+      "ease": "brand-standard",
+      "transition": "Lens Iris",
+      "palette": [
+        "#F1F6FA",
+        "#00507C",
+        "#00ADEF",
+        "#FFF100",
+        "#00A2BA"
+      ],
+      "type": "PT Sans Bold label zona UPPERCASE",
+      "beats": [
+        "Denah tergambar",
+        "Zona bahaya menyala bergaris",
+        "Ikon orang berjalan di jalur aman",
+        "Titik kumpul berdenyut"
+      ],
+      "dont": [
+        "Denah harus sesuai layout resmi",
+        "Kronologi insiden tanpa menyebut nama individu"
+      ],
+      "letters": [
+        "H",
+        "Z"
+      ],
+      "no": "41",
+      "prod": {
+        "effort": 2,
+        "music": "Minimal, perkusi lembut, tanpa ketegangan dramatis",
+        "bpm": "85–95",
+        "vo": "Tegas dan jelas",
+        "tools": [
+          "After Effects",
+          "Remotion"
+        ]
+      },
+      "use_cases": [
+        {
+          "letter": "H",
+          "need": "HSE / K3"
+        },
+        {
+          "letter": "Z",
+          "need": "Zero Accident & Zero Emission"
+        }
+      ]
+    },
+    {
+      "id": "golden-hour",
+      "name": "Golden-Hour Cinematic",
+      "cat": "Dokumenter & Sinematik",
+      "tier": "Signature",
+      "desc": "Langit senja hangat bertemu laut teal, turbin berputar, letterbox sinematik, dorongan kamera pelan. Fotografi khas PLN NR dalam gerak.",
+      "when": "Video COD, groundbreaking, company profile, video ulang tahun, pembuka RUPS.",
+      "aud": "Publik, media, pemegang saham",
+      "formats": [
+        "16:9",
+        "2.39:1"
+      ],
+      "dur": "60–180 dtk",
+      "pace": "Tenang",
+      "ease": "brand-standard",
+      "transition": "Cross-fade 220 ms",
+      "palette": [
+        "#FFF100",
+        "#B9DE41",
+        "#00A2BA",
+        "#005F89",
+        "#00507C"
+      ],
+      "type": "PT Sans Bold judul di letterbox, Regular lokasi dan tanggal",
+      "beats": [
+        "Wide shot senja",
+        "Push-in pelan 5–8%",
+        "Lower third: lokasi dan kapasitas",
+        "Lockup di frame terakhir"
+      ],
+      "dont": [
+        "Tanpa grain, duotone, atau hitam-putih",
+        "Warna footage hangat-dingin, jangan desaturasi"
+      ],
+      "letters": [
+        "A",
+        "C",
+        "G"
+      ],
+      "no": "42",
+      "prod": {
+        "effort": 2,
+        "music": "Orkestral sinematik, strings dan piano",
+        "bpm": "70–85",
+        "vo": "Reflektif dan bermakna",
+        "tools": [
+          "Footage drone",
+          "DaVinci Resolve"
+        ]
+      },
+      "use_cases": [
+        {
+          "letter": "A",
+          "need": "Annual Report & RUPS"
+        },
+        {
+          "letter": "C",
+          "need": "COD & Commissioning"
+        },
+        {
+          "letter": "G",
+          "need": "Groundbreaking & Water Breaking"
+        }
+      ]
+    },
+    {
+      "id": "contour-topo",
+      "name": "Contour Topography",
+      "cat": "Dokumenter & Sinematik",
+      "tier": "Spesialis",
+      "desc": "Garis kontur tergambar berlapis seperti peta topografi, garis pindai drone menyapu dan menandai titik lokasi. Narasi lanskap dan studi lokasi.",
+      "when": "Studi kelayakan PLTA/PLTP, penjelasan daerah tangkapan air, laporan safeguard.",
+      "aud": "Lender, regulator, tim teknis",
+      "formats": [
+        "16:9"
+      ],
+      "dur": "20–60 dtk",
+      "pace": "Tenang",
+      "ease": "brand-standard",
+      "transition": "Line Draw",
+      "palette": [
+        "#00507C",
+        "#7FA7BD",
+        "#00ADEF",
+        "#FFF100"
+      ],
+      "type": "Monospace untuk elevasi, PT Sans Bold untuk nama lokasi",
+      "beats": [
+        "Kontur tergambar dari puncak ke luar",
+        "Garis pindai menyapu",
+        "Titik lokasi ditandai",
+        "Data elevasi dan luas muncul"
+      ],
+      "dont": [
+        "Peta harus bersumber resmi saat rilis",
+        "Tanpa warna hipsometrik pelangi"
+      ],
+      "letters": [
+        "E",
+        "L",
+        "W"
+      ],
+      "no": "43",
+      "prod": {
+        "effort": 2,
+        "music": "Orkestral sinematik, strings dan piano",
+        "bpm": "70–85",
+        "vo": "Reflektif dan bermakna",
+        "tools": [
+          "Premiere/DaVinci",
+          "After Effects"
+        ]
+      },
+      "use_cases": [
+        {
+          "letter": "E",
+          "need": "ESG & Safeguard"
+        },
+        {
+          "letter": "L",
+          "need": "Lingkungan & Biodiversitas"
+        },
+        {
+          "letter": "W",
+          "need": "Water: PLTA & PLTS Terapung"
+        }
+      ]
+    },
+    {
+      "id": "day-night",
+      "name": "Day-to-Night Timelapse",
+      "cat": "Dokumenter & Sinematik",
+      "tier": "Inti",
+      "desc": "Matahari melintas di busur, langit berganti siang ke malam, kurva produksi PLTS naik dan turun mengikutinya, lalu BESS mengambil alih. Satu siklus, satu cerita.",
+      "when": "Menjelaskan intermitensi, peran BESS, hybrid, kampanye zero emission.",
+      "aud": "Publik, regulator, investor",
+      "formats": [
+        "16:9",
+        "1:1"
+      ],
+      "dur": "20–40 dtk",
+      "pace": "Sedang",
+      "ease": "linear (siklus)",
+      "transition": "Cross-fade 220 ms",
+      "palette": [
+        "#00ADEF",
+        "#FFF100",
+        "#00507C",
+        "#B9DE41",
+        "#00A2BA"
+      ],
+      "type": "PT Sans Bold jam (06.00, 12.00, 18.00) tabular",
+      "beats": [
+        "Fajar, produksi nol",
+        "Siang, kurva puncak",
+        "Senja, BESS mulai menyuplai",
+        "Malam, lampu kota tetap menyala"
+      ],
+      "dont": [
+        "Kurva produksi harus berbentuk realistis",
+        "Tandai data ilustratif"
+      ],
+      "letters": [
+        "D",
+        "Z"
+      ],
+      "no": "44",
+      "prod": {
+        "effort": 2,
+        "music": "Orkestral sinematik, strings dan piano",
+        "bpm": "70–85",
+        "vo": "Reflektif dan bermakna",
+        "tools": [
+          "Premiere/DaVinci",
+          "After Effects"
+        ]
+      },
+      "use_cases": [
+        {
+          "letter": "D",
+          "need": "Dekarbonisasi & NZE 2060"
+        },
+        {
+          "letter": "Z",
+          "need": "Zero Accident & Zero Emission"
+        }
+      ]
+    },
+    {
+      "id": "authority-ladder",
+      "name": "Authority Ladder Climb",
+      "cat": "Tata Kelola & Keuangan",
+      "tier": "Inti",
+      "desc": "Tangga kewenangan naik anak tangga demi anak tangga sesuai nilai keputusan, sampai organ yang berwenang menyala. Menjawab pertanyaan \"siapa yang memutuskan\" tanpa tabel panjang.",
+      "when": "Usulan investasi, materi persetujuan Direksi/Dekom/RUPS, sosialisasi batas kewenangan.",
+      "aud": "Direksi, Dekom, SPI, unit pengusul",
+      "formats": [
+        "16:9"
+      ],
+      "dur": "15–30 dtk",
+      "pace": "Tenang",
+      "ease": "brand-standard",
+      "transition": "Line Draw",
+      "palette": [
+        "#FFFFFF",
+        "#00507C",
+        "#00ADEF",
+        "#BFD3DE",
+        "#F1F6FA"
+      ],
+      "type": "PT Sans Bold nama organ, angka ambang tabular",
+      "beats": [
+        "Anak tangga kosong dengan nama organ",
+        "Nilai usulan muncul di kiri",
+        "Penanda naik sampai ambang terlewati",
+        "Organ berwenang menyala cyan dengan dasar aturan"
+      ],
+      "dont": [
+        "Ambang nilai wajib sesuai pedoman kewenangan berlaku",
+        "Sebut dasar aturan di layar"
+      ],
+      "letters": [
+        "B"
+      ],
+      "no": "45",
+      "prod": {
+        "effort": 1,
+        "music": "Ambient korporat netral, tanpa melodi menonjol",
+        "bpm": "80–90",
+        "vo": "Formal dan terukur",
+        "tools": [
+          "Remotion",
+          "After Effects"
+        ]
+      },
+      "use_cases": [
+        {
+          "letter": "B",
+          "need": "Board Briefing Direksi"
+        }
+      ]
+    },
+    {
+      "id": "risk-heatmap",
+      "name": "Risk Heatmap Shift",
+      "cat": "Tata Kelola & Keuangan",
+      "tier": "Inti",
+      "desc": "Matriks 5×5 dengan kepadatan navy; titik risiko bergeser dari posisi inheren ke residual setelah mitigasi. Satu gerak menjelaskan efektivitas mitigasi.",
+      "when": "Profil risiko proyek, laporan manajemen risiko triwulanan, materi Komite Audit dan lender.",
+      "aud": "Direksi, Komite Pemantau Risiko, lender",
+      "formats": [
+        "16:9"
+      ],
+      "dur": "20–40 dtk",
+      "pace": "Tenang",
+      "ease": "brand-standard",
+      "transition": "Cross-fade 220 ms",
+      "palette": [
+        "#FFFFFF",
+        "#00507C",
+        "#7FA7BD",
+        "#BFD3DE",
+        "#00ADEF"
+      ],
+      "type": "PT Sans Bold kode risiko (R1–R5), label sumbu UPPERCASE",
+      "beats": [
+        "Matriks dan sumbu",
+        "Titik risiko inheren muncul",
+        "Panah mitigasi, titik bergeser ke residual",
+        "Ringkasan: berapa risiko turun level"
+      ],
+      "dont": [
+        "Tanpa pita merah; kepadatan navy membawa makna",
+        "Maksimal 6 titik risiko per layar"
+      ],
+      "letters": [
+        "B",
+        "Q"
+      ],
+      "no": "46",
+      "prod": {
+        "effort": 1,
+        "music": "Ambient korporat netral, tanpa melodi menonjol",
+        "bpm": "80–90",
+        "vo": "Formal dan terukur",
+        "tools": [
+          "Remotion",
+          "After Effects"
+        ]
+      },
+      "use_cases": [
+        {
+          "letter": "B",
+          "need": "Board Briefing Direksi"
+        },
+        {
+          "letter": "Q",
+          "need": "Quality, GRC & Kepatuhan"
+        }
+      ]
+    },
+    {
+      "id": "covenant-gauge",
+      "name": "Covenant Headroom",
+      "cat": "Tata Kelola & Keuangan",
+      "tier": "Spesialis",
+      "desc": "Garis DSCR proyeksi tergambar di atas garis kovenan, ruang di antaranya terisi sebagai headroom. Lender melihat jarak aman dalam satu gerakan.",
+      "when": "Pembiayaan proyek, monitoring kovenan, materi lender meeting, stress test.",
+      "aud": "Lender, Direktorat Keuangan, Dekom",
+      "formats": [
+        "16:9"
+      ],
+      "dur": "15–30 dtk",
+      "pace": "Tenang",
+      "ease": "brand-standard",
+      "transition": "Line Draw",
+      "palette": [
+        "#FFFFFF",
+        "#00507C",
+        "#00ADEF",
+        "#BFD3DE",
+        "#F1F6FA"
+      ],
+      "type": "PT Sans Bold angka rasio dua desimal dengan \"x\" (1,30x)",
+      "beats": [
+        "Sumbu dan garis kovenan putus-putus",
+        "Garis DSCR tergambar per tahun",
+        "Area headroom terisi",
+        "Titik terendah ditandai dengan nilainya"
+      ],
+      "dont": [
+        "Angka wajib dari model keuangan resmi",
+        "Titik terendah harus disebut, bukan disembunyikan"
+      ],
+      "letters": [
+        "F",
+        "I"
+      ],
+      "no": "47",
+      "prod": {
+        "effort": 1,
+        "music": "Ambient korporat netral, tanpa melodi menonjol",
+        "bpm": "80–90",
+        "vo": "Formal dan terukur",
+        "tools": [
+          "Remotion",
+          "After Effects"
+        ]
+      },
+      "use_cases": [
+        {
+          "letter": "F",
+          "need": "Financing & Green Bond"
+        },
+        {
+          "letter": "I",
+          "need": "Investor & Kemitraan"
+        }
+      ]
+    },
+    {
+      "id": "three-lines",
+      "name": "Three Lines Assurance",
+      "cat": "Tata Kelola & Keuangan",
+      "tier": "Inti",
+      "desc": "Tiga kolom lini pertahanan tersusun, aliran laporan mengalir ke Direksi dan Dekom/Komite Audit. Struktur GRC menjadi mudah diingat.",
+      "when": "Sosialisasi GRC, materi SPI dan Komite Audit, onboarding manajer, audit readiness.",
+      "aud": "Manajer, SPI, Komite Audit",
+      "formats": [
+        "16:9"
+      ],
+      "dur": "30–60 dtk",
+      "pace": "Tenang",
+      "ease": "brand-standard",
+      "transition": "Wave Wipe",
+      "palette": [
+        "#FFFFFF",
+        "#00507C",
+        "#0087BE",
+        "#00ADEF",
+        "#FFF100"
+      ],
+      "type": "PT Sans Bold judul lini, Regular peran satu baris",
+      "beats": [
+        "Organ pengawas di atas",
+        "Lini 1 sampai 3 berdiri bergiliran",
+        "Aliran laporan bergerak ke atas",
+        "Sorot lini yang dibahas"
+      ],
+      "dont": [
+        "Peran sesuai piagam SPI dan pedoman GRC",
+        "Satu lini disorot per beat"
+      ],
+      "letters": [
+        "E",
+        "Q"
+      ],
+      "no": "48",
+      "prod": {
+        "effort": 1,
+        "music": "Ambient korporat netral, tanpa melodi menonjol",
+        "bpm": "80–90",
+        "vo": "Formal dan terukur",
+        "tools": [
+          "Remotion",
+          "After Effects"
+        ]
+      },
+      "use_cases": [
+        {
+          "letter": "E",
+          "need": "ESG & Safeguard"
+        },
+        {
+          "letter": "Q",
+          "need": "Quality, GRC & Kepatuhan"
+        }
+      ]
+    },
+    {
+      "id": "logo-sting",
+      "name": "Logo Sting & Ident",
+      "cat": "Paket Broadcast",
+      "tier": "Signature",
+      "desc": "Ident 3–4 detik: hexagon gradient berkumpul, pita energi melingkar, lalu lockup resmi PLN NR mengunci. Pembuka dan penutup semua video.",
+      "when": "Awal dan akhir setiap video resmi, bumper YouTube, pembuka acara, layar tunggu.",
+      "aud": "Semua audiens",
+      "formats": [
+        "16:9",
+        "9:16",
+        "1:1"
+      ],
+      "dur": "3–4 dtk",
+      "pace": "Sedang",
+      "ease": "emphasis",
+      "transition": "Hex Bloom",
+      "palette": [
+        "#00507C",
+        "#FFF100",
+        "#B9DE41",
+        "#00A2BA",
+        "#00ADEF",
+        "#FFFFFF"
+      ],
+      "type": "Tanpa teks selain lockup resmi dan URL",
+      "beats": [
+        "Navy kosong 0,3 dtk",
+        "Hexagon gradient berkumpul ke tengah",
+        "Pita energi melingkar dan memudar",
+        "Lockup resmi + www.ptplnnr.com, tahan 1,5 dtk"
+      ],
+      "dont": [
+        "Lockup selalu dari aset resmi, jangan digambar ulang atau dianimasikan per huruf",
+        "Satu versi ident untuk semua video"
+      ],
+      "letters": [
+        "C"
+      ],
+      "no": "49",
+      "prod": {
+        "effort": 1,
+        "music": "Sonic logo 2–3 dtk (satu versi untuk semua video)",
+        "bpm": "100–120",
+        "vo": "Tidak ada / mengikuti program",
+        "tools": [
+          "After Effects (MOGRT)",
+          "Lottie",
+          "Remotion"
+        ]
+      },
+      "use_cases": [
+        {
+          "letter": "C",
+          "need": "COD & Commissioning"
+        }
+      ]
+    },
+    {
+      "id": "lower-third",
+      "name": "Lower Third & Name Super",
+      "cat": "Paket Broadcast",
+      "tier": "Signature",
+      "desc": "Bar nama narasumber masuk dengan aksen kuning dan wipe putih, tahan, lalu keluar rapi. Paket wajib untuk wawancara dan liputan.",
+      "when": "Wawancara Direksi, testimoni karyawan dan mitra, liputan acara, video dokumenter.",
+      "aud": "Semua audiens",
+      "formats": [
+        "16:9",
+        "9:16"
+      ],
+      "dur": "4–6 dtk per tampil",
+      "pace": "Sedang",
+      "ease": "entrance",
+      "transition": "Cross-fade 220 ms",
+      "palette": [
+        "#FFFFFF",
+        "#00507C",
+        "#FFF100",
+        "#407C9D"
+      ],
+      "type": "Nama PT Sans Bold 28–32 px, jabatan Regular 18–20 px",
+      "beats": [
+        "Aksen kuning tumbuh 120 ms",
+        "Bar putih wipe dari kiri",
+        "Nama lalu jabatan muncul",
+        "Tahan 4 dtk lalu keluar terbalik"
+      ],
+      "dont": [
+        "Nama dan jabatan diverifikasi ejaannya",
+        "Maksimal dua baris, tidak menutupi wajah"
+      ],
+      "letters": [
+        "C"
+      ],
+      "no": "50",
+      "prod": {
+        "effort": 1,
+        "music": "Stinger 2–4 dtk + bed loop bermerek",
+        "bpm": "100–120",
+        "vo": "Tidak ada / mengikuti program",
+        "tools": [
+          "After Effects (MOGRT)",
+          "Lottie",
+          "Remotion"
+        ]
+      },
+      "use_cases": [
+        {
+          "letter": "C",
+          "need": "COD & Commissioning"
+        }
+      ]
+    },
+    {
+      "id": "caption-pack",
+      "name": "Caption & Subtitle Pack",
+      "cat": "Paket Broadcast",
+      "tier": "Inti",
+      "desc": "Caption Bahasa Indonesia dengan sorotan kata aktif, di zona aman platform. Wajib untuk video sosial yang mayoritas ditonton tanpa suara.",
+      "when": "Semua video media sosial, video internal di layar publik, aksesibilitas tunarungu.",
+      "aud": "Publik, karyawan",
+      "formats": [
+        "9:16",
+        "1:1",
+        "16:9"
+      ],
+      "dur": "Mengikuti video",
+      "pace": "Cepat",
+      "ease": "brand-standard",
+      "transition": "Cross-fade 220 ms",
+      "palette": [
+        "#00507C",
+        "#FFFFFF",
+        "#FFF100"
+      ],
+      "type": "PT Sans Bold 44–56 px (9:16), maksimal 2 baris, 32 karakter per baris",
+      "beats": [
+        "Caption muncul serentak dengan suara",
+        "Kata aktif disorot kuning",
+        "Ganti baris di jeda kalimat",
+        "SRT terpisah untuk platform"
+      ],
+      "dont": [
+        "Jangan menutupi lower third atau logo",
+        "Tanpa emoji dan efek pop berlebihan"
+      ],
+      "letters": [
+        "S"
+      ],
+      "no": "51",
+      "prod": {
+        "effort": 1,
+        "music": "Stinger 2–4 dtk + bed loop bermerek",
+        "bpm": "100–120",
+        "vo": "Tidak ada / mengikuti program",
+        "tools": [
+          "After Effects (MOGRT)",
+          "Lottie",
+          "Remotion"
+        ]
+      },
+      "use_cases": [
+        {
+          "letter": "S",
+          "need": "Sosial Media & Kampanye"
+        }
+      ]
+    },
+    {
+      "id": "countdown",
+      "name": "Event Countdown Loop",
+      "cat": "Paket Broadcast",
+      "tier": "Inti",
+      "desc": "Hitung mundur besar di dalam cincin gradient untuk layar panggung, transisi ke pembukaan acara. Juga bekerja sebagai loop layar tunggu.",
+      "when": "Pembukaan acara, peresmian COD, RUPS, town hall, webinar.",
+      "aud": "Peserta acara",
+      "formats": [
+        "16:9",
+        "ultra-wide"
+      ],
+      "dur": "10–60 dtk",
+      "pace": "Sedang",
+      "ease": "linear (detik)",
+      "transition": "Energy Sweep",
+      "palette": [
+        "#00507C",
+        "#FFF100",
+        "#B9DE41",
+        "#00A2BA",
+        "#00ADEF"
+      ],
+      "type": "PT Sans Bold angka tabular 200+ px di layar LED",
+      "beats": [
+        "Judul acara dan tanggal",
+        "Cincin menghitung detik",
+        "Angka berganti tiap detik",
+        "Energy Sweep ke ident pembuka"
+      ],
+      "dont": [
+        "Angka harus tabular agar tidak bergoyang",
+        "Kontras tinggi untuk LED jarak jauh"
+      ],
+      "letters": [
+        "C",
+        "G",
+        "X"
+      ],
+      "no": "52",
+      "prod": {
+        "effort": 1,
+        "music": "Stinger 2–4 dtk + bed loop bermerek",
+        "bpm": "100–120",
+        "vo": "Tidak ada / mengikuti program",
+        "tools": [
+          "After Effects (MOGRT)",
+          "Lottie",
+          "Remotion"
+        ]
+      },
+      "use_cases": [
+        {
+          "letter": "C",
+          "need": "COD & Commissioning"
+        },
+        {
+          "letter": "G",
+          "need": "Groundbreaking & Water Breaking"
+        },
+        {
+          "letter": "X",
+          "need": "eXhibition & Booth Loop"
+        }
+      ]
+    },
+    {
+      "id": "split-screen",
+      "name": "Before / After Split",
+      "cat": "Paket Broadcast",
+      "tier": "Inti",
+      "desc": "Garis pembatas bergeser memperlihatkan kondisi sebelum dan sesudah: lahan atau waduk kosong menjadi pembangkit. Bukti perubahan paling kuat.",
+      "when": "Progres konstruksi, rehabilitasi lahan, dampak TJSL, laporan tahunan.",
+      "aud": "Publik, lender, Direksi",
+      "formats": [
+        "16:9",
+        "1:1"
+      ],
+      "dur": "6–15 dtk",
+      "pace": "Tenang",
+      "ease": "brand-standard",
+      "transition": "Cross-fade 220 ms",
+      "palette": [
+        "#F1F6FA",
+        "#BFD3DE",
+        "#00507C",
+        "#0087BE",
+        "#FFF100"
+      ],
+      "type": "PT Sans Bold label SEBELUM / SESUDAH dengan tanggal",
+      "beats": [
+        "Kondisi sebelum penuh layar",
+        "Pembatas masuk dari kanan",
+        "Pembatas bergeser bolak-balik pelan",
+        "Label tanggal di dua sisi"
+      ],
+      "dont": [
+        "Sudut kamera dan jam pengambilan harus sama",
+        "Tanggal kedua foto wajib"
+      ],
+      "letters": [
+        "E"
+      ],
+      "no": "53",
+      "prod": {
+        "effort": 1,
+        "music": "Stinger 2–4 dtk + bed loop bermerek",
+        "bpm": "100–120",
+        "vo": "Tidak ada / mengikuti program",
+        "tools": [
+          "After Effects (MOGRT)",
+          "Lottie",
+          "Remotion"
+        ]
+      },
+      "use_cases": [
+        {
+          "letter": "E",
+          "need": "ESG & Safeguard"
+        }
+      ]
+    },
+    {
+      "id": "hydro-flow",
+      "name": "Hydro Water Path",
+      "cat": "Teknik & Engineering",
+      "tier": "Inti",
+      "desc": "Potongan PLTA: air dari waduk masuk penstock, memutar turbin di powerhouse, keluar ke saluran buang. Partikel air membuat aliran energi terlihat.",
+      "when": "Explainer PLTA dan PLTM, pumped storage, studi waduk, edukasi publik.",
+      "aud": "Umum, regulator, mahasiswa",
+      "formats": [
+        "16:9"
+      ],
+      "dur": "45–90 dtk",
+      "pace": "Sedang",
+      "ease": "linear (aliran)",
+      "transition": "Line Draw",
+      "palette": [
+        "#FFFFFF",
+        "#00507C",
+        "#00ADEF",
+        "#0087BE",
+        "#FFF100"
+      ],
+      "type": "PT Sans Bold label komponen UPPERCASE",
+      "beats": [
+        "Waduk dan bendungan",
+        "Air masuk intake dan penstock",
+        "Turbin berputar, generator menyala",
+        "Air kembali ke sungai"
+      ],
+      "dont": [
+        "Arah aliran selalu dari tinggi ke rendah",
+        "Head dan debit hanya bila datanya resmi"
+      ],
+      "letters": [
+        "P",
+        "W"
+      ],
+      "no": "54",
+      "prod": {
+        "effort": 2,
+        "music": "Elektronik bersih dengan tekstur mekanis halus",
+        "bpm": "95–110",
+        "vo": "Teknis dan presisi",
+        "tools": [
+          "Blender",
+          "After Effects",
+          "Remotion"
+        ]
+      },
+      "use_cases": [
+        {
+          "letter": "P",
+          "need": "Pembangkit Explained (PLTS/PLTB/PLTP/PLTA)"
+        },
+        {
+          "letter": "W",
+          "need": "Water: PLTA & PLTS Terapung"
+        }
+      ]
+    },
+    {
+      "id": "geothermal-section",
+      "name": "Geothermal Cross-Section",
+      "cat": "Teknik & Engineering",
+      "tier": "Spesialis",
+      "desc": "Penampang bumi berlapis: uap naik dari reservoir lewat sumur produksi ke pembangkit, air kembali lewat sumur injeksi. Siklus PLTP dalam satu bingkai.",
+      "when": "Explainer PLTP, sosialisasi wilayah kerja panas bumi, materi investor dan regulator.",
+      "aud": "Umum, komunitas sekitar, investor",
+      "formats": [
+        "16:9"
+      ],
+      "dur": "45–90 dtk",
+      "pace": "Tenang",
+      "ease": "linear (aliran)",
+      "transition": "Lens Iris",
+      "palette": [
+        "#00507C",
+        "#005F89",
+        "#0087BE",
+        "#B9DE41",
+        "#FFF100",
+        "#FFFFFF"
+      ],
+      "type": "PT Sans Bold label lapisan, Regular satu kalimat penjelasan",
+      "beats": [
+        "Permukaan dan pembangkit",
+        "Penampang bumi terbuka berlapis",
+        "Uap naik lewat sumur produksi",
+        "Air kembali lewat sumur injeksi"
+      ],
+      "dont": [
+        "Kedalaman ilustratif harus ditandai",
+        "Siklus injeksi wajib ditampilkan (keberlanjutan)"
+      ],
+      "letters": [
+        "P"
+      ],
+      "no": "55",
+      "prod": {
+        "effort": 2,
+        "music": "Elektronik bersih dengan tekstur mekanis halus",
+        "bpm": "95–110",
+        "vo": "Teknis dan presisi",
+        "tools": [
+          "Blender",
+          "After Effects",
+          "Remotion"
+        ]
+      },
+      "use_cases": [
+        {
+          "letter": "P",
+          "need": "Pembangkit Explained (PLTS/PLTB/PLTP/PLTA)"
+        }
+      ]
+    },
+    {
+      "id": "green-hydrogen",
+      "name": "Green Hydrogen Chain",
+      "cat": "Teknik & Engineering",
+      "tier": "Spesialis",
+      "desc": "Rantai nilai hidrogen hijau dari listrik surya, elektroliser, tangki H₂, sampai pengguna akhir. Gelembung dan aliran menjelaskan proses tanpa rumus.",
+      "when": "Inisiatif hidrogen hijau, kerja sama teknologi, pameran transisi energi, pitch investor.",
+      "aud": "Mitra teknologi, investor, regulator",
+      "formats": [
+        "16:9",
+        "1:1"
+      ],
+      "dur": "30–60 dtk",
+      "pace": "Sedang",
+      "ease": "brand-standard",
+      "transition": "Energy Sweep",
+      "palette": [
+        "#FFFFFF",
+        "#FFF100",
+        "#00ADEF",
+        "#00A2BA",
+        "#00507C"
+      ],
+      "type": "PT Sans Bold nama tahap, H₂ dengan subskrip yang benar",
+      "beats": [
+        "Panel surya menghasilkan listrik",
+        "Elektroliser memecah air, gelembung naik",
+        "H₂ tersimpan di tangki",
+        "Hexagon pengguna: industri, transportasi, pembangkit"
+      ],
+      "dont": [
+        "Jangan menyiratkan proyek sudah beroperasi bila masih kajian",
+        "Efisiensi hanya dari sumber teknis"
+      ],
+      "letters": [
+        "T"
+      ],
+      "no": "56",
+      "prod": {
+        "effort": 2,
+        "music": "Elektronik bersih dengan tekstur mekanis halus",
+        "bpm": "95–110",
+        "vo": "Teknis dan presisi",
+        "tools": [
+          "Blender",
+          "After Effects",
+          "Remotion"
+        ]
+      },
+      "use_cases": [
+        {
+          "letter": "T",
+          "need": "Teknologi Baru (BESS, Hidrogen, Digital Twin)"
+        }
+      ]
+    }
+  ],
+  "a_to_z": [
+    {
+      "letter": "A",
+      "need": "Annual Report & RUPS",
+      "audience": "Pemegang saham, Dekom",
+      "primary": [
+        "answer-first",
+        "arc-kpi"
+      ],
+      "alternative": [
+        "navy-statement",
+        "golden-hour"
+      ],
+      "duration": "90–180 dtk",
+      "formats": "16:9"
+    },
+    {
+      "letter": "B",
+      "need": "Board Briefing Direksi",
+      "audience": "Direksi",
+      "primary": [
+        "answer-first",
+        "waterfall"
+      ],
+      "alternative": [
+        "authority-ladder",
+        "risk-heatmap"
+      ],
+      "duration": "60–120 dtk",
+      "formats": "16:9"
+    },
+    {
+      "letter": "C",
+      "need": "COD & Commissioning",
+      "audience": "Publik, PLN Induk, media",
+      "primary": [
+        "golden-hour",
+        "logo-sting"
+      ],
+      "alternative": [
+        "lower-third",
+        "countdown",
+        "chevron-chapter"
+      ],
+      "duration": "60–120 dtk",
+      "formats": "16:9 · 9:16"
+    },
+    {
+      "letter": "D",
+      "need": "Dekarbonisasi & NZE 2060",
+      "audience": "Publik, regulator",
+      "primary": [
+        "energy-sankey",
+        "hex-bloom"
+      ],
+      "alternative": [
+        "day-night",
+        "transit-roadmap"
+      ],
+      "duration": "60–90 dtk",
+      "formats": "16:9"
+    },
+    {
+      "letter": "E",
+      "need": "ESG & Safeguard",
+      "audience": "Lender, investor ESG",
+      "primary": [
+        "isotype",
+        "split-screen"
+      ],
+      "alternative": [
+        "contour-topo",
+        "three-lines"
+      ],
+      "duration": "60–120 dtk",
+      "formats": "16:9"
+    },
+    {
+      "letter": "F",
+      "need": "Financing & Green Bond",
+      "audience": "Lender, investor",
+      "primary": [
+        "waterfall",
+        "covenant-gauge"
+      ],
+      "alternative": [
+        "arc-kpi",
+        "nusantara-map"
+      ],
+      "duration": "60–90 dtk",
+      "formats": "16:9"
+    },
+    {
+      "letter": "G",
+      "need": "Groundbreaking & Water Breaking",
+      "audience": "Publik, media",
+      "primary": [
+        "lens-mask",
+        "golden-hour"
+      ],
+      "alternative": [
+        "countdown",
+        "energy-sweep"
+      ],
+      "duration": "30–90 dtk",
+      "formats": "16:9 · 9:16"
+    },
+    {
+      "letter": "H",
+      "need": "HSE / K3",
+      "audience": "Karyawan, kontraktor",
+      "primary": [
+        "safety-pictogram",
+        "sop-checklist"
+      ],
+      "alternative": [
+        "site-walkthrough"
+      ],
+      "duration": "60–180 dtk",
+      "formats": "16:9 · 9:16"
+    },
+    {
+      "letter": "I",
+      "need": "Investor & Kemitraan",
+      "audience": "Mitra strategis, investor",
+      "primary": [
+        "nusantara-map",
+        "hero-reveal"
+      ],
+      "alternative": [
+        "covenant-gauge",
+        "answer-first"
+      ],
+      "duration": "60–120 dtk",
+      "formats": "16:9"
+    },
+    {
+      "letter": "J",
+      "need": "JETP & Kebijakan Transisi",
+      "audience": "Regulator, mitra internasional",
+      "primary": [
+        "energy-sankey",
+        "transit-roadmap"
+      ],
+      "alternative": [
+        "whiteboard"
+      ],
+      "duration": "60–120 dtk",
+      "formats": "16:9"
+    },
+    {
+      "letter": "K",
+      "need": "Kinerja & KPI Bulanan",
+      "audience": "Manajemen",
+      "primary": [
+        "live-ops",
+        "arc-kpi"
+      ],
+      "alternative": [
+        "answer-first"
+      ],
+      "duration": "30–60 dtk",
+      "formats": "16:9"
+    },
+    {
+      "letter": "L",
+      "need": "Lingkungan & Biodiversitas",
+      "audience": "Publik, lender",
+      "primary": [
+        "watercolor",
+        "paper-layers"
+      ],
+      "alternative": [
+        "contour-topo"
+      ],
+      "duration": "60–120 dtk",
+      "formats": "16:9 · 1:1"
+    },
+    {
+      "letter": "M",
+      "need": "Masyarakat / TJSL",
+      "audience": "Komunitas, sekolah",
+      "primary": [
+        "soft-clay",
+        "flat-explainer"
+      ],
+      "alternative": [
+        "wayang-silhouette",
+        "paper-layers"
+      ],
+      "duration": "60–180 dtk",
+      "formats": "16:9 · 9:16"
+    },
+    {
+      "letter": "N",
+      "need": "Nusantara Portfolio",
+      "audience": "Semua audiens",
+      "primary": [
+        "nusantara-map",
+        "travel-poster"
+      ],
+      "alternative": [
+        "batik-generative",
+        "monoline-scene"
+      ],
+      "duration": "30–90 dtk",
+      "formats": "16:9 · 1:1"
+    },
+    {
+      "letter": "O",
+      "need": "Onboarding Karyawan",
+      "audience": "Karyawan baru",
+      "primary": [
+        "whiteboard",
+        "hex-rail"
+      ],
+      "alternative": [
+        "flat-explainer",
+        "wave-edge"
+      ],
+      "duration": "120–300 dtk",
+      "formats": "16:9"
+    },
+    {
+      "letter": "P",
+      "need": "Pembangkit Explained (PLTS/PLTB/PLTP/PLTA)",
+      "audience": "Umum, mahasiswa",
+      "primary": [
+        "isometric-plant",
+        "cutaway"
+      ],
+      "alternative": [
+        "hydro-flow",
+        "geothermal-section",
+        "blueprint"
+      ],
+      "duration": "60–180 dtk",
+      "formats": "16:9"
+    },
+    {
+      "letter": "Q",
+      "need": "Quality, GRC & Kepatuhan",
+      "audience": "SPI, Komite Audit",
+      "primary": [
+        "three-lines",
+        "risk-heatmap"
+      ],
+      "alternative": [
+        "hex-rail",
+        "sop-checklist"
+      ],
+      "duration": "60–120 dtk",
+      "formats": "16:9"
+    },
+    {
+      "letter": "R",
+      "need": "RJPP / RKAP",
+      "audience": "Direksi, Dekom",
+      "primary": [
+        "transit-roadmap",
+        "waterfall"
+      ],
+      "alternative": [
+        "hex-bloom"
+      ],
+      "duration": "60–120 dtk",
+      "formats": "16:9"
+    },
+    {
+      "letter": "S",
+      "need": "Sosial Media & Kampanye",
+      "audience": "Publik muda",
+      "primary": [
+        "vertical-reels",
+        "caption-pack"
+      ],
+      "alternative": [
+        "kinetic-type",
+        "travel-poster"
+      ],
+      "duration": "15–45 dtk",
+      "formats": "9:16 · 1:1"
+    },
+    {
+      "letter": "T",
+      "need": "Teknologi Baru (BESS, Hidrogen, Digital Twin)",
+      "audience": "Mitra teknis, investor",
+      "primary": [
+        "green-hydrogen",
+        "glass-tech"
+      ],
+      "alternative": [
+        "wireframe",
+        "hero-reveal"
+      ],
+      "duration": "60–120 dtk",
+      "formats": "16:9"
+    },
+    {
+      "letter": "U",
+      "need": "Unit O&M & Inspeksi",
+      "audience": "Teknisi, manajemen aset",
+      "primary": [
+        "thermal-inspection",
+        "single-line"
+      ],
+      "alternative": [
+        "live-ops",
+        "cutaway"
+      ],
+      "duration": "30–120 dtk",
+      "formats": "16:9"
+    },
+    {
+      "letter": "V",
+      "need": "Visi, Misi & Budaya AKHLAK",
+      "audience": "Karyawan",
+      "primary": [
+        "navy-statement",
+        "kinetic-type"
+      ],
+      "alternative": [
+        "hex-bloom"
+      ],
+      "duration": "30–90 dtk",
+      "formats": "16:9 · 9:16"
+    },
+    {
+      "letter": "W",
+      "need": "Water: PLTA & PLTS Terapung",
+      "audience": "Umum, regulator",
+      "primary": [
+        "hydro-flow",
+        "contour-topo"
+      ],
+      "alternative": [
+        "watercolor",
+        "lens-mask"
+      ],
+      "duration": "60–120 dtk",
+      "formats": "16:9"
+    },
+    {
+      "letter": "X",
+      "need": "eXhibition & Booth Loop",
+      "audience": "Pengunjung pameran",
+      "primary": [
+        "night-glow",
+        "particle-field"
+      ],
+      "alternative": [
+        "batik-generative",
+        "countdown"
+      ],
+      "duration": "Loop 30–120 dtk",
+      "formats": "16:9 · ultra-wide"
+    },
+    {
+      "letter": "Y",
+      "need": "Youth & Rekrutmen Talenta",
+      "audience": "Mahasiswa, profesional muda",
+      "primary": [
+        "vertical-reels",
+        "low-poly"
+      ],
+      "alternative": [
+        "flat-explainer",
+        "soft-clay"
+      ],
+      "duration": "30–60 dtk",
+      "formats": "9:16 · 16:9"
+    },
+    {
+      "letter": "Z",
+      "need": "Zero Accident & Zero Emission",
+      "audience": "Internal dan publik",
+      "primary": [
+        "site-walkthrough",
+        "day-night"
+      ],
+      "alternative": [
+        "safety-pictogram",
+        "tenun-weave"
+      ],
+      "duration": "30–90 dtk",
+      "formats": "16:9 · 9:16"
+    }
+  ],
+  "recipes": [
+    {
+      "id": "cod-90",
+      "name": "Video Peresmian COD",
+      "letter": "C",
+      "aspect": "16:9",
+      "goal": "Mengumumkan pembangkit beroperasi komersial dan dampaknya.",
+      "total_s": 90,
+      "segments": [
+        {
+          "style": "logo-sting",
+          "duration_s": 4,
+          "role": "Ident pembuka",
+          "note": "Satu versi ident untuk semua video"
+        },
+        {
+          "style": "golden-hour",
+          "duration_s": 26,
+          "role": "Establishing",
+          "note": "Footage drone senja, lower third lokasi"
+        },
+        {
+          "style": "nusantara-map",
+          "duration_s": 12,
+          "role": "Konteks portofolio",
+          "note": "Zoom ke lokasi pembangkit"
+        },
+        {
+          "style": "arc-kpi",
+          "duration_s": 14,
+          "role": "Angka kunci",
+          "note": "Kapasitas, TKDN, progres; satu angka disorot"
+        },
+        {
+          "style": "lower-third",
+          "duration_s": 28,
+          "role": "Testimoni",
+          "note": "Direksi dan warga sekitar, 2 narasumber"
+        },
+        {
+          "style": "energy-sweep",
+          "duration_s": 6,
+          "role": "Penutup",
+          "note": "Pesan satu kalimat + lockup"
+        }
+      ]
+    },
+    {
+      "id": "board-120",
+      "name": "Briefing Direksi 2 Menit",
+      "letter": "B",
+      "aspect": "16:9",
+      "goal": "Membawa Direksi ke keputusan dengan argumen answer-first.",
+      "total_s": 120,
+      "segments": [
+        {
+          "style": "navy-statement",
+          "duration_s": 8,
+          "role": "Jawaban di depan",
+          "note": "Satu kalimat kesimpulan"
+        },
+        {
+          "style": "answer-first",
+          "duration_s": 34,
+          "role": "Bukti utama",
+          "note": "Satu grafik, satu sinyal cyan"
+        },
+        {
+          "style": "waterfall",
+          "duration_s": 30,
+          "role": "Mengapa angka berubah",
+          "note": "Maksimal 6 langkah"
+        },
+        {
+          "style": "risk-heatmap",
+          "duration_s": 22,
+          "role": "Risiko dan mitigasi",
+          "note": "Inheren ke residual"
+        },
+        {
+          "style": "authority-ladder",
+          "duration_s": 14,
+          "role": "Dasar kewenangan",
+          "note": "Organ berwenang dan aturan"
+        },
+        {
+          "style": "navy-statement",
+          "duration_s": 12,
+          "role": "Permintaan",
+          "note": "Apa yang diminta dan kapan"
+        }
+      ]
+    },
+    {
+      "id": "safety-180",
+      "name": "Safety Induction Lokasi",
+      "letter": "H",
+      "aspect": "16:9",
+      "goal": "Tamu dan kontraktor memahami bahaya, APD, dan jalur aman sebelum masuk lokasi.",
+      "total_s": 180,
+      "segments": [
+        {
+          "style": "logo-sting",
+          "duration_s": 4,
+          "role": "Ident",
+          "note": ""
+        },
+        {
+          "style": "site-walkthrough",
+          "duration_s": 50,
+          "role": "Denah dan jalur aman",
+          "note": "Zona bahaya, titik kumpul"
+        },
+        {
+          "style": "safety-pictogram",
+          "duration_s": 56,
+          "role": "APD wajib",
+          "note": "Satu rambu per kalimat"
+        },
+        {
+          "style": "sop-checklist",
+          "duration_s": 54,
+          "role": "Prosedur kunci",
+          "note": "Izin kerja / LOTO"
+        },
+        {
+          "style": "navy-statement",
+          "duration_s": 10,
+          "role": "Komitmen",
+          "note": "Zero accident"
+        },
+        {
+          "style": "logo-sting",
+          "duration_s": 6,
+          "role": "Penutup",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "id": "reels-30",
+      "name": "Reels Kampanye 30 Detik",
+      "letter": "S",
+      "aspect": "9:16",
+      "goal": "Menarik perhatian publik muda dalam 2 detik dan meninggalkan satu pesan.",
+      "total_s": 30,
+      "segments": [
+        {
+          "style": "vertical-reels",
+          "duration_s": 3,
+          "role": "Hook",
+          "note": "Pertanyaan atau angka mengejutkan"
+        },
+        {
+          "style": "kinetic-type",
+          "duration_s": 9,
+          "role": "Pesan inti",
+          "note": "Maksimal 3 kata per detik"
+        },
+        {
+          "style": "day-night",
+          "duration_s": 10,
+          "role": "Bukti visual",
+          "note": "Siklus surya + baterai"
+        },
+        {
+          "style": "travel-poster",
+          "duration_s": 5,
+          "role": "Kebanggaan lokasi",
+          "note": ""
+        },
+        {
+          "style": "logo-sting",
+          "duration_s": 3,
+          "role": "Lockup",
+          "note": "Caption tetap aktif"
+        }
+      ]
+    },
+    {
+      "id": "onboarding-240",
+      "name": "Onboarding Karyawan Baru",
+      "letter": "O",
+      "aspect": "16:9",
+      "goal": "Karyawan baru memahami bisnis, alur kerja, dan budaya PLN NR.",
+      "total_s": 240,
+      "segments": [
+        {
+          "style": "energy-sweep",
+          "duration_s": 6,
+          "role": "Pembuka",
+          "note": ""
+        },
+        {
+          "style": "monoline-scene",
+          "duration_s": 30,
+          "role": "Siapa kita",
+          "note": "Profil dan portofolio"
+        },
+        {
+          "style": "whiteboard",
+          "duration_s": 84,
+          "role": "Cara kerja bisnis",
+          "note": "Dari proyek sampai listrik mengalir"
+        },
+        {
+          "style": "hex-rail",
+          "duration_s": 60,
+          "role": "Alur kerja kunci",
+          "note": "Persetujuan, pengadaan"
+        },
+        {
+          "style": "flat-explainer",
+          "duration_s": 48,
+          "role": "Budaya kerja",
+          "note": "AKHLAK dalam keseharian"
+        },
+        {
+          "style": "navy-statement",
+          "duration_s": 12,
+          "role": "Selamat bergabung",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "id": "investor-120",
+      "name": "Pitch Investor & Mitra",
+      "letter": "I",
+      "aspect": "16:9",
+      "goal": "Meyakinkan mitra tentang portofolio, kesiapan teknis, dan bankability.",
+      "total_s": 120,
+      "segments": [
+        {
+          "style": "logo-sting",
+          "duration_s": 4,
+          "role": "Ident",
+          "note": ""
+        },
+        {
+          "style": "nusantara-map",
+          "duration_s": 24,
+          "role": "Portofolio",
+          "note": "Sebaran dan total kapasitas"
+        },
+        {
+          "style": "hero-reveal",
+          "duration_s": 20,
+          "role": "Teknologi",
+          "note": "Aset unggulan"
+        },
+        {
+          "style": "answer-first",
+          "duration_s": 30,
+          "role": "Kinerja",
+          "note": "Pertumbuhan dengan sumber"
+        },
+        {
+          "style": "covenant-gauge",
+          "duration_s": 26,
+          "role": "Bankability",
+          "note": "Headroom kovenan"
+        },
+        {
+          "style": "navy-statement",
+          "duration_s": 16,
+          "role": "Ajakan kemitraan",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "id": "booth-60",
+      "name": "Loop Booth Pameran",
+      "letter": "X",
+      "aspect": "16:9",
+      "goal": "Menarik pengunjung dari jarak jauh tanpa suara.",
+      "total_s": 60,
+      "segments": [
+        {
+          "style": "particle-field",
+          "duration_s": 15,
+          "role": "Atraksi",
+          "note": "Tanpa teks kecil"
+        },
+        {
+          "style": "night-glow",
+          "duration_s": 15,
+          "role": "Emosi",
+          "note": "Listrik sampai ke rumah"
+        },
+        {
+          "style": "batik-generative",
+          "duration_s": 15,
+          "role": "Identitas",
+          "note": ""
+        },
+        {
+          "style": "monoline-scene",
+          "duration_s": 15,
+          "role": "Profil",
+          "note": "Loop mulus ke awal"
+        }
+      ]
+    },
+    {
+      "id": "esg-90",
+      "name": "Update ESG untuk Lender",
+      "letter": "E",
+      "aspect": "16:9",
+      "goal": "Menunjukkan kepatuhan safeguard dan dampak terukur kepada lender.",
+      "total_s": 90,
+      "segments": [
+        {
+          "style": "contour-topo",
+          "duration_s": 18,
+          "role": "Konteks lokasi",
+          "note": "Daerah tangkapan, sensitivitas"
+        },
+        {
+          "style": "isotype",
+          "duration_s": 20,
+          "role": "Dampak terukur",
+          "note": "Faktor konversi tertulis"
+        },
+        {
+          "style": "split-screen",
+          "duration_s": 16,
+          "role": "Bukti rehabilitasi",
+          "note": "Sebelum/sesudah, tanggal sama"
+        },
+        {
+          "style": "three-lines",
+          "duration_s": 22,
+          "role": "Tata kelola",
+          "note": "Siapa memantau apa"
+        },
+        {
+          "style": "wave-edge",
+          "duration_s": 14,
+          "role": "Ringkasan dan tindak lanjut",
+          "note": ""
+        }
+      ]
+    }
+  ],
+  "qa": [
+    {
+      "group": "Merek",
+      "items": [
+        "Lockup dari aset resmi, posisi dan ukuran benar",
+        "Hanya warna ramp PLN NR; merah hanya di petir logo",
+        "Teks gelap navy, tidak hitam",
+        "Satu sinyal per bingkai (cyan di putih, kuning di navy)",
+        "Ident pembuka/penutup memakai versi resmi"
+      ]
+    },
+    {
+      "group": "Konten",
+      "items": [
+        "Setiap angka punya baris Sumber dan sudah diverifikasi",
+        "Angka ilustratif sudah diganti data resmi",
+        "Nama, jabatan, lokasi dieja benar",
+        "Bahasa Indonesia baku, desimal koma, ribuan titik",
+        "Tidak ada klaim proyek yang belum diputuskan"
+      ]
+    },
+    {
+      "group": "Aksesibilitas",
+      "items": [
+        "Caption Bahasa Indonesia tersedia (SRT)",
+        "Teks layar maksimal 3 kata per detik",
+        "Kontras teks minimal 4,5:1",
+        "Status tidak hanya warna (▲ ● ▼)",
+        "Tanpa kedipan lebih dari 3 kali per detik"
+      ]
+    },
+    {
+      "group": "Teknis",
+      "items": [
+        "Resolusi dan rasio sesuai kanal",
+        "Teks di dalam title-safe 90%",
+        "Loudness −14 LUFS (sosial) / −23 LUFS (siaran)",
+        "Musik berlisensi untuk kanal yang dipakai",
+        "Thumbnail dan judul file sesuai konvensi"
+      ]
+    }
+  ]
+}

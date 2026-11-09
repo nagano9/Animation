@@ -1,0 +1,15 @@
+<svg viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs>
+<linearGradient id="P0_E" x1="0" x2="1"><stop offset="0" stop-color="#FFF100"/><stop offset=".22" stop-color="#B9DE41"/><stop offset=".52" stop-color="#00A2BA"/><stop offset=".76" stop-color="#00ADEF"/><stop offset="1" stop-color="#005F89"/></linearGradient>
+<linearGradient id="P0_V" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#00BCC0"/><stop offset=".5" stop-color="#94DA63"/><stop offset="1" stop-color="#FFF100"/></linearGradient>
+<linearGradient id="P0_B" x1="0" x2="1"><stop offset="0" stop-color="#00ADEF"/><stop offset=".55" stop-color="#0087BE"/><stop offset="1" stop-color="#005F89"/></linearGradient>
+<linearGradient id="P0_N" x1="0" y1="0" x2=".4" y2="1"><stop offset="0" stop-color="#00618F"/><stop offset=".6" stop-color="#00507C"/><stop offset="1" stop-color="#004367"/></linearGradient>
+<linearGradient id="P0_C" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#009FDC"/><stop offset=".5" stop-color="#0073A3"/><stop offset="1" stop-color="#00567E"/></linearGradient>
+<linearGradient id="P0_S" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#005F89"/><stop offset=".55" stop-color="#00A2BA"/><stop offset=".85" stop-color="#B9DE41"/><stop offset="1" stop-color="#FFF100"/></linearGradient>
+</defs><radialGradient id="P0_spot" cx=".5" cy=".55" r=".5"><stop offset="0" stop-color="#005F89"/><stop offset="1" stop-color="#00243A"/></radialGradient>
+<linearGradient id="P0_shine" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".55"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+<clipPath id="P0_box"><path d="M200 200 L380 140 L460 180 L280 240Z M200 200 L280 240 L280 300 L200 260Z M280 240 L460 180 L460 240 L280 300Z"/></clipPath>
+<rect width="640" height="360" fill="url(#P0_spot)"/><ellipse cx="330" cy="300" rx="200" ry="22" fill="#00243A"/>
+<path d="M200 200 L380 140 L460 180 L280 240Z" fill="#BFD3DE"/><path d="M200 200 L280 240 L280 300 L200 260Z" fill="#00507C"/><path d="M280 240 L460 180 L460 240 L280 300Z" fill="#0087BE"/>
+<line x1="300" y1="234" x2="300" y2="294" stroke="#00507C" stroke-width="2"/><line x1="332" y1="223" x2="332" y2="283" stroke="#00507C" stroke-width="2"/><line x1="364" y1="212" x2="364" y2="272" stroke="#00507C" stroke-width="2"/><line x1="396" y1="201" x2="396" y2="261" stroke="#00507C" stroke-width="2"/><line x1="428" y1="190" x2="428" y2="250" stroke="#00507C" stroke-width="2"/>
+<g clip-path="url(#P0_box)"><g class="a-slide" style="--from:-200px;--to:400px;--t:3.5s"><rect x="150" y="100" width="90" height="240" fill="url(#P0_shine)" transform="skewX(-20)"/></g></g>
+<g class="a-up" style="--d:1s"><text x="40" y="70" font-size="12" font-weight="700" fill="#FFF100" letter-spacing="3">PELUNCURAN</text><text x="40" y="104" font-size="30" font-weight="700" fill="#fff" >Sistem Penyimpanan</text><text x="40" y="136" font-size="30" font-weight="700" fill="#fff" >Energi Baterai</text></g></svg>

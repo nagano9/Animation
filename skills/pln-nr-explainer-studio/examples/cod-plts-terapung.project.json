@@ -1,0 +1,126 @@
+{
+  "schema": "plnnr.explainer-project/1",
+  "title": "Peresmian PLTS Terapung",
+  "need": "C",
+  "recipe": "cod-90",
+  "aspect": "16:9",
+  "target_s": 90,
+  "audience": "Publik, media, PLN Induk",
+  "objective": "Penonton mengetahui PLTS terapung telah beroperasi komersial dan manfaatnya bagi jaringan dan warga sekitar.",
+  "ask": "",
+  "assumptions": [
+    "Footage drone senja dan wawancara tersedia",
+    "Semua angka ilustratif sampai dokumen COD resmi terbit"
+  ],
+  "sources": [
+    {
+      "id": "S1",
+      "text": "Berita acara COD dan dokumen proyek (menunggu versi final)"
+    }
+  ],
+  "scenes": [
+    {
+      "id": "s01",
+      "style": "logo-sting",
+      "role": "Ident pembuka",
+      "duration_s": 4,
+      "transition_in": "Cut",
+      "vo": "",
+      "onscreen": [],
+      "data": [],
+      "lower_third": null,
+      "visual": "Navy kosong 0,3 dtk → Hexagon gradient berkumpul ke tengah → Pita energi melingkar dan memudar → Lockup resmi + www.ptplnnr.com, tahan 1,5 dtk",
+      "notes": "Satu versi ident untuk semua video"
+    },
+    {
+      "id": "s02",
+      "style": "golden-hour",
+      "role": "Establishing",
+      "duration_s": 26,
+      "transition_in": "Cross-fade 220 ms",
+      "vo": "Di atas permukaan waduk, ribuan panel surya terapung kini mengalirkan listrik bersih ke jaringan. Air tetap untuk irigasi, permukaannya kini juga bekerja menghasilkan energi.",
+      "onscreen": [
+        "PLTS Terapung",
+        "Beroperasi komersial"
+      ],
+      "data": [],
+      "lower_third": null,
+      "visual": "Wide shot senja → Push-in pelan 5–8% → Lower third: lokasi dan kapasitas → Lockup di frame terakhir",
+      "notes": "Footage drone senja, lower third lokasi"
+    },
+    {
+      "id": "s03",
+      "style": "nusantara-map",
+      "role": "Konteks portofolio",
+      "duration_s": 12,
+      "transition_in": "Lens Iris",
+      "vo": "Pembangkit ini memperkuat portofolio energi baru terbarukan PLN Nusantara Renewables di berbagai wilayah Indonesia.",
+      "onscreen": [
+        "Portofolio EBT Nusantara"
+      ],
+      "data": [],
+      "lower_third": null,
+      "visual": "Peta kepulauan tergambar → Kamera mendekat ke wilayah → Pin muncul per jenis pembangkit → Total kapasitas terhitung naik",
+      "notes": "Zoom ke lokasi pembangkit"
+    },
+    {
+      "id": "s04",
+      "style": "arc-kpi",
+      "role": "Angka kunci",
+      "duration_s": 14,
+      "transition_in": "Count-Up",
+      "vo": "Kapasitasnya 100 MWac, dengan tingkat komponen dalam negeri yang tinggi dan ketersediaan pembangkit yang terjaga sejak hari pertama.",
+      "onscreen": [
+        "100 MWac"
+      ],
+      "data": [
+        {
+          "label": "Kapasitas",
+          "value": "100",
+          "unit": "MWac",
+          "source": "ilustratif"
+        },
+        {
+          "label": "TKDN",
+          "value": "64",
+          "unit": "%",
+          "source": "ilustratif"
+        }
+      ],
+      "lower_third": null,
+      "visual": "Cakram navy muncul → Busur gradient tergambar searah jarum jam → Angka menghitung naik → Label UPPERCASE di bawah",
+      "notes": "Kapasitas, TKDN, progres; satu angka disorot"
+    },
+    {
+      "id": "s05",
+      "style": "lower-third",
+      "role": "Testimoni",
+      "duration_s": 28,
+      "transition_in": "Cross-fade 220 ms",
+      "vo": "Bagi kami, keberhasilan ini adalah kerja bersama tim proyek, mitra, dan masyarakat sekitar waduk yang terlibat sejak tahap konstruksi. Proyek ini membuka lapangan kerja lokal dan membawa keterampilan baru bagi warga.",
+      "onscreen": [],
+      "data": [],
+      "lower_third": {
+        "name": "Nama Direktur",
+        "title": "Direktur, PT PLN Nusantara Renewables"
+      },
+      "visual": "Aksen kuning tumbuh 120 ms → Bar putih wipe dari kiri → Nama lalu jabatan muncul → Tahan 4 dtk lalu keluar terbalik",
+      "notes": "Dua narasumber: Direksi dan perwakilan warga; ganti nama sebelum render"
+    },
+    {
+      "id": "s06",
+      "style": "energy-sweep",
+      "role": "Penutup",
+      "duration_s": 6,
+      "transition_in": "Energy Sweep",
+      "vo": "Energi bersih untuk Nusantara.",
+      "onscreen": [
+        "Energi bersih untuk Nusantara"
+      ],
+      "data": [],
+      "lower_third": null,
+      "visual": "Layar navy kosong 0,5 dtk → Pita gradient menyapu dari kiri ke kanan → Judul muncul di belakang sapuan → Lockup PLN NR mengunci di kanan atas",
+      "notes": "Pesan satu kalimat + lockup"
+    }
+  ]
+}

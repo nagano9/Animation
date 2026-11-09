@@ -1,6 +1,7 @@
 // Build: menggabungkan src/ menjadi satu file HTML mandiri + katalog JSON untuk Explainer Studio.
 // Pakai: node tools/build.mjs
-import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
+import { readFileSync, writeFileSync, mkdirSync, rmSync, copyFileSync } from 'node:fs';
+import { execFileSync } from 'node:child_process';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import vm from 'node:vm';
@@ -35,8 +36,34 @@ const catalog = {
   easing: P.EASES,
   transitions: P.TRANSITIONS.map(({ cls, ...t }) => t),
   families: P.CATS,
+  family_production: P.FAMILY_PROD,
   styles: P.STYLES.map(({ svg, ...s }) => ({ ...s, use_cases: s.letters.map(l => ({ letter: l, need: azName[l] })) })),
-  a_to_z: P.AZ.map(([letter, need, audience, primary, alternative, duration, formats]) => ({ letter, need, audience, primary, alternative, duration, formats }))
+  a_to_z: P.AZ.map(([letter, need, audience, primary, alternative, duration, formats]) => ({ letter, need, audience, primary, alternative, duration, formats })),
+  recipes: P.RECIPES.map(r => ({ id: r.id, name: r.name, letter: r.letter, aspect: r.aspect, goal: r.goal, total_s: r.total,
+    segments: r.segs.map(([style, sec, role, note]) => ({ style, duration_s: sec, role, note })) })),
+  qa: P.QA.map(([group, items]) => ({ group, items }))
 };
 writeFileSync(join(root, 'catalog/pln-nr-motion-styles.json'), JSON.stringify(catalog, null, 2) + '\n');
 console.log('OK —', P.STYLES.length, 'gaya,', (html.length / 1024).toFixed(0), 'KB');
+
+// 4) aset skill Explainer Studio
+const skill = join(root, '..', 'skills', 'pln-nr-explainer-studio');
+const sa = join(skill, 'assets');
+rmSync(join(sa, 'previews'), { recursive: true, force: true });
+mkdirSync(join(sa, 'previews'), { recursive: true });
+writeFileSync(join(sa, 'catalog.json'), JSON.stringify(catalog, null, 2) + '\n');
+P.STYLES.forEach(s => writeFileSync(join(sa, 'previews', s.id + '.svg'), s.svg('P0_')));
+const src = rd('src/gallery.html').toString();
+const a0 = src.indexOf('/* ===== shared animation vocabulary'), a1 = src.indexOf('.paused .art *');
+writeFileSync(join(sa, 'anim.css'), src.slice(a0, a1).trim() + '\n');
+for (const f of ['logo-pln-nr-color.png', 'logo-pln-nr-white.png']) copyFileSync(join(root, 'assets', f), join(sa, f));
+// 5) paket .zip untuk diunggah sebagai skill
+const zip = join(root, 'dist', 'pln-nr-explainer-studio.zip');
+execFileSync('python3', ['-c', `import zipfile,os,sys
+z=zipfile.ZipFile(sys.argv[1],'w',zipfile.ZIP_DEFLATED); b=sys.argv[2]
+for d,_,fs in os.walk(b):
+  for f in fs:
+    if '__pycache__' in d or f.endswith('.pyc'): continue
+    p=os.path.join(d,f); z.write(p, os.path.join('pln-nr-explainer-studio', os.path.relpath(p,b)))
+z.close()`, zip, skill]);
+console.log('Skill assets + zip OK');

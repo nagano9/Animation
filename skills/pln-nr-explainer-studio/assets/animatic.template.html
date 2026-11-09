@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>{{TITLE}} · Animatic</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400&display=swap">
+<style>
+/* Ruang review animatic: satu tema gelap navy (layar studio), sudut persegi, sinyal kuning. */
+:root{--bg:#05263B;--panel:#0A3551;--line:#1D4E6C;--fg:#EAF4FA;--muted:#9FC3D8;--signal:#FFF100;--navy:#00507C;
+  --font:"PT Sans","Myriad Pro","Segoe UI",Helvetica,Arial,sans-serif;--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;--ease:cubic-bezier(.4,0,.2,1);color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--font);font-size:15px;line-height:1.5}
+.wrap{max-width:1240px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header .wrap{display:flex;align-items:center;gap:18px;padding-block:16px;border-bottom:1px solid var(--line)}
+header img{height:30px}
+header h1{font-size:20px;margin:0;line-height:1.2}
+header .meta{margin-left:auto;font-size:13px;color:var(--muted);text-align:right}
+main .wrap{display:grid;grid-template-columns:minmax(0,8fr) minmax(0,4fr);gap:24px;padding-block:20px 40px}
+.stage{position:relative;aspect-ratio:16/9;width:100%;background:#00243A;overflow:hidden}
+.stage.v{aspect-ratio:9/16;width:auto;height:min(70dvh,720px);margin:0 auto}
+.layer{position:absolute;inset:0;transition:opacity .22s var(--ease)}
+.layer svg{width:100%;height:100%;display:block}
+.osd{position:absolute;left:5%;top:7%;max-width:62%;display:grid;gap:6px;z-index:3}
+.osd span{background:rgba(255,255,255,.95);color:var(--navy);font-weight:700;font-size:clamp(14px,2.1vw,26px);padding:4px 10px;justify-self:start}
+.cap{position:absolute;left:50%;bottom:6%;transform:translateX(-50%);width:max-content;max-width:88%;background:rgba(0,36,58,.86);color:#fff;text-align:center;font-weight:700;font-size:clamp(13px,1.8vw,22px);padding:6px 12px;z-index:3}
+.cap:empty{display:none}
+.lockup{position:absolute;left:50%;top:47.2%;transform:translate(-50%,-50%);width:30%;background:#00507C;padding:1.2% 1.6%;z-index:2;opacity:0;animation:lk .5s 1.2s var(--ease) forwards}
+.lockup img{width:100%;display:block}
+@keyframes lk{to{opacity:1}}
+.tag{position:absolute;right:12px;top:12px;background:rgba(0,36,58,.86);font-size:12px;font-weight:700;padding:5px 9px;z-index:4}
+.bar{display:flex;gap:2px;margin-top:12px}
+.bar button{position:relative;height:30px;border:0;padding:0 6px;background:var(--panel);color:var(--muted);font:700 11px var(--font);text-align:left;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;cursor:pointer;min-width:4px}
+.bar button b{position:absolute;inset:auto auto 0 0;height:3px;width:0;background:var(--signal)}
+.bar button[aria-current="true"]{color:#fff;background:#0F4262}
+.ctl{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:12px}
+.btn{background:transparent;border:1px solid var(--fg);color:var(--fg);padding:8px 14px;font:700 14px var(--font);cursor:pointer}
+.btn.solid{background:var(--signal);color:var(--navy);border-color:var(--signal)}
+.btn:hover{opacity:.86}
+.btn:focus-visible,.bar button:focus-visible{outline:3px solid var(--signal);outline-offset:2px}
+.tc{margin-left:auto;font-family:var(--mono);color:var(--muted)}
+aside{background:var(--panel);padding:20px;min-width:0;align-self:start}
+aside h2{font-size:22px;margin:4px 0 2px}
+aside h3{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin:16px 0 4px}
+aside p{margin:0}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.data li{margin-bottom:4px}
+.data span{color:var(--muted)}
+table{width:100%;border-collapse:collapse;font-size:14px;margin-top:28px}
+.tbl{overflow-x:auto;grid-column:1/-1}
+th{text-align:left;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);padding:8px 10px;border-bottom:2px solid var(--fg)}
+td{padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+td.tcol{font-family:var(--mono);color:var(--muted);white-space:nowrap}
+tr{cursor:pointer}
+tr[aria-current="true"] td{background:#0F4262}
+@media(max-width:900px){main .wrap{grid-template-columns:1fr}header .meta{display:none}}
+.still .art *{animation:none!important}
+@media (prefers-reduced-motion:reduce){.art *{animation:none!important}.layer{transition:none}}
+{{ANIM_CSS}}
+</style>
+</head>
+<body>
+<header><div class="wrap"><img src="{{LOGO}}" alt="PLN Nusantara Renewables"><div><div class="eyebrow">Animatic · Explainer Studio</div><h1 id="ttl"></h1></div><div class="meta" id="meta"></div></div></header>
+<main><div class="wrap">
+  <section>
+    <div class="stage" id="stage"><div class="osd" id="osd"></div><div class="cap" id="cap"></div><span class="tag" id="tag"></span></div>
+    <div class="bar" id="bar" role="list"></div>
+    <div class="ctl">
+      <button class="btn solid" type="button" id="play">Putar</button>
+      <button class="btn" type="button" id="prev" aria-label="Adegan sebelumnya">←</button>
+      <button class="btn" type="button" id="next" aria-label="Adegan berikutnya">→</button>
+      <button class="btn" type="button" id="speed">Kecepatan 1×</button>
+      <button class="btn" type="button" id="capBtn" aria-pressed="true">Caption: hidup</button>
+      <span class="tc" id="tc">00:00 / 00:00</span>
+    </div>
+  </section>
+  <aside id="info" aria-live="polite"></aside>
+  <div class="tbl"><table><thead><tr><th>TC</th><th>#</th><th>Gaya</th><th>Peran</th><th>VO</th><th>Teks layar</th></tr></thead><tbody id="rows"></tbody></table></div>
+</div></main>
+<script>
+const D = {{DATA}};
+(function(){
+  const $ = s => document.querySelector(s);
+  const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  const mmss = t => String(Math.floor(t / 60)).padStart(2, '0') + ':' + String(Math.floor(t % 60)).padStart(2, '0');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let t = 0, playing = false, speed = 1, last = 0, cur = -1, caps = true;
+  const stage = $('#stage');
+  stage.classList.toggle('v', D.aspect === '9:16');
+  $('#ttl').textContent = D.title;
+  $('#meta').innerHTML = esc(D.aspect) + ' · ' + mmss(D.total) + ' · ' + D.scenes.length + ' adegan<br>Pratinjau gaya, bukan render final';
+  $('#bar').innerHTML = D.scenes.map((s, i) => `<button type="button" role="listitem" data-i="${i}" style="flex:${s.dur} 1 0" title="${esc(s.style)} · ${s.dur} dtk">${s.dur >= D.total * .1 ? esc(s.role) : ''}<b></b></button>`).join('');
+  $('#rows').innerHTML = D.scenes.map((s, i) => `<tr data-i="${i}"><td class="tcol">${mmss(s.start)}</td><td>${esc(s.id)}</td><td><b>${esc(s.style)}</b></td><td>${esc(s.role)}</td><td>${esc(s.vo)}</td><td>${esc((s.osd || []).join(' / '))}</td></tr>`).join('');
+  function show(i){
+    if (i === cur) return; cur = i; const s = D.scenes[i];
+    const old = stage.querySelectorAll('.layer');
+    const l = document.createElement('div'); l.className = 'layer art'; l.style.opacity = '0';
+    l.innerHTML = s.svg + (s.logo ? `<div class="lockup"><img src="${document.querySelector('header img').src}" alt="Lockup PLN NR"></div>` : '');
+    stage.prepend(l);
+    requestAnimationFrame(() => { l.style.opacity = '1'; old.forEach(o => { o.style.opacity = '0'; setTimeout(() => o.remove(), 260); }); });
+    if (!playing || reduce) { try { l.querySelector('svg').pauseAnimations(); } catch(e){} }
+    $('#osd').innerHTML = (s.osd || []).map(x => `<span>${esc(x)}</span>`).join('');
+    $('#tag').textContent = (i + 1) + '/' + D.scenes.length + ' · ' + s.role;
+    $('#info').innerHTML = `<div class="eyebrow">${esc(s.id)} · ${mmss(s.start)} · ${s.dur} dtk</div><h2>${esc(s.style)}</h2><p style="color:var(--muted)">${esc(s.cat)} · masuk dengan ${esc(s.tx)}</p>`
+      + (s.vo ? `<h3>VO</h3><p>${esc(s.vo)}</p>` : '')
+      + (s.data.length ? `<h3>Data</h3><ul class="data">${s.data.map(d => `<li>${esc(d.label)}: <b>${esc(d.value)} ${esc(d.unit || '')}</b> <span>· ${esc(d.source)}</span></li>`).join('')}</ul>` : '')
+      + `<h3>Arahan visual</h3><p>${esc(s.visual)}</p>` + (s.notes ? `<h3>Catatan</h3><p>${esc(s.notes)}</p>` : '');
+    document.querySelectorAll('#bar button').forEach((b, k) => b.setAttribute('aria-current', String(k === i)));
+    document.querySelectorAll('#rows tr').forEach((r, k) => r.setAttribute('aria-current', String(k === i)));
+  }
+  function idxAt(time){ let i = 0; D.scenes.forEach((s, k) => { if (time >= s.start) i = k; }); return i; }
+  function render(){
+    show(idxAt(t));
+    document.querySelectorAll('#bar button b').forEach((b, k) => { const s = D.scenes[k]; b.style.width = Math.max(0, Math.min(1, (t - s.start) / s.dur)) * 100 + '%'; });
+    const c = D.cues.find(c => t >= c.start && t < c.end);
+    $('#cap').innerHTML = caps && c ? c.lines.map(esc).join('<br>') : '';
+    $('#tc').textContent = mmss(t) + ' / ' + mmss(D.total);
+  }
+  function tick(ts){
+    const dt = last ? (ts - last) / 1000 : 0; last = ts;
+    if (playing) { t += dt * speed; if (t >= D.total) { t = D.total - 0.01; setPlay(false); } }
+    render(); requestAnimationFrame(tick);
+  }
+  function setPlay(v){ playing = v; $('#play').textContent = v ? 'Jeda' : 'Putar'; stage.querySelectorAll('svg').forEach(s => { try { v && !reduce ? s.unpauseAnimations() : s.pauseAnimations(); } catch(e){} }); }
+  function seek(i){ t = D.scenes[i].start + 0.01; cur = -1; render(); }
+  $('#play').onclick = () => { if (t >= D.total - 0.05) { t = 0; cur = -1; } setPlay(!playing); };
+  $('#prev').onclick = () => seek(Math.max(0, idxAt(t) - 1));
+  $('#next').onclick = () => seek(Math.min(D.scenes.length - 1, idxAt(t) + 1));
+  $('#speed').onclick = () => { speed = speed === 1 ? 2 : 1; $('#speed').textContent = 'Kecepatan ' + speed + '×'; };
+  $('#capBtn').onclick = () => { caps = !caps; $('#capBtn').setAttribute('aria-pressed', String(caps)); $('#capBtn').textContent = 'Caption: ' + (caps ? 'hidup' : 'mati'); };
+  $('#bar').onclick = e => { const b = e.target.closest('[data-i]'); if (b) seek(+b.dataset.i); };
+  $('#rows').onclick = e => { const r = e.target.closest('[data-i]'); if (r) seek(+r.dataset.i); };
+  document.addEventListener('keydown', e => { if (e.key === ' ' && e.target === document.body) { e.preventDefault(); $('#play').click(); } if (e.key === 'ArrowRight') $('#next').click(); if (e.key === 'ArrowLeft') $('#prev').click(); });
+  render(); requestAnimationFrame(tick);
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<svg viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs>
+<linearGradient id="P0_E" x1="0" x2="1"><stop offset="0" stop-color="#FFF100"/><stop offset=".22" stop-color="#B9DE41"/><stop offset=".52" stop-color="#00A2BA"/><stop offset=".76" stop-color="#00ADEF"/><stop offset="1" stop-color="#005F89"/></linearGradient>
+<linearGradient id="P0_V" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#00BCC0"/><stop offset=".5" stop-color="#94DA63"/><stop offset="1" stop-color="#FFF100"/></linearGradient>
+<linearGradient id="P0_B" x1="0" x2="1"><stop offset="0" stop-color="#00ADEF"/><stop offset=".55" stop-color="#0087BE"/><stop offset="1" stop-color="#005F89"/></linearGradient>
+<linearGradient id="P0_N" x1="0" y1="0" x2=".4" y2="1"><stop offset="0" stop-color="#00618F"/><stop offset=".6" stop-color="#00507C"/><stop offset="1" stop-color="#004367"/></linearGradient>
+<linearGradient id="P0_C" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#009FDC"/><stop offset=".5" stop-color="#0073A3"/><stop offset="1" stop-color="#00567E"/></linearGradient>
+<linearGradient id="P0_S" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#005F89"/><stop offset=".55" stop-color="#00A2BA"/><stop offset=".85" stop-color="#B9DE41"/><stop offset="1" stop-color="#FFF100"/></linearGradient>
+</defs><rect width="640" height="360" fill="#FBFDFE"/>
+<path class="a-draw" style="--len:300;--d:0s;--t:8s" d="M100 100 m-30 0 a30 30 0 1 0 60 0 a30 30 0 1 0 -60 0 M100 50 L100 60 M100 140 L100 150 M50 100 L60 100 M140 100 L150 100" fill="none" stroke="#00507C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path class="a-draw" style="--len:330;--d:0.8s;--t:8s" d="M180 170 L280 170 L300 210 L200 210 Z M230 210 L230 240" fill="none" stroke="#00507C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path class="a-draw" style="--len:90;--d:0.6s;--t:8s" d="M140 120 Q170 140 200 160" fill="none" stroke="#00ADEF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path class="a-draw" style="--len:110;--d:1.6s;--t:8s" d="M330 180 L390 180 M380 170 L392 180 L380 190" fill="none" stroke="#00507C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path class="a-draw" style="--len:300;--d:2s;--t:8s" d="M410 150 L470 150 L470 210 L410 210 Z M425 170 Q440 160 455 180" fill="none" stroke="#00507C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path class="a-draw" style="--len:110;--d:2.6s;--t:8s" d="M490 180 L540 180 M530 170 L542 180 L530 190" fill="none" stroke="#00507C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path class="a-draw" style="--len:300;--d:3s;--t:8s" d="M560 130 L570 230 M590 130 L580 230 M556 160 L594 160 M558 190 L592 190" fill="none" stroke="#00507C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<rect class="a-wipe" style="--d:3.8s;--t:8s" x="196" y="262" width="128" height="22" fill="#FFF100" opacity=".7"/>
+<text x="200" y="280" font-size="18" font-weight="700" fill="#00507C" >panel surya</text><text x="408" y="280" font-size="18" font-weight="700" fill="#00507C" >inverter</text><text x="548" y="260" font-size="18" font-weight="700" fill="#00507C" >jaringan</text></svg>

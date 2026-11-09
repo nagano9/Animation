@@ -1,0 +1,448 @@
+{
+  "schema": "plnnr.production-package/1",
+  "brand": "PT PLN Nusantara Renewables",
+  "title": "Peresmian PLTS Terapung",
+  "need": "C",
+  "recipe": "cod-90",
+  "aspect": "16:9",
+  "total": "01:30",
+  "audience": "Publik, media, PLN Induk",
+  "objective": "Penonton mengetahui PLTS terapung telah beroperasi komersial dan manfaatnya bagi jaringan dan warga sekitar.",
+  "ask": "",
+  "typography": "PT Sans (pengganti Myriad Pro), angka tabular",
+  "guardrails": [
+    "Merah #E20613 hanya di petir logo",
+    "Teks gelap navy #00507C, tidak hitam",
+    "Satu sinyal per bingkai: cyan di atas putih, kuning di atas navy",
+    "Lockup dari aset resmi, tidak digambar ulang",
+    "Tanpa bounce, elastic, getar, atau glitch; default cross-fade 220 ms",
+    "Energy Sweep maksimal dua kali per video",
+    "Setiap angka membawa baris Sumber",
+    "Teks layar maksimal 3 kata per detik"
+  ],
+  "deliverables": [
+    "MP4 H.264 25 fps (1920×1080)",
+    "captions.srt",
+    "Thumbnail PNG"
+  ],
+  "sources": [
+    {
+      "id": "S1",
+      "text": "Berita acara COD dan dokumen proyek (menunggu versi final)"
+    }
+  ],
+  "scenes": [
+    {
+      "id": "s01",
+      "role": "Ident pembuka",
+      "vo": "",
+      "onscreen": [],
+      "data": [],
+      "lower_third": null,
+      "notes": "Satu versi ident untuk semua video",
+      "start": "00:00",
+      "duration_s": 4.0,
+      "transition_in": {
+        "name": "Cut",
+        "duration_ms": 0,
+        "css_easing": null
+      },
+      "style": {
+        "id": "logo-sting",
+        "name": "Logo Sting & Ident",
+        "family": "Paket Broadcast",
+        "tier": "Signature",
+        "beats": [
+          "Navy kosong 0,3 dtk",
+          "Hexagon gradient berkumpul ke tengah",
+          "Pita energi melingkar dan memudar",
+          "Lockup resmi + www.ptplnnr.com, tahan 1,5 dtk"
+        ],
+        "palette": [
+          "#00507C",
+          "#FFF100",
+          "#B9DE41",
+          "#00A2BA",
+          "#00ADEF",
+          "#FFFFFF"
+        ],
+        "typography": "Tanpa teks selain lockup resmi dan URL",
+        "pace": "Sedang",
+        "easing": {
+          "name": "emphasis",
+          "css": "cubic-bezier(.16,1,.3,1)"
+        },
+        "production": {
+          "effort": 1,
+          "music": "Sonic logo 2–3 dtk (satu versi untuk semua video)",
+          "bpm": "100–120",
+          "vo": "Tidak ada / mengikuti program",
+          "tools": [
+            "After Effects (MOGRT)",
+            "Lottie",
+            "Remotion"
+          ]
+        },
+        "dont": [
+          "Lockup selalu dari aset resmi, jangan digambar ulang atau dianimasikan per huruf",
+          "Satu versi ident untuk semua video"
+        ]
+      }
+    },
+    {
+      "id": "s02",
+      "role": "Establishing",
+      "vo": "Di atas permukaan waduk, ribuan panel surya terapung kini mengalirkan listrik bersih ke jaringan. Air tetap untuk irigasi, permukaannya kini juga bekerja menghasilkan energi.",
+      "onscreen": [
+        "PLTS Terapung",
+        "Beroperasi komersial"
+      ],
+      "data": [],
+      "lower_third": null,
+      "notes": "Footage drone senja, lower third lokasi",
+      "start": "00:04",
+      "duration_s": 26.0,
+      "transition_in": {
+        "name": "Cross-fade 220 ms",
+        "duration_ms": 220,
+        "css_easing": "cubic-bezier(.4,0,.2,1)"
+      },
+      "style": {
+        "id": "golden-hour",
+        "name": "Golden-Hour Cinematic",
+        "family": "Dokumenter & Sinematik",
+        "tier": "Signature",
+        "beats": [
+          "Wide shot senja",
+          "Push-in pelan 5–8%",
+          "Lower third: lokasi dan kapasitas",
+          "Lockup di frame terakhir"
+        ],
+        "palette": [
+          "#FFF100",
+          "#B9DE41",
+          "#00A2BA",
+          "#005F89",
+          "#00507C"
+        ],
+        "typography": "PT Sans Bold judul di letterbox, Regular lokasi dan tanggal",
+        "pace": "Tenang",
+        "easing": {
+          "name": "brand-standard",
+          "css": "cubic-bezier(.4,0,.2,1)"
+        },
+        "production": {
+          "effort": 2,
+          "music": "Orkestral sinematik, strings dan piano",
+          "bpm": "70–85",
+          "vo": "Reflektif dan bermakna",
+          "tools": [
+            "Footage drone",
+            "DaVinci Resolve"
+          ]
+        },
+        "dont": [
+          "Tanpa grain, duotone, atau hitam-putih",
+          "Warna footage hangat-dingin, jangan desaturasi"
+        ]
+      }
+    },
+    {
+      "id": "s03",
+      "role": "Konteks portofolio",
+      "vo": "Pembangkit ini memperkuat portofolio energi baru terbarukan PLN Nusantara Renewables di berbagai wilayah Indonesia.",
+      "onscreen": [
+        "Portofolio EBT Nusantara"
+      ],
+      "data": [],
+      "lower_third": null,
+      "notes": "Zoom ke lokasi pembangkit",
+      "start": "00:30",
+      "duration_s": 12.0,
+      "transition_in": {
+        "name": "Lens Iris",
+        "duration_ms": 800,
+        "css_easing": "cubic-bezier(0,0,.2,1)"
+      },
+      "style": {
+        "id": "nusantara-map",
+        "name": "Nusantara Portfolio Map",
+        "family": "Data & Eksekutif",
+        "tier": "Signature",
+        "beats": [
+          "Peta kepulauan tergambar",
+          "Kamera mendekat ke wilayah",
+          "Pin muncul per jenis pembangkit",
+          "Total kapasitas terhitung naik"
+        ],
+        "palette": [
+          "#00507C",
+          "#005F89",
+          "#00ADEF",
+          "#FFF100",
+          "#B9DE41"
+        ],
+        "typography": "PT Sans Bold kode pembangkit (PLTS, PLTB, PLTP, PLTA), Regular nama lokasi",
+        "pace": "Sedang",
+        "easing": {
+          "name": "brand-standard",
+          "css": "cubic-bezier(.4,0,.2,1)"
+        },
+        "production": {
+          "effort": 2,
+          "music": "Ambient minimal, piano dan pulse halus",
+          "bpm": "80–90",
+          "vo": "Jelas, faktual, tempo sedang",
+          "tools": [
+            "Remotion",
+            "After Effects",
+            "D3/SVG"
+          ]
+        },
+        "dont": [
+          "Lokasi pin harus diverifikasi sebelum rilis",
+          "Jangan pakai peta satelit berwarna"
+        ]
+      }
+    },
+    {
+      "id": "s04",
+      "role": "Angka kunci",
+      "vo": "Kapasitasnya 100 MWac, dengan tingkat komponen dalam negeri yang tinggi dan ketersediaan pembangkit yang terjaga sejak hari pertama.",
+      "onscreen": [
+        "100 MWac"
+      ],
+      "data": [
+        {
+          "label": "Kapasitas",
+          "value": "100",
+          "unit": "MWac",
+          "source": "ilustratif"
+        },
+        {
+          "label": "TKDN",
+          "value": "64",
+          "unit": "%",
+          "source": "ilustratif"
+        }
+      ],
+      "lower_third": null,
+      "notes": "Kapasitas, TKDN, progres; satu angka disorot",
+      "start": "00:42",
+      "duration_s": 14.0,
+      "transition_in": {
+        "name": "Count-Up",
+        "duration_ms": 900,
+        "css_easing": "cubic-bezier(.16,1,.3,1)"
+      },
+      "style": {
+        "id": "arc-kpi",
+        "name": "Gradient Arc KPI",
+        "family": "Data & Eksekutif",
+        "tier": "Inti",
+        "beats": [
+          "Cakram navy muncul",
+          "Busur gradient tergambar searah jarum jam",
+          "Angka menghitung naik",
+          "Label UPPERCASE di bawah"
+        ],
+        "palette": [
+          "#00507C",
+          "#FFF100",
+          "#B9DE41",
+          "#00A2BA",
+          "#00ADEF"
+        ],
+        "typography": "PT Sans Bold angka tabular 40–64 px di tengah cakram",
+        "pace": "Sedang",
+        "easing": {
+          "name": "emphasis",
+          "css": "cubic-bezier(.16,1,.3,1)"
+        },
+        "production": {
+          "effort": 1,
+          "music": "Ambient minimal, piano dan pulse halus",
+          "bpm": "80–90",
+          "vo": "Jelas, faktual, tempo sedang",
+          "tools": [
+            "Remotion",
+            "After Effects",
+            "D3/SVG"
+          ]
+        },
+        "dont": [
+          "Maksimal tiga busur per layar",
+          "Tahan angka final minimal 1,5 dtk"
+        ]
+      }
+    },
+    {
+      "id": "s05",
+      "role": "Testimoni",
+      "vo": "Bagi kami, keberhasilan ini adalah kerja bersama tim proyek, mitra, dan masyarakat sekitar waduk yang terlibat sejak tahap konstruksi. Proyek ini membuka lapangan kerja lokal dan membawa keterampilan baru bagi warga.",
+      "onscreen": [],
+      "data": [],
+      "lower_third": {
+        "name": "Nama Direktur",
+        "title": "Direktur, PT PLN Nusantara Renewables"
+      },
+      "notes": "Dua narasumber: Direksi dan perwakilan warga; ganti nama sebelum render",
+      "start": "00:56",
+      "duration_s": 28.0,
+      "transition_in": {
+        "name": "Cross-fade 220 ms",
+        "duration_ms": 220,
+        "css_easing": "cubic-bezier(.4,0,.2,1)"
+      },
+      "style": {
+        "id": "lower-third",
+        "name": "Lower Third & Name Super",
+        "family": "Paket Broadcast",
+        "tier": "Signature",
+        "beats": [
+          "Aksen kuning tumbuh 120 ms",
+          "Bar putih wipe dari kiri",
+          "Nama lalu jabatan muncul",
+          "Tahan 4 dtk lalu keluar terbalik"
+        ],
+        "palette": [
+          "#FFFFFF",
+          "#00507C",
+          "#FFF100",
+          "#407C9D"
+        ],
+        "typography": "Nama PT Sans Bold 28–32 px, jabatan Regular 18–20 px",
+        "pace": "Sedang",
+        "easing": {
+          "name": "entrance",
+          "css": "cubic-bezier(0,0,.2,1)"
+        },
+        "production": {
+          "effort": 1,
+          "music": "Stinger 2–4 dtk + bed loop bermerek",
+          "bpm": "100–120",
+          "vo": "Tidak ada / mengikuti program",
+          "tools": [
+            "After Effects (MOGRT)",
+            "Lottie",
+            "Remotion"
+          ]
+        },
+        "dont": [
+          "Nama dan jabatan diverifikasi ejaannya",
+          "Maksimal dua baris, tidak menutupi wajah"
+        ]
+      }
+    },
+    {
+      "id": "s06",
+      "role": "Penutup",
+      "vo": "Energi bersih untuk Nusantara.",
+      "onscreen": [
+        "Energi bersih untuk Nusantara"
+      ],
+      "data": [],
+      "lower_third": null,
+      "notes": "Pesan satu kalimat + lockup",
+      "start": "01:24",
+      "duration_s": 6.0,
+      "transition_in": {
+        "name": "Energy Sweep",
+        "duration_ms": 600,
+        "css_easing": "cubic-bezier(.4,0,.2,1)"
+      },
+      "style": {
+        "id": "energy-sweep",
+        "name": "Energy Sweep",
+        "family": "Signature PLN NR",
+        "tier": "Signature",
+        "beats": [
+          "Layar navy kosong 0,5 dtk",
+          "Pita gradient menyapu dari kiri ke kanan",
+          "Judul muncul di belakang sapuan",
+          "Lockup PLN NR mengunci di kanan atas"
+        ],
+        "palette": [
+          "#00507C",
+          "#FFF100",
+          "#B9DE41",
+          "#00A2BA",
+          "#00ADEF",
+          "#005F89"
+        ],
+        "typography": "PT Sans Bold 700, display 64–100 px, tracking −1%",
+        "pace": "Sedang",
+        "easing": {
+          "name": "brand-standard",
+          "css": "cubic-bezier(.4,0,.2,1)"
+        },
+        "production": {
+          "effort": 1,
+          "music": "Orkestral-elektronik hangat, membangun perlahan",
+          "bpm": "90–100",
+          "vo": "Tenang dan berwibawa",
+          "tools": [
+            "After Effects",
+            "Lottie",
+            "Remotion"
+          ]
+        },
+        "dont": [
+          "Jangan menaruh teks di atas gradient",
+          "Jangan memutar arah gradient (selalu kuning di kiri)"
+        ]
+      }
+    }
+  ],
+  "qa_manual": [
+    "Lisensi musik untuk kanal yang dipakai",
+    "Loudness −14 LUFS (sosial) / −23 LUFS (siaran)",
+    "Ejaan nama, jabatan, dan lokasi",
+    "Kesesuaian footage dengan lokasi dan tanggal",
+    "Angka ilustratif sudah diganti data resmi",
+    "Kontras teks minimal 4,5:1 pada footage final",
+    "Persetujuan pemilik konten sebelum tayang"
+  ],
+  "qa_full": [
+    {
+      "group": "Merek",
+      "items": [
+        "Lockup dari aset resmi, posisi dan ukuran benar",
+        "Hanya warna ramp PLN NR; merah hanya di petir logo",
+        "Teks gelap navy, tidak hitam",
+        "Satu sinyal per bingkai (cyan di putih, kuning di navy)",
+        "Ident pembuka/penutup memakai versi resmi"
+      ]
+    },
+    {
+      "group": "Konten",
+      "items": [
+        "Setiap angka punya baris Sumber dan sudah diverifikasi",
+        "Angka ilustratif sudah diganti data resmi",
+        "Nama, jabatan, lokasi dieja benar",
+        "Bahasa Indonesia baku, desimal koma, ribuan titik",
+        "Tidak ada klaim proyek yang belum diputuskan"
+      ]
+    },
+    {
+      "group": "Aksesibilitas",
+      "items": [
+        "Caption Bahasa Indonesia tersedia (SRT)",
+        "Teks layar maksimal 3 kata per detik",
+        "Kontras teks minimal 4,5:1",
+        "Status tidak hanya warna (▲ ● ▼)",
+        "Tanpa kedipan lebih dari 3 kali per detik"
+      ]
+    },
+    {
+      "group": "Teknis",
+      "items": [
+        "Resolusi dan rasio sesuai kanal",
+        "Teks di dalam title-safe 90%",
+        "Loudness −14 LUFS (sosial) / −23 LUFS (siaran)",
+        "Musik berlisensi untuk kanal yang dipakai",
+        "Thumbnail dan judul file sesuai konvensi"
+      ]
+    }
+  ]
+}

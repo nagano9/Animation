@@ -1,6 +1,6 @@
 <title>PLN NR Motion Gallery</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="Galeri gaya gerak profesional PT PLN Nusantara Renewables: 44 gaya, tata bahasa gerak, peta kebutuhan A–Z, dan brief produksi untuk Explainer Studio.">
+<meta name="description" content="Galeri gaya gerak profesional PT PLN Nusantara Renewables: 56 gaya, 8 resep video, tata bahasa gerak, peta kebutuhan A–Z, dan brief produksi untuk Explainer Studio.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400&display=swap">
@@ -87,14 +87,13 @@ section.block.alt{background:var(--surface)}
 @media(max-width:820px){.sec-head{grid-template-columns:1fr;gap:12px}}
 
 /* ide */
-.ideas{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;border:1px solid var(--line)}
-.idea{padding:26px 24px;border-right:1px solid var(--line);min-width:0}
-.idea:last-child{border-right:0}
+.ideas{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
+.idea{padding:26px 24px;background:var(--bg);min-width:0}
 .idea .hx{width:40px;height:46px;clip-path:polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);background:var(--energy);margin-bottom:16px}
 .idea h3{font-size:20px;margin-bottom:8px}
 .idea p{color:var(--muted);font-size:15px}
-@media(max-width:980px){.ideas{grid-template-columns:repeat(2,minmax(0,1fr))}.idea:nth-child(2){border-right:0}.idea:nth-child(-n+2){border-bottom:1px solid var(--line)}}
-@media(max-width:560px){.ideas{grid-template-columns:1fr}.idea{border-right:0;border-bottom:1px solid var(--line)}.idea:last-child{border-bottom:0}}
+@media(max-width:980px){.ideas{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.ideas{grid-template-columns:1fr}}
 
 /* motion grammar */
 .grammar{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:40px}
@@ -257,7 +256,7 @@ dialog::backdrop{background:var(--scrim)}
 .m-head .row1{display:flex;gap:8px;align-items:center;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
 .m-head .x{margin-left:auto;flex:none}
 .m-body{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:28px;padding:24px}
-.m-art{aspect-ratio:16/9;max-width:100%;background:var(--surface);border:1px solid var(--line);overflow:hidden}
+.m-art{position:relative;aspect-ratio:16/9;max-width:100%;background:var(--surface);border:1px solid var(--line);overflow:hidden}
 .m-art svg{width:100%;height:100%;display:block}
 .m-tools{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;align-items:center}
 .m-tools .sp{flex:1}
@@ -282,6 +281,73 @@ dialog::backdrop{background:var(--scrim)}
 .donts li::before{content:"▼";color:var(--muted);font-size:12px;line-height:1.8}
 .m-body .code pre{max-height:360px}
 @media(max-width:900px){.m-body{grid-template-columns:1fr}}
+
+/* recipes */
+.recipes{display:grid;gap:0;border-top:2px solid var(--fg)}
+.recipe{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:32px;padding:28px 0;border-bottom:1px solid var(--line)}
+.recipe .rh{display:flex;gap:14px;align-items:flex-start}
+.recipe h3{font-size:22px;margin-bottom:6px}
+.recipe .goal{color:var(--muted);font-size:15px}
+.recipe .rmeta{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.recipe .ract{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.tl{display:flex;height:44px;width:100%;gap:2px}
+.tl button{border:0;padding:0 8px;min-width:6px;cursor:pointer;font-size:11px;font-weight:700;text-align:left;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.tl button:hover{opacity:.86}
+.tl-scale{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-top:6px;font-variant-numeric:tabular-nums}
+.segs{list-style:none;margin:16px 0 0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px 24px;font-size:14px}
+.segs li{display:grid;grid-template-columns:52px 12px minmax(0,1fr);gap:8px;align-items:baseline}
+.segs .tc{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.segs i{width:10px;height:10px;display:inline-block}
+.segs button{background:none;border:0;padding:0;font-weight:700;cursor:pointer;text-align:left;text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--line)}
+.segs span.role{color:var(--muted)}
+.legend{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:13px;color:var(--muted);margin-bottom:20px}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend i{width:12px;height:12px;display:inline-block}
+@media(max-width:900px){.recipe{grid-template-columns:1fr;gap:18px}.segs{grid-template-columns:1fr}}
+
+/* animatic player */
+#player{width:min(1040px,calc(100vw - 32px))}
+.pl-body{padding:20px 24px 24px;display:grid;gap:14px}
+.pl-stage{position:relative;aspect-ratio:16/9;max-width:100%;width:100%;margin:0 auto;background:#00243A;overflow:hidden}
+.pl-stage.v{aspect-ratio:9/16;width:auto;height:min(62dvh,620px)}
+.pl-stage .art{position:absolute;inset:0}
+.pl-stage .art svg{width:100%;height:100%;display:block}
+.pl-tag{position:absolute;left:12px;top:12px;background:rgba(0,40,64,.82);color:#fff;font-size:12px;font-weight:700;padding:6px 10px;letter-spacing:.04em;z-index:2}
+.pl-bar{display:flex;height:8px;gap:2px}
+.pl-bar div{position:relative;background:var(--surface-2);flex:1}
+.pl-bar div b{position:absolute;inset:0 auto 0 0;width:0;background:var(--accent)}
+.pl-row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.pl-row .tc{font-family:var(--mono);font-size:13px;color:var(--muted);margin-left:auto}
+.pl-note{font-size:15px}
+.pl-note span{color:var(--muted)}
+
+/* QA */
+.qa-top{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-bottom:22px}
+.qa-meter{flex:1;min-width:200px;height:8px;background:var(--surface-2)}
+.qa-meter b{display:block;height:100%;width:0;background:var(--energy);transition:width .22s var(--ease)}
+.qa-count{font-weight:700;font-variant-numeric:tabular-nums}
+.qa{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}
+.qa > div{min-width:0;border-top:4px solid var(--fg);padding-top:16px}
+.qa h3{font-size:18px;margin-bottom:12px}
+.qa label{display:grid;grid-template-columns:22px 1fr;gap:8px;font-size:14.5px;padding:7px 0;border-bottom:1px solid var(--line);cursor:pointer}
+.qa input{width:18px;height:18px;margin:2px 0 0;accent-color:var(--fg)}
+.qa input:checked + span{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--line)}
+@media(max-width:980px){.qa{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.qa{grid-template-columns:1fr}}
+
+/* safe zones */
+.safe{position:absolute;inset:0;pointer-events:none;z-index:3}
+.safe div{position:absolute;border:1.5px dashed rgba(255,241,0,.95);mix-blend-mode:normal}
+.safe .as{inset:3.5%}
+.safe .ts{inset:5%;border-style:solid;border-color:rgba(0,173,239,.95)}
+.safe .v{top:0;bottom:0;left:34.18%;width:31.64%;border-color:rgba(255,255,255,.9);border-style:dotted}
+.safe .sq{top:0;bottom:0;left:21.875%;width:56.25%;border-color:rgba(148,218,99,.95);border-style:dotted}
+.safe span{position:absolute;font:700 10px/1 var(--mono);color:#fff;background:rgba(0,40,64,.8);padding:3px 5px}
+.safe-key{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12px;color:var(--muted);margin-top:8px}
+.safe-key i{display:inline-block;width:14px;height:0;border-top:2px dashed;margin-right:5px;vertical-align:middle}
+.prod-kv b,.prod-kv span{display:block}
+.prod-kv{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 18px}
+.effort{letter-spacing:2px}
 
 /* ===== shared animation vocabulary for SVG previews ===== */
 .art text{font-family:var(--font)}
@@ -333,6 +399,8 @@ dialog::backdrop{background:var(--scrim)}
 @keyframes aScanX{from{transform:translateX(0)}to{transform:translateX(640px)}}
 .a-lid{animation:aLid 6s var(--ease) infinite}
 @keyframes aLid{0%,15%{transform:none}35%,80%{transform:translateY(-46px);opacity:.55}100%{transform:none}}
+.a-tick{animation:aTick 5s steps(1,end) infinite;animation-delay:var(--d,0s)}
+@keyframes aTick{0%{opacity:1}20%,100%{opacity:0}}
 
 .paused .art *{animation:none!important}
 .still .art *{animation:none!important}
@@ -352,7 +420,7 @@ dialog::backdrop{background:var(--scrim)}
     <img class="logo logo-c" src="assets/logo-pln-nr-color.png" alt="PLN Nusantara Renewables">
     <img class="logo logo-w" src="assets/logo-pln-nr-white.png" alt="PLN Nusantara Renewables">
     <nav class="nav" aria-label="Bagian halaman">
-      <a href="#gerak">Tata Gerak</a><a href="#galeri">Galeri</a><a href="#az">Peta A–Z</a><a href="#produksi">Produksi</a><a href="#pedoman">Pedoman</a>
+      <a href="#gerak">Tata Gerak</a><a href="#galeri">Galeri</a><a href="#az">Peta A–Z</a><a href="#resep">Resep</a><a href="#qa">QA</a><a href="#produksi">Produksi</a><a href="#pedoman">Pedoman</a>
     </nav>
     <button class="icon-btn" id="themeBtn" type="button" aria-label="Ganti tema">Tema: Sistem</button>
   </div>
@@ -363,12 +431,12 @@ dialog::backdrop{background:var(--scrim)}
     <div>
       <div class="eyebrow">Pustaka Gerak · Edisi 1 · Nov 2026</div>
       <h1 id="ttl">Galeri Gaya Gerak <em>PLN NR</em></h1>
-      <p class="lead">Empat puluh empat gaya animasi yang diturunkan dari design system PT PLN Nusantara Renewables, dipetakan ke 26 kebutuhan komunikasi dari Annual Report sampai Zero Accident. Setiap gaya membawa brief produksi siap pakai untuk Explainer Studio.</p>
+      <p class="lead">Lima puluh enam gaya animasi yang diturunkan dari design system PT PLN Nusantara Renewables, dipetakan ke 26 kebutuhan komunikasi dari Annual Report sampai Zero Accident. Setiap gaya membawa arah produksi dan brief siap pakai untuk Explainer Studio, dan delapan resep merangkainya menjadi video utuh.</p>
       <div class="stats">
-        <div class="stat"><b id="stStyles">44</b><span>gaya gerak</span></div>
-        <div class="stat"><b>8</b><span>rumpun</span></div>
+        <div class="stat"><b id="stStyles">56</b><span>gaya gerak</span></div>
+        <div class="stat"><b>10</b><span>rumpun</span></div>
         <div class="stat"><b>26</b><span>kebutuhan A–Z</span></div>
-        <div class="stat"><b>8</b><span>transisi resmi</span></div>
+        <div class="stat"><b>8</b><span>resep video</span></div>
       </div>
     </div>
     <div>
@@ -383,13 +451,15 @@ dialog::backdrop{background:var(--scrim)}
   <div class="wrap">
     <div class="sec-head">
       <div><div class="eyebrow">Gagasan</div><h2 id="ideTtl">Galeri ini adalah sistem produksi, bukan katalog gambar</h2><div class="rule"></div></div>
-      <p>Referensi awal berisi gambar diam. Versi PLN NR menambahkan empat lapisan supaya setiap pilihan gaya langsung bisa dieksekusi dan tetap patuh merek.</p>
+      <p>Referensi awal berisi gambar diam. Versi PLN NR menambahkan enam lapisan supaya setiap pilihan gaya langsung bisa dieksekusi, diukur, dan tetap patuh merek.</p>
     </div>
     <div class="ideas">
       <div class="idea"><div class="hx"></div><h3>Bergerak, bukan diam</h3><p>Setiap pratinjau dianimasikan dengan kosakata gerak yang sama, sehingga tempo, easing, dan transisi dinilai sebelum produksi.</p></div>
       <div class="idea"><div class="hx"></div><h3>Tata bahasa gerak</h3><p>Durasi, easing, dan delapan transisi resmi diturunkan dari aset merek: pita energi, hexagon, gelombang, chevron, lensa.</p></div>
       <div class="idea"><div class="hx"></div><h3>Peta kebutuhan A–Z</h3><p>Dua puluh enam situasi komunikasi PLN NR, masing-masing dengan gaya utama, alternatif, audiens, durasi, dan format.</p></div>
-      <div class="idea"><div class="hx"></div><h3>Brief siap Explainer Studio</h3><p>Setiap gaya mengekspor brief JSON: palet, tipografi, storyboard empat beat, guardrail. Tinggal isi naskah dan data.</p></div>
+      <div class="idea"><div class="hx"></div><h3>Resep video utuh</h3><p>Delapan rangkaian siap pakai, dari peresmian COD sampai safety induction, lengkap dengan durasi per segmen dan animatic.</p></div>
+      <div class="idea"><div class="hx"></div><h3>Arah produksi</h3><p>Musik, BPM, nada VO, tingkat usaha, dan tools per gaya, ditambah overlay zona aman untuk 16:9, 9:16, dan 1:1.</p></div>
+      <div class="idea"><div class="hx"></div><h3>Brief dan QA otomatis</h3><p>Brief JSON per gaya dan resep dibaca skill Explainer Studio, yang juga menjalankan dua puluh pemeriksaan QA sebelum tayang.</p></div>
     </div>
   </div>
 </section>
@@ -436,7 +506,7 @@ dialog::backdrop{background:var(--scrim)}
 <section class="block" id="galeri" aria-labelledby="galTtl">
   <div class="wrap">
     <div class="sec-head">
-      <div><div class="eyebrow">Galeri</div><h2 id="galTtl">Empat puluh empat gaya dalam delapan rumpun</h2><div class="rule"></div></div>
+      <div><div class="eyebrow">Galeri</div><h2 id="galTtl">Lima puluh enam gaya dalam sepuluh rumpun</h2><div class="rule"></div></div>
       <p>Signature adalah gaya asli merek dan aman untuk kanal resmi. Inti adalah gaya serbaguna yang sudah disesuaikan. Spesialis butuh konteks tertentu dan review tambahan.</p>
     </div>
     <div class="toolbar">
@@ -471,6 +541,28 @@ dialog::backdrop{background:var(--scrim)}
         <tbody id="azBody"></tbody>
       </table>
     </div>
+  </div>
+</section>
+
+<section class="block" id="resep" aria-labelledby="resTtl">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><div class="eyebrow">Resep video</div><h2 id="resTtl">Delapan rangkaian gaya menjadi video utuh</h2><div class="rule"></div></div>
+      <p>Satu video jarang memakai satu gaya. Resep menetapkan urutan, durasi, dan peran tiap segmen. Putar animatic untuk melihat alurnya, lalu salin resepnya ke Explainer Studio.</p>
+    </div>
+    <div class="legend" id="famLegend"></div>
+    <div class="recipes" id="recipes"></div>
+  </div>
+</section>
+
+<section class="block alt" id="qa" aria-labelledby="qaTtl">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><div class="eyebrow">Kendali mutu</div><h2 id="qaTtl">Dua puluh pemeriksaan sebelum tayang</h2><div class="rule"></div></div>
+      <p>Centang selama review. Status tersimpan di browser Anda saja, jadi setiap reviewer punya daftar sendiri. Explainer Studio menjalankan pemeriksaan yang sama secara otomatis.</p>
+    </div>
+    <div class="qa-top"><span class="qa-count" id="qaCount">0/20</span><div class="qa-meter"><b id="qaBar"></b></div><button class="btn" type="button" id="qaReset">Kosongkan</button></div>
+    <div class="qa" id="qaList"></div>
   </div>
 </section>
 
@@ -549,6 +641,7 @@ dialog::backdrop{background:var(--scrim)}
       <div class="m-art art" id="mArt"></div>
       <div class="m-tools">
         <button class="btn solid" type="button" id="mReplay">Putar ulang</button>
+        <button class="btn" type="button" id="mSafe" aria-pressed="false">Zona aman</button>
         <span id="mFormats" class="swatches"></span>
         <span class="sp"></span>
         <div class="m-nav"><button class="btn" type="button" id="mPrev" aria-label="Gaya sebelumnya">←</button><button class="btn" type="button" id="mNext" aria-label="Gaya berikutnya">→</button></div>
@@ -565,6 +658,24 @@ dialog::backdrop{background:var(--scrim)}
     </div>
   </div>
 </dialog>
+<dialog id="player" aria-labelledby="plName">
+  <div class="m-head">
+    <div><div class="row1"><span id="plMeta"></span></div><h2 id="plName"></h2></div>
+    <button class="btn x" type="button" id="plClose">Tutup</button>
+  </div>
+  <div class="pl-body">
+    <div class="pl-stage" id="plStage"><span class="pl-tag" id="plTag"></span></div>
+    <div class="pl-bar" id="plBar"></div>
+    <div class="pl-row">
+      <button class="btn solid" type="button" id="plPlay">Jeda</button>
+      <button class="btn" type="button" id="plPrev" aria-label="Segmen sebelumnya">←</button>
+      <button class="btn" type="button" id="plNext" aria-label="Segmen berikutnya">→</button>
+      <button class="btn" type="button" id="plSpeed" aria-pressed="false">Waktu nyata: mati</button>
+      <span class="tc" id="plTc">00:00 / 00:00</span>
+    </div>
+    <p class="pl-note" id="plNote"></p>
+  </div>
+</dialog>
 <div class="toast" id="toast" role="status"></div>
 
 <script>
@@ -579,6 +690,8 @@ dialog::backdrop{background:var(--scrim)}
   const store = { get(k){ try { return localStorage.getItem(k) } catch(e){ return null } }, set(k,v){ try { localStorage.setItem(k,v) } catch(e){} } };
   let uid = 0; const pid = () => 'k' + (uid++) + '_';
   const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  const effDots = n => '●'.repeat(n) + '○'.repeat(3 - n);
+  const effortTxt = ['', 'Ringan, ≤ 2 hari', 'Sedang, 3–5 hari', 'Berat, ≥ 1 minggu'];
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
 
   /* ---------- theme ---------- */
@@ -655,7 +768,7 @@ dialog::backdrop{background:var(--scrim)}
   function card(s){
     const el = document.createElement('article'); el.className = 'card'; el.dataset.id = s.id; el.tabIndex = 0; el.setAttribute('role', 'button');
     el.setAttribute('aria-label', 'Buka gaya ' + s.name);
-    el.innerHTML = `<div class="prev art">${s.svg(pid())}</div><div class="meta"><div class="row1"><span class="tnum">${s.no}</span><span class="tier ${s.tier === 'Signature' ? 'sig' : ''}">${s.tier}</span><span>${esc(s.cat)}</span></div><h3>${esc(s.name)}</h3><p class="desc">${esc(s.desc)}</p><div class="foot"><span class="chip">${esc(s.dur)}</span>${s.formats.map(f => `<span class="chip">${esc(f)}</span>`).join('')}${s.letters.map(l => `<span class="chip azl" title="${esc(azName[l])}">${l}</span>`).join('')}</div></div>`;
+    el.innerHTML = `<div class="prev art">${s.svg(pid())}</div><div class="meta"><div class="row1"><span class="tnum">${s.no}</span><span class="tier ${s.tier === 'Signature' ? 'sig' : ''}">${s.tier}</span><span>${esc(s.cat)}</span></div><h3>${esc(s.name)}</h3><p class="desc">${esc(s.desc)}</p><div class="foot"><span class="chip">${esc(s.dur)}</span>${s.formats.map(f => `<span class="chip">${esc(f)}</span>`).join('')}<span class="chip effort" title="Usaha produksi ${s.prod.effort} dari 3">${effDots(s.prod.effort)}</span>${s.letters.map(l => `<span class="chip azl" title="${esc(azName[l])}">${l}</span>`).join('')}</div></div>`;
     el.onclick = () => comparing ? pick(s.id) : openModal(s.id);
     el.onkeydown = e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); el.click(); } };
     if (picked.includes(s.id)) el.classList.add('picked');
@@ -664,7 +777,7 @@ dialog::backdrop{background:var(--scrim)}
   function filtered(){
     const term = q.value.trim().toLowerCase();
     return S.filter(s => (!fCat.value || s.cat === fCat.value) && (!fAz.value || s.letters.includes(fAz.value)) && (!fFmt.value || s.formats.includes(fFmt.value)) && (!tier || s.tier === tier) &&
-      (!term || [s.name, s.cat, s.desc, s.when, s.aud, s.letters.map(l => azName[l]).join(' ')].join(' ').toLowerCase().includes(term)));
+      (!term || [s.name, s.cat, s.desc, s.when, s.aud, s.prod.tools.join(' '), s.letters.map(l => azName[l]).join(' ')].join(' ').toLowerCase().includes(term)));
   }
   function render(){
     const list = filtered(); grid.innerHTML = '';
@@ -712,6 +825,7 @@ dialog::backdrop{background:var(--scrim)}
       aspect_ratios: s.formats, duration: s.dur, pace: s.pace,
       motion: { easing: { name: s.ease, css: EASES[s.ease] || null }, signature_transition: { name: t.key, duration_ms: t.ms, css_easing: t.ease }, default_transition: { name: 'Cross-fade', duration_ms: 220, css_easing: 'cubic-bezier(.4,0,.2,1)' }, no_bounce: true },
       palette: s.palette, typography: { family: 'PT Sans (pengganti Myriad Pro)', spec: s.type, numerals: 'tabular' },
+      production: { effort: s.prod.effort, effort_label: effortTxt[s.prod.effort], music: s.prod.music, bpm: s.prod.bpm, vo_tone: s.prod.vo, tools: s.prod.tools },
       storyboard: s.beats.map((b, i) => ({ beat: i + 1, action: b, duration_s: null, narration: '' })),
       guardrails: [...s.dont, ...GLOBAL_GUARD],
       logo: { lockup: 'PLN NR color / white', position: 'kanan atas bingkai konten; tengah pada bingkai akhir' },
@@ -733,11 +847,14 @@ dialog::backdrop{background:var(--scrim)}
     if (tab === 'ring') el.innerHTML = `<p>${esc(s.desc)}</p><div><h4>Kapan dipakai</h4><p>${esc(s.when)}</p></div><div><h4>Audiens</h4><p>${esc(s.aud)}</p></div><div><h4>Melayani kebutuhan</h4><div class="swatches">${s.letters.map(l => `<button type="button" class="link-chip" data-az="${l}">${l} · ${esc(azName[l])}</button>`).join('')}</div></div><div><h4>Hindari</h4><ul class="donts">${s.dont.map(x => `<li>${esc(x)}</li>`).join('')}</ul></div>`;
     if (tab === 'story') el.innerHTML = `<div><h4>Empat beat</h4><ol class="beats">${s.beats.map((b, i) => `<li data-n="0${i + 1}"><span>Beat ${i + 1}</span>${esc(b)}</li>`).join('')}</ol></div><p style="color:var(--muted);font-size:14px">Satu beat memuat satu ide. Durasi beat 3–6 detik, kecuali beat data yang menahan angka minimal 1,5 detik.</p>`;
     if (tab === 'spec') { const t = TX.find(x => x.key === s.transition);
-      el.innerHTML = `<div class="kv"><div><h4>Durasi</h4><b>${esc(s.dur)}</b></div><div><h4>Tempo</h4><b>${s.pace}</b></div><div><h4>Easing</h4><b>${esc(s.ease)}</b><code style="font-family:var(--mono);font-size:12px;color:var(--muted)">${esc(EASES[s.ease] || 'linear')}</code></div><div><h4>Transisi khas</h4><b>${esc(t.key)}</b><code style="font-family:var(--mono);font-size:12px;color:var(--muted)">${t.ms} ms</code></div><div><h4>Format</h4><b>${s.formats.join(' · ')}</b></div><div><h4>Tingkat</h4><b>${s.tier}</b></div></div><div><h4>Tipografi</h4><p>${esc(s.type)}</p></div><div><h4>Palet</h4><div class="swatches">${s.palette.map(c => `<span class="sw"><i style="background:${c}"></i>${c}</span>`).join('')}</div></div>`; }
+      el.innerHTML = `<div class="kv"><div><h4>Durasi</h4><b>${esc(s.dur)}</b></div><div><h4>Tempo</h4><b>${s.pace}</b></div><div><h4>Easing</h4><b>${esc(s.ease)}</b><code style="font-family:var(--mono);font-size:12px;color:var(--muted)">${esc(EASES[s.ease] || 'linear')}</code></div><div><h4>Transisi khas</h4><b>${esc(t.key)}</b><code style="font-family:var(--mono);font-size:12px;color:var(--muted)">${t.ms} ms</code></div><div><h4>Format</h4><b>${s.formats.join(' · ')}</b></div><div><h4>Tingkat</h4><b>${s.tier}</b></div></div><div><h4>Tipografi</h4><p>${esc(s.type)}</p></div><div><h4>Palet</h4><div class="swatches">${s.palette.map(c => `<span class="sw"><i style="background:${c}"></i>${c}</span>`).join('')}</div></div><div><h4>Arah produksi</h4><div class="prod-kv"><div><b class="effort">${effDots(s.prod.effort)}</b><span style="color:var(--muted);font-size:13px">${effortTxt[s.prod.effort]}</span></div><div><b>${esc(s.prod.bpm)} BPM</b><span style="color:var(--muted);font-size:13px">${esc(s.prod.music)}</span></div><div><b>Nada VO</b><span style="color:var(--muted);font-size:13px">${esc(s.prod.vo)}</span></div><div><b>Tools</b><span style="color:var(--muted);font-size:13px">${s.prod.tools.map(esc).join(', ')}</span></div></div></div>`; }
     if (tab === 'json') { el.innerHTML = `<div class="code"><button class="copy" type="button" id="mCopy">Salin JSON</button><pre id="mPre" tabindex="0"></pre></div>`; $('#mPre').textContent = JSON.stringify(brief(s), null, 2); $('#mCopy').onclick = () => copyText($('#mPre').textContent, $('#mPre')); }
     document.querySelectorAll('.tabs button').forEach(b => b.setAttribute('aria-selected', String(b.dataset.tab === tab)));
   }
-  function drawArt(){ const a = $('#mArt'); a.innerHTML = byId[cur].svg(pid()); if (!motion) { try { a.querySelector('svg').pauseAnimations(); } catch(e){} } }
+  let safe = false;
+  const SAFE = '<div class="safe"><div class="sq"></div><div class="v"></div><div class="as"></div><div class="ts"></div><span style="left:5.5%;top:6%">TITLE-SAFE 90%</span><span style="left:35%;bottom:3%">9:16</span><span style="right:22.5%;bottom:3%">1:1</span></div>';
+  function drawArt(){ const a = $('#mArt'); a.innerHTML = byId[cur].svg(pid()) + (safe ? SAFE : ''); if (!motion) { try { a.querySelector('svg').pauseAnimations(); } catch(e){} } }
+  $('#mSafe').onclick = () => { safe = !safe; $('#mSafe').setAttribute('aria-pressed', String(safe)); const o = $('#mArt .safe'); if (safe && !o) $('#mArt').insertAdjacentHTML('beforeend', SAFE); if (!safe && o) o.remove(); };
   function openModal(id){
     if (!byId[id]) return; cur = id; const s = byId[id];
     $('#mNo').textContent = s.no; $('#mTier').textContent = s.tier; $('#mTier').className = 'tier' + (s.tier === 'Signature' ? ' sig' : ''); $('#mCat').textContent = s.cat; $('#mName').textContent = s.name;
@@ -755,6 +872,72 @@ dialog::backdrop{background:var(--scrim)}
   modal.addEventListener('keydown', e => { if (e.key === 'ArrowRight' && !e.target.closest('select,input,pre')) step(1); if (e.key === 'ArrowLeft' && !e.target.closest('select,input,pre')) step(-1); });
   document.querySelector('.tabs').onclick = e => { const b = e.target.closest('button'); if (!b) return; tab = b.dataset.tab; panel(); };
   $('#mPanel').addEventListener('click', e => { const f = e.target.closest('[data-az]'); if (f) { modal.close(); fAz.value = f.dataset.az; render(); document.getElementById('galeri').scrollIntoView(); } });
+
+  /* ---------- recipes ---------- */
+  const FAM = {'Signature PLN NR':['#00507C','#fff'],'Data & Eksekutif':['#00ADEF','#00507C'],'Teknik & Engineering':['#0087BE','#fff'],'Edukasi & Explainer':['#00A2BA','#fff'],'Nusantara & Budaya':['#B9DE41','#00507C'],'Kampanye & Sosial':['#FFF100','#00507C'],'K3 & Operasional':['#94DA63','#00507C'],'Dokumenter & Sinematik':['#005F89','#fff'],'Tata Kelola & Keuangan':['#407C9D','#fff'],'Paket Broadcast':['#7FA7BD','#00507C']};
+  const mmss = t => String(Math.floor(t / 60)).padStart(2, '0') + ':' + String(Math.round(t % 60)).padStart(2, '0');
+  const R = P.RECIPES, byR = Object.fromEntries(R.map(r => [r.id, r]));
+  $('#famLegend').innerHTML = P.CATS.map(c => `<span><i style="background:${FAM[c][0]}"></i>${esc(c)}</span>`).join('');
+  function recipeJson(r){ let t = 0; return { schema: 'plnnr.motion-recipe/1', recipe_id: r.id, name: r.name, need: r.letter + ' — ' + azName[r.letter], aspect: r.aspect, total_s: r.total, goal: r.goal,
+    segments: r.segs.map(([id, sec, role, note], i) => { const o = { n: i + 1, start: mmss(t), duration_s: sec, style_id: id, style_name: byId[id].name, role, note, transition_in: i ? byId[id].transition : 'Cut' }; t += sec; return o; }) }; }
+  $('#recipes').innerHTML = R.map(r => { let t = 0;
+    const segs = r.segs.map(([id, sec, role]) => { const st = t; t += sec; return { id, sec, role, st }; });
+    return `<article class="recipe"><div><div class="rh"><span class="hexL">${r.letter}</span><div><h3>${esc(r.name)}</h3><p class="goal">${esc(r.goal)}</p></div></div>
+<div class="rmeta"><span class="chip tnum">${mmss(r.total)}</span><span class="chip">${r.aspect}</span><span class="chip">${r.segs.length} segmen</span><span class="chip">${esc(azName[r.letter])}</span></div>
+<div class="ract"><button class="btn solid" type="button" data-play="${r.id}">Putar animatic</button><button class="btn" type="button" data-rcopy="${r.id}">Salin resep JSON</button></div></div>
+<div style="min-width:0"><div class="tl" role="list">${segs.map(s => { const c = FAM[byId[s.id].cat]; return `<button type="button" role="listitem" data-open="${s.id}" style="flex:${s.sec} 1 0;background:${c[0]};color:${c[1]}" title="${esc(byId[s.id].name)} · ${s.sec} dtk">${s.sec >= r.total * .12 ? esc(s.role) : ''}</button>`; }).join('')}</div>
+<div class="tl-scale"><span>00:00</span><span>${mmss(r.total / 2)}</span><span>${mmss(r.total)}</span></div>
+<ol class="segs">${segs.map(s => `<li><span class="tc">${mmss(s.st)}</span><i style="background:${FAM[byId[s.id].cat][0]}"></i><span><button type="button" data-open="${s.id}">${esc(byId[s.id].name)}</button> <span class="role">· ${esc(s.role)} · ${s.sec} dtk</span></span></li>`).join('')}</ol></div></article>`; }).join('');
+  $('#recipes').addEventListener('click', e => {
+    const o = e.target.closest('[data-open]'); if (o) return openModal(o.dataset.open);
+    const pl = e.target.closest('[data-play]'); if (pl) return openPlayer(pl.dataset.play);
+    const c = e.target.closest('[data-rcopy]'); if (c) { const txt = JSON.stringify(recipeJson(byR[c.dataset.rcopy]), null, 2); try { navigator.clipboard.writeText(txt).then(() => toast('Resep tersalin'), () => toast('Salin tidak diizinkan; buka Brief di bagian Produksi')); } catch(x){ toast('Salin tidak diizinkan di tampilan ini'); } }
+  });
+
+  /* ---------- animatic player ---------- */
+  const player = $('#player'); let pr = null, pi = 0, pt = 0, playing = true, realtime = false, last = 0, raf = 0;
+  const segLen = sec => realtime ? sec : Math.min(6, Math.max(2.5, sec * .2));
+  function plDraw(){
+    const r = pr, [id, sec, role, note] = r.segs[pi], s = byId[id], stage = $('#plStage');
+    stage.querySelectorAll('.art').forEach(a => a.remove());
+    const a = document.createElement('div'); a.className = 'art'; a.innerHTML = r.aspect === '9:16' ? s.svg(pid()).replace('xMidYMid slice', 'xMidYMid meet') : s.svg(pid()); stage.append(a);
+    if (!motion) { try { a.querySelector('svg').pauseAnimations(); } catch(e){} }
+    $('#plTag').textContent = (pi + 1) + '/' + r.segs.length + ' · ' + role;
+    $('#plNote').innerHTML = '<b>' + esc(s.name) + '</b> <span>· ' + sec + ' dtk · masuk dengan ' + esc(pi ? s.transition : 'Cut') + (note ? ' · ' + esc(note) : '') + (r.aspect === '9:16' ? ' · pratinjau 16:9 dalam bingkai vertikal; komposisi final disusun ulang untuk 9:16' : '') + '</span>';
+  }
+  function plTick(ts){
+    if (!pr) return; const dt = last ? (ts - last) / 1000 : 0; last = ts;
+    if (playing) { pt += dt; if (pt >= segLen(pr.segs[pi][1])) { pt = 0; pi = (pi + 1) % pr.segs.length; plDraw(); } }
+    const frac = Math.min(1, pt / segLen(pr.segs[pi][1]));
+    [...$('#plBar').children].forEach((d, k) => d.firstChild.style.width = (k < pi ? 100 : k === pi ? frac * 100 : 0) + '%');
+    const before = pr.segs.slice(0, pi).reduce((a, s) => a + s[1], 0);
+    $('#plTc').textContent = mmss(before + frac * pr.segs[pi][1]) + ' / ' + mmss(pr.total);
+    raf = requestAnimationFrame(plTick);
+  }
+  function openPlayer(id){
+    pr = byR[id]; pi = 0; pt = 0; playing = motion; last = 0;
+    $('#plName').textContent = pr.name; $('#plMeta').textContent = pr.letter + ' · ' + pr.aspect + ' · ' + mmss(pr.total) + ' · animatic ' + (realtime ? 'waktu nyata' : 'dipercepat');
+    $('#plStage').classList.toggle('v', pr.aspect === '9:16');
+    $('#plBar').innerHTML = pr.segs.map(s => `<div style="flex:${s[1]} 1 0"><b></b></div>`).join('');
+    $('#plPlay').textContent = playing ? 'Jeda' : 'Putar';
+    plDraw(); if (!player.open) player.showModal(); cancelAnimationFrame(raf); raf = requestAnimationFrame(plTick);
+  }
+  $('#plPlay').onclick = () => { playing = !playing; $('#plPlay').textContent = playing ? 'Jeda' : 'Putar'; };
+  $('#plPrev').onclick = () => { pi = (pi - 1 + pr.segs.length) % pr.segs.length; pt = 0; plDraw(); };
+  $('#plNext').onclick = () => { pi = (pi + 1) % pr.segs.length; pt = 0; plDraw(); };
+  $('#plSpeed').onclick = () => { realtime = !realtime; $('#plSpeed').setAttribute('aria-pressed', String(realtime)); $('#plSpeed').textContent = 'Waktu nyata: ' + (realtime ? 'hidup' : 'mati'); pt = 0; $('#plMeta').textContent = pr.letter + ' · ' + pr.aspect + ' · ' + mmss(pr.total) + ' · animatic ' + (realtime ? 'waktu nyata' : 'dipercepat'); };
+  $('#plClose').onclick = () => player.close();
+  player.addEventListener('close', () => { cancelAnimationFrame(raf); pr = null; });
+  player.addEventListener('click', e => { if (e.target === player) player.close(); });
+
+  /* ---------- QA checklist ---------- */
+  let qaState = {}; try { qaState = JSON.parse(store.get('plnnr-qa') || '{}') || {}; } catch(e){ qaState = {}; }
+  const qaTotal = P.QA.reduce((a, g) => a + g[1].length, 0);
+  $('#qaList').innerHTML = P.QA.map(([g, items], gi) => `<div><h3>${esc(g)}</h3>${items.map((t, i) => { const k = gi + '-' + i; return `<label><input type="checkbox" id="qa-${k}" data-k="${k}" ${qaState[k] ? 'checked' : ''}><span>${esc(t)}</span></label>`; }).join('')}</div>`).join('');
+  function qaDraw(){ const n = Object.values(qaState).filter(Boolean).length; $('#qaCount').textContent = n + '/' + qaTotal; $('#qaBar').style.width = (n / qaTotal * 100) + '%'; }
+  $('#qaList').addEventListener('change', e => { const k = e.target.dataset.k; if (!k) return; qaState[k] = e.target.checked; store.set('plnnr-qa', JSON.stringify(qaState)); qaDraw(); });
+  $('#qaReset').onclick = () => { qaState = {}; store.set('plnnr-qa', '{}'); document.querySelectorAll('#qaList input').forEach(i => i.checked = false); qaDraw(); };
+  qaDraw();
 
   function route(){ const h = location.hash; if (h.startsWith('#gaya-')) openModal(h.slice(6)); }
   window.addEventListener('hashchange', route);
