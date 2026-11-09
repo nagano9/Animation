@@ -16,6 +16,8 @@
   const EASE = { standard: bezier(.4, 0, .2, 1), entrance: bezier(0, 0, .2, 1), emphasis: bezier(.16, 1, .3, 1) };
   const clamp = (v, a = 0, b = 1) => Math.max(a, Math.min(b, v));
   /* Gaya yang bagian bawahnya sudah terisi (lower third, judul peta, letterbox): caption pindah ke atas. */
+  /* Animasi masuk → titik tahan (fraksi durasi) tempat elemen sudah tampil penuh. Animasi kontinu (putar, alir, apung) tidak ditahan. */
+  const ENTRANCE = { aUp: .85, aPop: .85, aDraw: .85, aGrow: .85, aWipe: .85, aKin: .8, aArc: .95, aPush: .85, aLight: .85, aSweep: .95, aLid: .6 };
   /* Gaya yang teksnya sudah tampil besar di dalam art: panel teks bertumpuk tidak mengulanginya. */
   const DISPLAY_TEXT = new Set(['kinetic-type', 'navy-statement', 'energy-sweep', 'vertical-reels']);
   const CAP_TOP = new Set(['lower-third', 'nusantara-map', 'travel-poster', 'wayang-silhouette', 'split-screen', 'hydro-flow', 'geothermal-section']);
@@ -65,7 +67,14 @@
     let capsOn = opts.captions !== false;
 
     function setLocal(ly, local) {
-      ly.el.getAnimations({ subtree: true }).forEach(a => { a.pause(); a.currentTime = Math.max(0, local * 1000); });
+      ly.el.getAnimations({ subtree: true }).forEach(a => {
+        a.pause();
+        let ms = Math.max(0, local * 1000);
+        // Animasi masuk di galeri berulang untuk pratinjau; di video diputar sekali lalu ditahan pada keadaan tampil.
+        const hold = ENTRANCE[a.animationName];
+        if (hold) { const tm = a.effect.getTiming(); const dur = typeof tm.duration === 'number' ? tm.duration : 0; ms = Math.min(ms, (tm.delay || 0) + dur * hold); }
+        a.currentTime = ms;
+      });
       ly.svgs.forEach(s => { try { s.pauseAnimations(); s.setCurrentTime(Math.max(0, local)); } catch (e) {} });
       ly.el.querySelectorAll('[data-count]').forEach(el => {
         const n = +el.dataset.count, dec = +el.dataset.dec || 0, k = EASE.emphasis(clamp((local - .35) / .9));

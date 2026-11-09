@@ -1951,7 +1951,8 @@ ${d.name ? '' : X(600, 340, 10, 'FOOTAGE PLACEHOLDER', '#E6F4FB', 700, 'text-anc
     if (!d) return v;
     if (!d.location) return v.replace(box, '');
     const s = fitSize(d.location, 520, 18, 14);
-    return v.replace(box, `<g class="a-up" ${d0(1)}><rect x="40" y="262" width="4" height="44" fill="${C.yellow}"/>${X(54, 282, s, d.location, '#fff')}${d.sublabel ? X(54, 302, 13, d.sublabel, '#E6F4FB', 400) : ''}</g>`);
+    // posisi dinaikkan agar tidak bertabrakan dengan zona caption di bawah
+    return v.replace(box, `<g class="a-up" ${d0(1)}><rect x="40" y="218" width="4" height="44" fill="${C.yellow}"/>${X(54, 238, s, d.location, '#fff')}${d.sublabel ? X(54, 258, 13, d.sublabel, '#E6F4FB', 400) : ''}</g>`);
   } };
   /* Travel Poster: nama lokasi dari data (field location); tanpa itu memakai judul contoh. */
   const tpBase = S.find(s => s.id === 'travel-poster').svg;
