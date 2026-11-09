@@ -102,7 +102,7 @@
       // lockup: reveal bermasker kiri ke kanan setelah cincin hexagon tertutup
       L.querySelectorAll('.lockup').forEach(el => el.animate([{ clipPath: 'inset(0 100% 0 0)', transform: 'translate(-50%,-50%) scale(.96)' }, { clipPath: 'inset(0 0 0 0)', transform: 'translate(-50%,-50%) scale(1)' }], { duration: 650, delay: 1150, easing: 'cubic-bezier(.16,1,.3,1)', fill: 'backwards' }));
       L.querySelectorAll('[data-count]').forEach(el => { el.dataset.orig = el.textContent; });
-      return { el: L, sc, s, beats, cam: L.querySelector('.cam'), camKeys: cameraKeys(beats, dur), svgs: [...L.querySelectorAll('svg')], vids: [...L.querySelectorAll('video.foot')], plan: null };
+      return { el: L, sc, s, beats, cam: L.querySelector('.cam'), camKeys: cameraKeys(beats, dur), svgs: [...L.querySelectorAll('svg')], vids: [...L.querySelectorAll('video.foot')], idx: i, plan: null };
     });
     const band = document.createElement('div'); band.className = 'tx-band'; stage.append(band);
     const dip = document.createElement('div'); dip.className = 'tx-dip'; stage.append(dip);
@@ -151,7 +151,17 @@
       // kamera: push-in bertahap per beat + reframe kiri/kanan (mode expressive)
       if (ly.cam) {
         if (NO_CAM.has(ly.sc.style)) { ly.cam.style.transform = 'none'; return; }
-        const c = CAM[ly.sc.mode] || CAM.productive, ks = ly.camKeys, d = ly.sc.dur;
+        const d = ly.sc.dur, ks = ly.camKeys;
+        if (ly.sc.footage) {
+          // Ken Burns untuk footage: zoom kontinu 1,04 → 1,16 + geser horizontal 3% (arah bergantian per adegan),
+          // ditambah aksen zoom bertahap 1,5% di setiap beat. Footage tanpa teks di tepi, jadi aman di-crop.
+          const u = clamp(local / d), dir = ly.idx % 2 ? -1 : 1;
+          let z = 1.04 + .12 * u;   // mulai 1,04 agar geser 1,5% tidak pernah memperlihatkan tepi kosong
+          ks.forEach((k0, i) => { if (i) z += .015 * EASE.standard(clamp((local - k0) / 1.2)); });
+          ly.cam.style.transform = `translateX(${(dir * 3 * (u - .5)).toFixed(3)}%) scale(${z.toFixed(4)})`;
+          return;
+        }
+        const c = CAM[ly.sc.mode] || CAM.productive;
         // dorongan kontinu (ease masuk/keluar hanya 1 dtk di tepi) agar tidak pernah benar-benar diam
         const u = clamp(local / d), edge = Math.min(1, local / 1, (d - local) / 1);
         let z = 1 + c.zoom * u, x = 0;
