@@ -3,54 +3,333 @@
   "motion": {
     "duration": {
       "$type": "duration",
-      "micro": { "$value": "120ms", "$description": "Hover, kedip status, munculnya aksen kecil" },
-      "standard": { "$value": "220ms", "$description": "Cross-fade antaradegan; default merek dari template asli" },
-      "slide": { "$value": "420ms", "$description": "Elemen masuk, panel bergeser, lower third" },
-      "scene-productive": { "$value": "600ms", "$description": "Transisi bermerek pada konten produktif" },
-      "scene-expressive": { "$value": "800ms", "$description": "Transisi bermerek pada momen ekspresif" },
-      "line-draw": { "$value": "1200ms", "$description": "Diagram, line-art, peta jalan tergambar" },
-      "hold-number": { "$value": "1500ms", "$description": "Tahan minimal angka final sebelum berganti" },
-      "beat-min": { "$value": "3000ms", "$description": "Durasi minimal satu beat storyboard" },
-      "beat-max": { "$value": "6000ms", "$description": "Durasi maksimal satu beat sebelum ada perubahan visual" }
+      "micro": {
+        "$value": "120ms",
+        "$description": "Hover, kedip status, munculnya aksen kecil"
+      },
+      "standard": {
+        "$value": "220ms",
+        "$description": "Cross-fade antaradegan; default merek dari template asli"
+      },
+      "slide": {
+        "$value": "420ms",
+        "$description": "Elemen masuk, panel bergeser, lower third"
+      },
+      "scene-productive": {
+        "$value": "600ms",
+        "$description": "Transisi bermerek pada konten produktif"
+      },
+      "scene-expressive": {
+        "$value": "800ms",
+        "$description": "Transisi bermerek pada momen ekspresif"
+      },
+      "line-draw": {
+        "$value": "1200ms",
+        "$description": "Diagram, line-art, peta jalan tergambar"
+      },
+      "hold-number": {
+        "$value": "1500ms",
+        "$description": "Tahan minimal angka final sebelum berganti"
+      },
+      "beat-min": {
+        "$value": "3000ms",
+        "$description": "Durasi minimal satu beat storyboard"
+      },
+      "beat-max": {
+        "$value": "6000ms",
+        "$description": "Durasi maksimal satu beat sebelum ada perubahan visual"
+      }
     },
     "easing": {
       "$type": "cubicBezier",
-      "standard": { "$value": [0.4, 0, 0.2, 1], "$description": "Gerak umum; default merek" },
-      "entrance": { "$value": [0, 0, 0.2, 1], "$description": "Elemen masuk, melambat di akhir" },
-      "exit": { "$value": [0.4, 0, 1, 1], "$description": "Elemen keluar, cepat di akhir" },
-      "emphasis": { "$value": [0.16, 1, 0.3, 1], "$description": "Angka, hexagon, sorotan; hanya mode expressive atau Count-Up" },
-      "linear": { "$value": [0, 0, 1, 1], "$description": "Aliran kontinu: arus, putaran, pindai" }
+      "standard": {
+        "$value": [
+          0.4,
+          0,
+          0.2,
+          1
+        ],
+        "$description": "Gerak umum; default merek"
+      },
+      "entrance": {
+        "$value": [
+          0,
+          0,
+          0.2,
+          1
+        ],
+        "$description": "Elemen masuk, melambat di akhir"
+      },
+      "exit": {
+        "$value": [
+          0.4,
+          0,
+          1,
+          1
+        ],
+        "$description": "Elemen keluar, cepat di akhir"
+      },
+      "emphasis": {
+        "$value": [
+          0.16,
+          1,
+          0.3,
+          1
+        ],
+        "$description": "Angka, hexagon, sorotan; hanya mode expressive atau Count-Up"
+      },
+      "linear": {
+        "$value": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "$description": "Aliran kontinu: arus, putaran, pindai"
+      }
     },
     "transition": {
       "$type": "transition",
-      "cross-fade": { "$value": { "duration": "{motion.duration.standard}", "timingFunction": "{motion.easing.standard}" }, "$extensions": { "id.ptplnnr": { "name": "Cross-fade 220 ms", "modes": ["productive", "expressive"] } } },
-      "energy-sweep": { "$value": { "duration": "{motion.duration.scene-productive}", "timingFunction": "{motion.easing.standard}" }, "$extensions": { "id.ptplnnr": { "name": "Energy Sweep", "modes": ["expressive"], "max_per_video": 2 } } },
-      "hex-bloom": { "$value": { "duration": "{motion.duration.scene-expressive}", "timingFunction": "{motion.easing.emphasis}" }, "$extensions": { "id.ptplnnr": { "name": "Hex Bloom", "modes": ["expressive"] } } },
-      "wave-wipe": { "$value": { "duration": "{motion.duration.scene-productive}", "timingFunction": "{motion.easing.standard}" }, "$extensions": { "id.ptplnnr": { "name": "Wave Wipe", "modes": ["productive", "expressive"] } } },
-      "chevron-push": { "$value": { "duration": "{motion.duration.slide}", "timingFunction": "{motion.easing.entrance}" }, "$extensions": { "id.ptplnnr": { "name": "Chevron Push", "modes": ["expressive"] } } },
-      "lens-iris": { "$value": { "duration": "{motion.duration.scene-expressive}", "timingFunction": "{motion.easing.entrance}" }, "$extensions": { "id.ptplnnr": { "name": "Lens Iris", "modes": ["expressive"] } } },
-      "line-draw": { "$value": { "duration": "{motion.duration.line-draw}", "timingFunction": "{motion.easing.linear}" }, "$extensions": { "id.ptplnnr": { "name": "Line Draw", "modes": ["productive", "expressive"] } } },
-      "count-up": { "$value": { "duration": "{motion.duration.scene-expressive}", "timingFunction": "{motion.easing.emphasis}" }, "$extensions": { "id.ptplnnr": { "name": "Count-Up", "modes": ["productive", "expressive"] } } }
+      "cross-fade": {
+        "$value": {
+          "duration": "{motion.duration.standard}",
+          "timingFunction": "{motion.easing.standard}"
+        },
+        "$extensions": {
+          "id.ptplnnr": {
+            "name": "Cross-fade 220 ms",
+            "modes": [
+              "productive",
+              "expressive"
+            ],
+            "kind": "scene"
+          }
+        }
+      },
+      "energy-sweep": {
+        "$value": {
+          "duration": "{motion.duration.scene-expressive}",
+          "timingFunction": "{motion.easing.standard}"
+        },
+        "$extensions": {
+          "id.ptplnnr": {
+            "name": "Energy Sweep",
+            "modes": [
+              "expressive"
+            ],
+            "max_per_video": 2,
+            "kind": "scene"
+          }
+        }
+      },
+      "hex-bloom": {
+        "$value": {
+          "duration": "{motion.duration.scene-expressive}",
+          "timingFunction": "{motion.easing.emphasis}"
+        },
+        "$extensions": {
+          "id.ptplnnr": {
+            "name": "Hex Bloom",
+            "modes": [
+              "expressive"
+            ],
+            "kind": "scene"
+          }
+        }
+      },
+      "wave-wipe": {
+        "$value": {
+          "duration": "{motion.duration.scene-productive}",
+          "timingFunction": "{motion.easing.standard}"
+        },
+        "$extensions": {
+          "id.ptplnnr": {
+            "name": "Wave Wipe",
+            "modes": [
+              "productive",
+              "expressive"
+            ],
+            "kind": "scene"
+          }
+        }
+      },
+      "chevron-push": {
+        "$value": {
+          "duration": "{motion.duration.slide}",
+          "timingFunction": "{motion.easing.entrance}"
+        },
+        "$extensions": {
+          "id.ptplnnr": {
+            "name": "Chevron Push",
+            "modes": [
+              "expressive"
+            ],
+            "kind": "scene"
+          }
+        }
+      },
+      "lens-iris": {
+        "$value": {
+          "duration": "{motion.duration.scene-expressive}",
+          "timingFunction": "{motion.easing.entrance}"
+        },
+        "$extensions": {
+          "id.ptplnnr": {
+            "name": "Lens Iris",
+            "modes": [
+              "expressive"
+            ],
+            "kind": "scene"
+          }
+        }
+      },
+      "line-draw": {
+        "$value": {
+          "duration": "{motion.duration.line-draw}",
+          "timingFunction": "{motion.easing.linear}"
+        },
+        "$extensions": {
+          "id.ptplnnr": {
+            "name": "Line Draw",
+            "modes": [
+              "productive",
+              "expressive"
+            ],
+            "kind": "content"
+          }
+        }
+      },
+      "count-up": {
+        "$value": {
+          "duration": "{motion.duration.scene-expressive}",
+          "timingFunction": "{motion.easing.emphasis}"
+        },
+        "$extensions": {
+          "id.ptplnnr": {
+            "name": "Count-Up",
+            "modes": [
+              "productive",
+              "expressive"
+            ],
+            "kind": "content"
+          }
+        }
+      },
+      "dip-navy": {
+        "$value": {
+          "duration": "{motion.duration.slide}",
+          "timingFunction": "{motion.easing.standard}"
+        },
+        "$description": "Turun ke navy lalu naik ke adegan baru; dipakai otomatis saat kecerahan latar dua adegan berbeda jauh, untuk mencegah kilatan.",
+        "$extensions": {
+          "id.ptplnnr": {
+            "name": "Dip Navy",
+            "modes": [
+              "productive",
+              "expressive"
+            ],
+            "kind": "scene"
+          }
+        }
+      },
+      "$description": "kind=scene: perpindahan adegan. kind=content: animasi isi di dalam adegan, bukan transisi; runtime memakai cross-fade bila dipakai sebagai transisi."
     },
     "mode": {
       "$type": "other",
-      "productive": { "$value": { "easing": ["standard", "entrance", "exit", "linear"], "scene_duration": "{motion.duration.scene-productive}" }, "$description": "Informasi dan keputusan: gerak membantu memahami, tidak mencuri perhatian. Data, tata kelola, K3, teknik, broadcast." },
-      "expressive": { "$value": { "easing": ["standard", "entrance", "exit", "linear", "emphasis"], "scene_duration": "{motion.duration.scene-expressive}" }, "$description": "Momen penting dan emosi: pembuka, peresmian, kampanye, budaya, dokumenter." }
+      "productive": {
+        "$value": {
+          "easing": [
+            "standard",
+            "entrance",
+            "exit",
+            "linear"
+          ],
+          "scene_duration": "{motion.duration.scene-productive}"
+        },
+        "$description": "Informasi dan keputusan: gerak membantu memahami, tidak mencuri perhatian. Data, tata kelola, K3, teknik, broadcast."
+      },
+      "expressive": {
+        "$value": {
+          "easing": [
+            "standard",
+            "entrance",
+            "exit",
+            "linear",
+            "emphasis"
+          ],
+          "scene_duration": "{motion.duration.scene-expressive}"
+        },
+        "$description": "Momen penting dan emosi: pembuka, peresmian, kampanye, budaya, dokumenter."
+      }
     }
   },
   "legibility": {
     "$description": "Ukuran minimal teks pada keluaran render. Mengacu praktik 'phone legible' (judul ≥ 44 px, label ≥ 28 px, angka kunci ≥ 64 px pada 1280×720), diskalakan ke 1080p.",
-    "1920x1080": { "headline": { "$type": "dimension", "$value": "66px" }, "label": { "$type": "dimension", "$value": "42px" }, "number": { "$type": "dimension", "$value": "96px" }, "caption": { "$type": "dimension", "$value": "42px" }, "max_chars_per_line": { "$type": "number", "$value": 32 } },
-    "1080x1920": { "headline": { "$type": "dimension", "$value": "72px" }, "label": { "$type": "dimension", "$value": "44px" }, "number": { "$type": "dimension", "$value": "120px" }, "caption": { "$type": "dimension", "$value": "48px" }, "max_chars_per_line": { "$type": "number", "$value": 24 } },
-    "min_contrast_text": { "$type": "number", "$value": 4.5 },
-    "min_contrast_large_or_graphic": { "$type": "number", "$value": 3 }
+    "1920x1080": {
+      "headline": {
+        "$type": "dimension",
+        "$value": "66px"
+      },
+      "label": {
+        "$type": "dimension",
+        "$value": "42px"
+      },
+      "number": {
+        "$type": "dimension",
+        "$value": "96px"
+      },
+      "caption": {
+        "$type": "dimension",
+        "$value": "42px"
+      },
+      "max_chars_per_line": {
+        "$type": "number",
+        "$value": 32
+      }
+    },
+    "1080x1920": {
+      "headline": {
+        "$type": "dimension",
+        "$value": "72px"
+      },
+      "label": {
+        "$type": "dimension",
+        "$value": "44px"
+      },
+      "number": {
+        "$type": "dimension",
+        "$value": "120px"
+      },
+      "caption": {
+        "$type": "dimension",
+        "$value": "48px"
+      },
+      "max_chars_per_line": {
+        "$type": "number",
+        "$value": 24
+      }
+    },
+    "min_contrast_text": {
+      "$type": "number",
+      "$value": 4.5
+    },
+    "min_contrast_large_or_graphic": {
+      "$type": "number",
+      "$value": 3
+    }
   },
   "family_mode": {
     "$type": "other",
     "$value": {
-      "Signature PLN NR": "expressive", "Data & Eksekutif": "productive", "Teknik & Engineering": "productive",
-      "Edukasi & Explainer": "productive", "Nusantara & Budaya": "expressive", "Kampanye & Sosial": "expressive",
-      "K3 & Operasional": "productive", "Dokumenter & Sinematik": "expressive", "Tata Kelola & Keuangan": "productive",
+      "Signature PLN NR": "expressive",
+      "Data & Eksekutif": "productive",
+      "Teknik & Engineering": "productive",
+      "Edukasi & Explainer": "productive",
+      "Nusantara & Budaya": "expressive",
+      "Kampanye & Sosial": "expressive",
+      "K3 & Operasional": "productive",
+      "Dokumenter & Sinematik": "expressive",
+      "Tata Kelola & Keuangan": "productive",
       "Paket Broadcast": "productive"
     }
   }

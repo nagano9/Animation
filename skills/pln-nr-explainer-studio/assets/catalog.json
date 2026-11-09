@@ -17,7 +17,7 @@
     },
     {
       "key": "Energy Sweep",
-      "ms": 600,
+      "ms": 800,
       "ease": "cubic-bezier(.4,0,.2,1)",
       "use": "Pembuka, penutup, bumper bab. Maksimal 2 kali per video."
     },
@@ -50,6 +50,12 @@
       "ms": 1200,
       "ease": "linear",
       "use": "Diagram teknis, line-art, peta jalan tergambar."
+    },
+    {
+      "key": "Dip Navy",
+      "ms": 420,
+      "ease": "cubic-bezier(.4,0,.2,1)",
+      "use": "Otomatis saat kecerahan dua adegan berbeda jauh; mencegah kilatan navy ke putih."
     },
     {
       "key": "Count-Up",
@@ -281,13 +287,14 @@
             "modes": [
               "productive",
               "expressive"
-            ]
+            ],
+            "kind": "scene"
           }
         }
       },
       "energy-sweep": {
         "$value": {
-          "duration": "{motion.duration.scene-productive}",
+          "duration": "{motion.duration.scene-expressive}",
           "timingFunction": "{motion.easing.standard}"
         },
         "$extensions": {
@@ -296,7 +303,8 @@
             "modes": [
               "expressive"
             ],
-            "max_per_video": 2
+            "max_per_video": 2,
+            "kind": "scene"
           }
         }
       },
@@ -310,7 +318,8 @@
             "name": "Hex Bloom",
             "modes": [
               "expressive"
-            ]
+            ],
+            "kind": "scene"
           }
         }
       },
@@ -325,7 +334,8 @@
             "modes": [
               "productive",
               "expressive"
-            ]
+            ],
+            "kind": "scene"
           }
         }
       },
@@ -339,7 +349,8 @@
             "name": "Chevron Push",
             "modes": [
               "expressive"
-            ]
+            ],
+            "kind": "scene"
           }
         }
       },
@@ -353,7 +364,8 @@
             "name": "Lens Iris",
             "modes": [
               "expressive"
-            ]
+            ],
+            "kind": "scene"
           }
         }
       },
@@ -368,7 +380,8 @@
             "modes": [
               "productive",
               "expressive"
-            ]
+            ],
+            "kind": "content"
           }
         }
       },
@@ -383,10 +396,29 @@
             "modes": [
               "productive",
               "expressive"
-            ]
+            ],
+            "kind": "content"
           }
         }
-      }
+      },
+      "dip-navy": {
+        "$value": {
+          "duration": "{motion.duration.slide}",
+          "timingFunction": "{motion.easing.standard}"
+        },
+        "$description": "Turun ke navy lalu naik ke adegan baru; dipakai otomatis saat kecerahan latar dua adegan berbeda jauh, untuk mencegah kilatan.",
+        "$extensions": {
+          "id.ptplnnr": {
+            "name": "Dip Navy",
+            "modes": [
+              "productive",
+              "expressive"
+            ],
+            "kind": "scene"
+          }
+        }
+      },
+      "$description": "kind=scene: perpindahan adegan. kind=content: animasi isi di dalam adegan, bukan transisi; runtime memakai cross-fade bila dipakai sebagai transisi."
     },
     "mode": {
       "$type": "other",
@@ -529,6 +561,7 @@
         ]
       },
       "mode": "expressive",
+      "bg_luma": 0.072,
       "use_cases": [
         {
           "letter": "G",
@@ -589,6 +622,7 @@
         ]
       },
       "mode": "expressive",
+      "bg_luma": 1,
       "use_cases": [
         {
           "letter": "D",
@@ -658,6 +692,7 @@
         ]
       },
       "mode": "expressive",
+      "bg_luma": 0.072,
       "use_cases": [
         {
           "letter": "A",
@@ -719,6 +754,7 @@
         ]
       },
       "mode": "expressive",
+      "bg_luma": 0.072,
       "use_cases": [
         {
           "letter": "N",
@@ -777,6 +813,7 @@
         ]
       },
       "mode": "expressive",
+      "bg_luma": 1,
       "use_cases": [
         {
           "letter": "G",
@@ -838,6 +875,7 @@
         ]
       },
       "mode": "expressive",
+      "bg_luma": 0.149,
       "use_cases": [
         {
           "letter": "C",
@@ -895,6 +933,7 @@
         ]
       },
       "mode": "expressive",
+      "bg_luma": 1,
       "use_cases": [
         {
           "letter": "O",
@@ -960,6 +999,7 @@
         ]
       },
       "mode": "productive",
+      "bg_luma": 1,
       "use_cases": [
         {
           "letter": "A",
@@ -1035,6 +1075,7 @@
         ]
       },
       "mode": "productive",
+      "bg_luma": 1,
       "use_cases": [
         {
           "letter": "A",
@@ -1105,6 +1146,7 @@
         ]
       },
       "mode": "productive",
+      "bg_luma": 1,
       "use_cases": [
         {
           "letter": "B",
@@ -1155,7 +1197,9 @@
         "Lokasi pin harus diverifikasi sebelum rilis",
         "Jangan pakai peta satelit berwarna"
       ],
-      "slots": [],
+      "slots": [
+        "kicker"
+      ],
       "letters": [
         "F",
         "I",
@@ -1173,6 +1217,7 @@
           "D3/SVG"
         ]
       },
+      "bg_luma": 0.072,
       "use_cases": [
         {
           "letter": "F",
@@ -1240,6 +1285,7 @@
         ]
       },
       "mode": "productive",
+      "bg_luma": 1,
       "use_cases": [
         {
           "letter": "D",
@@ -1311,6 +1357,7 @@
         ]
       },
       "mode": "productive",
+      "bg_luma": 1,
       "use_cases": [
         {
           "letter": "E",
@@ -1369,6 +1416,7 @@
         ]
       },
       "mode": "productive",
+      "bg_luma": 0.038,
       "use_cases": [
         {
           "letter": "K",
@@ -1429,6 +1477,7 @@
         ]
       },
       "mode": "productive",
+      "bg_luma": 0.1,
       "use_cases": [
         {
           "letter": "P",
@@ -1487,6 +1536,7 @@
         ]
       },
       "mode": "productive",
+      "bg_luma": 0.915,
       "use_cases": [
         {
           "letter": "P",
@@ -1545,6 +1595,7 @@
         ]
       },
       "mode": "productive",
+      "bg_luma": 1,
       "use_cases": [
         {
           "letter": "P",
@@ -1605,6 +1656,7 @@
         ]
       },
       "mode": "productive",
+      "bg_luma": 0.072,
       "use_cases": [
         {
           "letter": "T",
@@ -1664,6 +1716,7 @@
         ]
       },
       "mode": "productive",
+      "bg_luma": 1,
       "use_cases": [
         {
           "letter": "D",
@@ -1724,6 +1777,7 @@
         ]
       },
       "mode": "productive",
+      "bg_luma": 1,
       "use_cases": [
         {
           "letter": "U",
@@ -1782,6 +1836,7 @@
         ]
       },
       "mode": "productive",
+      "bg_luma": 0.038,
       "use_cases": [
         {
           "letter": "U",
@@ -1839,6 +1894,7 @@
         ]
       },
       "mode": "productive",
+      "bg_luma": 0.979,
       "use_cases": [
         {
           "letter": "J",
@@ -1904,6 +1960,7 @@
         ]
       },
       "mode": "productive",
+      "bg_luma": 0.915,
       "use_cases": [
         {
           "letter": "M",
@@ -1973,6 +2030,7 @@
         ]
       },
       "mode": "productive",
+      "bg_luma": 0.951,
       "use_cases": [
         {
           "letter": "L",
@@ -2039,6 +2097,7 @@
           "Lottie"
         ]
       },
+      "bg_luma": 1,
       "use_cases": [
         {
           "letter": "S",
@@ -2100,6 +2159,7 @@
         ]
       },
       "mode": "productive",
+      "bg_luma": 0.149,
       "use_cases": [
         {
           "letter": "T",
@@ -2162,6 +2222,7 @@
         ]
       },
       "mode": "productive",
+      "bg_luma": 0.21,
       "use_cases": [
         {
           "letter": "O",
@@ -2225,6 +2286,7 @@
         ]
       },
       "mode": "expressive",
+      "bg_luma": 0.072,
       "use_cases": [
         {
           "letter": "N",
@@ -2284,6 +2346,7 @@
         ]
       },
       "mode": "expressive",
+      "bg_luma": 0.072,
       "use_cases": [
         {
           "letter": "M",
@@ -2342,6 +2405,7 @@
         ]
       },
       "mode": "expressive",
+      "bg_luma": 0.977,
       "use_cases": [
         {
           "letter": "L",
@@ -2407,6 +2471,7 @@
         ]
       },
       "mode": "expressive",
+      "bg_luma": 0.294,
       "use_cases": [
         {
           "letter": "N",
@@ -2468,6 +2533,7 @@
         ]
       },
       "mode": "expressive",
+      "bg_luma": 0.072,
       "use_cases": [
         {
           "letter": "Z",
@@ -2525,6 +2591,7 @@
         ]
       },
       "mode": "expressive",
+      "bg_luma": 0.915,
       "use_cases": [
         {
           "letter": "S",
@@ -2588,6 +2655,7 @@
         ]
       },
       "mode": "expressive",
+      "bg_luma": 0.028,
       "use_cases": [
         {
           "letter": "I",
@@ -2651,6 +2719,7 @@
         ]
       },
       "mode": "expressive",
+      "bg_luma": 0.016,
       "use_cases": [
         {
           "letter": "X",
@@ -2709,6 +2778,7 @@
         ]
       },
       "mode": "expressive",
+      "bg_luma": 0.1,
       "use_cases": [
         {
           "letter": "Y",
@@ -2768,6 +2838,7 @@
         ]
       },
       "mode": "expressive",
+      "bg_luma": 0.904,
       "use_cases": [
         {
           "letter": "M",
@@ -2829,6 +2900,7 @@
         ]
       },
       "mode": "expressive",
+      "bg_luma": 0.072,
       "use_cases": [
         {
           "letter": "X",
@@ -2886,6 +2958,7 @@
         ]
       },
       "mode": "productive",
+      "bg_luma": 1,
       "use_cases": [
         {
           "letter": "H",
@@ -2950,6 +3023,7 @@
         ]
       },
       "mode": "productive",
+      "bg_luma": 0.915,
       "use_cases": [
         {
           "letter": "H",
@@ -3012,6 +3086,7 @@
         ]
       },
       "mode": "productive",
+      "bg_luma": 0.915,
       "use_cases": [
         {
           "letter": "H",
@@ -3079,6 +3154,7 @@
         ]
       },
       "mode": "expressive",
+      "bg_luma": 0.028,
       "use_cases": [
         {
           "letter": "A",
@@ -3144,6 +3220,7 @@
         ]
       },
       "mode": "expressive",
+      "bg_luma": 0.072,
       "use_cases": [
         {
           "letter": "E",
@@ -3210,6 +3287,7 @@
         ]
       },
       "mode": "expressive",
+      "bg_luma": 0.361,
       "use_cases": [
         {
           "letter": "D",
@@ -3270,6 +3348,7 @@
         ]
       },
       "mode": "productive",
+      "bg_luma": 1,
       "use_cases": [
         {
           "letter": "B",
@@ -3327,6 +3406,7 @@
         ]
       },
       "mode": "productive",
+      "bg_luma": 1,
       "use_cases": [
         {
           "letter": "B",
@@ -3388,6 +3468,7 @@
         ]
       },
       "mode": "productive",
+      "bg_luma": 1,
       "use_cases": [
         {
           "letter": "F",
@@ -3449,6 +3530,7 @@
         ]
       },
       "mode": "productive",
+      "bg_luma": 1,
       "use_cases": [
         {
           "letter": "E",
@@ -3513,6 +3595,7 @@
           "PLN NR render engine"
         ]
       },
+      "bg_luma": 0.072,
       "use_cases": [
         {
           "letter": "C",
@@ -3573,6 +3656,7 @@
         ]
       },
       "mode": "productive",
+      "bg_luma": 0.028,
       "use_cases": [
         {
           "letter": "C",
@@ -3630,6 +3714,7 @@
         ]
       },
       "mode": "productive",
+      "bg_luma": 0.915,
       "use_cases": [
         {
           "letter": "S",
@@ -3690,6 +3775,7 @@
           "PLN NR render engine"
         ]
       },
+      "bg_luma": 0.072,
       "use_cases": [
         {
           "letter": "C",
@@ -3756,6 +3842,7 @@
         ]
       },
       "mode": "productive",
+      "bg_luma": 0.837,
       "use_cases": [
         {
           "letter": "E",
@@ -3814,6 +3901,7 @@
         ]
       },
       "mode": "productive",
+      "bg_luma": 1,
       "use_cases": [
         {
           "letter": "P",
@@ -3876,6 +3964,7 @@
         ]
       },
       "mode": "productive",
+      "bg_luma": 0.904,
       "use_cases": [
         {
           "letter": "P",
@@ -3934,6 +4023,7 @@
         ]
       },
       "mode": "productive",
+      "bg_luma": 1,
       "use_cases": [
         {
           "letter": "T",

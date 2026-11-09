@@ -1156,7 +1156,7 @@ ${X(70, 70, 14, (d.kicker || '03 — BUDAYA KERJA').toUpperCase(), C.n25, 700, '
       const L = (d.lines && d.lines.length ? d.lines : ['TERANGI', 'Nusantara dengan', 'EBT']).slice(0, 3);
       const v = d.values && d.values[0] ? d.values[0] : (d.lines ? null : { value: '23', unit: '%' });
       let y = 60, g = `<rect width="640" height="360" fill="#fff"/>`;
-      L.forEach((l, i) => { const s = fitSize(l, v && i === L.length - 1 ? 380 : 560, i % 2 ? 54 : 80, 28); y += s + 8; g += `<g class="a-kin" ${d0(i * .5)}>${X(40, y, s, l, i % 2 ? C.deep : C.navy)}</g>`; if (v && i === L.length - 1) g += `<g class="a-kin" ${d0(i * .5 + .2)}><rect x="${Math.min(470, 60 + l.length * s * .55)}" y="${y - s * .8}" width="150" height="${s * .9}" fill="${C.yellow}"/>${X(Math.min(470, 60 + l.length * s * .55) + 12, y - s * .2, Math.min(40, s * .55), v.value + (v.unit === '%' ? '%' : ''), C.navy, 700, cnt(v.value))}</g>`; });
+      L.forEach((l, i) => { const s = fitSize(l, v && i === L.length - 1 ? 380 : 560, i % 2 ? 54 : 80, 28); y += s + 8; g += `<g class="a-kin" ${d0(i * .5)}>${X(40, y, s, l, i % 2 ? C.deep : C.navy)}</g>`; if (v && i === L.length - 1) g += `<g class="a-kin" ${d0(i * .5 + .2)}><rect x="${Math.min(470, 60 + l.length * s * .55)}" y="${y - s * .8}" width="150" height="${s * .9}" fill="${C.yellow}"/>${X(Math.min(470, 60 + l.length * s * .55) + 12, y - s * .2, Math.min(40, s * .55), v.value + (v.unit === '%' ? '%' : ''), C.navy, 700, v.unit === '%' ? cnt(v.value) : '')}</g>`; });
       return svg(p, g + (d.lines ? '' : X(40, 340, 14, 'Target bauran ilustratif', C.inkSoft, 400))); } },
 
     'arc-kpi': { slots: ['values'], svg: (p, d = {}) => {
@@ -1164,12 +1164,14 @@ ${X(70, 70, 14, (d.kicker || '03 — BUDAYA KERJA').toUpperCase(), C.n25, 700, '
       const xs = { 1: [320], 2: [205, 435], 3: [130, 320, 510] }[V.length];
       let g = `<rect width="640" height="360" fill="#fff"/>`;
       V.forEach((v, i) => {
-        const x = xs[i], r = 66, len = 2 * Math.PI * r, n = num(v.value), frac = v.unit === '%' && n !== null ? Math.max(0, Math.min(1, n / 100)) : 1, arc = len * frac;
+        const x = xs[i], r = 66, len = 2 * Math.PI * r, n = num(v.value), pct = v.unit === '%', tgt = num(v.target);
+        const frac = n === null ? null : pct ? Math.max(0, Math.min(1, n / 100)) : tgt ? Math.max(0, Math.min(1, n / tgt)) : null, arc = len * (frac ?? 0);
         const big = v.value + (v.unit === '%' ? '%' : '');
         const s = fitSize(big, 86, 32, 22);
         g += `<circle cx="${x}" cy="160" r="${r}" fill="none" stroke="${C.paper}" stroke-width="14"/>
-<circle class="a-arc" style="--len:${len.toFixed(0)};--arc:${(len - arc).toFixed(0)};--d:${.2 + i * .4}s" cx="${x}" cy="160" r="${r}" fill="none" stroke="url(#${p}E)" stroke-width="14" stroke-linecap="round" stroke-dasharray="${len.toFixed(0)}" stroke-dashoffset="${(len - arc).toFixed(0)}" transform="rotate(-90 ${x} 160)"/>
-<circle cx="${x}" cy="160" r="48" fill="${C.navy}"/>${X(x, 160 + s * .36, s, big, '#fff', 700, 'text-anchor="middle" ' + cnt(v.value, ''))}
+${frac === null ? '' : `<circle class="a-arc" style="--len:${len.toFixed(0)};--arc:${(len - arc).toFixed(0)};--d:${.2 + i * .4}s" cx="${x}" cy="160" r="${r}" fill="none" stroke="url(#${p}E)" stroke-width="14" stroke-linecap="round" stroke-dasharray="${len.toFixed(0)}" stroke-dashoffset="${(len - arc).toFixed(0)}" transform="rotate(-90 ${x} 160)"/>`}
+<circle class="a-pop" style="--d:${.1 + i * .4}s" cx="${x}" cy="160" r="48" fill="${C.navy}"/>${X(x, 160 + s * .36, s, big, '#fff', 700, 'text-anchor="middle" ' + (pct ? cnt(v.value, '') : 'class="a-up" style="--d:' + (.3 + i * .4) + 's"'))}
+${!pct && tgt ? X(x, 232, 12, 'dari target ' + v.target + ' ' + (v.unit || ''), C.inkSoft, 400, 'text-anchor="middle"') : ''}
 ${v.unit && v.unit !== '%' ? X(x, 250, 14, v.unit, C.inkSoft, 700, 'text-anchor="middle"') : ''}${X(x, 276, 14, String(v.label || '').toUpperCase(), C.navy, 700, 'text-anchor="middle" letter-spacing="1"')}`;
       });
       return svg(p, g + X(40, 336, 12, d.source ? 'Sumber: ' + d.source : 'Angka ilustratif', C.inkSoft, 400)); } },
@@ -1236,9 +1238,10 @@ ${v.unit && v.unit !== '%' ? X(x, 250, 14, v.unit, C.inkSoft, 700, 'text-anchor=
       return svg(p, `<linearGradient id="${p}ft" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7FA7BD"/><stop offset="1" stop-color="#005F89"/></linearGradient>
 <rect width="640" height="360" fill="url(#${p}ft)"/><rect x="0" y="0" width="640" height="360" fill="#00324F" opacity=".25"/>
 <g class="a-float" style="--amp:-3px;--t:5s"><circle cx="420" cy="130" r="46" fill="#C9DCE6"/><path d="M330 360 C330 240 510 240 510 360Z" fill="#C9DCE6"/></g>
-<rect class="a-grow" style="--t:6s" x="40" y="246" width="6" height="72" fill="${C.yellow}"/>
+<clipPath id="${p}ltc"><rect class="a-wipe" style="--t:6s;--d:.15s" x="46" y="246" width="${w}" height="72"/></clipPath>
+<g class="lt-block"><rect class="a-grow" style="--t:6s" x="40" y="246" width="6" height="72" fill="${C.yellow}"/>
 <rect class="a-wipe" style="--t:6s;--d:.15s" x="46" y="246" width="${w}" height="72" fill="#fff"/>
-<g class="a-up" style="--t:6s;--d:.4s">${X(64, 278, 22, name, C.navy)}${X(64, 302, 14, role, C.inkSoft, 400)}</g>
+<g clip-path="url(#${p}ltc)"><g class="a-up" style="--t:6s;--d:.4s">${X(64, 278, 22, name, C.navy)}${X(64, 302, 14, role, C.inkSoft, 400)}</g></g></g>
 ${d.name ? '' : X(600, 340, 10, 'FOOTAGE PLACEHOLDER', '#E6F4FB', 700, 'text-anchor="end" letter-spacing="2"')}`); } }
   };
   /* Golden-Hour: lower third lokasi berasal dari data; tanpa data proyek, tidak menampilkan lokasi contoh. */
@@ -1265,6 +1268,12 @@ ${d.name ? '' : X(600, 340, 10, 'FOOTAGE PLACEHOLDER', '#E6F4FB', 700, 'text-anc
     if (!d || !d.location) return v;
     const t = String(d.location).toUpperCase(), s = fitSize(t, 600, 32, 18);
     return v.replace(/<text x="320" y="336"[^>]*>PANAS BUMI NUSANTARA<\/text>/, X(320, 336, s, t, '#fff', 700, `text-anchor="middle" letter-spacing="${s > 24 ? 6 : 3}"`));
+  } };
+  const nmBase = S.find(s => s.id === 'nusantara-map').svg;
+  SLOT['nusantara-map'] = { slots: ['kicker'], svg: (p, d) => {
+    const v = nmBase(p);
+    if (!d) return v;
+    return v.replace(/<text x="30" y="330"[^>]*>Portofolio pembangkit EBT<\/text>/, '').replace(/<text x="330" y="330"/, '<text x="610" y="26" text-anchor="end"');
   } };
   S.forEach(s => { if (SLOT[s.id]) { s.slots = SLOT[s.id].slots; s.svg = SLOT[s.id].svg; } else s.slots = []; });
 
@@ -1381,12 +1390,13 @@ ${d.name ? '' : X(600, 340, 10, 'FOOTAGE PLACEHOLDER', '#E6F4FB', 700, 'text-anc
   /* Tata bahasa gerak: transisi resmi */
   const TRANSITIONS = [
     { key: 'Cross-fade 220 ms', ms: 220, ease: 'cubic-bezier(.4,0,.2,1)', use: 'Default antarslide dan antaradegan. Dipakai 70% waktu.', cls: 'tx-fade' },
-    { key: 'Energy Sweep', ms: 600, ease: 'cubic-bezier(.4,0,.2,1)', use: 'Pembuka, penutup, bumper bab. Maksimal 2 kali per video.', cls: 'tx-sweep' },
+    { key: 'Energy Sweep', ms: 800, ease: 'cubic-bezier(.4,0,.2,1)', use: 'Pembuka, penutup, bumper bab. Maksimal 2 kali per video.', cls: 'tx-sweep' },
     { key: 'Hex Bloom', ms: 700, ease: 'cubic-bezier(.16,1,.3,1)', use: 'Memperkenalkan pilar, nilai, atau siklus.', cls: 'tx-hex' },
     { key: 'Wave Wipe', ms: 650, ease: 'cubic-bezier(.4,0,.2,1)', use: 'Pergantian halaman di materi informatif panjang.', cls: 'tx-wave' },
     { key: 'Chevron Push', ms: 520, ease: 'cubic-bezier(0,0,.2,1)', use: 'Masuk ke bab baru; arah maju.', cls: 'tx-chev' },
     { key: 'Lens Iris', ms: 800, ease: 'cubic-bezier(0,0,.2,1)', use: 'Membuka footage atau peta; fokus ke satu lokasi.', cls: 'tx-lens' },
     { key: 'Line Draw', ms: 1200, ease: 'linear', use: 'Diagram teknis, line-art, peta jalan tergambar.', cls: 'tx-line' },
+    { key: 'Dip Navy', ms: 420, ease: 'cubic-bezier(.4,0,.2,1)', use: 'Otomatis saat kecerahan dua adegan berbeda jauh; mencegah kilatan navy ke putih.', cls: 'tx-dip' },
     { key: 'Count-Up', ms: 900, ease: 'cubic-bezier(.16,1,.3,1)', use: 'Angka KPI; tahan angka akhir minimal 1,5 dtk.', cls: 'tx-count' }
   ];
 

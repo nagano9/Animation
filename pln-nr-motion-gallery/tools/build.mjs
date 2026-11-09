@@ -32,6 +32,12 @@ const P = ctx.globalThis.PLNNR;
 const tokens = JSON.parse(rd('tokens/motion.tokens.json').toString());
 const famMode = tokens.family_mode.$value;
 P.STYLES.forEach(s => { s.mode = s.mode || famMode[s.cat]; });
+// luminans latar per gaya (0–1) untuk mendeteksi kilatan antaradegan
+const GRAD = { N: '#00507C', C: '#0073A3', B: '#0087BE', S: '#00A2BA', E: '#00A2BA' };
+const relLum = h => { const c = [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16) / 255).map(x => x <= .03928 ? x / 12.92 : ((x + .055) / 1.055) ** 2.4); return .2126 * c[0] + .7152 * c[1] + .0722 * c[2]; };
+P.STYLES.forEach(s => { const v = s.svg('B_'); const m = v.match(/<rect width="640" height="360" fill="([^"]+)"/); let hex = '#00324F';
+  if (m) { if (m[1].startsWith('#')) hex = m[1].length === 4 ? '#' + [...m[1].slice(1)].map(c => c + c).join('') : m[1]; else { const g = m[1].match(/#B_(\w)/); if (g && GRAD[g[1]]) hex = GRAD[g[1]]; } }
+  s.bg_luma = +relLum(hex).toFixed(3); });
 // lint: mode, transisi, easing, slot (gagal build bila melanggar)
 const txModes = Object.fromEntries(Object.entries(tokens.motion.transition).filter(([k]) => !k.startsWith('$')).map(([, v]) => [v.$extensions['id.ptplnnr'].name, v.$extensions['id.ptplnnr'].modes]));
 const lint = [];

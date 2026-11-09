@@ -15,8 +15,8 @@
 | 00:00 | s01 | Logo Sting & Ident | Ident pembuka | 4 dtk | Cut |
 | 00:04 | s02 | Golden-Hour Cinematic | Establishing | 26 dtk | Cross-fade 220 ms |
 | 00:30 | s03 | Nusantara Portfolio Map | Konteks portofolio | 12 dtk | Lens Iris |
-| 00:42 | s04 | Gradient Arc KPI | Angka kunci | 14 dtk | Count-Up |
-| 00:56 | s05 | Lower Third & Name Super | Testimoni | 28 dtk | Cross-fade 220 ms |
+| 00:42 | s04 | Gradient Arc KPI | Angka kunci | 14 dtk | Dip Navy |
+| 00:56 | s05 | Lower Third & Name Super | Testimoni | 28 dtk | Dip Navy |
 | 01:24 | s06 | Energy Sweep | Penutup | 6 dtk | Energy Sweep |
 
 ## s01 · 00:00 · Logo Sting & Ident — Ident pembuka

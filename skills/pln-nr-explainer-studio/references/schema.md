@@ -22,7 +22,7 @@
       "transition_in": "Cross-fade 220 ms", // "Cut" atau nama transisi resmi di katalog
       "vo": "Kalimat narasi ...",
       "onscreen": ["Baris 1", "Baris 2"],   // maks 2 baris
-      "data": [{ "label": "Kapasitas", "value": "100", "unit": "MWac", "source": "S1" }],
+      "data": [{ "label": "Kapasitas", "value": "100", "unit": "MWac", "source": "S1", "target": "120" }],  // target opsional: busur = nilai/target
       "lower_third": { "name": "Nama", "title": "Jabatan" },  // untuk gaya lower-third
       "title": "Kalimat kesimpulan adegan",   // slot judul (answer-first, waterfall, isotype, hex-rail, sop-checklist)
       "kicker": "03 — BUDAYA KERJA",          // label kecil (energy-sweep, navy-statement)
@@ -35,6 +35,9 @@
       "subject": "surya",                      // golden-hour: "surya" mengganti turbin dengan panel terapung
       "audio": "audio/s01.wav",                // VO adegan; plan.py retime --audio dan render --audio
       "audio_offset_s": 0.15,
+      "beats": [0.2, 3.5, 7.0],                // opsional: waktu beat (detik); default dari frasa VO
+      "words": [{ "w": "Di", "start": 0.18, "end": 0.3 }],  // opsional: timestamp kata (Whisper) untuk beat dan hitung naik
+      "hold": 6,                               // opsional: lama lower third tampil sebelum keluar (detik)
       "colors": [],                 // opsional: warna khusus adegan, divalidasi ke palet
       "visual": "Arahan visual; default dari beat gaya",
       "notes": "Catatan untuk animator"
@@ -47,9 +50,9 @@
 membutuhkan waktu lebih (perkiraan 140 kata/menit). `plan.py retime --audio` menetapkan durasi
 dari panjang file `audio` yang sebenarnya, naik maupun turun.
 
-Transisi (status usulan, lihat `assets/motion.tokens.json`): Cross-fade 220 ms, Wave Wipe,
-Line Draw, Count-Up (semua mode); Energy Sweep, Hex Bloom, Chevron Push, Lens Iris (hanya mode
-expressive).
+Transisi adegan (status usulan, lihat `assets/motion.tokens.json`): Cross-fade 220 ms, Wave Wipe,
+Dip Navy (semua mode); Energy Sweep, Hex Bloom, Chevron Push, Lens Iris (hanya mode expressive).
+Count-Up dan Line Draw adalah animasi isi, bukan transisi.
 
 ## Pemetaan ke slot gaya
 

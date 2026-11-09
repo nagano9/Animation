@@ -24,6 +24,8 @@ cat = load_catalog()
 S = cat["by_id"]
 TX_MODES = {v["$extensions"]["id.ptplnnr"]["name"]: v["$extensions"]["id.ptplnnr"]["modes"]
             for k, v in cat["tokens"]["transition"].items() if not k.startswith("$")}
+TX_KIND = {v["$extensions"]["id.ptplnnr"]["name"]: v["$extensions"]["id.ptplnnr"].get("kind", "scene")
+           for k, v in cat["tokens"]["transition"].items() if not k.startswith("$")}
 SLOT_CAP = {"arc-kpi": ("values", 3), "answer-first": ("values", 6), "waterfall": ("values", 7), "kinetic-type": ("lines", 3),
             "navy-statement": ("lines", 3), "energy-sweep": ("lines", 2), "hex-rail": ("steps", 5), "sop-checklist": ("steps", 5)}
 
@@ -58,6 +60,8 @@ def run(proj):
             add("INFO", w, f"{s['name']} dirancang 16:9; render memakai tata letak bertumpuk (art di atas, teks di bawah)")
         if sc.get("transition_in") not in (None, "Cut") and sc["transition_in"] not in cat["tx_by"]:
             add("ERROR", w, f"transisi '{sc['transition_in']}' bukan transisi resmi")
+        elif TX_KIND.get(sc.get("transition_in")) == "content":
+            add("PERINGATAN", w, f"'{sc['transition_in']}' adalah animasi isi, bukan transisi adegan; runtime memakai cross-fade. Ganti transition_in")
         vo, osd = sc.get("vo") or "", osd_text(sc)
         if vo and words(vo) / d > VO_WPS_MAX:
             add("ERROR", w, f"VO terlalu cepat: {words(vo)} kata dalam {d:g} dtk ({words(vo) / d * 60:.0f} kpm, maks 155). Jalankan plan.py retime atau pangkas naskah")
@@ -121,6 +125,11 @@ def run(proj):
         if hi and d > hi * 1.5 and sid not in BROADCAST:
             add("PERINGATAN", w, f"{d:g} dtk jauh di atas rentang gaya ({s['dur']}); pertimbangkan memecah adegan")
 
+    for x, y in zip(scenes, scenes[1:]):
+        if x.get("style") in S and y.get("style") in S:
+            la, lb = S[x["style"]].get("bg_luma", .1), S[y["style"]].get("bg_luma", .1)
+            if abs(la - lb) > .45 and y.get("transition_in") in ("Cut", "Cross-fade 220 ms", None):
+                add("PERINGATAN", y.get("id", "?"), f"lompatan kecerahan latar {la:.2f} → {lb:.2f} dengan {y.get('transition_in') or 'Cut'}; pakai Dip Navy agar tidak terasa kilatan")
     ids = [sc.get("style") for sc in scenes]
     if ids.count("energy-sweep") > 2:
         add("ERROR", "proyek", "Energy Sweep dipakai lebih dari dua kali")

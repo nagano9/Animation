@@ -47,6 +47,70 @@ def wrap42(text):
     return out
 
 
+def norm(t):
+    return re.sub(r"[^a-z0-9]+", " ", (t or "").lower()).strip()
+
+
+def vo_phrases(sc):
+    """Frasa VO dengan waktu mulai relatif adegan. Pakai timestamp kata (sc['words'] = [{w,start,end}]) bila ada,
+    selain itu perkiraan 140 kata/menit yang diregangkan ke panjang audio bila durasi berasal dari audio."""
+    vo = (sc.get("vo") or "").strip()
+    if not vo:
+        return []
+    parts = [p.strip() for p in re.split(r"(?<=[.,;:?])\s+", vo) if p.strip()]
+    off = float(sc.get("audio_offset_s", .15))
+    ws = sc.get("words")
+    out, i = [], 0
+    if ws:
+        for p in parts:
+            n = words(p)
+            if i < len(ws):
+                out.append((float(ws[i]["start"]), p))
+            i += n
+        return out
+    total = max(1, words(vo))
+    span = min(float(sc["duration_s"]) - .6, total / VO_WPS)
+    for p in parts:
+        out.append((off + span * i / total, p))
+        i += words(p)
+    return out
+
+
+def beats_for(sc):
+    """Beat = waktu frasa VO (digabung bila < 1,2 dtk), maks 5; tanpa VO: tiap ±3 dtk di 70% awal adegan.
+    Field 'beats' (detik) di adegan menimpa perhitungan otomatis."""
+    dur = float(sc["duration_s"])
+    if sc.get("beats"):
+        return sorted(float(b) for b in sc["beats"] if float(b) < dur - .5)
+    ph = vo_phrases(sc)
+    if ph:
+        bs = []
+        for t, _ in ph:
+            if not bs or t - bs[-1] >= 1.2:
+                bs.append(round(t, 2))
+        return bs[:5]
+    n = max(1, min(4, int(dur * .7 // 3)))
+    return [round(dur * .7 * k / n, 2) for k in range(n)]
+
+
+def count_at(sc):
+    """Waktu mulai hitung naik tiap angka: saat frasa yang menyebut nilainya diucapkan."""
+    out = {}
+    ph = vo_phrases(sc)
+    for d in sc.get("data") or []:
+        v = str(d.get("value", ""))
+        key = v.replace(".", "").replace(",", ".")
+        try:
+            key = str(float(key)).rstrip("0").rstrip(".")
+        except ValueError:
+            continue
+        for t, p in ph:
+            if v and v in p:
+                out[key] = round(t, 2)
+                break
+    return out
+
+
 def cues(proj):
     starts, _ = timeline(proj["scenes"])
     res = []
@@ -54,6 +118,9 @@ def cues(proj):
         vo = (sc.get("vo") or "").strip()
         if not vo:
             continue
+        shown = norm(" ".join(sc.get("onscreen") or []) + " " + (sc.get("title") or ""))
+        if norm(vo) and norm(vo) in shown:
+            continue  # teks yang sama sudah tampil di layar; caption ganda dihilangkan
         dur = float(sc["duration_s"])
         span = min(dur - 0.3, max(1.0, words(vo) / VO_WPS))
         parts = [p.strip() for p in re.split(r"(?<=[.,;:?])\s+", vo) if p.strip()]
@@ -124,6 +191,7 @@ def build_html(proj, cue_list):
             "start": st, "dur": float(sc["duration_s"]), "tx": sc.get("transition_in") or "Cut",
             "vo": sc.get("vo", ""), "osd": osd, "d": d, "data": sc.get("data") or [],
             "visual": sc.get("visual", ""), "notes": sc.get("notes", ""), "logo": s["id"] == "logo-sting",
+            "beats": beats_for(sc), "countAt": count_at(sc), "mode": s.get("mode", "productive"),
         })
     logo = "data:image/png;base64," + base64.b64encode(read("logo-pln-nr-white.png", "rb")).decode()
     data = {"title": proj["title"], "aspect": proj.get("aspect", "16:9"), "total": total, "scenes": scenes, "cues": cue_list,
@@ -163,6 +231,10 @@ def build_md(proj):
             L += [f"**Lower third:** {sc['lower_third'].get('name', '')} — {sc['lower_third'].get('title', '')}", ""]
         if sc.get("data"):
             L += ["**Data:**", *[f"- {d.get('label')}: {d.get('value')} {d.get('unit', '')} (sumber: {d.get('source')})" for d in sc["data"]], ""]
+        bt = beats_for(sc)
+        ph = dict(vo_phrases(sc))
+        if bt:
+            L += ["**Beat (detik dari awal adegan):** " + " · ".join(f"{b:g}" + (f" «{ph[min(ph, key=lambda x: abs(x - b))][:40]}»" if ph else "") for b in bt), ""]
         L += [f"**Arahan visual:** {sc.get('visual') or ' → '.join(s['beats'])}", "",
               f"**Spesifikasi:** {s['pace']} · easing {s['ease']} · palet {' '.join(s['palette'])} · {s['type']}", ""]
         if sc.get("notes"):

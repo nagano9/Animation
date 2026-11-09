@@ -109,6 +109,16 @@ node engine/render.mjs work/out/animatic.html --stills work/out/stills    # stil
 node engine/render.mjs work/out/animatic.html --out work/out/video.mp4 --audio work/project.json [--music bed.mp3]
 ```
 
+Setelah render, jalankan QA gerak dan perbaiki sampai lulus:
+
+```bash
+python3 scripts/motion_report.py work/out/video.mp4 --project work/project.json
+```
+
+Laporan ini mengukur detik diam, jeda diam terpanjang (maks 6 dtk, token beat-max), dan kilatan
+kecerahan. Bila gagal, tambah beat di adegan yang paling diam (field `beats`), pecah adegan
+panjang, atau ganti transisi ke Dip Navy pada lompatan navy ↔ putih.
+
 Selalu periksa contact sheet sebelum render penuh; lihat still dengan tool baca gambar dan
 perbaiki adegan yang teksnya bertabrakan atau datanya salah. Render menghasilkan H.264
 1920×1080 (16:9), 1080×1920 (9:16), atau 1080×1080 (1:1) pada 25 fps; 9:16 dan 1:1 memakai
@@ -118,6 +128,22 @@ ke −14 LUFS. Kecepatan render sekitar 10–12 frame/detik (video 90 detik ≈ 
 
 Kebutuhan: Node 18+, Playwright dengan Chromium, ffmpeg. Bila tidak tersedia, serahkan
 animatic dan production.json; animator dapat merender ulang di mesin yang lengkap.
+
+**Mesin beat.** Runtime tidak memutar animasi gaya apa adanya. Animasi masuk dikelompokkan
+dan dijadwalkan ulang ke beat adegan, yaitu waktu setiap frasa VO (dipisah koma dan titik). Hasilnya:
+- teks layar muncul baris per baris dan keluar 0,45 dtk sebelum adegan berakhir;
+- lower third keluar setelah maksimal 8 dtk (`hold` untuk mengatur);
+- angka dihitung naik saat frasa yang menyebutnya diucapkan;
+- kamera bergerak pelan per beat (productive tenang, expressive lebih terasa), dan celah tanpa beat
+  diisi sehingga tidak ada jeda diam lebih dari 6 dtk.
+
+Tulis VO dalam frasa pendek berkoma agar beat terasa. Untuk sinkron per kata, isi `words`
+(timestamp kata hasil transkripsi, format Whisper `[{w, start, end}]`) atau `beats` (detik)
+secara manual.
+
+**Transisi.** Hanya Cross-fade, Wave Wipe, Dip Navy, Energy Sweep, Hex Bloom, Chevron Push, dan
+Lens Iris yang berfungsi sebagai perpindahan adegan. Count-Up dan Line Draw adalah animasi isi.
+`plan.py new` otomatis memakai Dip Navy saat kecerahan latar dua adegan berbeda jauh.
 
 **Timing dari audio.** Bila rekaman VO per adegan tersedia (field `audio`), jalankan
 `python3 scripts/plan.py retime work/project.json --audio`: durasi adegan mengikuti panjang

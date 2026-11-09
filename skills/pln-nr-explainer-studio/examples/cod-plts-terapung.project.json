@@ -71,7 +71,7 @@
       "style": "arc-kpi",
       "role": "Angka kunci",
       "duration_s": 14,
-      "transition_in": "Count-Up",
+      "transition_in": "Dip Navy",
       "vo": "Kapasitasnya 100 MWac, dengan tingkat komponen dalam negeri yang tinggi dan ketersediaan pembangkit yang terjaga sejak hari pertama.",
       "onscreen": [
         "100 MWac"
@@ -100,7 +100,7 @@
       "style": "lower-third",
       "role": "Testimoni",
       "duration_s": 28,
-      "transition_in": "Cross-fade 220 ms",
+      "transition_in": "Dip Navy",
       "vo": "Bagi kami, keberhasilan ini adalah kerja bersama tim proyek, mitra, dan masyarakat sekitar waduk yang terlibat sejak tahap konstruksi. Proyek ini membuka lapangan kerja lokal dan membawa keterampilan baru bagi warga.",
       "onscreen": [],
       "data": [],

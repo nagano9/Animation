@@ -7,11 +7,14 @@
 <linearGradient id="P0_S" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#005F89"/><stop offset=".55" stop-color="#00A2BA"/><stop offset=".85" stop-color="#B9DE41"/><stop offset="1" stop-color="#FFF100"/></linearGradient>
 </defs><rect width="640" height="360" fill="#fff"/><circle cx="130" cy="160" r="66" fill="none" stroke="#F1F6FA" stroke-width="14"/>
 <circle class="a-arc" style="--len:415;--arc:75;--d:0.2s" cx="130" cy="160" r="66" fill="none" stroke="url(#P0_E)" stroke-width="14" stroke-linecap="round" stroke-dasharray="415" stroke-dashoffset="75" transform="rotate(-90 130 160)"/>
-<circle cx="130" cy="160" r="48" fill="#00507C"/><text x="130" y="171.52" font-size="32" font-weight="700" fill="#fff" text-anchor="middle" data-count="82" data-dec="0" >82%</text>
+<circle class="a-pop" style="--d:0.1s" cx="130" cy="160" r="48" fill="#00507C"/><text x="130" y="171.52" font-size="32" font-weight="700" fill="#fff" text-anchor="middle" data-count="82" data-dec="0" >82%</text>
+
 <text x="130" y="276" font-size="14" font-weight="700" fill="#00507C" text-anchor="middle" letter-spacing="1">PROGRES EPC</text><circle cx="320" cy="160" r="66" fill="none" stroke="#F1F6FA" stroke-width="14"/>
 <circle class="a-arc" style="--len:415;--arc:149;--d:0.6000000000000001s" cx="320" cy="160" r="66" fill="none" stroke="url(#P0_E)" stroke-width="14" stroke-linecap="round" stroke-dasharray="415" stroke-dashoffset="149" transform="rotate(-90 320 160)"/>
-<circle cx="320" cy="160" r="48" fill="#00507C"/><text x="320" y="171.52" font-size="32" font-weight="700" fill="#fff" text-anchor="middle" data-count="64" data-dec="0" >64%</text>
+<circle class="a-pop" style="--d:0.5s" cx="320" cy="160" r="48" fill="#00507C"/><text x="320" y="171.52" font-size="32" font-weight="700" fill="#fff" text-anchor="middle" data-count="64" data-dec="0" >64%</text>
+
 <text x="320" y="276" font-size="14" font-weight="700" fill="#00507C" text-anchor="middle" letter-spacing="1">TKDN</text><circle cx="510" cy="160" r="66" fill="none" stroke="#F1F6FA" stroke-width="14"/>
 <circle class="a-arc" style="--len:415;--arc:37;--d:1s" cx="510" cy="160" r="66" fill="none" stroke="url(#P0_E)" stroke-width="14" stroke-linecap="round" stroke-dasharray="415" stroke-dashoffset="37" transform="rotate(-90 510 160)"/>
-<circle cx="510" cy="160" r="48" fill="#00507C"/><text x="510" y="171.52" font-size="32" font-weight="700" fill="#fff" text-anchor="middle" data-count="91" data-dec="0" >91%</text>
+<circle class="a-pop" style="--d:0.9s" cx="510" cy="160" r="48" fill="#00507C"/><text x="510" y="171.52" font-size="32" font-weight="700" fill="#fff" text-anchor="middle" data-count="91" data-dec="0" >91%</text>
+
 <text x="510" y="276" font-size="14" font-weight="700" fill="#00507C" text-anchor="middle" letter-spacing="1">KETERSEDIAAN</text><text x="40" y="336" font-size="12" font-weight="400" fill="#3A6E8C" >Angka ilustratif</text></svg>

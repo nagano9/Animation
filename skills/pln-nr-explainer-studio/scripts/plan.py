@@ -17,11 +17,32 @@ cat = load_catalog()
 S = cat["by_id"]
 
 
+SCENE_TX = {v["$extensions"]["id.ptplnnr"]["name"] for k, v in cat["tokens"]["transition"].items()
+            if not k.startswith("$") and v["$extensions"]["id.ptplnnr"].get("kind") == "scene"}
+
+
+def scene_tx(s):
+    """Transisi khas gaya hanya dipakai bila itu perpindahan adegan dan sesuai mode gaya; selain itu cross-fade."""
+    t = cat["tx_by"].get(s["transition"])
+    modes = cat["tokens"]["transition"]
+    ok = s["transition"] in SCENE_TX and any(v.get("$extensions", {}).get("id.ptplnnr", {}).get("name") == s["transition"]
+                                              and s.get("mode") in v["$extensions"]["id.ptplnnr"]["modes"] for v in modes.values() if isinstance(v, dict))
+    return s["transition"] if t and ok else "Cross-fade 220 ms"
+
+
+def soften_luma(scenes):
+    """Lompatan kecerahan latar besar (mis. navy → putih) dengan cut/cross-fade diganti Dip Navy."""
+    for a, b in zip(scenes, scenes[1:]):
+        la, lb = S[a["style"]].get("bg_luma", .1), S[b["style"]].get("bg_luma", .1)
+        if abs(la - lb) > .45 and b["transition_in"] in ("Cut", "Cross-fade 220 ms"):
+            b["transition_in"] = "Dip Navy"
+
+
 def scene(i, sid, dur, role="", note="", tx=None):
     s = S[sid]
     return {
         "id": f"s{i:02d}", "style": sid, "role": role or s["name"], "duration_s": dur,
-        "transition_in": tx or ("Cut" if i == 1 else s["transition"]),
+        "transition_in": tx or ("Cut" if i == 1 else scene_tx(s)),
         "vo": "", "onscreen": [], "data": [], "lower_third": None,
         "visual": " → ".join(s["beats"]), "notes": note,
     }
@@ -52,6 +73,7 @@ def cmd_new(a):
     else:
         die("pilih salah satu: --recipe, --need, atau --styles")
     scenes = [scene(n, sid, dur, role, note) for n, (sid, dur, role, note) in enumerate(segs, 1)]
+    soften_luma(scenes)
     proj = {
         "schema": "plnnr.explainer-project/1", "title": a.title or "Tanpa judul",
         "need": need, "recipe": a.recipe, "aspect": aspect,
