@@ -4,7 +4,8 @@
   python3 scripts/motion_report.py work/out/video.mp4 [--project work/project.json] [--json]
 
 Mengukur dari piksel (ffmpeg, tanpa dependensi lain):
-- detik nyaris diam (rata-rata beda antar-frame < ambang) dan jeda diam terpanjang
+- detik nyaris diam (beda rata-rata antara frame t dan t+1 dtk < ambang; menangkap gerak kamera lambat)
+  dan jeda diam terpanjang
   → token beat-max: tidak boleh ada jeda diam > 6 dtk
 - lompatan kecerahan antar-detik (kilatan) → peringatan bila Δ luminans > 90 dari 255
 Keluar dengan kode 1 bila ada jeda diam > 6 dtk atau kilatan.
@@ -15,7 +16,7 @@ import subprocess
 import sys
 
 W, H = 64, 36
-STILL = 0.15      # beda rata-rata per frame (0–255) di bawah ini dianggap diam
+STILL = 1.0       # beda rata-rata antara frame t dan t+1 dtk (0–255) di bawah ini dianggap diam
 BEAT_MAX = 6.0
 FLASH = 90
 
@@ -44,10 +45,9 @@ def main():
     fps = fps_of(a.video)
     fr = frames(a.video)
     step = max(1, int(round(fps)))
-    diff = [sum(abs(x - y) for x, y in zip(f1, f0)) / len(f0) for f0, f1 in zip(fr, fr[1:])]
     luma = [sum(f) / len(f) for f in fr]
-    secs = len(diff) // step
-    per_sec = [sum(diff[i * step:(i + 1) * step]) / step for i in range(secs)]
+    secs = len(fr) // step - 1
+    per_sec = [sum(abs(x - y) for x, y in zip(fr[i * step + step], fr[i * step])) / len(fr[0]) for i in range(secs)]
     still = [v < STILL for v in per_sec]
     gaps, run, start = [], 0, 0
     for i, s in enumerate(still + [False]):

@@ -71,7 +71,7 @@
       "style": "arc-kpi",
       "role": "Angka kunci",
       "duration_s": 14,
-      "transition_in": "Dip Navy",
+      "transition_in": "Cross-fade 220 ms",
       "vo": "Kapasitasnya 100 MWac, dengan tingkat komponen dalam negeri yang tinggi dan ketersediaan pembangkit yang terjaga sejak hari pertama.",
       "onscreen": [
         "100 MWac"
@@ -93,14 +93,15 @@
       "lower_third": null,
       "visual": "Cakram navy muncul → Busur gradient tergambar searah jarum jam → Angka menghitung naik → Label UPPERCASE di bawah",
       "notes": "Kapasitas, TKDN, progres; satu angka disorot",
-      "title": "Kapasitas dan kandungan lokal"
+      "title": "Kapasitas dan kandungan lokal",
+      "tone": "dark"
     },
     {
       "id": "s05",
       "style": "lower-third",
       "role": "Testimoni",
       "duration_s": 28,
-      "transition_in": "Dip Navy",
+      "transition_in": "Cross-fade 220 ms",
       "vo": "Bagi kami, keberhasilan ini adalah kerja bersama tim proyek, mitra, dan masyarakat sekitar waduk yang terlibat sejak tahap konstruksi. Proyek ini membuka lapangan kerja lokal dan membawa keterampilan baru bagi warga.",
       "onscreen": [],
       "data": [],

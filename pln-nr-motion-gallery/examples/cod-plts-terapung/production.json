@@ -231,8 +231,8 @@
       "start": "00:42",
       "duration_s": 14.0,
       "transition_in": {
-        "name": "Dip Navy",
-        "duration_ms": 420,
+        "name": "Cross-fade 220 ms",
+        "duration_ms": 220,
         "css_easing": "cubic-bezier(.4,0,.2,1)"
       },
       "style": {
@@ -290,8 +290,8 @@
       "start": "00:56",
       "duration_s": 28.0,
       "transition_in": {
-        "name": "Dip Navy",
-        "duration_ms": 420,
+        "name": "Cross-fade 220 ms",
+        "duration_ms": 220,
         "css_easing": "cubic-bezier(.4,0,.2,1)"
       },
       "style": {

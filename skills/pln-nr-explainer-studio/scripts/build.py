@@ -191,7 +191,7 @@ def build_html(proj, cue_list):
             "start": st, "dur": float(sc["duration_s"]), "tx": sc.get("transition_in") or "Cut",
             "vo": sc.get("vo", ""), "osd": osd, "d": d, "data": sc.get("data") or [],
             "visual": sc.get("visual", ""), "notes": sc.get("notes", ""), "logo": s["id"] == "logo-sting",
-            "beats": beats_for(sc), "countAt": count_at(sc), "mode": s.get("mode", "productive"),
+            "beats": beats_for(sc), "countAt": count_at(sc), "mode": s.get("mode", "productive"), "tone": sc.get("tone", ""),
         })
     logo = "data:image/png;base64," + base64.b64encode(read("logo-pln-nr-white.png", "rb")).decode()
     data = {"title": proj["title"], "aspect": proj.get("aspect", "16:9"), "total": total, "scenes": scenes, "cues": cue_list,

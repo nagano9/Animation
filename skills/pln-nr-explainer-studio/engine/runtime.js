@@ -33,7 +33,13 @@
   /* Gaya yang bagian bawahnya terisi: caption pindah ke atas bila tidak ada teks layar di kiri atas. */
   const CAP_TOP = new Set(['lower-third', 'travel-poster', 'wayang-silhouette', 'split-screen', 'hydro-flow', 'geothermal-section']);
   /* Amplitudo kamera per mode gerak: productive tenang, expressive lebih terasa. Ident dan pernyataan tanpa kamera. */
-  const CAM = { productive: { zoom: .025, pan: 0 }, expressive: { zoom: .06, pan: .012 } };
+  /* Kamera: dorongan kontinu sepanjang adegan + aksen per beat. Zoom maks 8% menjaga teks di tepi tetap di dalam frame. */
+  const CAM = { productive: { zoom: .05, accent: .012, pan: 0 }, expressive: { zoom: .08, accent: .02, pan: .018 } };
+  /* Varian gelap: gaya berlatar putih yang diapit adegan navy ditukar warnanya agar tidak terjadi kilatan.
+     Navy ↔ putih ditukar dua arah; sinyal cyan menjadi kuning (aturan sinyal di atas navy). */
+  const DARK = { '#FFFFFF': '#00507C', '#00507C': '#FFFFFF', '#F1F6FA': '#0A3551', '#3A6E8C': '#BFD3DE', '#DFDFDF': '#1D4E6C',
+    '#00ADEF': '#FFF100', '#E3EEF5': '#0F4262', '#BFD3DE': '#407C9D', '#FBFDFE': '#00507C', '#EAF6FB': '#0A3551', '#D5EAF3': '#0F4262' };
+  const toDark = svg => svg.replace(/#[0-9a-fA-F]{6}\b|#[fF]{3}\b/g, m => { const k = (m.length === 4 ? '#FFFFFF' : m).toUpperCase(); return DARK[k] || m; });
   const NO_CAM = new Set(['logo-sting', 'countdown', 'navy-statement', 'kinetic-type', 'energy-sweep', 'caption-pack']);
   const BEAT_MAX = 6;
 
@@ -62,7 +68,7 @@
     const layers = P.scenes.map((sc, i) => {
       const s = byId[sc.style];
       const L = document.createElement('div'); L.className = 'sc-layer art'; L.style.display = 'none';
-      const art = s.svg('s' + i + '_', sc.d || {});
+      const art0 = s.svg('s' + i + '_', sc.d || {}), art = sc.tone === 'dark' ? toDark(art0) : art0;
       const textCovered = (s.slots || []).some(k => ['lines', 'title', 'steps', 'name'].includes(k));
       const lines = (sc.osd && sc.osd.length ? sc.osd : (portrait && !DISPLAY_TEXT.has(sc.style) ? [sc.d.title, ...(sc.d.lines || sc.d.steps || [])].filter(Boolean) : [])).slice(0, portrait ? 2 : 3);
       if (portrait) {
@@ -135,9 +141,13 @@
       // kamera: push-in bertahap per beat + reframe kiri/kanan (mode expressive)
       if (ly.cam) {
         if (NO_CAM.has(ly.sc.style)) { ly.cam.style.transform = 'none'; return; }
-        const c = CAM[ly.sc.mode] || CAM.productive, ks = ly.camKeys, n = ks.length;
-        let z = 1, x = 0;
-        ks.forEach((k0, i) => { const p = EASE.standard(clamp((local - k0) / 1.6)); const tz = c.zoom * (i + 1) / n, tx = (i % 2 ? -1 : 1) * c.pan * (i ? 1 : 0); z += (tz - (z - 1)) * p; x += (tx - x) * p; });
+        const c = CAM[ly.sc.mode] || CAM.productive, ks = ly.camKeys, d = ly.sc.dur;
+        // dorongan kontinu (ease masuk/keluar hanya 1 dtk di tepi) agar tidak pernah benar-benar diam
+        const u = clamp(local / d), edge = Math.min(1, local / 1, (d - local) / 1);
+        let z = 1 + c.zoom * u, x = 0;
+        // aksen per beat: dorongan kecil 1,2 dtk lalu reda, arah pan bergantian
+        ks.forEach((k0, i) => { if (!i) return; const q = clamp((local - k0) / 1.2); const a = Math.sin(Math.PI * Math.min(1, q)) * (q < 1 ? 1 : 0); z += c.accent * a; x += (i % 2 ? -1 : 1) * c.pan * EASE.standard(q); });
+        z = 1 + (z - 1) * (.6 + .4 * clamp(edge));
         ly.cam.style.transform = `translateX(${(x * 100).toFixed(3)}%) scale(${z.toFixed(4)})`;
       }
     }

@@ -30,11 +30,20 @@ def scene_tx(s):
     return s["transition"] if t and ok else "Cross-fade 220 ms"
 
 
+def eff_luma(sc):
+    return .07 if sc.get("tone") == "dark" else S[sc["style"]].get("bg_luma", .1)
+
+
 def soften_luma(scenes):
-    """Lompatan kecerahan latar besar (mis. navy → putih) dengan cut/cross-fade diganti Dip Navy."""
+    """Rencana nada: gaya berlatar terang yang diapit adegan gelap memakai varian gelap (tone=dark).
+    Lompatan kecerahan yang tersisa dengan cut/cross-fade diganti Dip Navy."""
+    for i, sc in enumerate(scenes):
+        if S[sc["style"]].get("bg_luma", .1) > .5:
+            nb = [eff_luma(x) for x in (scenes[i - 1] if i else None, scenes[i + 1] if i + 1 < len(scenes) else None) if x]
+            if nb and all(v < .3 for v in nb):
+                sc["tone"] = "dark"
     for a, b in zip(scenes, scenes[1:]):
-        la, lb = S[a["style"]].get("bg_luma", .1), S[b["style"]].get("bg_luma", .1)
-        if abs(la - lb) > .45 and b["transition_in"] in ("Cut", "Cross-fade 220 ms"):
+        if abs(eff_luma(a) - eff_luma(b)) > .45 and b["transition_in"] in ("Cut", "Cross-fade 220 ms"):
             b["transition_in"] = "Dip Navy"
 
 
@@ -139,7 +148,17 @@ n.add_argument("--out", required=True)
 r = sub.add_parser("retime")
 r.add_argument("path")
 r.add_argument("--audio", action="store_true", help="pakai durasi file audio VO (field audio) via ffprobe")
+t = sub.add_parser("tone", help="rencanakan nada: varian gelap dan Dip Navy untuk mencegah kilatan")
+t.add_argument("path")
 s = sub.add_parser("show")
 s.add_argument("path")
 a = ap.parse_args()
-{"new": cmd_new, "retime": cmd_retime, "show": lambda a: show(load_project(a.path))}[a.cmd](a)
+def cmd_tone(a):
+    proj = load_project(a.path)
+    soften_luma(proj["scenes"])
+    save_project(proj, a.path)
+    for sc in proj["scenes"]:
+        print(f"  {sc['id']} {sc['style']:<22} tone={sc.get('tone', '-'):<5} masuk={sc['transition_in']}")
+
+
+{"new": cmd_new, "retime": cmd_retime, "tone": cmd_tone, "show": lambda a: show(load_project(a.path))}[a.cmd](a)

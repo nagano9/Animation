@@ -127,9 +127,10 @@ def run(proj):
 
     for x, y in zip(scenes, scenes[1:]):
         if x.get("style") in S and y.get("style") in S:
-            la, lb = S[x["style"]].get("bg_luma", .1), S[y["style"]].get("bg_luma", .1)
+            la = .07 if x.get("tone") == "dark" else S[x["style"]].get("bg_luma", .1)
+            lb = .07 if y.get("tone") == "dark" else S[y["style"]].get("bg_luma", .1)
             if abs(la - lb) > .45 and y.get("transition_in") in ("Cut", "Cross-fade 220 ms", None):
-                add("PERINGATAN", y.get("id", "?"), f"lompatan kecerahan latar {la:.2f} → {lb:.2f} dengan {y.get('transition_in') or 'Cut'}; pakai Dip Navy agar tidak terasa kilatan")
+                add("PERINGATAN", y.get("id", "?"), f"lompatan kecerahan latar {la:.2f} → {lb:.2f} dengan {y.get('transition_in') or 'Cut'}; jalankan plan.py tone (varian gelap) atau pakai Dip Navy")
     ids = [sc.get("style") for sc in scenes]
     if ids.count("energy-sweep") > 2:
         add("ERROR", "proyek", "Energy Sweep dipakai lebih dari dua kali")
