@@ -1,0 +1,765 @@
+<title>PLN NR Motion Gallery</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Galeri gaya gerak profesional PT PLN Nusantara Renewables: 44 gaya, tata bahasa gerak, peta kebutuhan A–Z, dan brief produksi untuk Explainer Studio.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400&display=swap">
+<style>
+/* Layout: korporat PLN NR — pita navy untuk pernyataan, bidang putih untuk isi, sudut persegi, tanpa bayangan.
+   Sinyal: cyan di atas putih, kuning di atas navy (aturan satu sinyal). */
+:root{
+  --bg:#FFFFFF; --surface:#F1F6FA; --surface-2:#E6F1F8; --fg:#00507C; --muted:#407C9D; --line:#D6E3EC;
+  --accent:#00ADEF; --accent-fg:#FFFFFF; --band:#00507C; --band-2:#004367; --band-fg:#FFFFFF; --band-muted:#BFD3DE; --band-accent:#FFF100;
+  --code-bg:#00324F; --code-fg:#E6F4FB; --focus:#00ADEF; --scrim:rgba(0,40,64,.72);
+  --energy:linear-gradient(90deg,#FFF100 0%,#B9DE41 22%,#00A2BA 52%,#00ADEF 76%,#005F89 100%);
+  --font:"PT Sans","Myriad Pro","Segoe UI",Helvetica,Arial,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --ease:cubic-bezier(.4,0,.2,1);
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#05263B; --surface:#0A3551; --surface-2:#0F4262; --fg:#EAF4FA; --muted:#9FC3D8; --line:#1D4E6C;
+  --accent:#FFF100; --accent-fg:#00507C; --band:#003C5E; --band-2:#002E49; --band-fg:#FFFFFF; --band-muted:#A9C8DA; --band-accent:#FFF100;
+  --code-bg:#021A29; --code-fg:#E6F4FB; --focus:#FFF100; --scrim:rgba(0,14,24,.8); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#05263B; --surface:#0A3551; --surface-2:#0F4262; --fg:#EAF4FA; --muted:#9FC3D8; --line:#1D4E6C;
+  --accent:#FFF100; --accent-fg:#00507C; --band:#003C5E; --band-2:#002E49; --band-fg:#FFFFFF; --band-muted:#A9C8DA; --band-accent:#FFF100;
+  --code-bg:#021A29; --code-fg:#E6F4FB; --focus:#FFF100; --scrim:rgba(0,14,24,.8); color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--font);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--bg)}
+a{color:inherit}
+h1,h2,h3{text-wrap:balance;margin:0;line-height:1.08;font-weight:700}
+p{margin:0}
+button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+.wrap{max-width:1280px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+@media(min-width:900px){.wrap{padding-left:max(40px,env(safe-area-inset-left,0px));padding-right:max(40px,env(safe-area-inset-right,0px))}}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.tnum{font-variant-numeric:tabular-nums}
+
+/* top bar */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;gap:20px;padding-block:12px}
+.logo{height:34px;width:auto;display:block}
+.logo-w{display:none}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .logo-c{display:none}:root:not([data-theme="light"]) .logo-w{display:block}}
+:root[data-theme="dark"] .logo-c{display:none}:root[data-theme="dark"] .logo-w{display:block}
+.nav{display:flex;gap:4px;margin-left:auto;flex-wrap:wrap}
+.nav a{font-size:14px;font-weight:700;text-decoration:none;padding:8px 10px;color:var(--fg)}
+.nav a:hover{opacity:.86}
+.icon-btn{background:transparent;border:1px solid var(--line);padding:7px 11px;font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap}
+.icon-btn:hover{opacity:.86}.icon-btn:active{opacity:.72}
+@media(max-width:820px){.nav{display:none}.icon-btn{margin-left:auto}}
+
+/* hero band */
+.hero{background:var(--band);color:var(--band-fg);position:relative;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:48px;align-items:center;padding-block:56px 64px}
+.hero .eyebrow{color:var(--band-muted)}
+.hero h1{font-size:clamp(38px,5.4vw,72px);letter-spacing:-.02em;margin:14px 0 18px}
+.hero h1 em{font-style:normal;color:var(--band-accent)}
+.hero .lead{font-size:19px;color:var(--band-muted);max-width:34em}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;margin-top:34px;border-top:1px solid rgba(255,255,255,.18)}
+.stat{padding:16px 12px 0 0}
+.stat b{display:block;font-size:34px;line-height:1;font-variant-numeric:tabular-nums}
+.stat span{font-size:13px;color:var(--band-muted)}
+.reel{position:relative;aspect-ratio:16/9;max-width:100%;background:#00324F;overflow:hidden}
+.reel .art,.reel svg{position:absolute;inset:0;width:100%;height:100%}
+.reel .art{transition:opacity .22s var(--ease)}
+.reel-cap{display:flex;justify-content:space-between;gap:12px;margin-top:12px;font-size:13px;color:var(--band-muted)}
+.reel-cap b{color:var(--band-fg)}
+.reel-dots{display:flex;gap:6px}
+.reel-dots button{width:26px;height:4px;border:0;padding:0;background:rgba(255,255,255,.25);cursor:pointer}
+.reel-dots button[aria-current="true"]{background:var(--band-accent)}
+.energy-rule{height:6px;background:var(--energy)}
+@media(max-width:900px){.hero .wrap{grid-template-columns:1fr;gap:32px;padding-block:40px}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* sections */
+section.block{padding-block:72px}
+section.block.alt{background:var(--surface)}
+.sec-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:32px;align-items:end;margin-bottom:32px}
+.sec-head h2{font-size:clamp(28px,3.4vw,44px);letter-spacing:-.015em;margin-top:10px}
+.sec-head p{color:var(--muted);max-width:36em}
+.rule{display:flex;height:2px;margin:18px 0 0;background:var(--line)}
+.rule::before{content:"";width:120px;background:var(--energy)}
+@media(max-width:820px){.sec-head{grid-template-columns:1fr;gap:12px}}
+
+/* ide */
+.ideas{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;border:1px solid var(--line)}
+.idea{padding:26px 24px;border-right:1px solid var(--line);min-width:0}
+.idea:last-child{border-right:0}
+.idea .hx{width:40px;height:46px;clip-path:polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);background:var(--energy);margin-bottom:16px}
+.idea h3{font-size:20px;margin-bottom:8px}
+.idea p{color:var(--muted);font-size:15px}
+@media(max-width:980px){.ideas{grid-template-columns:repeat(2,minmax(0,1fr))}.idea:nth-child(2){border-right:0}.idea:nth-child(-n+2){border-bottom:1px solid var(--line)}}
+@media(max-width:560px){.ideas{grid-template-columns:1fr}.idea{border-right:0;border-bottom:1px solid var(--line)}.idea:last-child{border-bottom:0}}
+
+/* motion grammar */
+.grammar{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:40px}
+.tok{width:100%;border-collapse:collapse;font-size:15px}
+.tok th{text-align:left;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);padding:0 12px 10px 0;border-bottom:2px solid var(--fg)}
+.tok td{padding:11px 12px 11px 0;border-bottom:1px solid var(--line);vertical-align:top}
+.tok td:first-child{font-weight:700}
+.tok code{font-family:var(--mono);font-size:12.5px;color:var(--muted)}
+.curve{width:64px;height:40px;display:block}
+.rules{list-style:none;padding:0;margin:28px 0 0;display:grid;gap:10px;counter-reset:r}
+.rules li{counter-increment:r;display:grid;grid-template-columns:34px 1fr;gap:12px;font-size:15px}
+.rules li::before{content:counter(r,decimal-leading-zero);font-weight:700;color:var(--fg);font-variant-numeric:tabular-nums}
+.rules li span{color:var(--muted)}
+.tx-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.tx{min-width:0}
+.tx-stage{position:relative;aspect-ratio:16/10;max-width:100%;overflow:hidden;background:#fff;border:1px solid var(--line)}
+.tx-a,.tx-b{position:absolute;inset:0}
+.tx-a{background:#fff}
+.tx-a::after{content:"";position:absolute;left:12%;top:28%;width:52%;height:9%;background:#00507C;box-shadow:0 18px 0 -2px #BFD3DE,0 34px 0 -2px #BFD3DE}
+.tx-b{background:#00507C}
+.tx-b::after{content:"";position:absolute;left:12%;top:40%;width:44%;height:10%;background:#FFF100}
+.tx h3{font-size:15px;margin:10px 0 2px}
+.tx p{font-size:13px;color:var(--muted)}
+.tx .ms{font-family:var(--mono);font-size:12px;color:var(--muted)}
+@media(max-width:1080px){.grammar{grid-template-columns:1fr}}
+@media(max-width:700px){.tx-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* transition demos: loop 3.2s */
+.tx-fade .tx-b{animation:txFade 3.2s var(--ease) infinite}
+@keyframes txFade{0%,40%{opacity:0}47%,90%{opacity:1}97%,100%{opacity:0}}
+.tx-sweep .tx-b{animation:txReveal 3.2s var(--ease) infinite}
+.tx-sweep .tx-a::before{content:"";position:absolute;top:0;bottom:0;width:60%;left:-70%;background:linear-gradient(90deg,#FFF100,#B9DE41,#00A2BA,#00ADEF,#005F89);transform:skewX(-14deg);z-index:2;animation:txBand 3.2s var(--ease) infinite}
+.tx-sweep .tx-a{z-index:1;overflow:visible}
+@keyframes txBand{0%,30%{left:-70%}55%,100%{left:130%}}
+@keyframes txReveal{0%,40%{clip-path:inset(0 100% 0 0)}55%,90%{clip-path:inset(0 0 0 0)}100%{clip-path:inset(0 0 0 0);opacity:0}}
+.tx-hex .tx-b{clip-path:polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);animation:txHex 3.2s cubic-bezier(.16,1,.3,1) infinite}
+@keyframes txHex{0%,35%{transform:scale(0)}58%,90%{transform:scale(2.4)}100%{transform:scale(2.4);opacity:0}}
+.tx-wave .tx-b{animation:txWave 3.2s var(--ease) infinite;clip-path:ellipse(0% 120% at 100% 50%)}
+@keyframes txWave{0%,35%{clip-path:ellipse(0% 120% at 100% 50%)}58%,90%{clip-path:ellipse(160% 160% at 100% 50%)}100%{clip-path:ellipse(160% 160% at 100% 50%);opacity:0}}
+.tx-chev .tx-b{animation:txChev 3.2s cubic-bezier(0,0,.2,1) infinite;clip-path:polygon(0 0,0 0,0 50%,0 100%,0 100%)}
+@keyframes txChev{0%,35%{clip-path:polygon(0 0,0 0,0 50%,0 100%,0 100%)}55%,90%{clip-path:polygon(0 0,100% 0,140% 50%,100% 100%,0 100%)}100%{opacity:0;clip-path:polygon(0 0,100% 0,140% 50%,100% 100%,0 100%)}}
+.tx-lens .tx-b{animation:txLens 3.2s cubic-bezier(0,0,.2,1) infinite}
+@keyframes txLens{0%,35%{clip-path:ellipse(0% 0% at 100% 0%)}62%,90%{clip-path:ellipse(150% 170% at 100% 0%)}100%{opacity:0;clip-path:ellipse(150% 170% at 100% 0%)}}
+.tx-line .tx-b{background:transparent}
+.tx-line .tx-b::after{display:none}
+.tx-line svg{position:absolute;inset:0;width:100%;height:100%}
+.tx-line path{stroke-dasharray:420;animation:txLine 3.2s linear infinite}
+@keyframes txLine{0%{stroke-dashoffset:420}60%,90%{stroke-dashoffset:0}100%{stroke-dashoffset:0;opacity:0}}
+.tx-count .tx-b{background:#fff;display:grid;place-items:center}
+.tx-count .tx-b::after{display:none}
+.tx-count .num{font-size:30px;font-weight:700;color:#00507C;font-variant-numeric:tabular-nums}
+
+/* gallery toolbar */
+.toolbar{display:grid;grid-template-columns:minmax(0,2fr) repeat(3,minmax(0,1fr));gap:10px;margin-bottom:12px}
+.field{display:flex;flex-direction:column;gap:6px;min-width:0}
+.field label{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.field input,.field select{width:100%;background:var(--bg);border:1px solid var(--line);padding:11px 12px;border-radius:0;min-width:0}
+.field input:focus,.field select:focus{border-color:var(--fg);outline:none}
+.subbar{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:16px 0 22px}
+.seg{display:inline-flex;border:1px solid var(--line)}
+.seg button{background:transparent;border:0;border-right:1px solid var(--line);padding:8px 14px;font-size:14px;font-weight:700;cursor:pointer}
+.seg button:last-child{border-right:0}
+.seg button[aria-pressed="true"]{background:var(--fg);color:var(--bg)}
+.btn{background:transparent;border:1px solid var(--fg);padding:8px 14px;font-size:14px;font-weight:700;cursor:pointer}
+.btn:hover{opacity:.86}.btn:active{opacity:.72}
+.btn.solid{background:var(--fg);color:var(--bg)}
+.btn[aria-pressed="true"]{background:var(--fg);color:var(--bg)}
+.count{margin-left:auto;font-size:14px;color:var(--muted)}
+@media(max-width:900px){.toolbar{grid-template-columns:1fr 1fr}.toolbar .field:first-child{grid-column:1/-1}.count{margin-left:0;width:100%}}
+
+/* cards */
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+@media(max-width:1060px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:620px){.grid{grid-template-columns:1fr}}
+.card{background:var(--bg);border:1px solid var(--line);cursor:pointer;display:flex;flex-direction:column;min-width:0;text-align:left;padding:0}
+.card:hover{opacity:.86}
+.card.picked{outline:3px solid var(--accent);outline-offset:-3px}
+.prev{aspect-ratio:16/9;max-width:100%;overflow:hidden;background:var(--surface);position:relative}
+.prev svg{width:100%;height:100%;display:block}
+.card .meta{padding:16px 18px 18px;display:flex;flex-direction:column;gap:8px;flex:1}
+.card .row1{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.tier{padding:3px 7px;border:1px solid currentColor;letter-spacing:.08em}
+.tier.sig{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.card h3{font-size:20px}
+.card .desc{font-size:14.5px;color:var(--muted);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.card .foot{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:6px}
+.chip{font-size:12px;font-weight:700;padding:3px 8px;background:var(--surface-2);color:var(--fg);white-space:nowrap}
+.chip.azl{background:transparent;border:1px solid var(--line);font-variant-numeric:tabular-nums}
+.empty{padding:48px;border:1px dashed var(--line);text-align:center;color:var(--muted)}
+
+/* compare */
+.compare{display:none;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;margin-bottom:28px;padding:20px;background:var(--surface);border:1px solid var(--line)}
+.compare.on{display:grid}
+.cmp{min-width:0}
+.cmp .prev{border:1px solid var(--line)}
+.cmp h3{font-size:20px;margin:12px 0 8px}
+.cmp dl{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;margin:0;font-size:14px}
+.cmp dt{color:var(--muted)}.cmp dd{margin:0;font-weight:700}
+.cmp-empty{display:grid;place-items:center;min-height:180px;border:1px dashed var(--line);color:var(--muted);font-size:14px;text-align:center;padding:16px}
+@media(max-width:720px){.compare{grid-template-columns:1fr}}
+
+/* A–Z */
+.az-wrap{overflow-x:auto;border:1px solid var(--line);background:var(--bg)}
+.az{width:100%;border-collapse:collapse;min-width:860px;font-size:14.5px}
+.az th{position:sticky;top:0;text-align:left;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);background:var(--bg);padding:14px 14px;border-bottom:2px solid var(--fg)}
+.az td{padding:12px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+.az tr:last-child td{border-bottom:0}
+.az .L{width:64px}
+.hexL{display:grid;place-items:center;width:38px;height:44px;clip-path:polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);background:var(--fg);color:var(--bg);font-weight:700;font-size:18px}
+.az td b{display:block;font-size:15.5px}
+.az .aud{color:var(--muted);font-size:13.5px}
+.link-chip{background:transparent;border:1px solid var(--fg);padding:3px 8px;margin:0 6px 6px 0;font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap}
+.link-chip:hover{opacity:.86}
+.link-chip.alt{border-color:var(--line);color:var(--muted)}
+.az .filt{font-size:13px;font-weight:700;background:transparent;border:0;padding:0;text-decoration:underline;cursor:pointer;color:var(--muted)}
+
+/* production */
+.steps{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:0;position:relative;margin-bottom:40px}
+.steps::before{content:"";position:absolute;left:24px;right:24px;top:25px;height:5px;background:var(--band-accent)}
+.step{position:relative;padding-right:14px;min-width:0}
+.step .hx{position:relative;width:46px;height:52px;clip-path:polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);background:#FFF100;color:#00507C;display:grid;place-items:center;font-weight:700;font-size:18px;font-variant-numeric:tabular-nums}
+.step h3{font-size:17px;margin:14px 0 6px}
+.step p{font-size:14px;color:var(--band-muted)}
+.prod{background:var(--band);color:var(--band-fg)}
+.prod .sec-head p,.prod .eyebrow{color:var(--band-muted)}
+.prod .rule{background:rgba(255,255,255,.2)}
+@media(max-width:980px){.steps{grid-template-columns:repeat(3,minmax(0,1fr));row-gap:28px}.steps::before{display:none}}
+@media(max-width:560px){.steps{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.brief-ui{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:28px;align-items:start}
+.brief-ui .field label{color:var(--band-muted)}
+.brief-ui .field select{background:var(--band-2);border-color:rgba(255,255,255,.25);color:var(--band-fg)}
+.brief-side p{font-size:15px;color:var(--band-muted);margin-top:14px}
+.code{position:relative;background:var(--code-bg);color:var(--code-fg);min-width:0}
+.code pre{margin:0;padding:20px;overflow:auto;max-height:440px;font-family:var(--mono);font-size:12.5px;line-height:1.6;white-space:pre}
+.code .copy{position:absolute;top:10px;right:10px;background:#FFF100;color:#00507C;border:0;padding:7px 12px;font-weight:700;font-size:13px;cursor:pointer}
+.code .copy:hover{opacity:.86}
+.btn-on-band{border-color:var(--band-fg);color:var(--band-fg)}
+@media(max-width:900px){.brief-ui{grid-template-columns:1fr}}
+
+/* guardrails */
+.guard{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+.guard > div{border-top:4px solid var(--fg);padding-top:18px;min-width:0}
+.guard > div.no{border-top-color:var(--line)}
+.guard h3{font-size:20px;margin-bottom:12px}
+.guard ul{margin:0;padding:0;list-style:none;display:grid;gap:10px}
+.guard li{display:grid;grid-template-columns:22px 1fr;gap:8px;font-size:15px}
+.guard li::before{content:"●";color:var(--accent);font-size:13px;line-height:1.7}
+.guard .no li::before{content:"▼";color:var(--muted)}
+@media(max-width:720px){.guard{grid-template-columns:1fr}}
+
+footer{border-top:1px solid var(--line);padding-block:28px 40px;font-size:13px;color:var(--muted)}
+footer .wrap{display:flex;flex-wrap:wrap;gap:12px 32px;justify-content:space-between}
+footer b{color:var(--fg)}
+
+/* modal */
+dialog{border:0;padding:0;width:min(1180px,calc(100vw - 32px));max-height:calc(100dvh - 32px);background:var(--bg);color:var(--fg)}
+dialog::backdrop{background:var(--scrim)}
+.m-head{display:flex;align-items:flex-start;gap:16px;padding:20px 24px;border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--bg);z-index:2}
+.m-head h2{font-size:clamp(22px,2.6vw,32px)}
+.m-head .row1{display:flex;gap:8px;align-items:center;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.m-head .x{margin-left:auto;flex:none}
+.m-body{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:28px;padding:24px}
+.m-art{aspect-ratio:16/9;max-width:100%;background:var(--surface);border:1px solid var(--line);overflow:hidden}
+.m-art svg{width:100%;height:100%;display:block}
+.m-tools{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;align-items:center}
+.m-tools .sp{flex:1}
+.m-nav{display:flex;gap:8px}
+.tabs{display:flex;border-bottom:1px solid var(--line);margin-bottom:16px;overflow-x:auto}
+.tabs button{background:transparent;border:0;border-bottom:3px solid transparent;padding:10px 12px;font-weight:700;font-size:14px;cursor:pointer;color:var(--muted);white-space:nowrap}
+.tabs button[aria-selected="true"]{color:var(--fg);border-bottom-color:var(--accent)}
+.panel{display:grid;gap:16px;font-size:15px}
+.panel h4{margin:0 0 4px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.kv{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 18px}
+.kv div{min-width:0}
+.kv b{display:block;font-size:15px}
+.swatches{display:flex;flex-wrap:wrap;gap:8px}
+.sw{display:flex;flex-direction:column;gap:4px;font-family:var(--mono);font-size:11px;color:var(--muted)}
+.sw i{display:block;width:46px;height:46px;border:1px solid var(--line)}
+.beats{list-style:none;margin:0;padding:0;display:grid;gap:0;border-left:3px solid var(--line)}
+.beats li{position:relative;padding:10px 0 12px 22px}
+.beats li::before{content:attr(data-n);position:absolute;left:-14px;top:9px;width:24px;height:28px;clip-path:polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);background:#FFF100;color:#00507C;font-size:11px;font-weight:700;display:grid;place-items:center;font-variant-numeric:tabular-nums}
+.beats li span{display:block;font-size:12px;color:var(--muted);font-family:var(--mono)}
+.donts{margin:0;padding:0;list-style:none;display:grid;gap:8px}
+.donts li{display:grid;grid-template-columns:20px 1fr;gap:6px}
+.donts li::before{content:"▼";color:var(--muted);font-size:12px;line-height:1.8}
+.m-body .code pre{max-height:360px}
+@media(max-width:900px){.m-body{grid-template-columns:1fr}}
+
+/* ===== shared animation vocabulary for SVG previews ===== */
+.art text{font-family:var(--font)}
+.a-spin{animation:aSpin var(--t,6s) linear infinite;transform-box:view-box}
+@keyframes aSpin{to{transform:rotate(360deg)}}
+.a-draw{stroke-dasharray:var(--len,1000);stroke-dashoffset:0;animation:aDraw var(--t,6s) var(--ease) infinite backwards;animation-delay:var(--d,0s)}
+@keyframes aDraw{0%{stroke-dashoffset:var(--len,1000)}45%,90%{stroke-dashoffset:0;opacity:1}100%{stroke-dashoffset:0;opacity:0}}
+.a-flow{stroke-dasharray:var(--dash,6 10);animation:aFlow var(--t,1.2s) linear infinite;animation-delay:var(--d,0s)}
+@keyframes aFlow{to{stroke-dashoffset:calc(var(--len,16) * -1)}}
+.a-grow{transform-box:fill-box;transform-origin:50% 100%;animation:aGrow var(--t,6s) var(--ease) infinite backwards;animation-delay:var(--d,0s)}
+@keyframes aGrow{0%{transform:scaleY(0)}30%,90%{transform:scaleY(1);opacity:1}100%{transform:scaleY(1);opacity:0}}
+.a-wipe{transform-box:fill-box;transform-origin:0 50%;animation:aWipe var(--t,6s) var(--ease) infinite backwards;animation-delay:var(--d,0s)}
+@keyframes aWipe{0%{transform:scaleX(0)}35%,90%{transform:scaleX(1);opacity:1}100%{transform:scaleX(1);opacity:0}}
+.a-pop{transform-box:fill-box;transform-origin:center;animation:aPop var(--t,6s) cubic-bezier(.16,1,.3,1) infinite backwards;animation-delay:var(--d,0s)}
+@keyframes aPop{0%{transform:scale(.2);opacity:0}14%,90%{transform:scale(1);opacity:1}100%{transform:scale(1);opacity:0}}
+.a-up{animation:aUp var(--t,6s) cubic-bezier(0,0,.2,1) infinite backwards;animation-delay:var(--d,0s)}
+@keyframes aUp{0%{transform:translateY(14px);opacity:0}12%,90%{transform:none;opacity:1}100%{transform:none;opacity:0}}
+.a-kin{animation:aKin var(--t,4.5s) cubic-bezier(.16,1,.3,1) infinite backwards;animation-delay:var(--d,0s)}
+@keyframes aKin{0%{transform:translateX(-40px);opacity:0}14%,86%{transform:none;opacity:1}100%{transform:translateX(30px);opacity:0}}
+.a-pulse{animation:aPulse var(--t,2.4s) ease-in-out infinite;animation-delay:var(--d,0s)}
+@keyframes aPulse{0%,100%{opacity:.45}50%{opacity:1}}
+.a-ping{transform-box:fill-box;transform-origin:center;animation:aPing 2.2s cubic-bezier(0,0,.2,1) infinite;animation-delay:var(--d,0s)}
+@keyframes aPing{0%{transform:scale(.6);opacity:.95}100%{transform:scale(2.6);opacity:0}}
+.a-float{animation:aFloat var(--t,4s) ease-in-out infinite}
+@keyframes aFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(var(--amp,-8px))}}
+.a-breathe{transform-box:fill-box;transform-origin:center;animation:aBreathe var(--t,6s) ease-in-out infinite}
+@keyframes aBreathe{0%,100%{transform:scale(1)}50%{transform:scale(var(--s,1.05))}}
+.a-slide{animation:aSlide var(--t,6s) ease-in-out infinite alternate}
+@keyframes aSlide{from{transform:translateX(var(--from,0px))}to{transform:translateX(var(--to,0px))}}
+.a-sweepband{animation:aSweep 4.5s var(--ease) infinite}
+@keyframes aSweep{0%{transform:translateX(0)}45%,100%{transform:translateX(1000px)}}
+.a-push{animation:aPush 6s cubic-bezier(0,0,.2,1) infinite backwards}
+@keyframes aPush{0%{transform:translateX(-260px)}14%,90%{transform:none;opacity:1}100%{transform:none;opacity:0}}
+.a-wave{animation:aWave var(--t,6s) ease-in-out infinite}
+@keyframes aWave{0%,100%{transform:translateY(-18px)}50%{transform:translateY(18px)}}
+.a-arc{animation:aArc var(--t,5s) cubic-bezier(.16,1,.3,1) infinite backwards;animation-delay:var(--d,0s)}
+@keyframes aArc{0%{stroke-dashoffset:var(--len)}40%,100%{stroke-dashoffset:var(--arc)}}
+.a-sway{transform-box:view-box;animation:aSway 5s ease-in-out infinite}
+@keyframes aSway{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(4deg)}}
+.a-steam{transform-box:fill-box;transform-origin:center;animation:aSteam 3.6s ease-out infinite;animation-delay:var(--d,0s)}
+@keyframes aSteam{0%{transform:translateY(0) scale(.6);opacity:0}25%{opacity:.75}100%{transform:translateY(-110px) scale(1.7);opacity:0}}
+.a-light{animation:aLight 6s ease-in-out infinite backwards;animation-delay:var(--d,0s)}
+@keyframes aLight{0%{opacity:.08}18%,88%{opacity:1}100%{opacity:.08}}
+.a-drift{animation:aDrift var(--t,5s) linear infinite;animation-delay:var(--d,0s)}
+@keyframes aDrift{0%{transform:translateX(-40px);opacity:0}20%{opacity:.9}80%{opacity:.9}100%{transform:translateX(80px);opacity:0}}
+.a-scan{animation:aScan 4s ease-in-out infinite}
+@keyframes aScan{0%,100%{transform:translateY(0)}50%{transform:translateY(var(--y,200px))}}
+.a-scanx{animation:aScanX 5s linear infinite}
+@keyframes aScanX{from{transform:translateX(0)}to{transform:translateX(640px)}}
+.a-lid{animation:aLid 6s var(--ease) infinite}
+@keyframes aLid{0%,15%{transform:none}35%,80%{transform:translateY(-46px);opacity:.55}100%{transform:none}}
+
+.paused .art *{animation:none!important}
+.still .art *{animation:none!important}
+.still .tx-stage *,.still .tx-stage *::before,.still .tx-stage *::after{animation:none!important}
+.still .tx-b{opacity:0}
+@media (prefers-reduced-motion:reduce){
+  .art *,.tx-stage *,.tx-stage *::before,.tx-stage *::after{animation:none!important}
+  .tx-b{opacity:0}
+  html{scroll-behavior:auto}
+}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--fg);color:var(--bg);padding:10px 16px;font-weight:700;font-size:14px;z-index:60;opacity:0;pointer-events:none;transition:opacity .22s var(--ease)}
+.toast.on{opacity:1}
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <img class="logo logo-c" src="assets/logo-pln-nr-color.png" alt="PLN Nusantara Renewables">
+    <img class="logo logo-w" src="assets/logo-pln-nr-white.png" alt="PLN Nusantara Renewables">
+    <nav class="nav" aria-label="Bagian halaman">
+      <a href="#gerak">Tata Gerak</a><a href="#galeri">Galeri</a><a href="#az">Peta A–Z</a><a href="#produksi">Produksi</a><a href="#pedoman">Pedoman</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" aria-label="Ganti tema">Tema: Sistem</button>
+  </div>
+</header>
+
+<section class="hero" aria-labelledby="ttl">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow">Pustaka Gerak · Edisi 1 · Nov 2026</div>
+      <h1 id="ttl">Galeri Gaya Gerak <em>PLN NR</em></h1>
+      <p class="lead">Empat puluh empat gaya animasi yang diturunkan dari design system PT PLN Nusantara Renewables, dipetakan ke 26 kebutuhan komunikasi dari Annual Report sampai Zero Accident. Setiap gaya membawa brief produksi siap pakai untuk Explainer Studio.</p>
+      <div class="stats">
+        <div class="stat"><b id="stStyles">44</b><span>gaya gerak</span></div>
+        <div class="stat"><b>8</b><span>rumpun</span></div>
+        <div class="stat"><b>26</b><span>kebutuhan A–Z</span></div>
+        <div class="stat"><b>8</b><span>transisi resmi</span></div>
+      </div>
+    </div>
+    <div>
+      <div class="reel" id="reel" role="img" aria-label="Cuplikan gaya signature PLN NR"></div>
+      <div class="reel-cap"><span id="reelCap"><b>Energy Sweep</b> · Signature</span><div class="reel-dots" id="reelDots"></div></div>
+    </div>
+  </div>
+  <div class="energy-rule"></div>
+</section>
+
+<section class="block" aria-labelledby="ideTtl">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><div class="eyebrow">Gagasan</div><h2 id="ideTtl">Galeri ini adalah sistem produksi, bukan katalog gambar</h2><div class="rule"></div></div>
+      <p>Referensi awal berisi gambar diam. Versi PLN NR menambahkan empat lapisan supaya setiap pilihan gaya langsung bisa dieksekusi dan tetap patuh merek.</p>
+    </div>
+    <div class="ideas">
+      <div class="idea"><div class="hx"></div><h3>Bergerak, bukan diam</h3><p>Setiap pratinjau dianimasikan dengan kosakata gerak yang sama, sehingga tempo, easing, dan transisi dinilai sebelum produksi.</p></div>
+      <div class="idea"><div class="hx"></div><h3>Tata bahasa gerak</h3><p>Durasi, easing, dan delapan transisi resmi diturunkan dari aset merek: pita energi, hexagon, gelombang, chevron, lensa.</p></div>
+      <div class="idea"><div class="hx"></div><h3>Peta kebutuhan A–Z</h3><p>Dua puluh enam situasi komunikasi PLN NR, masing-masing dengan gaya utama, alternatif, audiens, durasi, dan format.</p></div>
+      <div class="idea"><div class="hx"></div><h3>Brief siap Explainer Studio</h3><p>Setiap gaya mengekspor brief JSON: palet, tipografi, storyboard empat beat, guardrail. Tinggal isi naskah dan data.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="block alt" id="gerak" aria-labelledby="gerakTtl">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><div class="eyebrow">Fondasi</div><h2 id="gerakTtl">Tata bahasa gerak PLN NR</h2><div class="rule"></div></div>
+      <p>Template asli PLN NR statis dan hanya memakai cross-fade 220 ms. Untuk animasi, gerak diperluas secara terkendali: tetap tenang, tanpa pantulan, satu sinyal per bingkai.</p>
+    </div>
+    <div class="grammar">
+      <div>
+        <table class="tok">
+          <thead><tr><th>Token</th><th>Nilai</th><th>Kurva</th></tr></thead>
+          <tbody id="easeRows"></tbody>
+        </table>
+        <table class="tok" style="margin-top:24px">
+          <thead><tr><th>Durasi</th><th>Nilai</th><th>Untuk</th></tr></thead>
+          <tbody>
+            <tr><td>Mikro</td><td class="tnum">120 ms</td><td>Hover, tombol, kedip status</td></tr>
+            <tr><td>Standar</td><td class="tnum">220 ms</td><td>Cross-fade antarslide (default merek)</td></tr>
+            <tr><td>Slide</td><td class="tnum">420 ms</td><td>Elemen masuk, panel bergeser</td></tr>
+            <tr><td>Adegan</td><td class="tnum">600–800 ms</td><td>Transisi bermerek antaradegan</td></tr>
+            <tr><td>Tahan</td><td class="tnum">≥ 1,5 dtk</td><td>Angka final sebelum berganti</td></tr>
+            <tr><td>Beat</td><td class="tnum">3–6 dtk</td><td>Satu ide per beat storyboard</td></tr>
+          </tbody>
+        </table>
+        <ol class="rules">
+          <li><div><b>Tanpa bounce, elastic, atau getar.</b> <span>Gerak PLN NR tenang dan dapat dipercaya.</span></div></li>
+          <li><div><b>Satu sinyal per bingkai.</b> <span>Cyan di atas putih, kuning di atas navy, tidak keduanya.</span></div></li>
+          <li><div><b>Kecepatan baca 3 kata per detik.</b> <span>Teks layar mengikuti narasi, bukan mendahului.</span></div></li>
+          <li><div><b>Merah hanya di petir logo.</b> <span>Penurunan ditandai ▼ navy; status selalu ▲ ● ▼.</span></div></li>
+          <li><div><b>Energy Sweep maksimal dua kali per video.</b> <span>Gerak khas kehilangan makna bila diulang.</span></div></li>
+          <li><div><b>Setiap angka membawa sumber.</b> <span>Baris Sumber di bawah kiri, 10–12 px, minimal 2 dtk.</span></div></li>
+        </ol>
+      </div>
+      <div>
+        <div class="tx-grid" id="txGrid"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="galeri" aria-labelledby="galTtl">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><div class="eyebrow">Galeri</div><h2 id="galTtl">Empat puluh empat gaya dalam delapan rumpun</h2><div class="rule"></div></div>
+      <p>Signature adalah gaya asli merek dan aman untuk kanal resmi. Inti adalah gaya serbaguna yang sudah disesuaikan. Spesialis butuh konteks tertentu dan review tambahan.</p>
+    </div>
+    <div class="toolbar">
+      <div class="field"><label for="q">Cari gaya</label><input id="q" type="search" placeholder="Misal: peta, K3, BESS, batik" autocomplete="off"></div>
+      <div class="field"><label for="fCat">Rumpun</label><select id="fCat"><option value="">Semua rumpun</option></select></div>
+      <div class="field"><label for="fAz">Kebutuhan A–Z</label><select id="fAz"><option value="">Semua kebutuhan</option></select></div>
+      <div class="field"><label for="fFmt">Format</label><select id="fFmt"><option value="">Semua format</option><option>16:9</option><option>9:16</option><option>1:1</option></select></div>
+    </div>
+    <div class="subbar">
+      <div class="seg" role="group" aria-label="Tingkat gaya" id="tierSeg">
+        <button type="button" data-tier="" aria-pressed="true">Semua</button><button type="button" data-tier="Signature" aria-pressed="false">Signature</button><button type="button" data-tier="Inti" aria-pressed="false">Inti</button><button type="button" data-tier="Spesialis" aria-pressed="false">Spesialis</button>
+      </div>
+      <button class="btn" type="button" id="cmpBtn" aria-pressed="false">Bandingkan dua gaya</button>
+      <button class="btn" type="button" id="motionBtn" aria-pressed="true">Gerak: Aktif</button>
+      <button class="btn" type="button" id="resetBtn">Reset filter</button>
+      <span class="count" id="count" aria-live="polite"></span>
+    </div>
+    <div class="compare" id="compare" aria-live="polite"></div>
+    <div class="grid" id="grid"></div>
+  </div>
+</section>
+
+<section class="block alt" id="az" aria-labelledby="azTtl">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><div class="eyebrow">Peta kebutuhan</div><h2 id="azTtl">Dari Annual Report sampai Zero Accident</h2><div class="rule"></div></div>
+      <p>Mulai dari situasi komunikasinya, bukan dari gayanya. Pilih huruf, lihat gaya utama dan alternatif, lalu buka brief produksinya.</p>
+    </div>
+    <div class="az-wrap">
+      <table class="az">
+        <thead><tr><th class="L">Huruf</th><th>Kebutuhan dan audiens</th><th>Gaya utama</th><th>Alternatif</th><th>Durasi</th><th>Format</th><th></th></tr></thead>
+        <tbody id="azBody"></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="block prod" id="produksi" aria-labelledby="prodTtl">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><div class="eyebrow">Alur produksi</div><h2 id="prodTtl">Dari brief ke video di Explainer Studio</h2><div class="rule"></div></div>
+      <p>Galeri menjadi pintu masuk. Explainer Studio menerima brief JSON per gaya, lalu naskah, storyboard, dan render mengikuti kontrak yang sama.</p>
+    </div>
+    <div class="steps">
+      <div class="step"><div class="hx">01</div><h3>Brief</h3><p>Tujuan, audiens, keputusan yang diminta, kanal tayang.</p></div>
+      <div class="step"><div class="hx">02</div><h3>Pilih gaya</h3><p>Dari peta A–Z atau galeri; maksimal dua gaya per video.</p></div>
+      <div class="step"><div class="hx">03</div><h3>Naskah</h3><p>Bahasa Indonesia, kalimat aktif, 130–150 kata per menit.</p></div>
+      <div class="step"><div class="hx">04</div><h3>Storyboard</h3><p>Isi empat beat dari brief gaya; satu ide per beat.</p></div>
+      <div class="step"><div class="hx">05</div><h3>Render</h3><p>Explainer Studio membaca brief JSON dan merakit adegan.</p></div>
+      <div class="step"><div class="hx">06</div><h3>QA merek</h3><p>Cek palet, logo, sumber angka, kecepatan baca, caption.</p></div>
+    </div>
+    <div class="brief-ui">
+      <div class="brief-side">
+        <div class="field"><label for="briefSel">Gaya untuk brief</label><select id="briefSel"></select></div>
+        <p>Brief memakai skema <code>plnnr.motion-brief/1</code>. Kolom <code>placeholders</code> diisi tim komunikasi; sisanya dikunci oleh gaya dan pedoman merek.</p>
+        <p><button class="btn btn-on-band" type="button" id="briefOpen">Buka detail gaya ini</button></p>
+      </div>
+      <div class="code"><button class="copy" type="button" id="briefCopy">Salin JSON</button><pre id="briefPre" tabindex="0"></pre></div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="pedoman" aria-labelledby="pedTtl">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><div class="eyebrow">Pedoman</div><h2 id="pedTtl">Yang dijaga di setiap gaya</h2><div class="rule"></div></div>
+      <p>Daftar ini berlaku lintas gaya dan ikut tercetak di setiap brief sebagai guardrail.</p>
+    </div>
+    <div class="guard">
+      <div>
+        <h3>Lakukan</h3>
+        <ul>
+          <li>Tulis Bahasa Indonesia lebih dulu; istilah teknis (PLTS, MWac, COD) tetap dalam bentuk baku.</li>
+          <li>Gunakan desimal koma dan ribuan titik: 1,2 GW dan 100.000 kWh.</li>
+          <li>Kunci lockup PLN NR di kanan atas bingkai konten dan di bingkai terakhir.</li>
+          <li>Masker foto dalam kurva lensa atau tepi gelombang.</li>
+          <li>Beri caption Bahasa Indonesia untuk semua video media sosial.</li>
+          <li>Tandai angka ilustratif sampai data resmi masuk.</li>
+        </ul>
+      </div>
+      <div class="no">
+        <h3>Hindari</h3>
+        <ul>
+          <li>Emoji, tanda seru, dan pertanyaan retoris di grafik resmi.</li>
+          <li>Warna hitam; teks gelap selalu navy.</li>
+          <li>Merah di luar petir logo, kecuali rambu larangan K3 resmi.</li>
+          <li>Teks di atas pita gradient atau pola padat.</li>
+          <li>Ikon dari pustaka luar; gunakan hexagon, hexagon bernomor, atau line-art.</li>
+          <li>Bayangan blur, sudut membulat, atau efek glitch pada kartu.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span><b>www.ptplnnr.com</b> · PLN NR Motion Gallery, edisi 1</span>
+    <span>Pratinjau adalah ilustrasi gaya, bukan render final. Angka dan lokasi bersifat contoh. Tipografi memakai PT Sans sebagai pengganti Myriad Pro.</span>
+  </div>
+</footer>
+
+<dialog id="modal" aria-labelledby="mName">
+  <div class="m-head">
+    <div><div class="row1"><span id="mNo"></span><span class="tier" id="mTier"></span><span id="mCat"></span></div><h2 id="mName"></h2></div>
+    <button class="btn x" type="button" id="mClose">Tutup</button>
+  </div>
+  <div class="m-body">
+    <div>
+      <div class="m-art art" id="mArt"></div>
+      <div class="m-tools">
+        <button class="btn solid" type="button" id="mReplay">Putar ulang</button>
+        <span id="mFormats" class="swatches"></span>
+        <span class="sp"></span>
+        <div class="m-nav"><button class="btn" type="button" id="mPrev" aria-label="Gaya sebelumnya">←</button><button class="btn" type="button" id="mNext" aria-label="Gaya berikutnya">→</button></div>
+      </div>
+    </div>
+    <div>
+      <div class="tabs" role="tablist">
+        <button role="tab" type="button" data-tab="ring" aria-selected="true">Ringkasan</button>
+        <button role="tab" type="button" data-tab="story" aria-selected="false">Storyboard</button>
+        <button role="tab" type="button" data-tab="spec" aria-selected="false">Spesifikasi</button>
+        <button role="tab" type="button" data-tab="json" aria-selected="false">Brief JSON</button>
+      </div>
+      <div id="mPanel" class="panel" role="tabpanel"></div>
+    </div>
+  </div>
+</dialog>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+/*DATA*/
+</script>
+<script>
+(function(){
+  const P = window.PLNNR, S = P.STYLES, AZ = P.AZ, TX = P.TRANSITIONS, EASES = P.EASES;
+  const $ = s => document.querySelector(s);
+  const byId = Object.fromEntries(S.map(s => [s.id, s]));
+  const azName = Object.fromEntries(AZ.map(r => [r[0], r[1]]));
+  const store = { get(k){ try { return localStorage.getItem(k) } catch(e){ return null } }, set(k,v){ try { localStorage.setItem(k,v) } catch(e){} } };
+  let uid = 0; const pid = () => 'k' + (uid++) + '_';
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  /* ---------- theme ---------- */
+  const themes = ['system','light','dark'], tLabel = {system:'Sistem',light:'Terang',dark:'Gelap'};
+  let theme = store.get('plnnr-theme') || 'system';
+  function applyTheme(){ if (theme === 'system') document.documentElement.removeAttribute('data-theme'); else document.documentElement.setAttribute('data-theme', theme); $('#themeBtn').textContent = 'Tema: ' + tLabel[theme]; }
+  $('#themeBtn').onclick = () => { theme = themes[(themes.indexOf(theme) + 1) % 3]; store.set('plnnr-theme', theme); applyTheme(); };
+  applyTheme();
+
+  /* ---------- motion ---------- */
+  let motion = store.get('plnnr-motion') !== 'off' && !reduce.matches;
+  function applyMotion(){
+    document.documentElement.classList.toggle('still', !motion);
+    const b = $('#motionBtn'); b.setAttribute('aria-pressed', String(motion)); b.textContent = 'Gerak: ' + (motion ? 'Aktif' : 'Diam');
+    document.querySelectorAll('.art svg').forEach(s => { try { motion ? s.unpauseAnimations() : s.pauseAnimations(); } catch(e){} });
+  }
+  $('#motionBtn').onclick = () => { motion = !motion; store.set('plnnr-motion', motion ? 'on' : 'off'); applyMotion(); };
+
+  function toast(msg){ const t = $('#toast'); t.textContent = msg; t.classList.add('on'); clearTimeout(toast.h); toast.h = setTimeout(() => t.classList.remove('on'), 1800); }
+  function copyText(text, pre){
+    const done = () => toast('JSON tersalin');
+    const fallback = () => { const r = document.createRange(); r.selectNodeContents(pre); const sel = getSelection(); sel.removeAllRanges(); sel.addRange(r); toast('Teks terpilih, tekan Ctrl+C untuk menyalin'); };
+    try { navigator.clipboard.writeText(text).then(done, fallback); } catch(e){ fallback(); }
+  }
+
+  /* ---------- hero reel ---------- */
+  const reelIds = ['energy-sweep','hex-bloom','nusantara-map','golden-hour','monoline-scene'];
+  let reelI = 0, reelTimer = null;
+  const reel = $('#reel'), dots = $('#reelDots');
+  reelIds.forEach((id, i) => { const b = document.createElement('button'); b.type = 'button'; b.setAttribute('aria-label', 'Tampilkan ' + byId[id].name); b.onclick = () => { showReel(i); restartReel(); }; dots.append(b); });
+  function showReel(i){
+    reelI = i; const s = byId[reelIds[i]];
+    const old = reel.querySelector('.art'); const el = document.createElement('div'); el.className = 'art'; el.style.opacity = '0'; el.innerHTML = s.svg(pid()); reel.append(el);
+    requestAnimationFrame(() => { el.style.opacity = '1'; if (old) { old.style.opacity = '0'; setTimeout(() => old.remove(), 260); } });
+    $('#reelCap').innerHTML = '<b>' + esc(s.name) + '</b> · ' + esc(s.tier);
+    [...dots.children].forEach((d, k) => d.setAttribute('aria-current', String(k === i)));
+    if (!motion) { try { el.querySelector('svg').pauseAnimations(); } catch(e){} }
+  }
+  function restartReel(){ clearInterval(reelTimer); reelTimer = setInterval(() => { if (motion && !document.hidden) showReel((reelI + 1) % reelIds.length); }, 6000); }
+  showReel(0); restartReel();
+
+  /* ---------- motion grammar ---------- */
+  const curve = css => { const m = css.match(/[\d.]+/g); if (!m) return ''; const [a,b,c,d] = m.map(Number); return `<svg class="curve" viewBox="0 0 64 40" aria-hidden="true"><rect width="64" height="40" fill="none"/><path d="M4 36 C${4+a*56} ${36-b*32} ${4+c*56} ${36-d*32} 60 4" fill="none" stroke="currentColor" stroke-width="2.5"/><circle cx="4" cy="36" r="2.5" fill="currentColor"/><circle cx="60" cy="4" r="2.5" fill="currentColor"/></svg>`; };
+  const easeDesc = {'brand-standard':'Default merek, gerak umum','entrance':'Elemen masuk, melambat di akhir','emphasis':'Angka, hexagon, sorotan','exit':'Elemen keluar, cepat di akhir'};
+  $('#easeRows').innerHTML = Object.entries(EASES).map(([k, v]) => `<tr><td>${k}<br><code>${v}</code></td><td>${easeDesc[k]}</td><td>${curve(v)}</td></tr>`).join('');
+  $('#txGrid').innerHTML = TX.map(t => {
+    let inner = '<div class="tx-a"></div><div class="tx-b"></div>';
+    if (t.cls === 'tx-line') inner = '<div class="tx-a"></div><div class="tx-b"><svg viewBox="0 0 160 100" aria-hidden="true"><path d="M10 80 L50 80 L70 30 L90 70 L110 20 L150 20" fill="none" stroke="#00ADEF" stroke-width="4" stroke-linejoin="round"/></svg></div>';
+    if (t.cls === 'tx-count') inner = '<div class="tx-a"></div><div class="tx-b"><span class="num" data-count="91">0%</span></div>';
+    return `<div class="tx"><div class="tx-stage ${t.cls}">${inner}</div><h3>${esc(t.key)}</h3><div class="ms">${t.ms} ms · ${esc(t.ease)}</div><p>${esc(t.use)}</p></div>`;
+  }).join('');
+  (function countLoop(){
+    const el = document.querySelector('.tx-count .num'); if (!el) return;
+    let start = null;
+    function f(ts){ if (!start) start = ts; const t = ((ts - start) % 3200) / 3200; let v = 0;
+      if (!motion) v = 91; else if (t < .35) v = 0; else if (t < .62) { const k = (t - .35) / .27; v = Math.round(91 * (1 - Math.pow(1 - k, 4))); } else v = 91;
+      el.textContent = v + '%'; requestAnimationFrame(f); }
+    requestAnimationFrame(f);
+  })();
+
+  /* ---------- gallery ---------- */
+  const fCat = $('#fCat'), fAz = $('#fAz'), fFmt = $('#fFmt'), q = $('#q');
+  P.CATS.forEach(c => fCat.add(new Option(c + ' (' + S.filter(s => s.cat === c).length + ')', c)));
+  AZ.forEach(r => fAz.add(new Option(r[0] + ' — ' + r[1], r[0])));
+  let tier = '', comparing = false, picked = [];
+  const grid = $('#grid');
+
+  const io = 'IntersectionObserver' in window ? new IntersectionObserver(es => es.forEach(e => {
+    e.target.classList.toggle('paused', !e.isIntersecting);
+    const s = e.target.querySelector('svg'); if (!s) return;
+    try { (e.isIntersecting && motion) ? s.unpauseAnimations() : s.pauseAnimations(); } catch(x){}
+  }), { rootMargin: '120px' }) : null;
+
+  function card(s){
+    const el = document.createElement('article'); el.className = 'card'; el.dataset.id = s.id; el.tabIndex = 0; el.setAttribute('role', 'button');
+    el.setAttribute('aria-label', 'Buka gaya ' + s.name);
+    el.innerHTML = `<div class="prev art">${s.svg(pid())}</div><div class="meta"><div class="row1"><span class="tnum">${s.no}</span><span class="tier ${s.tier === 'Signature' ? 'sig' : ''}">${s.tier}</span><span>${esc(s.cat)}</span></div><h3>${esc(s.name)}</h3><p class="desc">${esc(s.desc)}</p><div class="foot"><span class="chip">${esc(s.dur)}</span>${s.formats.map(f => `<span class="chip">${esc(f)}</span>`).join('')}${s.letters.map(l => `<span class="chip azl" title="${esc(azName[l])}">${l}</span>`).join('')}</div></div>`;
+    el.onclick = () => comparing ? pick(s.id) : openModal(s.id);
+    el.onkeydown = e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); el.click(); } };
+    if (picked.includes(s.id)) el.classList.add('picked');
+    return el;
+  }
+  function filtered(){
+    const term = q.value.trim().toLowerCase();
+    return S.filter(s => (!fCat.value || s.cat === fCat.value) && (!fAz.value || s.letters.includes(fAz.value)) && (!fFmt.value || s.formats.includes(fFmt.value)) && (!tier || s.tier === tier) &&
+      (!term || [s.name, s.cat, s.desc, s.when, s.aud, s.letters.map(l => azName[l]).join(' ')].join(' ').toLowerCase().includes(term)));
+  }
+  function render(){
+    const list = filtered(); grid.innerHTML = '';
+    if (io) io.disconnect();
+    if (!list.length) { grid.innerHTML = '<div class="empty" style="grid-column:1/-1">Tidak ada gaya yang cocok. Kurangi filter atau ubah kata kunci.</div>'; }
+    list.forEach(s => { const c = card(s); grid.append(c); if (io) io.observe(c); });
+    let txt = list.length + ' dari ' + S.length + ' gaya';
+    if (fAz.value) txt += ' · kebutuhan ' + fAz.value + ': ' + azName[fAz.value];
+    $('#count').textContent = txt;
+    applyMotion();
+  }
+  [q, fCat, fAz, fFmt].forEach(e => e.addEventListener(e === q ? 'input' : 'change', render));
+  $('#tierSeg').onclick = e => { const b = e.target.closest('button'); if (!b) return; tier = b.dataset.tier; [...$('#tierSeg').children].forEach(x => x.setAttribute('aria-pressed', String(x === b))); render(); };
+  $('#resetBtn').onclick = () => { q.value = ''; fCat.value = ''; fAz.value = ''; fFmt.value = ''; tier = ''; [...$('#tierSeg').children].forEach((x, i) => x.setAttribute('aria-pressed', String(i === 0))); render(); };
+
+  /* compare */
+  function drawCompare(){
+    const box = $('#compare'); box.classList.toggle('on', comparing);
+    const slot = id => { if (!id) return '<div class="cmp-empty">Klik kartu di galeri untuk mengisi slot ini</div>'; const s = byId[id];
+      return `<div class="cmp"><div class="prev art">${s.svg(pid())}</div><h3>${esc(s.name)}</h3><dl><dt>Rumpun</dt><dd>${esc(s.cat)}</dd><dt>Tingkat</dt><dd>${s.tier}</dd><dt>Tempo</dt><dd>${s.pace}</dd><dt>Durasi</dt><dd>${esc(s.dur)}</dd><dt>Transisi</dt><dd>${esc(s.transition)}</dd><dt>Format</dt><dd>${s.formats.join(' · ')}</dd><dt>Audiens</dt><dd>${esc(s.aud)}</dd></dl></div>`; };
+    box.innerHTML = slot(picked[0]) + slot(picked[1]);
+    applyMotion();
+  }
+  function pick(id){
+    const i = picked.indexOf(id); if (i > -1) picked.splice(i, 1); else { picked.push(id); if (picked.length > 2) picked.shift(); }
+    document.querySelectorAll('.card').forEach(c => c.classList.toggle('picked', picked.includes(c.dataset.id)));
+    drawCompare();
+  }
+  $('#cmpBtn').onclick = () => { comparing = !comparing; $('#cmpBtn').setAttribute('aria-pressed', String(comparing)); $('#cmpBtn').textContent = comparing ? 'Selesai membandingkan' : 'Bandingkan dua gaya'; if (!comparing) { picked = []; document.querySelectorAll('.card.picked').forEach(c => c.classList.remove('picked')); } drawCompare(); };
+
+  /* ---------- A–Z ---------- */
+  $('#azBody').innerHTML = AZ.map(([L, need, aud, main, alt, dur, fmt]) => `<tr><td class="L"><span class="hexL">${L}</span></td><td><b>${esc(need)}</b><span class="aud">${esc(aud)}</span></td><td>${main.map(id => `<button type="button" class="link-chip" data-open="${id}">${esc(byId[id].name)}</button>`).join('')}</td><td>${alt.map(id => `<button type="button" class="link-chip alt" data-open="${id}">${esc(byId[id].name)}</button>`).join('')}</td><td class="tnum">${esc(dur)}</td><td>${esc(fmt)}</td><td><button type="button" class="filt" data-az="${L}">Lihat di galeri</button></td></tr>`).join('');
+  $('#azBody').onclick = e => {
+    const o = e.target.closest('[data-open]'); if (o) return openModal(o.dataset.open);
+    const f = e.target.closest('[data-az]'); if (f) { fAz.value = f.dataset.az; render(); document.getElementById('galeri').scrollIntoView(); }
+  };
+
+  /* ---------- brief JSON ---------- */
+  const GLOBAL_GUARD = ['Merah #E20613 hanya di petir logo', 'Tanpa emoji dan tanda seru di grafik', 'Teks gelap selalu navy #00507C, tidak hitam', 'Satu sinyal per bingkai: cyan di atas putih, kuning di atas navy', 'Setiap angka wajib baris Sumber', 'Kecepatan teks layar maksimal 3 kata per detik'];
+  function brief(s){
+    const t = TX.find(x => x.key === s.transition);
+    return {
+      schema: 'plnnr.motion-brief/1', brand: 'PT PLN Nusantara Renewables', style_id: s.id, style_name: s.name, family: s.cat, tier: s.tier, language: 'id-ID',
+      use_cases: s.letters.map(l => l + ' — ' + azName[l]), audience: s.aud, when_to_use: s.when,
+      aspect_ratios: s.formats, duration: s.dur, pace: s.pace,
+      motion: { easing: { name: s.ease, css: EASES[s.ease] || null }, signature_transition: { name: t.key, duration_ms: t.ms, css_easing: t.ease }, default_transition: { name: 'Cross-fade', duration_ms: 220, css_easing: 'cubic-bezier(.4,0,.2,1)' }, no_bounce: true },
+      palette: s.palette, typography: { family: 'PT Sans (pengganti Myriad Pro)', spec: s.type, numerals: 'tabular' },
+      storyboard: s.beats.map((b, i) => ({ beat: i + 1, action: b, duration_s: null, narration: '' })),
+      guardrails: [...s.dont, ...GLOBAL_GUARD],
+      logo: { lockup: 'PLN NR color / white', position: 'kanan atas bingkai konten; tengah pada bingkai akhir' },
+      deliverables: ['MP4 H.264, 1920×1080 atau 1080×1920, 25 fps', 'SRT caption Bahasa Indonesia', 'Thumbnail PNG'],
+      placeholders: { judul: '', tujuan: '', keputusan_yang_diminta: '', naskah: '', data_dan_sumber: [], footage: [] }
+    };
+  }
+  const briefSel = $('#briefSel');
+  S.forEach(s => briefSel.add(new Option(s.no + ' · ' + s.name, s.id)));
+  function drawBrief(){ $('#briefPre').textContent = JSON.stringify(brief(byId[briefSel.value]), null, 2); }
+  briefSel.onchange = drawBrief; drawBrief();
+  $('#briefCopy').onclick = () => copyText($('#briefPre').textContent, $('#briefPre'));
+  $('#briefOpen').onclick = () => openModal(briefSel.value);
+
+  /* ---------- modal ---------- */
+  const modal = $('#modal'); let cur = null, tab = 'ring';
+  function panel(){
+    const s = byId[cur], el = $('#mPanel');
+    if (tab === 'ring') el.innerHTML = `<p>${esc(s.desc)}</p><div><h4>Kapan dipakai</h4><p>${esc(s.when)}</p></div><div><h4>Audiens</h4><p>${esc(s.aud)}</p></div><div><h4>Melayani kebutuhan</h4><div class="swatches">${s.letters.map(l => `<button type="button" class="link-chip" data-az="${l}">${l} · ${esc(azName[l])}</button>`).join('')}</div></div><div><h4>Hindari</h4><ul class="donts">${s.dont.map(x => `<li>${esc(x)}</li>`).join('')}</ul></div>`;
+    if (tab === 'story') el.innerHTML = `<div><h4>Empat beat</h4><ol class="beats">${s.beats.map((b, i) => `<li data-n="0${i + 1}"><span>Beat ${i + 1}</span>${esc(b)}</li>`).join('')}</ol></div><p style="color:var(--muted);font-size:14px">Satu beat memuat satu ide. Durasi beat 3–6 detik, kecuali beat data yang menahan angka minimal 1,5 detik.</p>`;
+    if (tab === 'spec') { const t = TX.find(x => x.key === s.transition);
+      el.innerHTML = `<div class="kv"><div><h4>Durasi</h4><b>${esc(s.dur)}</b></div><div><h4>Tempo</h4><b>${s.pace}</b></div><div><h4>Easing</h4><b>${esc(s.ease)}</b><code style="font-family:var(--mono);font-size:12px;color:var(--muted)">${esc(EASES[s.ease] || 'linear')}</code></div><div><h4>Transisi khas</h4><b>${esc(t.key)}</b><code style="font-family:var(--mono);font-size:12px;color:var(--muted)">${t.ms} ms</code></div><div><h4>Format</h4><b>${s.formats.join(' · ')}</b></div><div><h4>Tingkat</h4><b>${s.tier}</b></div></div><div><h4>Tipografi</h4><p>${esc(s.type)}</p></div><div><h4>Palet</h4><div class="swatches">${s.palette.map(c => `<span class="sw"><i style="background:${c}"></i>${c}</span>`).join('')}</div></div>`; }
+    if (tab === 'json') { el.innerHTML = `<div class="code"><button class="copy" type="button" id="mCopy">Salin JSON</button><pre id="mPre" tabindex="0"></pre></div>`; $('#mPre').textContent = JSON.stringify(brief(s), null, 2); $('#mCopy').onclick = () => copyText($('#mPre').textContent, $('#mPre')); }
+    document.querySelectorAll('.tabs button').forEach(b => b.setAttribute('aria-selected', String(b.dataset.tab === tab)));
+  }
+  function drawArt(){ const a = $('#mArt'); a.innerHTML = byId[cur].svg(pid()); if (!motion) { try { a.querySelector('svg').pauseAnimations(); } catch(e){} } }
+  function openModal(id){
+    if (!byId[id]) return; cur = id; const s = byId[id];
+    $('#mNo').textContent = s.no; $('#mTier').textContent = s.tier; $('#mTier').className = 'tier' + (s.tier === 'Signature' ? ' sig' : ''); $('#mCat').textContent = s.cat; $('#mName').textContent = s.name;
+    $('#mFormats').innerHTML = s.formats.map(f => `<span class="chip">${esc(f)}</span>`).join('');
+    drawArt(); panel();
+    if (!modal.open) modal.showModal();
+    if (location.hash !== '#gaya-' + id) history.replaceState(null, '', '#gaya-' + id);
+  }
+  function step(dir){ const i = S.findIndex(s => s.id === cur); openModal(S[(i + dir + S.length) % S.length].id); }
+  $('#mPrev').onclick = () => step(-1); $('#mNext').onclick = () => step(1);
+  $('#mReplay').onclick = drawArt;
+  $('#mClose').onclick = () => modal.close();
+  modal.addEventListener('close', () => { if (location.hash.startsWith('#gaya-')) history.replaceState(null, '', location.pathname + location.search); });
+  modal.addEventListener('click', e => { if (e.target === modal) modal.close(); });
+  modal.addEventListener('keydown', e => { if (e.key === 'ArrowRight' && !e.target.closest('select,input,pre')) step(1); if (e.key === 'ArrowLeft' && !e.target.closest('select,input,pre')) step(-1); });
+  document.querySelector('.tabs').onclick = e => { const b = e.target.closest('button'); if (!b) return; tab = b.dataset.tab; panel(); };
+  $('#mPanel').addEventListener('click', e => { const f = e.target.closest('[data-az]'); if (f) { modal.close(); fAz.value = f.dataset.az; render(); document.getElementById('galeri').scrollIntoView(); } });
+
+  function route(){ const h = location.hash; if (h.startsWith('#gaya-')) openModal(h.slice(6)); }
+  window.addEventListener('hashchange', route);
+
+  render(); applyMotion(); route();
+  reduce.addEventListener && reduce.addEventListener('change', () => { motion = !reduce.matches && store.get('plnnr-motion') !== 'off'; applyMotion(); });
+})();
+</script>
